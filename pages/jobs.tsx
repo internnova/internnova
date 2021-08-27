@@ -97,7 +97,6 @@ function App() {
         ) : (
           filteredJobs.map((job) => (
             <JobComponent
-            {/*tslint:disable-next-line*/}
               job={job}
               key={job.id}
               handleTagClick={handleTagClick}

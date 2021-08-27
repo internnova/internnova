@@ -3,7 +3,9 @@ import React from 'react';
 import { LazyLoadImage } from 'react-lazy-load-image-component';
 import jobType from '../lib/types/jobType';
 
-const JobComponent = (job: jobType, handleTagClick: Function) => {
+type Props = { job: jobType; handleTagClick: Function };
+
+const JobComponent = ({ job, handleTagClick }: Props) => {
   const {
     position,
     contract,
