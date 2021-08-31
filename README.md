@@ -1,8 +1,8 @@
 <p align="center">
-<img src="https://github.com/InterNova-Labs/web/blob/main/public/logo.png?raw=true" />
+<img src="https://github.com/InternNova-Labs/web/blob/main/public/logo.png?raw=true" />
 </p>
 
-<h1 align="center">InterNova</h1>
+<h1 align="center">InternNova</h1>
 <h4 align="center">Land the best possible high-school ready internships</h4>
 
 ## Contributing

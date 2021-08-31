@@ -1,6 +1,6 @@
 {
   "private": true,
-  "name": "internova",
+  "name": "internnova",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

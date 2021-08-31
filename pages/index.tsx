@@ -28,7 +28,7 @@ const Main = () => {
         internships
       </h1>
       <p className="opacity-[0.76] mt-5 text-lg sm:text-xl lg:text-2xl">
-        InterNova helps high school students build their profile, enhance their
+        InternNova helps high school students build their profile, enhance their
         skills, and increase their chances of getting admitted into top
         colleges. Join our beta waitlist today!
       </p>
