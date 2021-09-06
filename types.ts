@@ -1,18 +1,30 @@
-import { DefaultCtx, SessionContext, SimpleRolesIsAuthorized } from "blitz"
-import { User } from "db"
+import { DefaultCtx, SessionContext, SimpleRolesIsAuthorized } from 'blitz'
+import { User } from 'db'
 
 // Note: You should switch to Postgres and then use a DB enum for role type
-export type Role = "ADMIN" | "USER"
+export type Role = 'ADMIN' | 'USER'
 
-declare module "blitz" {
+declare module 'blitz' {
   export interface Ctx extends DefaultCtx {
     session: SessionContext
   }
   export interface Session {
     isAuthorized: SimpleRolesIsAuthorized<Role>
     PublicData: {
-      userId: User["id"]
+      userId: User['id']
       role: Role
     }
   }
+}
+export interface jobType {
+  id: number
+  position: string
+  contract: string
+  location: string
+  logo: string
+  company: string
+  postedAt: Date
+  tools: string[]
+  isNew?: boolean
+  featured?: boolean
 }

@@ -1,6 +1,6 @@
 import moment from 'moment'
 import React from 'react'
-import jobType from 'app/lib/types/jobType'
+import { jobType } from 'types'
 
 type Props = { job: jobType; handleTagClick: Function }
 

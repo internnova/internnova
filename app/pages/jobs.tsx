@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import Navbar from 'app/core/components/Navbar'
 import JobComponent from 'app/core/components/JobComponent'
-import jobType from 'app/lib/types/jobType'
+import { jobType } from 'types'
 
 async function getvals() {
   try {
