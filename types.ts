@@ -24,7 +24,7 @@ export interface internshipType {
   logo: string
   company: string
   postedAt: Date
-  tools: string[]
+  tools: Array<string>
   isNew?: boolean
   featured?: boolean
 }
