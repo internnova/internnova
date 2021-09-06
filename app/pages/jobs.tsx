@@ -1,7 +1,7 @@
 import React, { useState } from "react"
 import Navbar from "app/core/components/Navbar"
 import JobComponent from "app/core/components/JobComponent"
-import { jobType } from "types"
+import { internshipType } from "types"
 import { Routes } from "blitz"
 
 function getInternships() {
@@ -25,11 +25,11 @@ async function getvals() {
 }
 
 function JobsPage() {
-  const [jobs, setJobs] = useState<jobType[]>([])
+  const [jobs, setJobs] = useState<internshipType[]>([])
   const [filters, setFilters] = useState<string[]>([])
 
   getvals().then((response) => {
-    setJobs(response as jobType[])
+    setJobs(response as internshipType[])
   })
 
   const filterFunc = ({ role, level, tools }) => {
@@ -56,7 +56,7 @@ function JobsPage() {
   }
 
   // @ts-ignore
-  let filteredJobs: jobType[] = jobs ? jobs.filter(filterFunc) : []
+  let filteredJobs: internshipType[] = jobs ? jobs.filter(filterFunc) : []
 
   const clearFilters = () => {
     setFilters([])

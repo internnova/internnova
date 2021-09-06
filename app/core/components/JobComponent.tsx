@@ -1,8 +1,8 @@
 import moment from "moment"
 import React from "react"
-import { jobType } from "types"
+import { internshipType } from "types"
 
-type Props = { job: jobType; handleTagClick: Function }
+type Props = { job: internshipType; handleTagClick: Function }
 
 const JobComponent = ({ job, handleTagClick }: Props) => {
   const { position, contract, location, logo, company, postedAt, tools, isNew, featured } = job
