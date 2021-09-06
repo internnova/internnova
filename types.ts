@@ -16,7 +16,7 @@ declare module "blitz" {
     }
   }
 }
-export interface jobType {
+export interface internshipType {
   id: number
   position: string
   contract: string

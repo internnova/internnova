@@ -16,7 +16,6 @@ const seed = async () => {
         location: "palo alto, california, usa",
         logo: "https://bookassist.org/wp-content/uploads/elementor/thumbs/google_3_520-oc7dqerwmsbfad0t1gveosa6x2uck2bd7y6l2r7txs.jpg",
         company: "google",
-        role: "senior software engineer",
         tools: ["react", "javascript", "typescript", "css"],
       },
     })
