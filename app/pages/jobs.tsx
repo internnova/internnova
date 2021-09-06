@@ -1,17 +1,21 @@
-import React, { useState } from 'react'
-import Navbar from 'app/core/components/Navbar'
-import JobComponent from 'app/core/components/JobComponent'
-import { jobType } from 'types'
+import React, { useState } from "react"
+import Navbar from "app/core/components/Navbar"
+import JobComponent from "app/core/components/JobComponent"
+import { jobType } from "types"
+
+function getInternships() {
+  return fetch("http://localhost:3000/api/get-internships", {
+    method: "GET",
+    headers: {
+      Accept: "application/json",
+      "Content-Type": "application/json",
+    },
+  })
+}
 
 async function getvals() {
   try {
-    const response = await fetch('http://localhost:3000/api/get-internships', {
-      method: 'GET',
-      headers: {
-        Accept: 'application/json',
-        'Content-Type': 'application/json',
-      },
-    })
+    const response = await getInternships()
     const responseData = await response.json()
     return responseData
   } catch (error) {
