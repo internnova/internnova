@@ -1,8 +1,8 @@
-import { AuthenticationError, Link, useMutation, Routes } from "blitz"
-import { LabeledTextField } from "app/core/components/LabeledTextField"
-import { Form, FORM_ERROR } from "app/core/components/Form"
-import login from "app/auth/mutations/login"
-import { Login } from "app/auth/validations"
+import { AuthenticationError, Link, useMutation, Routes } from 'blitz'
+import { LabeledTextField } from 'app/core/components/LabeledTextField'
+import { Form, FORM_ERROR } from 'app/core/components/Form'
+import login from 'app/auth/mutations/login'
+import { Login } from 'app/auth/validations'
 
 type LoginFormProps = {
   onSuccess?: () => void
@@ -15,8 +15,9 @@ export const LoginForm = (props: LoginFormProps) => {
     <section className="flex flex-col md:flex-row h-screen items-center">
       <div className="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen">
         <img
-          src="https://source.unsplash.com/random"
+          src="https://cdn.dribbble.com/users/974160/screenshots/5404701/rdc.gif"
           alt=""
+          id="twoTimesGif"
           className="w-full h-full object-cover"
         />
       </div>
@@ -31,18 +32,18 @@ export const LoginForm = (props: LoginFormProps) => {
           <Form
             submitText="Log In"
             schema={Login}
-            initialValues={{ email: "", password: "" }}
+            initialValues={{ email: '', password: '' }}
             onSubmit={async (values) => {
               try {
                 await loginMutation(values)
                 props.onSuccess?.()
               } catch (error) {
                 if (error instanceof AuthenticationError) {
-                  return { [FORM_ERROR]: "Sorry, those credentials are invalid" }
+                  return { [FORM_ERROR]: 'Sorry, those credentials are invalid' }
                 } else {
                   return {
                     [FORM_ERROR]:
-                      "Sorry, we had an unexpected error. Please try again. - " + error.toString(),
+                      'Sorry, we had an unexpected error. Please try again. - ' + error.toString(),
                   }
                 }
               }
@@ -75,7 +76,7 @@ export const LoginForm = (props: LoginFormProps) => {
               </Link>
             </div>
           </Form>
-        </div>
+        </div>{' '}
       </div>
     </section>
   )
