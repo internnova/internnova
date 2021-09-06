@@ -24,7 +24,7 @@ export const LabeledTextField = forwardRef<HTMLInputElement, LabeledTextFieldPro
 
     return (
       <div {...outerProps}>
-        <label className="block text-gray-700">
+        <label className="block text-gray-700 text-lg py-2">
           {label}
           <input
             {...input}
