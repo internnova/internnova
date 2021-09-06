@@ -51,7 +51,7 @@ function App() {
   }
 
   // @ts-ignore
-  let filteredJobs: jobType[] = job ? jobs.filter(filterFunc) : []
+  let filteredJobs: jobType[] = jobs ? jobs.filter(filterFunc) : []
 
   const clearFilters = () => {
     setFilters([])
