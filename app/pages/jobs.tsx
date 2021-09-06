@@ -7,6 +7,10 @@ async function getvals() {
   try {
     const response = await fetch('http://localhost:3000/api/get-internships', {
       method: 'GET',
+      headers: {
+        Accept: 'application/json',
+        'Content-Type': 'application/json',
+      },
     })
     const responseData = await response.json()
     return responseData
