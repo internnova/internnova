@@ -2,6 +2,7 @@ import React, { useState } from "react"
 import Navbar from "app/core/components/Navbar"
 import JobComponent from "app/core/components/JobComponent"
 import { jobType } from "types"
+import { Routes } from "blitz"
 
 function getInternships() {
   return fetch("http://localhost:3000/api/get-internships", {
@@ -23,7 +24,7 @@ async function getvals() {
   }
 }
 
-function App() {
+function JobsPage() {
   const [jobs, setJobs] = useState<jobType[]>([])
   const [filters, setFilters] = useState<string[]>([])
 
@@ -62,7 +63,7 @@ function App() {
   }
 
   return (
-    <div className="py-10 px-7 sm:px-10 md:px-20 xl:container mx-auto h-screen w-screen relative overflow-hidden">
+    <div className="py-10 px-7 sm:px-10 md:px-20 xl:container mx-auto w-screen relative">
       <header className="bg-teal-500 mb-8 mt-5">
         <Navbar />
       </header>
@@ -102,4 +103,6 @@ function App() {
   )
 }
 
-export default App
+JobsPage.authenticate = { redirectTo: Routes.LoginPage() }
+
+export default JobsPage

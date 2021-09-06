@@ -1,8 +1,9 @@
 import Navbar from "app/core/components/Navbar"
 import { BsSearch } from "react-icons/bs"
 import Link from "next/link"
+import { Routes } from "blitz"
 
-export default function Home() {
+const Home = () => {
   return (
     <>
       <div className="py-10 px-7 sm:px-10 md:px-20 xl:container mx-auto h-screen w-screen relative overflow-hidden">
@@ -39,3 +40,5 @@ const Main = () => {
     </div>
   )
 }
+
+export default Home
