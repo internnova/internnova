@@ -4,14 +4,16 @@ module.exports = {
   purge: ["{pages,app}/**/*.{js,ts,jsx,tsx}"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    colors: {
-      bg: "#010101",
-      fg: "#000",
-      variant: {
-        1: "#b2dfdb",
-        2: "#26a69a",
+    extend: {
+      colors: {
+        bg: "#010101",
+        fg: "#000",
+        variant: {
+          1: "#b2dfdb",
+          2: "#26a69a",
+        },
+        gray: "#7D8597",
       },
-      gray: "#7D8597",
     },
   },
   variants: {

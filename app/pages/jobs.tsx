@@ -64,7 +64,7 @@ function JobsPage() {
 
   return (
     <div className="py-10 px-7 sm:px-10 md:px-20 xl:container mx-auto w-screen relative">
-      <header className="bg-teal-500 mb-8 mt-5">
+      <header className="mb-8 mt-5">
         <Navbar />
       </header>
       <h1 className="text-center text-variant-2 text-6xl font-bold mb-8">Jobs</h1>
@@ -76,11 +76,11 @@ function JobsPage() {
             {filters.map((filter) => (
               <div
                 onClick={() => handleFilterClick(filter)}
-                className="text-teal-500 bg-teal-100 h-10 w-auto cursor-pointer font-bold mr-4 mb-4 p-2 justify-center items-center flex rounded lg:mb-0"
+                className="text-variant-2 bg-variant-1 h-10 w-auto cursor-pointer font-bold mr-4 mb-4 p-2 justify-center items-center flex rounded lg:mb-0"
                 key={filter}
               >
                 {filter}
-                <span className="-mr-4 ml-8 h-10 w-10 bg-teal-500 ">
+                <span className="-mr-4 ml-8 h-10 w-10 bg-variant-2">
                   <img src="/images/icon-remove.svg" className="w-4 h-4 mt-3 ml-3" alt="bg" />
                 </span>
               </div>

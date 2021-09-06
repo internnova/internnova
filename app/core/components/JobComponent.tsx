@@ -14,10 +14,10 @@ const JobComponent = ({ job, handleTagClick }: Props) => {
         <img className="-mt-16 mb-4 w-20 h-20 lg:w-24 lg:h-24 lg:my-0" src={logo} alt={company} />
       </div>
       <div className="flex flex-col justify-between ml-4">
-        <h3 className="font-bold text-teal-500">
+        <h3 className="font-bold text-variant-2">
           {company}
           {isNew && (
-            <span className="bg-teal-500 text-teal-100 text-xs uppercase m-2 px-2 py-1 rounded-full">
+            <span className="bg-variant-2 text-variant-1 uppercase m-2 px-2 py-1 rounded-full">
               New!
             </span>
           )}
@@ -38,7 +38,7 @@ const JobComponent = ({ job, handleTagClick }: Props) => {
           ? tags.map((tag) => (
               <span
                 onClick={() => handleTagClick(tag)}
-                className="text-teal-500 bg-teal-100 font-bold pr-3 py-1 mb-4 rounded lg:mb-0"
+                className="text-variant-2 bg-variant-1 font-bold px-3 py-1 mb-4 rounded lg:mb-0"
                 key={tag}
               >
                 {tag}
