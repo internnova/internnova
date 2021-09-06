@@ -1,6 +1,6 @@
-import Navbar from 'app/core/components/Navbar'
-import { BsSearch } from 'react-icons/bs'
-import Link from 'next/link'
+import Navbar from "app/core/components/Navbar"
+import { BsSearch } from "react-icons/bs"
+import Link from "next/link"
 
 export default function Home() {
   return (

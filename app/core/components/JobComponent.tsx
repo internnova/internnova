@@ -1,6 +1,6 @@
-import moment from 'moment'
-import React from 'react'
-import { jobType } from 'types'
+import moment from "moment"
+import React from "react"
+import { jobType } from "types"
 
 type Props = { job: jobType; handleTagClick: Function }
 
@@ -29,8 +29,8 @@ const JobComponent = ({ job, handleTagClick }: Props) => {
         </h3>
         <h2 className="font-bold text-xl my-2 lg:my-0">{position}</h2>
         <p className="text-gray-500">
-          {' '}
-          {moment(postedAt).fromNow()} · {contract} · {location}{' '}
+          {" "}
+          {moment(postedAt).fromNow()} · {contract} · {location}{" "}
         </p>
       </div>
       <div className="flex flex-wrap cursor-pointer items-center mt-4 mx-4 pt-4 border-t border-gray-300 border-solid lg:ml-auto lg:border-0 lg:mt-0 lg:pt-0">
@@ -44,7 +44,7 @@ const JobComponent = ({ job, handleTagClick }: Props) => {
                 {tag}
               </span>
             ))
-          : ''}
+          : ""}
       </div>
     </div>
   )
