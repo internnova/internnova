@@ -1,28 +1,53 @@
 {
-  "private": true,
-  "name": "internnova",
+  "name": "intern-nova",
+  "version": "1.0.0",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start"
+    "dev": "blitz dev",
+    "build": "blitz build",
+    "start": "blitz start",
+    "studio": "blitz prisma studio",
+    "lint": "eslint --ignore-path .gitignore --ext .js,.ts,.tsx .",
+    "test": "jest",
+    "test:watch": "jest --watch",
+    "prepare": "husky install"
+  },
+  "prisma": {
+    "schema": "db/schema.prisma"
+  },
+  "prettier": {
+    "semi": false,
+    "printWidth": 100
+  },
+  "lint-staged": {
+    "*.{js,ts,tsx}": [
+      "eslint --fix"
+    ]
   },
   "dependencies": {
-    "@prisma/client": "^2.30.0",
-    "@types/react": "^17.0.19",
-    "moment": "^2.29.1",
-    "next": "latest",
-    "react": "^17.0.2",
-    "react-dom": "^17.0.2",
-    "react-icons": "^4.2.0",
-    "react-lazy-load-image-component": "^1.5.1"
+    "@prisma/client": "2.30.3",
+    "autoprefixer": "10",
+    "blitz": "0.39.0",
+    "final-form": "4.20.2",
+    "postcss": "8",
+    "react": "alpha",
+    "react-dom": "alpha",
+    "react-final-form": "6.5.3",
+    "react-icons": "4.2.0",
+    "tailwindcss": "2.1.2",
+    "zod": "3.8.2"
   },
   "devDependencies": {
-    "autoprefixer": "^10.2.6",
+    "@types/preview-email": "2.0.1",
+    "@types/react": "17.0.20",
     "eslint": "7.32.0",
-    "eslint-config-next": "11.1.0",
-    "postcss": "^8.3.5",
-    "prisma": "^2.30.0",
-    "tailwindcss": "^2.2.4",
-    "typescript": "^4.4.2"
-  }
+    "husky": "6.0.0",
+    "lint-staged": "10.5.4",
+    "prettier": "2.3.2",
+    "prettier-plugin-prisma": "0.15.0",
+    "pretty-quick": "3.1.1",
+    "preview-email": "3.0.5",
+    "prisma": "2.30.3",
+    "typescript": "~4.3"
+  },
+  "private": true
 }
