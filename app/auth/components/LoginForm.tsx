@@ -56,7 +56,7 @@ export const LoginForm = (props: LoginFormProps) => {
                 <Link href={Routes.ForgotPasswordPage()}>
                   <a
                     href="#"
-                    className="text-sm font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700"
+                    className="text-sm font-semibold text-gray-600 hover:text-blue-700 focus:text-blue-700"
                   >
                     Forgot your Password?
                   </a>
@@ -65,13 +65,13 @@ export const LoginForm = (props: LoginFormProps) => {
             </div>
             <div className="text-right">
               <Link href={Routes.SignupPage()}>
-                <a className="text-sm text-variant-2 font-semibold text-gray-700 hover:text-blue-700 focus:text-blue-700">
+                <a className="text-sm text-variant-2 font-semibold text-gray-600 hover:text-blue-700 focus:text-blue-700">
                   Don't have an account? Sign Up
                 </a>
               </Link>
             </div>
           </Form>
-        </div>{" "}
+        </div>
       </div>
     </section>
   )

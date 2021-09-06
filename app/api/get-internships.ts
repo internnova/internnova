@@ -1,4 +1,4 @@
-import prisma from 'db'
+import prisma from "db"
 
 export default async function handler(req, res) {
   const data = await prisma.internship.findMany()

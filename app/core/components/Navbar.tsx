@@ -1,7 +1,7 @@
-import React from 'react';
-import { Logo } from './Logo';
-import { FaTwitter, FaDiscord } from 'react-icons/fa';
-import Link from 'next/link';
+import React from "react"
+import { Logo } from "./Logo"
+import { FaTwitter, FaDiscord } from "react-icons/fa"
+import Link from "next/link"
 
 const Navbar = () => {
   return (
@@ -16,14 +16,14 @@ const Navbar = () => {
         <SocialButtons />
       </div>
     </div>
-  );
-};
+  )
+}
 
 const SocialButtons = () => {
   const socials = [
-    { icon: FaTwitter, link: 'https://twitter.com/_internhigh_' },
-    { icon: FaDiscord, link: 'dsc.gg/intern' },
-  ];
+    { icon: FaTwitter, link: "https://twitter.com/_internhigh_" },
+    { icon: FaDiscord, link: "dsc.gg/intern" },
+  ]
 
   return (
     <>
@@ -39,10 +39,10 @@ const SocialButtons = () => {
             {/* @ts-ignore*/}
             <social.icon className="h-5 w-5" />
           </a>
-        );
+        )
       })}
     </>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
