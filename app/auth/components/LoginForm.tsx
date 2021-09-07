@@ -13,7 +13,7 @@ export const LoginForm = (props: LoginFormProps) => {
 
   return (
     <section className="flex flex-col md:flex-row h-screen items-center">
-      <div className="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen p-28">
+      <div className="hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen p-28">
         <img src="/images/AuthHero.svg" alt="" className="w-full h-full" />
       </div>
       <div

@@ -9,9 +9,10 @@ import previewEmail from "preview-email"
 type ResetPasswordMailer = {
   to: string
   token: string
+  name: string
 }
 
-export function forgotPasswordMailer({ to, token }: ResetPasswordMailer) {
+export function forgotPasswordMailer({ to, token, name }: ResetPasswordMailer) {
   // In production, set APP_ORIGIN to your production server origin
   const origin = process.env.APP_ORIGIN || process.env.BLITZ_DEV_SERVER_ORIGIN
   const resetUrl = `${origin}/reset-password?token=${token}`
@@ -23,7 +24,8 @@ export function forgotPasswordMailer({ to, token }: ResetPasswordMailer) {
     html: `
       <h1>Reset Your Password</h1>
       <h3>NOTE: You must set up a production email integration in mailers/forgotPasswordMailer.ts</h3>
-
+      <h3>Hi ${name},</h3>
+      You have requested for a new password. If you didn't request for a new password please ignore this email.
       <a href="${resetUrl}">
         Click here to set a new password
       </a>

@@ -30,7 +30,7 @@ export default resolver.pipe(resolver.zod(ForgotPassword), async ({ email }) => 
       },
     })
     // 6. Send the email
-    await forgotPasswordMailer({ to: user.email, token }).send()
+    await forgotPasswordMailer({ to: user.email, name: user.name, token }).send()
   } else {
     // 7. If no user found wait the same time so attackers can't tell the difference
     await new Promise((resolve) => setTimeout(resolve, 750))
