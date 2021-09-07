@@ -17,3 +17,6 @@
 ## License
 
 This project is licensed under the MIT License
+
+## Future plans
+Find our [roadmap here](https://cerulean-cough-37c.notion.site/7117ec30d08c43a0a72fbe2f2c08fe95?v=2c7877e193634aab97f9c0089af9de20)
