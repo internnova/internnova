@@ -42,7 +42,7 @@ export function Form<S extends z.ZodType<any, any>>({
           {submitText && (
             <button
               type="submit"
-              className="transition duration-700 w-full block bg-variant-1 hover:bg-variant-2 focus:bg-variant-2 text-white font-semibold rounded-lg
+              className="transition duration-700 w-full block bg-variant-2 text-white font-semibold rounded-lg
               px-4 py-3 mt-6"
             >
               {submitText}

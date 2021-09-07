@@ -13,8 +13,8 @@ export const SignupForm = (props: SignupFormProps) => {
 
   return (
     <section className="flex flex-col md:flex-row h-screen items-center">
-      <div className="bg-indigo-600 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen p-28 bg-variant-1">
-        <img src="/images/AuthHero.svg" alt="" id="twoTimesGif" className="w-full h-full" />
+      <div className="bg-variant-1 hidden lg:block w-full md:w-1/2 xl:w-2/3 h-screen p-28 bg-variant-1">
+        <img src="/images/AuthHero.svg" alt="" className="w-full h-full" />
       </div>
       <div className="bg-white w-full md:max-w-md lg:max-w-full md:mx-auto md:w-1/2 xl:w-1/3 h-screen px-6 lg:px-16 xl:px-12 flex items-center justify-center">
         <div className="w-full h-100">

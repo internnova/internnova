@@ -1,7 +1,6 @@
 import Navbar from "app/core/components/Navbar"
 import { BsSearch } from "react-icons/bs"
 import Link from "next/link"
-import { Routes } from "blitz"
 
 const Home = () => {
   return (

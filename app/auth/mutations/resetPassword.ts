@@ -9,6 +9,7 @@ export class ResetPasswordError extends Error {
 }
 
 export default resolver.pipe(resolver.zod(ResetPassword), async ({ password, token }, ctx) => {
+  console.log("HIIHIIHIHIHIH")
   // 1. Try to find this token in the database
   const hashedToken = hash256(token)
   const possibleToken = await db.token.findFirst({
