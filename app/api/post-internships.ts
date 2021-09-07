@@ -3,7 +3,7 @@ import { internshipType } from "types"
 
 import type { NextApiRequest, NextApiResponse } from "next"
 
-export default async (req: NextApiRequest, res: NextApiResponse) => {
+export default async function (req: NextApiRequest, res: NextApiResponse) {
   const data = req.body as internshipType
   if (
     !(data.position && data.contract && data.location && data.logo && data.company && data.tools)

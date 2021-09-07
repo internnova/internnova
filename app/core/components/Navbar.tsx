@@ -21,7 +21,7 @@ import logout from "app/auth/mutations/logout"
 //     </div>
 //   )
 // }
-const UserInfo = () => {
+const AuthSection = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
 
@@ -66,8 +66,7 @@ export default function Navbar() {
         <Logo />
       </h1>
       <div className="flex bg-iris-10 dark:bg-dark-bgMuted1 w-44 h-11 rounded-lg items-center justify-center gap-2">
-        <button>Hi</button>
-        <button>Hi</button>
+        <AuthSection />
       </div>
     </div>
   )
