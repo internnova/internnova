@@ -4,33 +4,35 @@ import JobComponent from "app/core/components/JobComponent"
 import { internshipType } from "types"
 import { Routes } from "blitz"
 
-function getInternships() {
-  return fetch("http://localhost:3000/api/get-internships", {
-    method: "GET",
-    headers: {
-      Accept: "application/json",
-      "Content-Type": "application/json",
-    },
-  })
+type jobProps = {
+  jobsData: string | internshipType[]
 }
-
-async function getvals() {
-  try {
-    const response = await getInternships()
-    const responseData = await response.json()
-    return responseData
-  } catch (error) {
-    return console.warn(error)
+type jobListProps = {
+  jobsData: string | internshipType[]
+  filterFunc: any
+  handleTagClick: any
+}
+const JobsList = ({ jobsData, filterFunc, handleTagClick }: jobListProps) => {
+  let filteredJobs: internshipType[] =
+    jobsData && typeof jobsData !== "string" ? jobsData.filter(filterFunc) : []
+  if (typeof jobsData !== "string") {
+    if (jobsData.length === 0) {
+      return <h1 className="text-center text-variant-2 text-6xl font-bold mb-8">{jobsData}</h1>
+    } else {
+      return (
+        <>
+          {filteredJobs.map((job: internshipType) => (
+            <JobComponent job={job} key={job.id} handleTagClick={handleTagClick} />
+          ))}
+        </>
+      )
+    }
   }
+  return <h1 className="text-center text-variant-2 text-6xl font-bold mb-8">{jobsData}</h1>
 }
 
-function JobsPage() {
-  const [jobs, setJobs] = useState<internshipType[]>([])
+const JobsPage = ({ jobsData }: jobProps) => {
   const [filters, setFilters] = useState<string[]>([])
-
-  getvals().then((response) => {
-    setJobs(response as internshipType[])
-  })
 
   const filterFunc = ({ role, level, tools }) => {
     if (filters.length === 0) {
@@ -55,9 +57,6 @@ function JobsPage() {
     setFilters(filters.filter((f) => f !== passedFilter))
   }
 
-  // @ts-ignore
-  let filteredJobs: internshipType[] = jobs ? jobs.filter(filterFunc) : []
-
   const clearFilters = () => {
     setFilters([])
   }
@@ -76,7 +75,7 @@ function JobsPage() {
             {filters.map((filter) => (
               <div
                 onClick={() => handleFilterClick(filter)}
-                className="text-variant-2 bg-variant-1 h-10 w-auto cursor-pointer font-bold mr-4 mb-4 p-2 justify-center items-center flex rounded lg:mb-0"
+                className="text-variant-2 bg-variant-1 h-10 w-auto cursor-pointer font-bold justify-center items-center flex rounded lg:mb-0"
                 key={filter}
               >
                 {filter}
@@ -90,19 +89,29 @@ function JobsPage() {
             </button>
           </div>
         )}
-
-        {jobs.length === 0 ? (
-          <p> ... Loading</p>
-        ) : (
-          filteredJobs.map((job) => (
-            <JobComponent job={job} key={job.id} handleTagClick={handleTagClick} />
-          ))
-        )}
+        <JobsList jobsData={jobsData} filterFunc={filterFunc} handleTagClick={handleTagClick} />
       </div>
     </div>
   )
 }
 
 JobsPage.authenticate = { redirectTo: Routes.LoginPage() }
+
+export async function getStaticProps() {
+  const res = await fetch(`http://localhost:3000/api/get-internships`)
+  const data = await res.json()
+
+  if (!data) {
+    return {
+      props: {
+        jobsData: "Sorry no jobs are currently available",
+      },
+    }
+  }
+
+  return {
+    props: { jobsData: data }, // will be passed to the page component as props
+  }
+}
 
 export default JobsPage
