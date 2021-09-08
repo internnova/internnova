@@ -1,7 +1,7 @@
 import { Ctx } from "blitz"
 import db from "db"
 
-export default async function getCurrentUser(_ = null, { session }: Ctx) {
+const getCurrentUser = async (_ = null, { session }: Ctx) => {
   if (!session.userId) return null
 
   const user = await db.user.findFirst({
@@ -11,3 +11,5 @@ export default async function getCurrentUser(_ = null, { session }: Ctx) {
 
   return user
 }
+
+export default getCurrentUser

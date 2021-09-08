@@ -11,7 +11,7 @@ import {
 } from "blitz"
 import { Suspense } from "react"
 
-export default function App({ Component, pageProps }: AppProps) {
+const App = ({ Component, pageProps }: AppProps) => {
   const getLayout = Component.getLayout || ((page) => page)
 
   return (
@@ -36,7 +36,7 @@ export default function App({ Component, pageProps }: AppProps) {
   )
 }
 
-function RootErrorFallback({ error, resetErrorBoundary }: ErrorFallbackProps) {
+const RootErrorFallback = ({ error, resetErrorBoundary }: ErrorFallbackProps) => {
   if (error instanceof AuthenticationError) {
     return <LoginForm onSuccess={resetErrorBoundary} />
   } else if (error instanceof AuthorizationError) {
@@ -52,3 +52,5 @@ function RootErrorFallback({ error, resetErrorBoundary }: ErrorFallbackProps) {
     )
   }
 }
+
+export default App

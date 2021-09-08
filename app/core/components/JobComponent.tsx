@@ -2,9 +2,26 @@ import moment from "moment"
 import React from "react"
 import { internshipType } from "types"
 
-type Props = { job: internshipType; handleTagClick: Function }
+type JobProps = { job: internshipType; handleTagClick: (passedFilter: string) => void }
+type TagsComponentProps = { tags: Array<string>; handleTagClick: (passedFilter: string) => void }
 
-const JobComponent = ({ job, handleTagClick }: Props) => {
+const TagsComponent = ({ tags, handleTagClick }: TagsComponentProps) => (
+  <div className="flex flex-wrap cursor-pointer items-center mt-4 mx-4 pt-4 border-t border-gray-300 border-solid lg:ml-auto lg:border-0 lg:mt-0 lg:pt-0">
+    {tags
+      ? tags.map((tag) => (
+          <span
+            onClick={() => handleTagClick(tag)}
+            className="text-variant-2 bg-variant-1 font-bold px-3 py-1 mb-4 rounded lg:mb-0 m-2"
+            key={tag}
+          >
+            {tag}
+          </span>
+        ))
+      : ""}
+  </div>
+)
+
+const JobComponent = ({ job, handleTagClick }: JobProps) => {
   const { position, contract, location, logo, company, postedAt, tools, isNew, featured } = job
   const tags = tools
 
@@ -33,19 +50,7 @@ const JobComponent = ({ job, handleTagClick }: Props) => {
           {moment(postedAt).fromNow()} · {contract} · {location}{" "}
         </p>
       </div>
-      <div className="flex flex-wrap cursor-pointer items-center mt-4 mx-4 pt-4 border-t border-gray-300 border-solid lg:ml-auto lg:border-0 lg:mt-0 lg:pt-0">
-        {tags
-          ? tags.map((tag) => (
-              <span
-                onClick={() => handleTagClick(tag)}
-                className="text-variant-2 bg-variant-1 font-bold px-3 py-1 mb-4 rounded lg:mb-0 m-2"
-                key={tag}
-              >
-                {tag}
-              </span>
-            ))
-          : ""}
-      </div>
+      <TagsComponent tags={tags} handleTagClick={handleTagClick} />
     </div>
   )
 }

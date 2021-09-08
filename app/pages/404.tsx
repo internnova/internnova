@@ -1,6 +1,6 @@
 import { ErrorComponent, Head } from "blitz"
 
-export default function Page404() {
+const Page404 = () => {
   const statusCode = 404
   const title = "This page could not be found"
   return (
@@ -14,3 +14,5 @@ export default function Page404() {
     </>
   )
 }
+
+export default Page404

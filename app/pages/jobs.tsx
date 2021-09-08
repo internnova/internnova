@@ -16,12 +16,12 @@ type jobListProps = {
 }
 
 type FilterListProps = {
-  filter: Array<string>
+  filters: Array<string>
   handleFilterClick: (tag: any) => void
   clearFilters: () => void
 }
 
-const FilterList = ({ filters, handleFilterClick, clearFilters }) => {
+const FilterList = ({ filters, handleFilterClick, clearFilters }: FilterListProps) => {
   return (
     <>
       {filters.length > 0 && (
