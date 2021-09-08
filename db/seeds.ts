@@ -8,18 +8,17 @@ import db from "./index"
  * realistic data.
  */
 const seed = async () => {
-  for (let i = 0; i < 5; i++) {
-    await db.internship.create({
-      data: {
-        position: "senior frontend engineer",
-        contract: "full time",
-        location: "palo alto, california, usa",
-        logo: "https://bookassist.org/wp-content/uploads/elementor/thumbs/google_3_520-oc7dqerwmsbfad0t1gveosa6x2uck2bd7y6l2r7txs.jpg",
-        company: "google",
-        tools: ["react", "javascript", "typescript", "css"],
-      },
-    })
-  }
+  await db.internship.create({
+    data: {
+      position: "senior frontend engineer",
+      contract: "full time",
+      location: "palo alto, california, usa",
+      logo: "https://bookassist.org/wp-content/uploads/elementor/thumbs/google_3_520-oc7dqerwmsbfad0t1gveosa6x2uck2bd7y6l2r7txs.jpg",
+      company: "google",
+      tools: ["react", "javascript", "typescript", "css"],
+    },
+  })
+  console.log("DONE")
 }
 
 export default seed
