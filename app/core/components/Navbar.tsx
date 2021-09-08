@@ -11,7 +11,7 @@ const AuthSection = () => {
     return (
       <>
         <button
-          className="button small"
+          className="text-variant-2 hover:underline mr-4"
           onClick={async () => {
             await logoutMutation()
           }}
