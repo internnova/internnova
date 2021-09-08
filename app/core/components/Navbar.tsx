@@ -45,7 +45,11 @@ export default function Navbar() {
   return (
     <div className="w-[100%] h-14 font-montserrat flex items-center justify-between gap-2 select-none mx-2">
       <h1 className="text-2xl tracking-wide font-extrabold md:text-lg">
-        <Logo />
+        <Link href={Routes.Home()}>
+          <a>
+            <Logo />
+          </a>
+        </Link>
       </h1>
       <div className="flex bg-iris-10 dark:bg-dark-bgMuted1 w-44 h-11 rounded-lg items-center justify-center gap-2">
         <AuthSection />
