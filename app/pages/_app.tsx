@@ -25,6 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
             <img
               className="mx-auto"
               src="https://i2.wp.com/boingboing.net/wp-content/uploads/2015/10/tumblr_nlohpxGdBi1tlivlxo1_12801.gif"
+              alt=""
             />
           </div>
         }
