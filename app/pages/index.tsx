@@ -10,7 +10,7 @@ const Home: BlitzPage = () => {
         <Navbar />
         <Main />
         <img
-          src="/vector.png"
+          src="/images/vector.png"
           className="hidden lg:block lg:h-[25rem] lg:w-[28-rem] xl:h-[30rem] xl:w-[35rem] absolute -bottom-3 right-0 select-none"
           draggable={false}
           alt=""
