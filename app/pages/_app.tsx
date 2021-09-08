@@ -1,4 +1,5 @@
 import LoginForm from "app/auth/components/LoginForm"
+import { Logo } from "app/core/components/Logo"
 import "app/core/styles/index.css"
 import {
   AppProps,
@@ -21,12 +22,10 @@ const App = ({ Component, pageProps }: AppProps) => {
     >
       <Suspense
         fallback={
-          <div className="hero container max-w-screen-lg mx-auto pb-10">
-            <img
-              className="mx-auto"
-              src="https://i2.wp.com/boingboing.net/wp-content/uploads/2015/10/tumblr_nlohpxGdBi1tlivlxo1_12801.gif"
-              alt=""
-            />
+          <div className="flex h-screen justify-center items-center">
+            <div className="animate-bounce">
+              <Logo big />
+            </div>
           </div>
         }
       >
