@@ -23,14 +23,14 @@ const AuthSection = () => {
   } else {
     return (
       <>
-        <Link href={Routes.SignupPage()}>
-          <button className="py-2 px-4 bg-transparent text-variant-2 font-semibold border border-variant-2 rounded hover:bg-variant-2 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0 mr-4">
-            Sign Up
+        <Link href={Routes.LoginPage()}>
+          <button className="py-2 px-4 bg-transparent text-variant-2 font-semibold border border-variant-2 rounded hover:bg-variant-2 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0 mr-4 hover:shadow-lg">
+            Login
           </button>
         </Link>
-        <Link href={Routes.LoginPage()}>
+        <Link href={Routes.SignupPage()}>
           <button className="text-variant-2 hover:underline mr-4 transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0">
-            <strong>Login</strong>
+            <strong>Sign Up</strong>
           </button>
         </Link>
       </>
