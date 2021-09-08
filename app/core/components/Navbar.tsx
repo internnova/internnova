@@ -11,7 +11,7 @@ const AuthSection = () => {
     return (
       <>
         <button
-          className="text-variant-2 hover:underline mr-4"
+          className="text-variant-2 hover:underline mr-4 transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0"
           onClick={async () => {
             await logoutMutation()
           }}
@@ -29,7 +29,7 @@ const AuthSection = () => {
           </button>
         </Link>
         <Link href={Routes.LoginPage()}>
-          <button className="text-variant-2 hover:underline mr-4">
+          <button className="text-variant-2 hover:underline mr-4 transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0">
             <strong>Login</strong>
           </button>
         </Link>
