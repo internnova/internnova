@@ -8,14 +8,50 @@ import { internshipType } from "types"
 type jobProps = {
   jobsData: string | internshipType[]
 }
+
 type jobListProps = {
   jobsData: string | internshipType[]
-  filterFunc: any
-  handleTagClick: any
+  filterFunc: ({ role, level, tools }) => any
+  handleTagClick: (passedFilter: string) => void
 }
+
+type FilterListProps = {
+  filter: Array<string>
+  handleFilterClick: (tag: any) => void
+  clearFilters: () => void
+}
+
+const FilterList = ({ filters, handleFilterClick, clearFilters }) => {
+  return (
+    <>
+      {filters.length > 0 && (
+        <div className={`flex flex-wrap shadow-md mb-10 mx-10 pb-6 px-6 rounded bg-variant-2 pt-6`}>
+          {filters.map((filter: string) => (
+            <div
+              onClick={() => handleFilterClick(filter)}
+              className="text-white bg-variant-2 h-10 w-auto cursor-pointer font-bold justify-center items-center flex rounded lg:mb-0 mr-2"
+              key={filter}
+            >
+              {filter}
+              <span className="mr-2 ml-2 h-10 w-10 bg-variant-2">
+                <img src="/images/icon-remove.svg" className="w-4 h-4 mt-3 ml-3" alt="bg" />
+              </span>
+            </div>
+          ))}
+          <button onClick={clearFilters} className="font-bold ml-auto">
+            clear
+          </button>
+        </div>
+      )}
+    </>
+  )
+}
+
 const JobsList = ({ jobsData, filterFunc, handleTagClick }: jobListProps) => {
   let filteredJobs: internshipType[] =
+    // @ts-ignore
     jobsData && typeof jobsData !== "string" ? jobsData.filter(filterFunc) : []
+
   if (typeof jobsData !== "string") {
     if (jobsData.length === 0) {
       return <h1 className="text-center text-variant-2 text-6xl font-bold mb-8">{jobsData}</h1>
@@ -69,27 +105,13 @@ const JobsPage = ({ jobsData }: jobProps) => {
       </header>
       <h1 className="text-center text-variant-2 text-6xl font-bold mb-8">Jobs</h1>
       <div className="container m-auto">
-        {filters.length > 0 && (
-          <div
-            className={`flex flex-wrap shadow-md mb-10 mx-10 pb-6 px-6 rounded bg-variant-2 pt-6`}
-          >
-            {filters.map((filter) => (
-              <div
-                onClick={() => handleFilterClick(filter)}
-                className="text-variant-2 bg-variant-1 h-10 w-auto cursor-pointer font-bold justify-center items-center flex rounded lg:mb-0"
-                key={filter}
-              >
-                {filter}
-                <span className="-mr-4 ml-8 h-10 w-10 bg-variant-2">
-                  <img src="/images/icon-remove.svg" className="w-4 h-4 mt-3 ml-3" alt="bg" />
-                </span>
-              </div>
-            ))}
-            <button onClick={clearFilters} className="font-bold ml-auto">
-              clear
-            </button>
-          </div>
-        )}
+        <div>
+          <FilterList
+            filters={filters}
+            handleFilterClick={handleFilterClick}
+            clearFilters={clearFilters}
+          />
+        </div>
         <JobsList jobsData={jobsData} filterFunc={filterFunc} handleTagClick={handleTagClick} />
       </div>
     </div>

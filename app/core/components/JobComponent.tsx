@@ -38,7 +38,7 @@ const JobComponent = ({ job, handleTagClick }: Props) => {
           ? tags.map((tag) => (
               <span
                 onClick={() => handleTagClick(tag)}
-                className="text-variant-2 bg-variant-1 font-bold px-3 py-1 mb-4 rounded lg:mb-0"
+                className="text-variant-2 bg-variant-1 font-bold px-3 py-1 mb-4 rounded lg:mb-0 m-2"
                 key={tag}
               >
                 {tag}
