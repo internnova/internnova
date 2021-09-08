@@ -99,8 +99,12 @@ const JobsPage = ({ jobsData }: jobProps) => {
 JobsPage.authenticate = { redirectTo: Routes.LoginPage() }
 
 export async function getStaticProps() {
-  const data = await prisma.internship.findMany()
-
+  let data: any = await prisma.internship.findMany()
+  try {
+    data = await prisma.internship.findMany()
+  } catch {
+    data = ""
+  }
   if (!data) {
     return {
       props: {
