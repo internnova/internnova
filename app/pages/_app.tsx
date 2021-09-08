@@ -1,15 +1,14 @@
+import LoginForm from "app/auth/components/LoginForm"
+import "app/core/styles/index.css"
 import {
   AppProps,
-  ErrorBoundary,
-  ErrorComponent,
   AuthenticationError,
   AuthorizationError,
+  ErrorBoundary,
+  ErrorComponent,
   ErrorFallbackProps,
   useQueryErrorResetBoundary,
 } from "blitz"
-import LoginForm from "app/auth/components/LoginForm"
-
-import "app/core/styles/index.css"
 import { Suspense } from "react"
 
 export default function App({ Component, pageProps }: AppProps) {

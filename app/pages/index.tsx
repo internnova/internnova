@@ -1,8 +1,9 @@
 import Navbar from "app/core/components/Navbar"
+import Layout from "app/core/layouts/Layout"
+import { BlitzPage, Link } from "blitz"
 import { BsSearch } from "react-icons/bs"
-import Link from "next/link"
 
-const Home = () => {
+const Home: BlitzPage = () => {
   return (
     <>
       <div className="py-10 px-7 sm:px-10 md:px-20 xl:container mx-auto h-screen w-screen relative overflow-hidden">
@@ -39,5 +40,8 @@ const Main = () => {
     </div>
   )
 }
+
+Home.suppressFirstRenderFlicker = true
+Home.getLayout = (page) => <Layout title="Home">{page}</Layout>
 
 export default Home

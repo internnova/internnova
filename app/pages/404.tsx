@@ -1,4 +1,4 @@
-import { Head, ErrorComponent } from "blitz"
+import { ErrorComponent, Head } from "blitz"
 
 export default function Page404() {
   const statusCode = 404

@@ -1,8 +1,8 @@
-import React, { useState } from "react"
-import Navbar from "app/core/components/Navbar"
 import JobComponent from "app/core/components/JobComponent"
-import { internshipType } from "types"
+import Navbar from "app/core/components/Navbar"
 import { Routes } from "blitz"
+import React, { useState } from "react"
+import { internshipType } from "types"
 
 type jobProps = {
   jobsData: string | internshipType[]
