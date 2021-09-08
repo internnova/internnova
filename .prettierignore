@@ -1,4 +1,6 @@
 .gitkeep
+.github/
+README.md
 .env*
 *.ico
 *.lock
