@@ -120,7 +120,7 @@ const JobsPage = ({ jobsData }: jobProps) => {
 
 JobsPage.authenticate = { redirectTo: Routes.LoginPage() }
 
-export async function getStaticProps() {
+export async function getServerSideProps() {
   let data: any
   try {
     data = await prisma.internship.findMany()
