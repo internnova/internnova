@@ -42,12 +42,12 @@ const AuthSection = () => {
     return (
       <>
         <Link href={Routes.SignupPage()}>
-          <button>
-            <strong>Sign Up</strong>
+          <button className="py-2 px-4 bg-transparent text-variant-2 font-semibold border border-variant-2 rounded hover:bg-variant-2 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0 mr-4">
+            Sign Up
           </button>
         </Link>
         <Link href={Routes.LoginPage()}>
-          <button>
+          <button className="text-variant-2 hover:underline mr-4">
             <strong>Login</strong>
           </button>
         </Link>

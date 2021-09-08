@@ -6,8 +6,8 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        bg: "#010101",
-        fg: "#000",
+        bgvar: "#010101",
+        fgvar: "#000",
         variant: {
           1: "#b2dfdb",
           2: "#26a69a",
