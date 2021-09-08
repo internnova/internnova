@@ -1,6 +1,7 @@
 import JobComponent from "app/core/components/JobComponent"
 import Navbar from "app/core/components/Navbar"
 import { Routes } from "blitz"
+import prisma from "db"
 import React, { useState } from "react"
 import { internshipType } from "types"
 
@@ -98,8 +99,7 @@ const JobsPage = ({ jobsData }: jobProps) => {
 JobsPage.authenticate = { redirectTo: Routes.LoginPage() }
 
 export async function getStaticProps() {
-  const res = await fetch(`http://localhost:3000/api/get-internships`)
-  const data = await res.json()
+  const data = await prisma.internship.findMany()
 
   if (!data) {
     return {
