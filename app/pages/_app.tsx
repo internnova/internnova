@@ -19,7 +19,16 @@ export default function App({ Component, pageProps }: AppProps) {
       FallbackComponent={RootErrorFallback}
       onReset={useQueryErrorResetBoundary().reset}
     >
-      <Suspense fallback={<div>Loading... </div>}>
+      <Suspense
+        fallback={
+          <div className="hero container max-w-screen-lg mx-auto pb-10">
+            <img
+              className="mx-auto"
+              src="https://i2.wp.com/boingboing.net/wp-content/uploads/2015/10/tumblr_nlohpxGdBi1tlivlxo1_12801.gif"
+            />
+          </div>
+        }
+      >
         {getLayout(<Component {...pageProps} />)}
       </Suspense>
     </ErrorBoundary>
