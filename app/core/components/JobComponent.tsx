@@ -6,24 +6,36 @@ type JobProps = { job: internshipType; handleTagClick: (passedFilter: string) =>
 type TagsComponentProps = { tags: Array<string>; handleTagClick: (passedFilter: string) => void }
 
 const TagsComponent = ({ tags, handleTagClick }: TagsComponentProps) => (
-  <div className="flex flex-wrap cursor-pointer items-center mt-4 mx-4 pt-4 border-t border-gray-300 border-solid lg:ml-auto lg:border-0 lg:mt-0 lg:pt-0">
-    {tags
-      ? tags.map((tag) => (
-          <span
-            onClick={() => handleTagClick(tag)}
-            className="text-variant-2 bg-variant-1 font-bold px-3 py-1 mb-4 rounded lg:mb-0 m-2"
-            key={tag}
-          >
-            {tag}
-          </span>
-        ))
-      : ""}
-  </div>
+  <>
+    <div className="flex flex-wrap cursor-pointer items-center mt-4 mx-4 pt-4 border-t border-gray-300 border-solid lg:ml-auto lg:border-0 lg:mt-0 lg:pt-0">
+      {tags
+        ? tags.map((tag) => (
+            <span
+              onClick={() => handleTagClick(tag)}
+              className="text-variant-2 bg-variant-1 font-bold px-3 py-1 mb-4 rounded lg:mb-0 m-2"
+              key={tag}
+            >
+              {tag}
+            </span>
+          ))
+        : ""}
+    </div>
+  </>
 )
 
 const JobComponent = ({ job, handleTagClick }: JobProps) => {
-  const { position, contract, location, logo, company, postedAt, tools, isNew, featured } = job
-  const tags = tools
+  const {
+    position,
+    contract,
+    location,
+    logo,
+    company,
+    postedAt,
+    tools,
+    isNew,
+    featured,
+    numOfOpenings,
+  } = job
 
   return (
     <div className="flex flex-col shadow-lg m-4 p-6 my-16 mx-4 rounded 'border-solid border-variant-1 border-l-8 lg:flex-row lg:my-6 hover:shadow-xl transition duration-500">
@@ -49,8 +61,9 @@ const JobComponent = ({ job, handleTagClick }: JobProps) => {
           {" "}
           {moment(postedAt).fromNow()} · {contract} · {location}{" "}
         </p>
+        <p className="text-variant-2">Available Openings: {numOfOpenings}</p>
       </div>
-      <TagsComponent tags={tags} handleTagClick={handleTagClick} />
+      <TagsComponent tags={tools} handleTagClick={handleTagClick} />
     </div>
   )
 }

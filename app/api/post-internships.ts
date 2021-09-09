@@ -6,13 +6,21 @@ import type { NextApiRequest, NextApiResponse } from "next"
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const data = req.body as internshipType
   if (
-    !(data.position && data.contract && data.location && data.logo && data.company && data.tools)
+    !(
+      data.position &&
+      data.contract &&
+      data.location &&
+      data.logo &&
+      data.company &&
+      data.tools &&
+      data.description &&
+      data.numOfOpenings
+    )
   ) {
-    console.log(data)
     res.status(400).json({
       code: "bad-data",
       message:
-        "The data was either missing a position key, contract key, data location key, company key, or tools key",
+        "The data was either missing a logo key, position key, contract key, location key, company key, description key, a number of openings key, or tools key",
     })
   }
   await prisma.internship.create({

@@ -16,7 +16,7 @@ declare module "blitz" {
     }
   }
 }
-export interface internshipType {
+export type internshipType = {
   id: number
   position: string
   contract: string
@@ -27,4 +27,6 @@ export interface internshipType {
   tools: Array<string>
   isNew?: boolean
   featured?: boolean
+  description: string
+  numOfOpenings: string
 }
