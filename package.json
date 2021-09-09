@@ -27,6 +27,7 @@
     "autoprefixer": "10",
     "blitz": "0.39.0",
     "final-form": "4.20.2",
+    "next-seo": "4.26.0",
     "postcss": "8",
     "react": "alpha",
     "react-dom": "alpha",
