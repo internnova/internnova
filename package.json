@@ -21,6 +21,7 @@
     ]
   },
   "dependencies": {
+    "@auth0/nextjs-auth0": "1.5.0",
     "@prisma/client": "2.30.3",
     "final-form": "4.20.2",
     "moment": "2.29.1",
@@ -30,12 +31,14 @@
     "react-dom": "17.0.2",
     "react-final-form": "6.5.3",
     "react-icons": "4.2.0",
+    "superjson": "1.7.5",
     "zod": "3.8.2"
   },
   "devDependencies": {
     "@types/preview-email": "2.0.1",
     "@types/react": "17.0.20",
     "autoprefixer": "10.3.4",
+    "babel-plugin-superjson-next": "0.3.1",
     "eslint": "7.32.0",
     "husky": "6.0.0",
     "lint-staged": "10.5.4",
