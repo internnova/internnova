@@ -18,8 +18,9 @@ model User {
   hashedPassword String?
   role           String   @default("USER")
 
-  tokens   Token[]
-  sessions Session[]
+  tokens      Token[]
+  sessions    Session[]
+  Application Application[]
 }
 
 model Session {
@@ -52,16 +53,32 @@ model Token {
   @@unique([hashedToken, type])
 }
 
+model Application {
+  id           Int         @id @default(autoincrement())
+  user         User        @relation(fields: [internId], references: [id])
+  internName   String
+  internEmail  String
+  message      String
+  // the resume will be a aws s3 url(for a pdf)
+  resume       String
+  internId     Int
+  Internship   Internship? @relation(fields: [internshipId], references: [id])
+  internshipId Int?
+}
+
 model Internship {
-  id       Int      @id @default(autoincrement())
-  position String
-  contract String
-  location String
-  logo     String
-  company  String
-  postedAt DateTime @default(now())
-  tools    String[]
-  featured Boolean? @default(false)
+  id            Int           @id @default(autoincrement())
+  position      String
+  contract      String
+  location      String
+  logo          String
+  company       String
+  postedAt      DateTime      @default(now())
+  tools         String[]
+  featured      Boolean?      @default(false)
+  description   String
+  applications  Application[]
+  numOfOpenings String        @default("1")
 
   @@map("internships")
 }
