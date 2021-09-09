@@ -36,7 +36,7 @@ const Meta = (props: IMetaProps) => {
         title={props.title || "InternNova"}
         description={
           props.description ||
-          "InternNova helps high school students build their profile, enhance their skills, and increase their chances of getting admitted into top colleges. Join our beta waitlist today!"
+          "InternNova helps high school students build their profile, enhance their skills, and increase their chances of getting admitted into top colleges. Find internships today!"
         }
       />
     </>

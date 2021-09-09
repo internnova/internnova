@@ -28,7 +28,7 @@ const Main = () => {
       </h1>
       <p className="opacity-[0.76] mt-5 text-lg sm:text-xl lg:text-2xl">
         InternNova helps high school students build their profile, enhance their skills, and
-        increase their chances of getting admitted into top colleges. Join our beta waitlist today!
+        increase their chances of getting admitted into top colleges. Find internships today!
       </p>
       <Link href="/jobs" passHref={true}>
         <button className="bg-variant-1 hover:bg-gray-400 text-gray-800 font-bold py-4 mt-5 px-6 rounded inline-flex items-center">
