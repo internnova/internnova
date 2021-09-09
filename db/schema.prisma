@@ -79,6 +79,7 @@ model Internship {
   description   String
   applications  Application[]
   numOfOpenings String        @default("1")
+  duration      String
 
   @@map("internships")
 }
