@@ -1,8 +1,8 @@
-import Navbar from "app/core/components/Navbar"
-import { BlitzPage, Link } from "blitz"
+import Navbar from "src/components/Navbar"
 import { BsSearch } from "react-icons/bs"
+import Link from "next/link"
 
-const Home: BlitzPage = () => {
+const Home = () => {
   return (
     <>
       <div className="py-10 px-7 sm:px-10 md:px-20 xl:container mx-auto h-screen w-screen relative overflow-hidden">
@@ -39,7 +39,5 @@ const Main = () => {
     </div>
   )
 }
-
-Home.suppressFirstRenderFlicker = true
 
 export default Home

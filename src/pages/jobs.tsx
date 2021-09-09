@@ -1,6 +1,5 @@
-import JobComponent from "app/core/components/JobComponent"
-import Navbar from "app/core/components/Navbar"
-import { Routes } from "blitz"
+import JobComponent from "src/components/JobComponent"
+import Navbar from "src/components/Navbar"
 import prisma from "db"
 import React, { useState } from "react"
 import { internshipType } from "types"
@@ -117,8 +116,6 @@ const JobsPage = ({ jobsData }: jobProps) => {
     </div>
   )
 }
-
-JobsPage.authenticate = { redirectTo: Routes.LoginPage() }
 
 export async function getServerSideProps() {
   let data: any
