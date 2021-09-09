@@ -1,5 +1,4 @@
 import Navbar from "app/core/components/Navbar"
-import Layout from "app/core/layouts/Layout"
 import { BlitzPage, Link } from "blitz"
 import { BsSearch } from "react-icons/bs"
 
@@ -42,6 +41,5 @@ const Main = () => {
 }
 
 Home.suppressFirstRenderFlicker = true
-Home.getLayout = (page) => <Layout title="Home">{page}</Layout>
 
 export default Home

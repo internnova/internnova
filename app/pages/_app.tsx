@@ -1,6 +1,7 @@
 import LoginForm from "app/auth/components/LoginForm"
 import { Logo } from "app/core/components/Logo"
 import "app/core/styles/index.css"
+import Meta from "app/core/components/Meta"
 import {
   AppProps,
   AuthenticationError,
@@ -20,6 +21,7 @@ const App = ({ Component, pageProps }: AppProps) => {
       FallbackComponent={RootErrorFallback}
       onReset={useQueryErrorResetBoundary().reset}
     >
+      <Meta />
       <Suspense
         fallback={
           <div className="flex h-screen justify-center items-center">
