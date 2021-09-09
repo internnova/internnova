@@ -29,4 +29,5 @@ export type internshipType = {
   featured?: boolean
   description: string
   numOfOpenings: string
+  duration: string
 }

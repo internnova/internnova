@@ -16,7 +16,8 @@ const seed = async () => {
       logo: "https://bookassist.org/wp-content/uploads/elementor/thumbs/google_3_520-oc7dqerwmsbfad0t1gveosa6x2uck2bd7y6l2r7txs.jpg",
       company: "google",
       tools: ["react", "javascript", "typescript", "css"],
-      description: "DUDE ITS A GOOGLE JOB DO YOU REALLY CARE ABOUT THE DESCRIPTON APPLY",
+      description: "DUDE ITS A GOOGLE JOB DO YOU REALLY CARE ABOUT THE DESCRIPTON JUST APPLY",
+      duration: "4 weeks",
     },
   })
   console.log("DONE")
