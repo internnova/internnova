@@ -40,9 +40,9 @@ const JobComponent = ({ job, handleTagClick }: JobProps) => {
     numOfOpenings,
   } = job
   if (env.toLowerCase() === "production") {
-    url = `http://internnova.co/jobs/apply/${id}`
+    url = `http://internnova.co/jobs/info/${id}`
   } else {
-    url = `http://localhost:3000/jobs/apply/${id}`
+    url = `http://localhost:3000/jobs/info/${id}`
   }
 
   return (

@@ -1,9 +1,10 @@
 import { useUser } from "@auth0/nextjs-auth0"
+import moment from "moment"
 import Navbar from "components/Navbar"
 import { GetServerSideProps } from "next"
 // import { FaLocationArrow } from "react-icons/fa"
 import { useRouter } from "next/router"
-import React from "react"
+import React, { useEffect } from "react"
 
 const JobListing = (response: any) => {
   const router = useRouter()
@@ -28,9 +29,11 @@ const JobListing = (response: any) => {
     )
   }
 
-  if (response.code === "no-internship-found") {
-  }
-
+  useEffect(() => {
+    if (response.code === "no-internship-found") {
+      router.push("/404")
+    }
+  }, [router, response.code])
   return (
     <>
       <div className="py-10 px-7 sm:px-10 md:px-20 xl:container mx-auto w-screen relative">
@@ -48,19 +51,17 @@ const JobListing = (response: any) => {
         </div>
         <div className="container m-auto">
           <div className="flex gap-4 justify-between">
-            <div className="flex gap-3">
-              <span className="px-4 py-2 bg-variant-2 hover:bg-opacity-90 cursor-pointer duration-200 text-[#ffff] font-bold rounded-full ">
+            <div className="flex flex-wrap cursor-pointer items-center">
+              <span className="text-variant-2 bg-variant-1 font-bold px-3 py-1 mb-4 rounded lg:mb-0 m-2">
                 Contract: {response.data.contract}
               </span>
-              <span className="px-4 py-2 bg-variant-2 hover:bg-opacity-90 cursor-pointer duration-200 text-[#ffff] font-bold rounded-full">
+              <span className="text-variant-2 bg-variant-1 font-bold px-3 py-1 mb-4 rounded lg:mb-0 m-2">
                 Duration: {response.data.duration}
               </span>
-              <span className="px-4 py-2 bg-variant-2 hover:bg-opacity-90 cursor-pointer duration-200 text-[#ffff] font-bold rounded-full">
+              <span className="text-variant-2 bg-variant-1 font-bold px-3 py-1 mb-4 rounded lg:mb-0 m-2">
                 Number of Openings: {response.data.numOfOpenings}
               </span>
-            </div>
-            <div>
-              <span className="px-4 py-2 bg-variant-2 hover:bg-opacity-90 cursor-pointer duration-200 text-[#ffff] font-bold rounded-full">
+              <span className="text-variant-2 bg-variant-1 font-bold px-3 py-1 mb-4 rounded lg:mb-0 m-2">
                 Location: {response.data.location}
               </span>
             </div>
@@ -94,7 +95,7 @@ const JobListing = (response: any) => {
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const { jobId } = context.query
-  const res = await fetch(`${process.env.AUTH0_BASE_URL}/api/jobs/apply/${jobId}`)
+  const res = await fetch(`${process.env.AUTH0_BASE_URL}/api/jobs/info/${jobId}`)
   let response = await res.json()
   return { props: { ...response } }
 }
