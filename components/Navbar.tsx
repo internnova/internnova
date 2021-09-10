@@ -1,6 +1,6 @@
-import React from "react";
-import { Logo } from "./Logo";
-import { FaGithub, FaTwitter, FaDiscord } from "react-icons/fa";
+import React from "react"
+import { Logo } from "./Logo"
+import { FaGithub, FaTwitter, FaDiscord } from "react-icons/fa"
 
 const Navbar = () => {
   return (
@@ -11,15 +11,15 @@ const Navbar = () => {
         <SocialButtons />
       </div>
     </div>
-  );
-};
+  )
+}
 
 const SocialButtons = () => {
   const socials = [
     { icon: FaGithub, link: "https://github.com/oxylearn" },
     { icon: FaTwitter, link: "https://twitter.com/oxylearn" },
     { icon: FaDiscord, link: "https://discord.gg/cZZxcCfh4v" },
-  ];
+  ]
 
   return (
     <>
@@ -34,10 +34,10 @@ const SocialButtons = () => {
           >
             <social.icon className="h-5 w-5" />
           </a>
-        );
+        )
       })}
     </>
-  );
-};
+  )
+}
 
-export default Navbar;
+export default Navbar
