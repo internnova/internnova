@@ -20,21 +20,23 @@ const AuthSection = () => {
   if (!user) {
     return (
       <>
-        <Link href="/api/auth/login">
-          <a className="py-2 px-4 bg-transparent text-variant-2 font-semibold border border-variant-2 rounded hover:bg-variant-2 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0 mr-4 hover:shadow-lg hover:text-[#fff]">
-            Login
-          </a>
-        </Link>
+        <a
+          className="py-2 px-4 bg-transparent text-variant-2 font-semibold border border-variant-2 rounded hover:bg-variant-2 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0 mr-4 hover:shadow-lg hover:text-[#fff]"
+          href="/api/auth/login"
+        >
+          Login
+        </a>
       </>
     )
   } else if (user) {
     return (
       <>
-        <Link href="/api/auth/logout">
-          <a className="py-2 px-4 bg-transparent text-variant-2 font-semibold border border-variant-2 rounded hover:bg-variant-2 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0 mr-4 hover:shadow-lg hover:text-[#fff]">
-            Logout
-          </a>
-        </Link>
+        <a
+          className="py-2 px-4 bg-transparent text-variant-2 font-semibold border border-variant-2 rounded hover:bg-variant-2 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0 mr-4 hover:shadow-lg hover:text-[#fff]"
+          href="/api/auth/logout"
+        >
+          Logout
+        </a>
       </>
     )
   } else {

@@ -1,6 +1,7 @@
 import moment from "moment"
 import React from "react"
 import { internshipType } from "types"
+import Link from "next/link"
 
 type JobProps = { job: internshipType; handleTagClick: (passedFilter: string) => void }
 type TagsComponentProps = { tags: Array<string>; handleTagClick: (passedFilter: string) => void }
@@ -24,7 +25,10 @@ const TagsComponent = ({ tags, handleTagClick }: TagsComponentProps) => (
 )
 
 const JobComponent = ({ job, handleTagClick }: JobProps) => {
+  const env = process.env.NODE_ENV
+  let url = ""
   const {
+    id,
     position,
     contract,
     location,
@@ -36,6 +40,11 @@ const JobComponent = ({ job, handleTagClick }: JobProps) => {
     featured,
     numOfOpenings,
   } = job
+  if (!(env == "production")) {
+    url = `http://localhost:3000/jobs/apply/${id}`
+  } else {
+    url = `https://internnova.co/jobs/apply/${id}`
+  }
 
   return (
     <div className="flex flex-col shadow-lg m-4 p-6 my-16 mx-4 rounded 'border-solid border-variant-1 border-l-8 lg:flex-row lg:my-6 hover:shadow-xl transition duration-500">
@@ -56,12 +65,16 @@ const JobComponent = ({ job, handleTagClick }: JobProps) => {
             </span>
           )}
         </h3>
-        <h2 className="font-bold text-xl my-2 lg:my-0">{position}</h2>
-        <p className="text-gray-500">
-          {" "}
-          {moment(postedAt).fromNow()} · {contract} · {location}{" "}
-        </p>
-        <p className="text-variant-2">Available Openings: {numOfOpenings}</p>
+        <Link href={url}>
+          <a>
+            <h2 className="font-bold text-xl my-2 lg:my-0">{position}</h2>
+            <p className="text-gray-500">
+              {" "}
+              {moment(postedAt).fromNow()} · {contract} · {location}{" "}
+            </p>
+            <p className="text-variant-2">Available Openings: {numOfOpenings}</p>
+          </a>
+        </Link>
       </div>
       <TagsComponent tags={tools} handleTagClick={handleTagClick} />
     </div>

@@ -20,7 +20,6 @@ const seed = async () => {
       duration: "4 weeks",
     },
   })
-  console.log("DONE")
 }
 
 export default seed
