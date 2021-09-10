@@ -1,6 +1,6 @@
 import React from "react"
 import { Logo } from "./Logo"
-import { FaGithub, FaTwitter, FaDiscord } from "react-icons/fa"
+import { useUser } from "@auth0/nextjs-auth0"
 
 const Navbar = () => {
   return (
@@ -8,36 +8,39 @@ const Navbar = () => {
       <Logo />
 
       <div className="flex gap-2 items-center">
-        <SocialButtons />
+        <AuthSection />
       </div>
     </div>
   )
 }
 
-const SocialButtons = () => {
-  const socials = [
-    { icon: FaGithub, link: "https://github.com/oxylearn" },
-    { icon: FaTwitter, link: "https://twitter.com/oxylearn" },
-    { icon: FaDiscord, link: "https://discord.gg/cZZxcCfh4v" },
-  ]
-
-  return (
-    <>
-      {socials.map((social, i) => {
-        return (
-          <a
-            key={i}
-            className="rounded-md bg-variant-1 h-10 w-10 grid place-items-center cursor-pointer"
-            href={social.link}
-            target="_blank"
-            rel="noreferrer"
-          >
-            <social.icon className="h-5 w-5" />
-          </a>
-        )
-      })}
-    </>
-  )
+const AuthSection = () => {
+  const { user } = useUser()
+  if (!user) {
+    return (
+      <>
+        <a
+          className="py-2 px-4 bg-transparent text-variant-2 font-semibold border border-variant-2 rounded hover:bg-variant-2 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0 mr-4 hover:shadow-lg hover:text-[#fff]"
+          href="/api/auth/login"
+        >
+          Login
+        </a>
+      </>
+    )
+  } else if (user) {
+    return (
+      <>
+        <a
+          className="py-2 px-4 bg-transparent text-variant-2 font-semibold border border-variant-2 rounded hover:bg-variant-2 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0 mr-4 hover:shadow-lg hover:text-[#fff]"
+          href="/api/auth/logout"
+        >
+          Logout
+        </a>
+      </>
+    )
+  } else {
+    return <>Loading</>
+  }
 }
 
 export default Navbar
