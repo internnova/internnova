@@ -1,6 +1,5 @@
 import Navbar from "components/Navbar"
 import { BsSearch } from "react-icons/bs"
-import Link from "next/link"
 
 const Home = () => {
   return (
@@ -30,12 +29,12 @@ const Main = () => {
         InternNova helps high school students build their profile, enhance their skills, and
         increase their chances of getting admitted into top colleges. Find internships today!
       </p>
-      <Link href="/jobs" passHref={true}>
+      <a href="/jobs">
         <button className="bg-variant-1 hover:bg-gray-400 text-gray-800 font-bold py-4 mt-5 px-6 rounded inline-flex items-center">
           <BsSearch className="h-6 w-6 mr-2" />
           <span className="text-xl">Search For internships</span>
         </button>
-      </Link>
+      </a>
     </div>
   )
 }

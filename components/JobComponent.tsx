@@ -1,7 +1,6 @@
 import moment from "moment"
 import React from "react"
 import { internshipType } from "types"
-import Link from "next/link"
 
 type JobProps = { job: internshipType; handleTagClick: (passedFilter: string) => void }
 type TagsComponentProps = { tags: Array<string>; handleTagClick: (passedFilter: string) => void }
@@ -65,7 +64,7 @@ const JobComponent = ({ job, handleTagClick }: JobProps) => {
             </span>
           )}
         </h3>
-        <Link href={url}>
+        <a href={url}>
           <a>
             <h2 className="font-bold text-xl my-2 lg:my-0">{position}</h2>
             <p className="text-gray-500">
@@ -74,7 +73,7 @@ const JobComponent = ({ job, handleTagClick }: JobProps) => {
             </p>
             <p className="text-variant-2">Available Openings: {numOfOpenings}</p>
           </a>
-        </Link>
+        </a>
       </div>
       <TagsComponent tags={tools} handleTagClick={handleTagClick} />
     </div>

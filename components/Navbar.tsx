@@ -1,7 +1,6 @@
 import React from "react"
 import { Logo } from "./Logo"
 import { useUser } from "@auth0/nextjs-auth0"
-import Link from "next/link"
 
 const Navbar = () => {
   return (

@@ -1,9 +1,10 @@
-import { GetServerSideProps } from "next"
-import { FaLocationArrow } from "react-icons/fa"
-import { useRouter } from "next/router"
-import React, { useEffect } from "react"
 import { useUser } from "@auth0/nextjs-auth0"
 import Navbar from "components/Navbar"
+import { GetServerSideProps } from "next"
+// import { FaLocationArrow } from "react-icons/fa"
+import { useRouter } from "next/router"
+import React from "react"
+
 const JobListing = (response: any) => {
   const router = useRouter()
   const { user, error, isLoading } = useUser()
@@ -27,11 +28,9 @@ const JobListing = (response: any) => {
     )
   }
 
-  useEffect(() => {
-    if (response.code === "no-internship-found") {
-      router.push("/404")
-    }
-  }, [response.code, router])
+  if (response.code === "no-internship-found") {
+  }
+
   return (
     <>
       <div className="py-10 px-7 sm:px-10 md:px-20 xl:container mx-auto w-screen relative">

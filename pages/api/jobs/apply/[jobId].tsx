@@ -14,10 +14,16 @@ export default async function handler(req, res) {
         code: "success",
         data: internship,
       })
+    } else {
+      res.status(400).json({
+        code: "no-internship-found",
+        message: "wrong or missing slug",
+      })
     }
+  } else {
+    res.status(400).json({
+      code: "no-internship-found",
+      message: "wrong or missing slug",
+    })
   }
-  res.status(400).json({
-    code: "no-internship-found",
-    message: "wrong or missing slug",
-  })
 }
