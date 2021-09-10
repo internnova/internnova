@@ -11,7 +11,7 @@
 ## Contributing
 
 - Fork the repo
-- All code must meet the `yarn eslint` checks
+- All code must meet the `yarn next lint` checks
 - Try to keep libraries to a minimum(excluding dev dependencies)
 
 ## License
