@@ -8,7 +8,7 @@ import Loading from "components/Loading"
 
 const JobListing = (response: any) => {
   const router = useRouter()
-  const { user, error, isLoading } = useUser()
+  const { user, isLoading } = useUser()
 
   if (isLoading) {
     return <Loading />
