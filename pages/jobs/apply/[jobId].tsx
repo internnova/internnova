@@ -25,7 +25,7 @@ const ApplyPage = (response: any) => {
   const internship = response.data
 
   const onSubmit = async (data: FormData) => {
-    fetch(`http://localhost:300/api/jobs/apply/${jobId}`, {
+    fetch(`http://localhost:3000/api/jobs/apply/${jobId}`, {
       method: "post",
       headers: {
         Accept: "application/json",

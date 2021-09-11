@@ -25,12 +25,12 @@ export default async function handler(req, res) {
             internPhoneNumber: data.tel,
             aboutIntern: data.about,
             internUserObj: user,
-            Internship: internship,
+            internshipId: internship.id,
           },
         })
         res.staus(200).json({ code: "success" })
       } else {
-        res.staus(500).json({ code: "internal-server-error" })
+        res.status(500).json({ code: "internal-server-error" })
       }
     } else {
       res.status(400).json({
