@@ -4,7 +4,7 @@ import { BsSearch } from "react-icons/bs"
 const Home = () => {
   return (
     <>
-      <div className="py-10 px-7 sm:px-10 md:px-20 xl:container mx-auto h-screen w-screen relative overflow-hidden">
+      <div className="py-10 px-7 sm:px-10 md:px-20 xl:container mx-auto h-screen w-screen relative">
         <Navbar />
         <Main />
         <img
