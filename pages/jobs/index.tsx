@@ -1,4 +1,6 @@
 import JobComponent from "components/JobComponent"
+import { useUser } from "@auth0/nextjs-auth0"
+import Loading from "components/Loading"
 import Navbar from "components/Navbar"
 import prisma from "db"
 import React, { useState } from "react"
@@ -21,6 +23,12 @@ type FilterListProps = {
 }
 
 const FilterList = ({ filters, handleFilterClick, clearFilters }: FilterListProps) => {
+  const { isLoading } = useUser()
+
+  if (isLoading) {
+    return <Loading />
+  }
+
   return (
     <>
       {filters.length > 0 && (
