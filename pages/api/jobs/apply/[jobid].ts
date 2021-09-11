@@ -25,7 +25,7 @@ export default async function handler(req, res) {
             internPhoneNumber: data.tel,
             aboutIntern: data.about,
             internUserObj: user,
-            internshipId: internship.id,
+            userId: user.id,
           },
         })
         res.staus(200).json({ code: "success" })
