@@ -5,6 +5,7 @@ import { GetServerSideProps } from "next"
 import { useRouter } from "next/router"
 import React, { useEffect } from "react"
 import Loading from "components/Loading"
+import { Suspense } from "react"
 
 const JobListing = (response: any) => {
   const router = useRouter()
@@ -17,18 +18,19 @@ const JobListing = (response: any) => {
   if (!user) {
     return (
       <>
-        <section className="h-screen w-screen bg-gradient-to-r from-variant-1 to-variant-2">
-          <div className="flex h-screen justify-center items-center">
-            <div>
-              <a href="/api/auth/login">
-                <h1 className="text-4xl md:text-6xl text-center text-fgvar underline ">
-                  Login to apply
-                </h1>
-              </a>
+        <Suspense fallback={<Loading />}>
+          <section className="h-screen w-screen bg-gradient-to-r from-variant-1 to-variant-2">
+            <div className="flex h-screen justify-center items-center">
+              <div>
+                <a href="/api/auth/login">
+                  <h1 className="text-4xl md:text-6xl text-center text-fgvar underline ">
+                    Login to apply
+                  </h1>
+                </a>
+              </div>
             </div>
-          </div>
-        </section>
-        ``
+          </section>
+        </Suspense>
       </>
     )
   }

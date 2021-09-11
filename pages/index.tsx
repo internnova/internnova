@@ -1,14 +1,7 @@
 import Navbar from "components/Navbar"
 import { BsSearch } from "react-icons/bs"
-import Loading from "components/Loading"
-import { useUser } from "@auth0/nextjs-auth0"
 
 const Home = () => {
-  const { isLoading } = useUser()
-
-  if (isLoading) {
-    return <Loading />
-  }
   return (
     <>
       <div className="py-10 px-7 sm:px-10 md:px-20 xl:container mx-auto h-screen w-screen relative overflow-hidden">
