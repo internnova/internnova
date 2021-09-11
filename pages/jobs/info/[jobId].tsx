@@ -1,14 +1,18 @@
 import { useUser } from "@auth0/nextjs-auth0"
-import moment from "moment"
 import Navbar from "components/Navbar"
 import { GetServerSideProps } from "next"
 // import { FaLocationArrow } from "react-icons/fa"
 import { useRouter } from "next/router"
 import React, { useEffect } from "react"
+import Loading from "components/Loading"
 
 const JobListing = (response: any) => {
   const router = useRouter()
   const { user, error, isLoading } = useUser()
+
+  if (isLoading) {
+    return <Loading />
+  }
 
   if (!user) {
     return (
@@ -69,9 +73,6 @@ const JobListing = (response: any) => {
           <div className="mt-8">
             <div>
               <h3 className="text-[#0f0f0f] text-2xl font-bold">Description</h3>
-              {/*make it nova green, no it wasn't looking good ok the hr does not look good, hmmm any ideas?
-              make a custom hr with div and make it in the middle a short line, awesome
-               */}
               <div className="flex w-full justify-start">
                 <div className="border-b-2 my-4 border-gray w-[calc(100%-50%)]"></div>
               </div>
