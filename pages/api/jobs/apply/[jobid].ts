@@ -51,8 +51,8 @@ export default async function handler(req, res) {
       }
     } else {
       res.status(400).json({
-        code: "no-internship-found",
-        message: "wrong or missing slug",
+        code: "bad_data",
+        message: "Make sure the data is valid.",
       })
     }
   } else {

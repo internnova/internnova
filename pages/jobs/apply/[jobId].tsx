@@ -27,6 +27,8 @@ const ApplyPage = (response: any) => {
     axios.post(`/api/jobs/apply/${jobId}`, { data, user }).then((res) => {
       if (res.status === 200) {
         router.push("/jobs/apply/success")
+      } else {
+        console.log(res)
       }
     })
   }
