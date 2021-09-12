@@ -1,4 +1,5 @@
 import { useForm } from "react-hook-form"
+import axios from "axios"
 import { useState } from "react"
 import { IoMdArrowRoundBack } from "react-icons/io"
 import Loading from "components/Loading"
@@ -23,20 +24,11 @@ const ApplyPage = (response: any) => {
   }, [router, response.code])
 
   const onSubmit = async (data: FormDataType) => {
-    fetch(`http://localhost:3000/api/jobs/apply/${jobId}`, {
-      method: "post",
-      headers: {
-        Accept: "application/json",
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({ data, user }),
+    axios.post(`/api/jobs/apply/${jobId}`, { data, user }).then((res) => {
+      if (res.status === 200) {
+        router.push("/jobs/apply/success")
+      }
     })
-      .then((res) => res.json())
-      .then((res) => {
-        if (res.code === "success") {
-          router.push("/?application=success")
-        }
-      })
   }
 
   if (isLoading) {

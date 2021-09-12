@@ -25,9 +25,10 @@ const TagsComponent = ({ tags, handleTagClick }: TagsComponentProps) => (
 
 const JobComponent = ({ job, handleTagClick }: JobProps) => {
   const env = process.env.NODE_ENV
-  let url = ""
   const { id, position, contract, location, logo, company, postedAt, tools, isNew, numOfOpenings } =
     job
+
+  let url = ""
   if (env.toLowerCase() === "production") {
     url = `http://internnova.co/jobs/info/${id}`
   } else {
