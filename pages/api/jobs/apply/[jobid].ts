@@ -1,10 +1,13 @@
 import prisma from "db"
+import { internshipType, FormDataType, UserAuth0Type } from "types"
 
 export default async function handler(req, res) {
   const { jobId } = req.query
-  let internship: any = null
+  let internship: null | internshipType = null
   if (jobId) {
-    const { data, user } = req.body
+    let { data, user } = req.body
+    data = data as FormDataType
+    user = user as UserAuth0Type
     internship = await prisma.internship.findFirst({
       where: {
         id: Number(jobId),
@@ -17,18 +20,32 @@ export default async function handler(req, res) {
         },
       })
 
-      if (internUserObj && user) {
+      const userFromDb = await prisma.user.findFirst({
+        where: {
+          email: user.email,
+        },
+      })
+
+      if (internUserObj && user && userFromDb) {
         await prisma.application.create({
           data: {
+            Internship: {
+              connect: {
+                id: internship.id,
+              },
+            },
             internName: data.name,
             internEmail: data.email,
             internPhoneNumber: data.tel,
             aboutIntern: data.about,
-            internUserObj: user,
-            userId: user.id,
+            internUserObj: {
+              connect: {
+                id: userFromDb.id,
+              },
+            },
           },
         })
-        res.staus(200).json({ code: "success" })
+        res.status(200).json({ code: "success" })
       } else {
         res.status(500).json({ code: "internal-server-error" })
       }

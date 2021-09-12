@@ -6,14 +6,7 @@ import { GetServerSideProps } from "next"
 import { useUser } from "@auth0/nextjs-auth0"
 import { useRouter } from "next/router"
 import { useEffect } from "react"
-import prisma from "db"
-
-type FormData = {
-  name: string
-  email: string
-  tel: string
-  about: string
-}
+import { FormDataType } from "types"
 
 const ApplyPage = (response: any) => {
   const router = useRouter()
@@ -22,9 +15,14 @@ const ApplyPage = (response: any) => {
   const [characterCount, setCharacterCount] = useState(0)
   const { user, isLoading } = useUser()
   const { jobId } = router.query
-  const internship = response.data
 
-  const onSubmit = async (data: FormData) => {
+  useEffect(() => {
+    if (response.code === "no-internship-found") {
+      router.push("/404")
+    }
+  }, [router, response.code])
+
+  const onSubmit = async (data: FormDataType) => {
     fetch(`http://localhost:3000/api/jobs/apply/${jobId}`, {
       method: "post",
       headers: {

@@ -26,19 +26,8 @@ const TagsComponent = ({ tags, handleTagClick }: TagsComponentProps) => (
 const JobComponent = ({ job, handleTagClick }: JobProps) => {
   const env = process.env.NODE_ENV
   let url = ""
-  const {
-    id,
-    position,
-    contract,
-    location,
-    logo,
-    company,
-    postedAt,
-    tools,
-    isNew,
-    featured,
-    numOfOpenings,
-  } = job
+  const { id, position, contract, location, logo, company, postedAt, tools, isNew, numOfOpenings } =
+    job
   if (env.toLowerCase() === "production") {
     url = `http://internnova.co/jobs/info/${id}`
   } else {
@@ -56,11 +45,6 @@ const JobComponent = ({ job, handleTagClick }: JobProps) => {
           {isNew && (
             <span className="bg-variant-2 text-variant-1 uppercase m-2 px-2 py-1 rounded-full">
               New!
-            </span>
-          )}
-          {featured && (
-            <span className="bg-gray-800 text-white text-xs uppercase m-0 px-2 py-1 rounded-full">
-              Featured
             </span>
           )}
         </h3>
