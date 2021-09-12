@@ -11,18 +11,10 @@ import { FormDataType } from "types"
 const ApplyPage = (response: any) => {
   const router = useRouter()
   const { register, handleSubmit } = useForm()
-  const [result, setResult] = useState("")
+  const [result, setResult] = useState<string>("")
   const [characterCount, setCharacterCount] = useState(0)
   const { user, isLoading } = useUser()
   const { jobId } = router.query
-
-  let url = ""
-  const env = process.env.NODE_ENV
-  if (env.toLowerCase() === "production") {
-    url = `http://internnova.co/jobs/apply/${jobId}`
-  } else {
-    url = `http://localhost:3000/jobs/apply/${jobId}`
-  }
 
   useEffect(() => {
     if (response.code === "no-internship-found") {
@@ -31,7 +23,7 @@ const ApplyPage = (response: any) => {
   }, [router, response.code])
 
   const onSubmit = async (data: FormDataType) => {
-    fetch(url, {
+    fetch(`http://localhost:3000/api/jobs/apply/${jobId}`, {
       method: "post",
       headers: {
         Accept: "application/json",
@@ -40,19 +32,16 @@ const ApplyPage = (response: any) => {
       body: JSON.stringify({ data, user }),
     })
       .then((res) => res.json())
-      .then((res) => console.log(res))
+      .then((res) => {
+        if (res.code === "success") {
+          router.push("/?application=success")
+        }
+      })
   }
 
   if (isLoading) {
     return <Loading />
   }
-
-  // useEffect(() => {
-  //   if (response.code === "no-internship-found") {
-  //     router.push("/404")
-  //   }
-  // }, [router, response.code])
-
   if (!user) {
     return (
       <>
