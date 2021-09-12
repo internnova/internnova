@@ -177,10 +177,10 @@ const ApplyPage = (response: any) => {
                 <p>{result}</p>
                 <div className="px-4 py-3 bg-gray-50 text-right sm:px-6">
                   <button
+                    className="py-2 px-4 bg-transparent text-variant-2 font-semibold border border-variant-2 rounded hover:bg-variant-2 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0 mr-4 hover:shadow-lg hover:text-[#fff] inline-flex items-center md:mb-16"
                     type="submit"
-                    className="inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-variant-2 md:mt-8 md:mb-16"
                   >
-                    Save
+                    Apply
                   </button>
                 </div>
               </div>
