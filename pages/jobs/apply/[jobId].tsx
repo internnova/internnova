@@ -16,6 +16,14 @@ const ApplyPage = (response: any) => {
   const { user, isLoading } = useUser()
   const { jobId } = router.query
 
+  let url = ""
+  const env = process.env.NODE_ENV
+  if (env.toLowerCase() === "production") {
+    url = `http://internnova.co/jobs/apply/${jobId}`
+  } else {
+    url = `http://localhost:3000/jobs/apply/${jobId}`
+  }
+
   useEffect(() => {
     if (response.code === "no-internship-found") {
       router.push("/404")
@@ -23,7 +31,7 @@ const ApplyPage = (response: any) => {
   }, [router, response.code])
 
   const onSubmit = async (data: FormDataType) => {
-    fetch(`http://localhost:3000/api/jobs/apply/${jobId}`, {
+    fetch(url, {
       method: "post",
       headers: {
         Accept: "application/json",
