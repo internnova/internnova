@@ -3,13 +3,14 @@ import Navbar from "components/Navbar"
 import { GetServerSideProps } from "next"
 // import { FaLocationArrow } from "react-icons/fa"
 import { useRouter } from "next/router"
-import React, { useEffect } from "react"
+import { useEffect } from "react"
 import Loading from "components/Loading"
-import { Suspense } from "react"
+import { FaLaptop } from "react-icons/fa"
 
 const JobListing = (response: any) => {
   const router = useRouter()
   const { user, isLoading } = useUser()
+  const { jobId } = router.query
 
   if (isLoading) {
     return <Loading />
@@ -18,19 +19,17 @@ const JobListing = (response: any) => {
   if (!user) {
     return (
       <>
-        <Suspense fallback={<Loading />}>
-          <section className="h-screen w-screen bg-gradient-to-r from-variant-1 to-variant-2">
-            <div className="flex h-screen justify-center items-center">
-              <div>
-                <a href="/api/auth/login">
-                  <h1 className="text-4xl md:text-6xl text-center text-fgvar underline ">
-                    Login to apply
-                  </h1>
-                </a>
-              </div>
+        <section className="h-screen w-screen bg-gradient-to-r from-variant-1 to-variant-2">
+          <div className="flex h-screen justify-center items-center">
+            <div>
+              <a href="/api/auth/login">
+                <h1 className="text-4xl md:text-6xl text-center text-fgvar underline ">
+                  Login to apply
+                </h1>
+              </a>
             </div>
-          </section>
-        </Suspense>
+          </div>
+        </section>
       </>
     )
   }
@@ -72,6 +71,13 @@ const JobListing = (response: any) => {
               </span>
             </div>
           </div>
+          <a
+            className="py-4 px-6 bg-transparent text-variant-2 font-semibold border border-variant-2 rounded hover:bg-variant-2 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0 mr-4 hover:shadow-lg hover:text-[#fff] inline-flex items-center text-xl mt-4 ml-2"
+            href={`/jobs/apply/${jobId}`}
+          >
+            <FaLaptop />
+            <span className="pl-2">Apply now!</span>
+          </a>
           <div className="mt-8">
             <div>
               <h3 className="text-[#0f0f0f] text-2xl font-bold">Description</h3>
@@ -86,9 +92,6 @@ const JobListing = (response: any) => {
                 {response.data.description}
               </span>
             </div>
-            <button className="bg-variant-2 py-2 px-7 my-5 text-[#fff] rounded-xl hover:bg-opacity-90 duration-200">
-              Apply now
-            </button>
           </div>
         </div>
       </div>

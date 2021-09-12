@@ -5,7 +5,9 @@ import { useUser } from "@auth0/nextjs-auth0"
 const Navbar = () => {
   return (
     <div className="flex items-center justify-between w-full">
-      <Logo />
+      <a href="/">
+        <Logo />
+      </a>
 
       <div className="flex gap-2 items-center">
         <AuthSection />

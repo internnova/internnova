@@ -10,26 +10,25 @@ generator client {
 // --------------------------------------
 
 model User {
-  id          Int           @id @default(autoincrement())
-  createdAt   DateTime      @default(now())
-  updatedAt   DateTime      @updatedAt
-  name        String?
-  email       String        @unique
-  picture     String
-  Application Application[]
+  id           Int           @id @default(autoincrement())
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  name         String?
+  email        String        @unique
+  picture      String
+  Applications Application[]
 }
 
 model Application {
-  id           Int         @id @default(autoincrement())
-  user         User        @relation(fields: [internId], references: [id])
-  internName   String
-  internEmail  String
-  message      String
-  // the resume will be a aws s3 url(for a pdf)
-  resume       String
-  internId     Int
-  Internship   Internship? @relation(fields: [internshipId], references: [id])
-  internshipId Int?
+  id                Int         @id @default(autoincrement())
+  internName        String
+  internEmail       String
+  internPhoneNumber String
+  aboutIntern       String
+  internUserObj     User        @relation(fields: [userId], references: [id])
+  userId            Int
+  Internship        Internship? @relation(fields: [internshipId], references: [id])
+  internshipId      Int?
 }
 
 model Internship {
