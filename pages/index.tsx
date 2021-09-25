@@ -40,7 +40,7 @@ const Main = () => {
       <a href="/jobs">
         <button className="bg-variant-1 hover:bg-gray-400 text-gray-800 font-bold py-4 mt-5 px-6 rounded inline-flex items-center">
           <BsSearch className="h-6 w-6 mr-2" />
-          <span className="text-xl">Search For internships</span>
+          <span className="text-xl">Search For Internships</span>
         </button>
       </a>
     </div>
