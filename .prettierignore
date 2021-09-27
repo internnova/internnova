@@ -1,0 +1,9 @@
+.gitkeep
+.github/
+README.md
+.env*
+*.ico
+*.lock
+db/migrations
+.next
+.blitz

@@ -1,0 +1,109 @@
+import { useUser } from "@auth0/nextjs-auth0"
+import Navbar from "components/Navbar"
+import { GetServerSideProps } from "next"
+// import { FaLocationArrow } from "react-icons/fa"
+import { useRouter } from "next/router"
+import { useEffect } from "react"
+import Loading from "components/Loading"
+import { FaLaptop } from "react-icons/fa"
+
+const JobListing = (response: any) => {
+  const router = useRouter()
+  const { user, isLoading } = useUser()
+  const { jobId } = router.query
+
+  if (isLoading) {
+    return <Loading />
+  }
+
+  if (!user) {
+    return (
+      <>
+        <section className="h-screen w-screen bg-gradient-to-r from-variant-1 to-variant-2">
+          <div className="flex h-screen justify-center items-center">
+            <div>
+              <a href="/api/auth/login">
+                <h1 className="text-4xl md:text-6xl text-center text-fgvar underline ">
+                  Login to apply
+                </h1>
+              </a>
+            </div>
+          </div>
+        </section>
+      </>
+    )
+  }
+
+  useEffect(() => {
+    if (response.code === "no-internship-found") {
+      router.push("/404")
+    }
+  }, [router, response.code])
+  return (
+    <>
+      <div className="py-10 px-7 sm:px-10 md:px-20 xl:container mx-auto w-screen relative">
+        <header className="mb-8 mt-5">
+          <Navbar />
+        </header>
+        <div className="flex items-center mb-8 justify-center gap-3 flex-col">
+          <img src={response.data["logo"]} width="80em"></img>
+          <h1 className="text-center text-variant-2 text-4xl font-bold ">
+            Apply for {response.data["company"]}
+          </h1>
+          <h5 className="text-center text-2xl">
+            Position: <span className="font-bold text-variant-2">{response.data.position}</span>
+          </h5>
+        </div>
+        <div className="container m-auto">
+          <div className="flex gap-4 justify-between">
+            <div className="flex flex-wrap cursor-pointer items-center">
+              <span className="text-variant-2 bg-variant-1 font-bold px-3 py-1 mb-4 rounded lg:mb-0 m-2">
+                Contract: {response.data.contract}
+              </span>
+              <span className="text-variant-2 bg-variant-1 font-bold px-3 py-1 mb-4 rounded lg:mb-0 m-2">
+                Duration: {response.data.duration}
+              </span>
+              <span className="text-variant-2 bg-variant-1 font-bold px-3 py-1 mb-4 rounded lg:mb-0 m-2">
+                Number of Openings: {response.data.numOfOpenings}
+              </span>
+              <span className="text-variant-2 bg-variant-1 font-bold px-3 py-1 mb-4 rounded lg:mb-0 m-2">
+                Location: {response.data.location}
+              </span>
+            </div>
+          </div>
+          <a
+            className="py-4 px-6 bg-transparent text-variant-2 font-semibold border border-variant-2 rounded hover:bg-variant-2 hover:text-white hover:border-transparent transition ease-in duration-200 transform hover:-translate-y-1 active:translate-y-0 mr-4 hover:shadow-lg hover:text-[#fff] inline-flex items-center text-xl mt-4 ml-2"
+            href={`/jobs/apply/${jobId}`}
+          >
+            <FaLaptop />
+            <span className="pl-2">Apply now!</span>
+          </a>
+          <div className="mt-8">
+            <div>
+              <h3 className="text-[#0f0f0f] text-2xl font-bold">Description</h3>
+              <div className="flex w-full justify-start">
+                <div className="border-b-2 my-4 border-gray w-[calc(100%-50%)]"></div>
+              </div>
+              {/* <hr className="my-4 text-gray" /> */}
+              <span
+                className="font-semibold
+                 w-[calc(100%-20%)] text-[#0f0f0f]"
+              >
+                {response.data.description}
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </>
+  )
+}
+
+export const getServerSideProps: GetServerSideProps = async (context) => {
+  const { jobId } = context.query
+  const res = await fetch(`${process.env.AUTH0_BASE_URL}/api/jobs/info/${jobId}`)
+  let response = await res.json()
+  return { props: { ...response } }
+}
+
+export default JobListing

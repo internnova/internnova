@@ -1,0 +1,50 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// --------------------------------------
+
+model User {
+  id           Int           @id @default(autoincrement())
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  name         String?
+  email        String        @unique
+  picture      String
+  Applications Application[]
+}
+
+model Application {
+  id                Int         @id @default(autoincrement())
+  internName        String
+  internEmail       String
+  internPhoneNumber String
+  aboutIntern       String
+  internUserObj     User        @relation(fields: [userId], references: [id])
+  userId            Int
+  Internship        Internship? @relation(fields: [internshipId], references: [id])
+  internshipId      Int?
+}
+
+model Internship {
+  id            Int           @id @default(autoincrement())
+  position      String
+  contract      String
+  location      String
+  logo          String
+  company       String
+  postedAt      DateTime      @default(now())
+  tools         String[]
+  featured      Boolean?      @default(false)
+  description   String
+  applications  Application[]
+  numOfOpenings String        @default("1")
+  duration      String
+
+  @@map("internships")
+}
