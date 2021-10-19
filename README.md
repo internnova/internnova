@@ -8,7 +8,7 @@
 <h1 align="center">InternNova</h1>
 <h4 align="center">Land the best possible high-school ready internships</h4>
 
-- All code must meet `black` and `flake8` checks
+- All code must meet `yarn run next lint` checks
 
 ## License
 
