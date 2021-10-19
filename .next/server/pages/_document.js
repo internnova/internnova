@@ -177,7 +177,7 @@ exports.default = void 0;
 
 var _react = __webpack_require__(297);
 
-var _headManagerContext = __webpack_require__(188);
+var _headManagerContext = __webpack_require__(98);
 
 var _headManager = __webpack_require__(792);
 
@@ -1115,7 +1115,7 @@ module.exports = require("next/dist/shared/lib/constants.js");
 
 /***/ }),
 
-/***/ 188:
+/***/ 98:
 /***/ ((module) => {
 
 module.exports = require("next/dist/shared/lib/head-manager-context.js");
