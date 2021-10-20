@@ -56,7 +56,7 @@ const HowItWorks = () => {
                     />
                   </svg>
                 </div>
-                <p className="ml-16 text-xl font-medium">Step one</p>
+                <p className="ml-16 text-xl font-medium">Step 1</p>
               </dt>
               <dd className="ml-16 text-gray-500">
                 Sign-up using your email id. Don{"'"}t worry, your data is safe
@@ -107,7 +107,7 @@ const HowItWorks = () => {
                     />
                   </svg>
                 </div>
-                <p className="ml-16 text-xl font-medium">Step two</p>
+                <p className="ml-16 text-xl font-medium">Step 2</p>
               </dt>
               <dd className="ml-16 text-gray-500">
                 Browse through the internships that we offer on our page and
@@ -158,7 +158,7 @@ const HowItWorks = () => {
                     />
                   </svg>
                 </div>
-                <p className="ml-16 text-xl font-medium">Step three</p>
+                <p className="ml-16 text-xl font-medium">Step 3</p>
               </dt>
               <dd className="ml-16 text-gray-500">
                 To enroll for an internship, click on Apply and fill in all the
@@ -210,12 +210,12 @@ const HowItWorks = () => {
                     />
                   </svg>
                 </div>
-                <p className="ml-16 text-xl font-medium">Step four</p>
+                <p className="ml-16 text-xl font-medium">Step 4</p>
               </dt>
               <dd className="ml-16 text-gray-500">
-                If you‚ are selected for the internship, all you have to do is
+                If you‚Äö are selected for the internship, all you have to do is
                 go to the Task category and complete all your tasks for the
-                internship. If you‚ are not selected, don{"'"}t worry! You can
+                internship. If you‚Äö are not selected, don{"'"}t worry! You can
                 always try again for another one
               </dd>
             </div>
@@ -253,12 +253,12 @@ const HowItWorks = () => {
                     className="h-8 w-8 filter-white"
                   />
                 </div>
-                <p className="ml-16 text-xl font-medium">Step five</p>
+                <p className="ml-16 text-xl font-medium">Step 5</p>
               </dt>
               <dd className="ml-16 text-gray-500">
                 Once your internship is finished, your employer will provide you
-                with an official certificate as well as some perks. It‚ is not
-                fully legal to pay teens so you‚ will be getting coupons and
+                with an official certificate as well as some perks. It‚Äö is not
+                fully legal to pay teens so you‚Äö will be getting coupons and
                 exciting deals instead
               </dd>
             </div>
