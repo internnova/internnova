@@ -7,8 +7,6 @@
     "start": "next start",
     "lint": "eslint --ext .js,ts src",
     "prepare": "husky install",
-    "lint-staged-husky": "lint-staged",
-    "lint-prettier": "prettier --config .prettierrc --list-different '{pages,components,styles,data}/**/*.{ts,js,css,scss}'"
   },
   "dependencies": {
     "next": "^11.1.2",
@@ -17,12 +15,8 @@
   },
   "devDependencies": {
     "@types/react": "^17.0.20",
-    "autoprefixer": "^10.3.4",
-    "commitlint": "^13.2.1",
     "eslint": "7.32.0",
     "eslint-config-next": "11.1.2",
-    "husky": "^7.0.2",
-    "lint-staged": "^11.2.3",
     "postcss": "^8.3.6",
     "tailwindcss": "^2.2.15",
     "typescript": "^4.4.3"
