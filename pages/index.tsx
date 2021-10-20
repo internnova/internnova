@@ -36,8 +36,9 @@ export default function Home() {
                     high-school students all over the world!
                   </p>
                 </div>
-                <button
-                  className="
+                <a href="#HowItWorks">
+                  <button
+                    className="
                     px-8
                     py-3.5
                     transition
@@ -49,9 +50,10 @@ export default function Home() {
                     font-extrabold
                     rounded-lg
                   "
-                >
-                  See how it works
-                </button>
+                  >
+                    See how it works
+                  </button>
+                </a>
               </div>
             </div>
           </div>
