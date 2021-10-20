@@ -40,7 +40,8 @@ export default function Home() {
                   <button
                     className="
                     px-8
-                    py-6
+                    py-3.5
+                    mt-2.5
                     transition
                     duration-300
                     bg-blue-500
