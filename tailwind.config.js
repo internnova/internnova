@@ -15,7 +15,6 @@ module.exports = {
         sora: ["Sora", "sans-serif"],
         fira: ["Fira Code", "monospace"],
       },
-     
     },
   },
   variants: {
