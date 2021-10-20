@@ -1,42 +1,74 @@
-import { BsSearch } from "react-icons/bs";
+import Head from "next/head";
+import React from "react";
+import HowItWorks from "../components/HowItWorks";
+import Navbar from "../components/Navbar";
+import ContactUs from "../components/ContactUs";
+import FAQs from "../components/FAQs";
 
-const Home = () => {
+export default function Home() {
   return (
-    <>
-      <div className="py-10 px-7 sm:px-10 md:px-20 xl:container mx-auto h-screen w-screen relative">
-        <Main />
-        <img
-          src="/images/vector.png"
-          className="hidden lg:block lg:h-96 lg:w-80 xl:h-[30rem] xl:w-[35rem] absolute -bottom-3 right-0 select-none"
-          draggable={false}
-          alt=""
-        />
+    <div>
+      <Head>
+        <title>InternNova</title>
+      </Head>
+      <div className="font-sans antialiased bg-gray-50 text-gray-900">
+        <main>
+          <div
+            className="bg-cover bg-no-repeat bg-right-top xl:bg-bottom"
+            style={{ backgroundImage: "url('/assets/img/bg.jpg')" }}
+          >
+            <div className="container mx-auto px-5 pb-16 sm:pb-16 lg:pb-24 xl:pb-32">
+              <Navbar />
+              <div className="mt-16 space-y-8 lg:mt-24 xl:mt-28">
+                <div className="space-y-4">
+                  <h1
+                    className="
+                  text-3xl
+                  font-black
+                  sm:w-2/3 sm:text-4xl
+                  md:max-w-xl md:text-5xl
+                "
+                  >
+                    Experience beyond the confines of a school wall
+                  </h1>
+                  <p className="max-w-sm text-lg text-gray-700 md:max-w-md md:text-xl">
+                    InternNova makes finding internships easy and accessible to
+                    high-school students all over the world!
+                  </p>
+                </div>
+                <button
+                  className="
+                    px-8
+                    py-3.5
+                    transition
+                    duration-300
+                    bg-blue-500
+                    hover:bg-blue-600
+                    shadow
+                    text-white
+                    font-extrabold
+                    rounded-lg
+                  "
+                >
+                  See how it works
+                </button>
+              </div>
+            </div>
+          </div>
+
+          <div className="border-t border-gray-200"></div>
+
+          <HowItWorks />
+
+          <div className="border-t border-gray-200"></div>
+
+          <FAQs />
+
+          <div className="border-t border-gray-200"></div>
+
+          <ContactUs />
+        </main>
       </div>
-    </>
-  );
-};
-
-const Main = () => {
-  return (
-    <div className="mt-[5rem] w-full lg:w-[40rem]">
-      <h1 className="text-3xl sm:text-4xl lg:text-5xl font-extrabold sm:leading-[3.2rem]">
-        Land the best possible{" "}
-        <span className="text-variant-2 main">high-school</span> ready
-        internships
-      </h1>
-      <p className="opacity-[0.76] mt-5 text-lg sm:text-xl lg:text-2xl">
-        InternNova helps high school students build their profile, enhance their
-        skills, and increase their chances of getting admitted into top
-        colleges. Find internships today!
-      </p>
-      <a href="/jobs">
-        <button className="bg-variant-1 hover:bg-gray-400 text-gray-800 font-bold py-4 mt-5 px-6 rounded inline-flex items-center">
-          <BsSearch className="h-6 w-6 mr-2" />
-          <span className="text-xl">Search For Internships</span>
-        </button>
-      </a>
     </div>
   );
-};
-
-export default Home;
+}
