@@ -92,16 +92,6 @@ const FAQs = () => {
             <h2 className="text-2xl font-black sm:text-3xl">
               Frequently Asked Questions
             </h2>
-            <p className="w-full sm:w-1/2 xl:w-80 text-gray-600 md:text-lg">
-              Quo et iste sint sint nostrum et at sapiente architecto. Minus
-              autem eum sit illo corrupti est ea ut eaque.
-            </p>
-            <a
-              href="#0"
-              className="block text-blue-500 transition duration-200 hover:text-blue-600 md:text-lg"
-            >
-              hi@setti.services
-            </a>
           </div>
           <div className="flex flex-col space-y-5 xl:col-span-2">
             {FAQsData.map((i, x) => {
