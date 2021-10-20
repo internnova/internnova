@@ -3,18 +3,23 @@ module.exports = {
   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
   darkMode: false, // or 'media' or 'class'
   theme: {
-    colors: {
-      bgvar: "#636363",
-      fgvar: "#000",
-      variant: {
-        1: "#b2dfdb",
-        2: "#26a69a",
+    extend: {
+      colors: {
+        neongreen: "#52DEE5",
+        text: "#C7D3FF",
+        textdark: "#A1ABBF",
+        bgblue: "#222E50",
+        darkerblue: "#0A192F",
       },
-      gray: "#7D8597",
+      fontFamily: {
+        sora: ["Sora", "sans-serif"],
+        fira: ["Fira Code", "monospace"],
+      },
+     
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [require("@tailwindcss/forms")],
-}
+  plugins: [],
+};
