@@ -1,9 +1,9 @@
 import Head from "next/head";
 import React from "react";
-import HowItWorks from "../components/HowItWorks";
-import Navbar from "../components/Navbar";
-import ContactUs from "../components/ContactUs";
-import FAQs from "../components/FAQs";
+import HowItWorks from "../components/HomePage/Unauthorized/HowItWorks";
+import Navbar from "../components/HomePage/Unauthorized/Navbar";
+import ContactUs from "../components/HomePage/Unauthorized/ContactUs";
+import FAQs from "../components/HomePage/Unauthorized/FAQs";
 
 export default function Home() {
   return (
@@ -29,17 +29,19 @@ export default function Home() {
                   md:max-w-xl md:text-5xl
                 "
                   >
-                    Experience beyond the confines of a school wall
+                    Experience the world beyond the confines of a school wall
                   </h1>
                   <p className="max-w-sm text-lg text-gray-700 md:max-w-md md:text-xl">
                     InternNova makes finding internships easy and accessible to
                     high-school students all over the world!
                   </p>
                 </div>
-                <button
-                  className="
+                <a href="#HowItWorks">
+                  <button
+                    className="
                     px-8
                     py-3.5
+                    mt-2.5
                     transition
                     duration-300
                     bg-blue-500
@@ -49,9 +51,10 @@ export default function Home() {
                     font-extrabold
                     rounded-lg
                   "
-                >
-                  See how it works
-                </button>
+                  >
+                    See how it works
+                  </button>
+                </a>
               </div>
             </div>
           </div>
