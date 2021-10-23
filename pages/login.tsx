@@ -9,7 +9,7 @@ export default function Login() {
       </Head>
       <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-8">
         <div className="relative py-3 sm:max-w-xl sm:mx-auto">
-          <div className="absolute inset-0 bg-gradient-to-r to-green-500 from-green-200 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
+          <div className="absolute inset-0 bg-gradient-to-r to-blue-500 from-blue-200 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
           <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
             <div className="max-w-md mx-auto">
               <div className="divide-y divide-gray-200">
@@ -45,7 +45,7 @@ export default function Login() {
                   </p>
                   <p className="text-center font-normal mt-[5px]">
                     No account?{" "}
-                    <a href="#" className="text-green-500 hover:text-green-600">
+                    <a href="#" className="text-blue-500 hover:text-blue-600">
                       Create one!
                     </a>
                   </p>
