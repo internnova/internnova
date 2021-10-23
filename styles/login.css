@@ -1,0 +1,41 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer utilities {
+    .btn {
+        @apply transition rounded-lg duration-200 ease-in-out px-4 py-2 bg-blue-500 text-white focus:ring-blue-300 focus:ring hover:bg-blue-600 select-none
+    }
+    .intnv-chk {
+        @apply bg-white border-gray-500 rounded-lg
+            -webkit-appearance: none;
+            -moz-appearance: none;
+            appearance: none;
+            -webkit-print-color-adjust: exact;
+            display: inline-block;
+            vertical-align: middle;
+            background-origin: border-box;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            flex-shrink: 0;
+            height: 1em;
+            width: 1em;
+            color: #4299e1;
+            border-width: 1px;
+        }
+        .intnv-chk:checked {
+            @apply bg-blue-500 border-none 
+            background-image: url("data:image/svg+xml,%3csvg viewBox='0 0 16 16' fill='white' xmlns='http://www.w3.org/2000/svg'%3e%3cpath d='M5.707 7.293a1 1 0 0 0-1.414 1.414l2 2a1 1 0 0 0 1.414 0l4-4a1 1 0 0 0-1.414-1.414L7 8.586 5.707 7.293z'/%3e%3c/svg%3e");
+            background-size: 100% 100%;
+            background-position: center;
+            background-repeat: no-repeat;
+        }
+        .form-control {
+            @apply px-2 py-2 outline-none border-2 border-gray-300 rounded-lg transition duration-200 ease-in-out hover:border-blue-600 focus:border-blue-600 focus:ring-blue-300 focus:ring
+        }
+}
+
+
+
