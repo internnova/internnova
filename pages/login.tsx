@@ -3,6 +3,9 @@ import Head from "next/head"
 
 export default function Login() {
     return (
+        <Head>
+            <title>Login | InternNova</title>
+        </Head>
         <div class="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-8">
     <div class="relative py-3 sm:max-w-xl sm:mx-auto">
        <div class="absolute inset-0 bg-gradient-to-r to-green-500 from-green-200 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
