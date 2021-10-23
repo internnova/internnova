@@ -7,7 +7,7 @@ export default function Login() {
       <Head>
         <title>Login | InternNova</title>
       </Head>
-      <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-8">
+      <div className="min-h-screen bg-gray-100 py-6 flex flex-col justify-center sm:py-8 bg-">
         <div className="relative py-3 sm:max-w-xl sm:mx-auto">
           <div className="absolute inset-0 bg-gradient-to-r to-blue-500 from-blue-200 shadow-lg transform -skew-y-6 sm:skew-y-0 sm:-rotate-6 sm:rounded-3xl"></div>
           <div className="relative px-4 py-10 bg-white shadow-lg sm:rounded-3xl sm:p-20">
@@ -41,7 +41,23 @@ export default function Login() {
                 </div>
                 <div className="pt-6 text-base leading-6 font-bold sm:text-lg sm:leading-7">
                   <p className="text-center">
-                    <button className="btn">Login</button>
+                    <button
+                      className="
+                    px-8
+                    py-3.5
+                    mt-2.5
+                    transition
+                    duration-300
+                    bg-blue-500
+                    hover:bg-blue-600
+                    shadow
+                    text-white
+                    font-extrabold
+                    rounded-lg
+                  "
+                    >
+                      Login!
+                    </button>
                   </p>
                   <p className="text-center font-normal mt-[5px]">
                     No account?{" "}
