@@ -1,17 +1,45 @@
-@import url("https://fonts.googleapis.com/css2?family=Sora:wght@100;200;300;400;500;600;700;800&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Fira+Code:wght@300;400;500;600;700&display=swap");
-
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
 @layer components {
   body {
-    @apply w-screen overflow-x-hidden bg-bgblue font-sora text-text;
+    @apply w-screen overflow-x-hidden bg-bgblue text-text;
   }
 }
 
 .filter-white {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(148deg)
     brightness(107%) contrast(101%);
+}
+
+.btn {
+  @apply transition rounded-lg duration-200 ease-in-out px-4 py-2 bg-blue-500 text-white focus:ring-blue-300 focus:ring hover:bg-blue-600 select-none;
+}
+.intnv-chk {
+  @apply bg-white border-gray-500 rounded-lg;
+  -webkit-appearance: none;
+  appearance: none;
+  -webkit-print-color-adjust: exact;
+  display: inline-block;
+  vertical-align: middle;
+  background-origin: border-box;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+  flex-shrink: 0;
+  height: 1em;
+  width: 1em;
+  color: #4299e1;
+  border-width: 1px;
+}
+.intnv-chk:checked {
+  @apply bg-blue-500 border-none;
+  background-size: 100% 100%;
+  background-position: center;
+  background-repeat: no-repeat;
+}
+.form-control {
+  @apply px-2 py-2 outline-none border-2 border-gray-300 rounded-lg transition duration-200 ease-in-out hover:border-blue-600 focus:border-blue-600 focus:ring-blue-300 focus:ring;
 }
