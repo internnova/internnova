@@ -1,5 +1,6 @@
 import axios from "axios";
 import jwt from "jsonwebtoken";
+import { deleteCookie, getCookie, setCookie } from "../../utils/cookies";
 
 interface Credentials {
   email: string;
@@ -15,8 +16,10 @@ interface Response {
 }
 
 const login = async (credentials: Credentials) => {
-  const userToken = localStorage.getItem("userToken");
-  if (userToken && jwt.verify(userToken, process.env.JWT_SECRET as string)) {
+  const userToken = getCookie("userToken");
+  if (userToken) {
+    if (!jwt.verify(userToken, process.env.JWT_SECRET as string))
+      deleteCookie("userToken");
     return "logged-in";
   }
   try {
@@ -26,7 +29,7 @@ const login = async (credentials: Credentials) => {
     );
     if (res.status === 200) {
       if (res.data && res.data.token) {
-        localStorage.setItem("userToken", res.data.token);
+        setCookie("userToken", res.data.token);
         return "logged-in";
       } else {
         return "internal-server-error";
