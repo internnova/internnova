@@ -8,8 +8,8 @@ interface Credentials {
 }
 
 interface Response {
-  data: {
-    token: string;
+  data?: {
+    token?: string;
   };
   status: number;
   message: string;
@@ -18,9 +18,11 @@ interface Response {
 const login = async (credentials: Credentials) => {
   const userToken = getCookie("userToken");
   if (userToken) {
-    if (!jwt.verify(userToken, process.env.JWT_SECRET as string))
+    if (jwt.verify(userToken, process.env.JWT_SECRET as string)) {
+      return "logged-in";
+    } else {
       deleteCookie("userToken");
-    return "logged-in";
+    }
   }
   try {
     const res: Response = await axios.post(
