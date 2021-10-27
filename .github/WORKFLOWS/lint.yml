@@ -1,4 +1,3 @@
-
 name: Lint
 
 on:
@@ -36,5 +35,5 @@ jobs:
           eslint: true
           prettier: true
           auto_fix: true
-          commit_message: 'chore(lint): fix code style issues'
+          commit_message: "chore(lint): fix code style issues"
           neutral_check_on_warning: true
