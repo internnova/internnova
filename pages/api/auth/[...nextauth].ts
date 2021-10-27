@@ -2,7 +2,7 @@ import { PrismaAdapter } from "@next-auth/prisma-adapter";
 import { PrismaClient } from "@prisma/client";
 import NextAuth from "next-auth";
 import EmailProvider from "next-auth/providers/email";
-import GithubProvider from "next-auth/providers/github";
+import TwitterProvider from "next-auth/providers/twitter";
 import GoogleProvider from "next-auth/providers/google";
 
 const prisma = new PrismaClient();
@@ -21,13 +21,18 @@ export default NextAuth({
       },
       from: process.env.EMAIL_FROM,
     }),
-    GithubProvider({
-      clientId: process.env.GITHUB_ID,
-      clientSecret: process.env.GITHUB_SECRET,
-    }),
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID || "",
       clientSecret: process.env.GOOGLE_CLIENT_SECRET || "",
     }),
+    TwitterProvider({
+      clientId: process.env.TWITTER_CLIENT_ID,
+      clientSecret: process.env.TWITTER_CLIENT_SECRET,
+    }),
   ],
+  theme: {
+    colorScheme: "dark", // "auto" | "dark" | "light"
+    brandColor: "#2196f3", // Hex color code
+    logo: "/assets/img/logo.svg", // Absolute URL to image
+  },
 });
