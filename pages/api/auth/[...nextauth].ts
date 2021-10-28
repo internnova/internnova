@@ -35,8 +35,9 @@ export default NextAuth({
       clientSecret: process.env.TWITTER_CLIENT_SECRET,
     }),
   ],
+  jwt: { signingKey: process.env.JWT_SECRET || "" },
   theme: {
-    colorScheme: "dark", // "auto" | "dark" | "light"
+    colorScheme: "light", // "auto" | "dark" | "light"
     brandColor: "#2196f3", // Hex color code
     logo: "/assets/img/logo.svg", // Absolute URL to image
   },

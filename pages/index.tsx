@@ -4,6 +4,7 @@ import HowItWorks from "../components/HomePage/Unauthorized/HowItWorks";
 import Navbar from "../components/HomePage/Unauthorized/Navbar";
 import ContactUs from "../components/HomePage/Unauthorized/ContactUs";
 import FAQs from "../components/HomePage/Unauthorized/FAQs";
+import SmallButton from "../components/SmallButton";
 
 export default function Home() {
   return (
@@ -37,23 +38,7 @@ export default function Home() {
                   </p>
                 </div>
                 <a href="#HowItWorks">
-                  <button
-                    className="
-                    px-8
-                    py-3.5
-                    mt-2.5
-                    transition
-                    duration-300
-                    bg-blue-500
-                    hover:bg-blue-600
-                    shadow
-                    text-white
-                    font-extrabold
-                    rounded-lg
-                  "
-                  >
-                    See how it works
-                  </button>
+                  <SmallButton content="See How It works" />
                 </a>
               </div>
             </div>

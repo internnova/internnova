@@ -1,4 +1,5 @@
 import { useState } from "react";
+import SmallButton from "../../SmallButton";
 
 export default function ContactUs() {
   const [title, setTitle] = useState<string>("");
@@ -103,34 +104,17 @@ export default function ContactUs() {
                   placeholder="Message"
                 ></textarea>
                 <div>
-                  <button
-                    type="submit"
-                    className="
-                        w-full
-                        px-8
-                        py-3.5
-                        transition
-                        duration-300
-                        bg-blue-500
-                        hover:bg-blue-600
-                        shadow
-                        text-white
-                        font-semibold
-                        rounded-lg
-                        sm:w-auto
-                      "
+                  <a
+                    href={
+                      "mailto:InternNova@outlook.com?subject=" +
+                      title +
+                      "&body=" +
+                      message
+                    }
                   >
-                    <a
-                      href={
-                        "mailto:InternNova@outlook.com?subject=" +
-                        title +
-                        "&body=" +
-                        message
-                      }
-                    >
-                      Send message
-                    </a>
-                  </button>
+                    Send message
+                    <SmallButton content="Send message" />
+                  </a>
                 </div>
               </div>
             </form>
