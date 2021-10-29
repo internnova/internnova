@@ -1,5 +1,5 @@
-import Link from "next/link";
 import { useEffect, useState } from "react";
+import JobComponent from "../components/Jobs/JobComponent";
 import { Job } from "../types";
 
 // in a list.
@@ -28,9 +28,7 @@ const Jobs = () => {
       ) : (
         <ul>
           {jobs.map((job) => (
-            <li key={job.id}>
-              <Link href={`/jobs/${job.id}`}>{job.position}</Link>
-            </li>
+            <JobComponent job={job} key={job.id} />
           ))}
         </ul>
       )}
