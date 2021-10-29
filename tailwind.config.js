@@ -11,10 +11,9 @@ module.exports = {
         bgblue: "#222E50",
         darkerblue: "#0A192F",
       },
-      fontFamily: {
-        sora: ["Sora", "sans-serif"],
-        fira: ["Fira Code", "monospace"],
-      },
+    },
+    fontFamily: {
+      fancy: ["Satisfy"],
     },
   },
   variants: {

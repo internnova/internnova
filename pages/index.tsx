@@ -22,17 +22,10 @@ export default function Home() {
               <Navbar />
               <div className="mt-16 space-y-8 lg:mt-24 xl:mt-28">
                 <div className="space-y-4">
-                  <h1
-                    className="
-                  text-3xl
-                  font-black
-                  sm:w-2/3 sm:text-4xl
-                  md:max-w-xl md:text-5xl
-                "
-                  >
+                  <h1 className="text-3xl font-black sm:w-2/3 sm:text-4xl md:max-w-xl md:text-5xl pb-2 font-fancy">
                     Experience the world beyond the confines of a school wall
                   </h1>
-                  <p className="max-w-sm text-lg text-gray-700 md:max-w-md md:text-xl">
+                  <p className="max-w-sm text-lg text-gray-700 md:max-w-md md:text-xl pb-5 font-semibold text-grey-900">
                     InternNova makes finding internships easy and accessible to
                     high-school students all over the world!
                   </p>
