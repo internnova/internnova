@@ -11,9 +11,14 @@ export default function Navbar() {
     <header className="flex justify-between items-center pt-5">
       <div className="space-x-8 font-medium flex justify-between items-center">
         <a href="#0" className="">
-          <img src="/assets/img/logo.svg" alt="" />
+          <img
+            src="/assets/img/logo_text.png"
+            alt=""
+            className="max-w-[200px]"
+          />
         </a>
-        <div className="hidden sm:block sm:ml-6 pb-[1.5px]">
+        {/* Hehe nice */}
+        <div className="hidden sm:block sm:ml-6 pb-[6.9px]">
           <div className="flex space-x-4">
             <a
               href="#HowItWorks"

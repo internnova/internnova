@@ -1,5 +1,6 @@
 {
-  "name": "samraths-portfolio",
+  "name": "internnova-web",
+  "description": "The webiste for internnova.co",
   "private": true,
   "scripts": {
     "dev": "next dev",
