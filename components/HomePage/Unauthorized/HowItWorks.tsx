@@ -213,9 +213,9 @@ const HowItWorks = () => {
                 <p className="ml-16 text-xl font-medium">Step 4</p>
               </dt>
               <dd className="ml-16 text-gray-500">
-                If you‚Äö are selected for the internship, all you have to do is
-                go to the Task category and complete all your tasks for the
-                internship. If you‚Äö are not selected, don{"'"}t worry! You can
+                If you are selected for the internship, all you have to do is go
+                to the Task category and complete all your tasks for the
+                internship. If you are not selected, don{"'"}t worry! You can
                 always try again for another one
               </dd>
             </div>
@@ -257,8 +257,8 @@ const HowItWorks = () => {
               </dt>
               <dd className="ml-16 text-gray-500">
                 Once your internship is finished, your employer will provide you
-                with an official certificate as well as some perks. It‚Äö is not
-                fully legal to pay teens so you‚Äö will be getting coupons and
+                with an official certificate as well as some perks. It is not
+                fully legal to pay teens so you will be getting coupons and
                 exciting deals instead
               </dd>
             </div>
