@@ -14,7 +14,7 @@
     "prepare": "husky install"
   },
   "dependencies": {
-    "@next-auth/prisma-adapter": "^0.5.2-next.19",
+    "@next-auth/prisma-adapter": "0.5.2-next.19",
     "@prisma/client": "^3.3.0",
     "axios": "^0.23.0",
     "next": "latest",
