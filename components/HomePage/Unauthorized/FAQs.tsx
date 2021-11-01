@@ -65,8 +65,7 @@ const FAQs = () => {
     },
     {
       question: "Are the internships in a group or individually?",
-      answer:
-        "It differs based on a company‚Äôs requirements. We support both.",
+      answer: "It differs based on a companys requirements. We support both.",
     },
     {
       question: "Can I do an internship again if I have done it before?",

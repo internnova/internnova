@@ -113,7 +113,6 @@ export default function ContactUs() {
                       message
                     }
                   >
-                    Send message
                     <SmallButton content="Send message" />
                   </a>
                 </div>
