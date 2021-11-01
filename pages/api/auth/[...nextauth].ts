@@ -39,6 +39,6 @@ export default NextAuth({
   theme: {
     colorScheme: "light", // "auto" | "dark" | "light"
     brandColor: "#2196f3", // Hex color code
-    logo: "/assets/img/logo.svg", // Absolute URL to image
+    logo: "/assets/img/logo.png", // Absolute URL to image
   },
 });

@@ -4,6 +4,7 @@ import SmallButton from "../../SmallButton";
 export default function ContactUs() {
   const [title, setTitle] = useState<string>("");
   const [message, setMessage] = useState<string>("");
+
   return (
     <section
       className="bg-gray-100 pt-12 pb-7 lg:pb-8 lg:pt-16 xl:pt-28"
