@@ -5,7 +5,7 @@ import { UserProfile } from "@auth0/nextjs-auth0";
 type ProfileProps = { user: UserProfile };
 
 export default function Navbar({ user }: ProfileProps) {
-  if (user) {
+  if (!user) {
     return (
       <header className="flex justify-between items-center pt-5">
         <div className="space-x-8 font-medium flex justify-between items-center">
