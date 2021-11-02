@@ -1,7 +1,7 @@
 import { UserProfile } from "@auth0/nextjs-auth0";
 import Head from "next/head";
 import React from "react";
-import SmallButton from "../../SmallButton";
+import Jobs from "../../SmallButton";
 import ContactUs from "./ContactUs";
 import FAQs from "./FAQs";
 import HowItWorks from "./HowItWorks";
@@ -34,7 +34,7 @@ export const Landing = ({ user }: LandingProps) => {
                   </p>
                 </div>
                 <a href="#HowItWorks">
-                  <SmallButton content="See How It works" />
+                  <Jobs content="See How It works" />
                 </a>
               </div>
             </div>

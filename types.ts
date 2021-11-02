@@ -36,11 +36,15 @@ export type Job = {
   industry: string;
   jobType: JobType;
   skillsRequired: string[];
+  tags: string[];
   numOfOpenings: number;
   expirationData: Date | null;
   duration: string;
   postedAt: Date;
   companyId: number;
+  location: string;
+  logo: string;
+  salary?: string;
 };
 
 /**
