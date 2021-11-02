@@ -7,7 +7,7 @@ import FAQs from "./FAQs";
 import HowItWorks from "./HowItWorks";
 import Navbar from "./Navbar";
 
-type LandingProps = { user: UserProfile };
+type LandingProps = { user: UserProfile | null };
 
 export const Landing = ({ user }: LandingProps) => {
   return (

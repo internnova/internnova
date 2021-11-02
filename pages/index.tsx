@@ -1,12 +1,9 @@
-import { UserProfile, withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { useUser } from "@auth0/nextjs-auth0";
 import { Landing } from "../components/HomePage/Unauthorized";
 
-type IndexProps = { user: UserProfile };
-
-const Index = ({ user }: IndexProps) => {
-  return <Landing user={user} />;
+const Index = () => {
+  const { user } = useUser();
+  return <Landing user={user ? user : null} />;
 };
 
 export default Index;
-
-export const getServerSideProps = withPageAuthRequired();

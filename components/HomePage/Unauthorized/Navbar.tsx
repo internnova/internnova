@@ -2,7 +2,7 @@ import Link from "next/link";
 import SmallButton from "../../SmallButton";
 import { UserProfile } from "@auth0/nextjs-auth0";
 
-type ProfileProps = { user: UserProfile };
+type ProfileProps = { user: UserProfile | null };
 
 export default function Navbar({ user }: ProfileProps) {
   if (!user) {
