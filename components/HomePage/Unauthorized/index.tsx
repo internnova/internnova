@@ -1,12 +1,15 @@
+import { UserProfile } from "@auth0/nextjs-auth0";
 import Head from "next/head";
 import React from "react";
-import HowItWorks from "./HowItWorks";
-import Navbar from "./Navbar";
+import Jobs from "../../SmallButton";
 import ContactUs from "./ContactUs";
 import FAQs from "./FAQs";
-import SmallButton from "../../SmallButton";
+import HowItWorks from "./HowItWorks";
+import Navbar from "./Navbar";
 
-export const Landing = () => {
+type LandingProps = { user: UserProfile | null };
+
+export const Landing = ({ user }: LandingProps) => {
   return (
     <div>
       <Head>
@@ -19,7 +22,7 @@ export const Landing = () => {
             style={{ backgroundImage: "url('/assets/img/bg.jpg')" }}
           >
             <div className="container mx-auto px-5 pb-16 sm:pb-16 lg:pb-24 xl:pb-32">
-              <Navbar />
+              <Navbar user={user} />
               <div className="mt-16 space-y-8 lg:mt-24 xl:mt-28">
                 <div className="space-y-4">
                   <h1 className="text-3xl font-black sm:w-2/3 sm:text-4xl md:max-w-xl md:text-5xl pb-2 font-fancy">
@@ -31,7 +34,7 @@ export const Landing = () => {
                   </p>
                 </div>
                 <a href="#HowItWorks">
-                  <SmallButton content="See How It works" />
+                  <Jobs content="See How It works" />
                 </a>
               </div>
             </div>

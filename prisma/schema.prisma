@@ -1,0 +1,91 @@
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+// --------------------------------------
+
+enum JobType {
+  PART_TIME
+  FULL_TIME
+}
+
+enum Role {
+  ADMINISTRATOR
+  EMPLOYER
+  INTERN
+  STANDARD
+}
+
+// --------------------------------------
+
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  username String  @unique
+  role     Role
+  name     String?
+  picture  String
+
+  createdAt DateTime @default(now())
+  updatedAt DateTime @updatedAt
+}
+
+model Company {
+  id          Int     @id @default(autoincrement())
+  userId      Int     @unique
+  name        String  @unique
+  description String
+  logo        String?
+  website     String?
+  industry    String
+  foundedYear Int
+  jobs        Job[]
+}
+
+model Intern {
+  id              Int              @unique
+  userId          Int              @unique
+  bio             Int // This is information about the intern
+  interests       String[]
+  skills          String[]
+  jobApplications JobApplication[]
+}
+
+// --------------------------------------
+
+model JobApplication {
+  id          Int    @id @default(autoincrement())
+  description String
+
+  internId Int
+  intern   Intern @relation(fields: [internId], references: [id])
+
+  jobId Int
+  job   Job @relation(fields: [jobId], references: [id])
+}
+
+model Job {
+  id             Int       @id @default(autoincrement())
+  position       String
+  description    String
+  industry       String
+  jobType        JobType
+  skillsRequired String[]
+  tags           String[]
+  numOfOpenings  Int       @default(1)
+  expirationData DateTime?
+  duration       String
+  postedAt       DateTime  @default(now())
+  location       String    @default("Remote")
+  salary         String?
+
+  applications JobApplication[]
+
+  companyId Int
+  company   Company @relation(fields: [companyId], references: [id])
+}

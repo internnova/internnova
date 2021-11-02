@@ -5,9 +5,6 @@
 @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
 
 @layer components {
-  body {
-    @apply w-screen overflow-x-hidden bg-bgblue text-text;
-  }
   .button {
     @apply px-8 py-3 mr-4 transition duration-300 bg-blue-500 hover:bg-blue-600 shadow text-white font-semibold rounded-lg font-bold;
   }
