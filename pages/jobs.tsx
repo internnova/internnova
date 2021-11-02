@@ -1,24 +1,37 @@
+import { Company, Job } from "@prisma/client";
 import { GetServerSideProps } from "next";
-import { prisma } from "../lib/prisma";
-import { Job } from "@prisma/client";
+import { useEffect, useState } from "react";
 import JobComponent from "../components/Jobs/JobComponent";
+import JobPage from "../components/Jobs/JobPage";
+import { Loading } from "../components/Loading";
+import { prisma } from "../lib/prisma";
 
 type JobProps = {
   jobs: Job[];
 };
 
-const getCompanyName = (companyId: number): string | null => {
+const getCompany = (companyId: number): Company | null => {
   let data;
-  fetch(`/api/db/companyName?id=${companyId.toString()}`).then((res) => {
+  fetch(`/api/db/getCompany?id=${companyId.toString()}`).then((res) => {
     data = res.json();
   });
   if (data) {
-    return data["companyName"];
+    return data["company"];
   }
   return null;
 };
 
 const Jobs = (props: JobProps) => {
+  const [job, setJob] = useState<Job | null>(null);
+  const [company, setCompany] = useState<Company | null>(null);
+
+  useEffect(() => {
+    if (job) {
+      const company = getCompany(job.companyId);
+      setCompany(company);
+    }
+  }, [job, props.jobs]);
+
   return (
     <div className="container mx-auto md:px-10 py-10 bg-white">
       <main className="flex items-start justify-center">
@@ -28,11 +41,13 @@ const Jobs = (props: JobProps) => {
             <JobComponent
               key={job.id}
               job={job}
-              companyName={getCompanyName(job.companyId) || ""}
+              setJob={setJob}
+              companyName={getCompany(job.companyId)?.name || ""}
             />
           ))}
         </section>
         {/* Job Description */}
+        {job && company ? <JobPage job={job} company={company} /> : <Loading />}
       </main>
     </div>
   );
