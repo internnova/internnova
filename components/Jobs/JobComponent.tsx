@@ -1,27 +1,34 @@
-import { Job } from "@prisma/client";
+import { Job, Company } from "@prisma/client";
 
 type Props = {
-  job: Job;
-  companyName: string;
+  job: Job | null;
+  company: Company | null;
   setJob: (job: Job) => void;
 };
 
 // The JobComponent should also display a button that when clicked, will open /jobs/{job.id}
 const JobComponent = (props: Props) => {
+  if (!props.company || !props.job) return <></>;
   return (
     <a className="lg:pointer-events-none block">
       <article
         className="bg-card-bg p-6 rounded-md shadow-2xl hover:shadow-inner"
         onClick={() => {
-          props.setJob(props.job);
+          if (props.job) {
+            props.setJob(props.job);
+          }
         }}
       >
         <div className="flex gap-4 mb-6">
-          <img src={props.job.logo || ""} className="w-16 h-16" alt="Job" />
+          <img
+            src={props.company?.logo || ""}
+            className="w-16 h-16"
+            alt="Job"
+          />
           <div>
             <h3 className="font-bold text-lg mb-1">{props.job.position}</h3>
             <h3 className="font-bold text-md mb-1 text-blue-500 underline">
-              {props.companyName}
+              {props.company?.name}
             </h3>
             <p className="flex items-center gap-1 text-muted">
               <span>

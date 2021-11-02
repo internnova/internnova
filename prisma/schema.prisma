@@ -75,7 +75,6 @@ model Job {
   description    String
   industry       String
   jobType        JobType
-  logo           String?
   skillsRequired String[]
   tags           String[]
   numOfOpenings  Int       @default(1)
