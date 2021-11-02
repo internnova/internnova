@@ -1,12 +1,16 @@
 import { AppProps } from "next/app";
 import "../styles/globals.css";
-import { SessionProvider } from "next-auth/react";
+import { UserProvider } from "@auth0/nextjs-auth0";
 
-const App = ({ Component, pageProps: { session, ...pageProps } }: AppProps) => {
+const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
+  // You can optionally pass the `user` prop from pages that require server-side
+  // rendering to prepopulate the `useUser` hook.
+  const { user } = pageProps;
+
   return (
-    <SessionProvider session={session}>
+    <UserProvider user={user}>
       <Component {...pageProps} />
-    </SessionProvider>
+    </UserProvider>
   );
 };
 
