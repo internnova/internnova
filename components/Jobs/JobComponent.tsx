@@ -1,4 +1,4 @@
-import { Job } from "../../types";
+import { Job } from "@prisma/client";
 
 type Props = {
   job: Job;
@@ -11,7 +11,7 @@ const JobComponent = (props: Props) => {
     <a className="lg:pointer-events-none block">
       <article className="bg-card-bg p-6 rounded-md shadow-2xl hover:shadow-inner">
         <div className="flex gap-4 mb-6">
-          <img src={props.job.logo} className="w-16 h-16" alt="Job" />
+          <img src={props.job.logo || ""} className="w-16 h-16" alt="Job" />
           <div>
             <h3 className="font-bold text-lg mb-1">{props.job.position}</h3>
             <h3 className="font-bold text-md mb-1 text-blue-500 underline">

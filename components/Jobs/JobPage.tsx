@@ -1,4 +1,4 @@
-import { Job, Company } from "../../types";
+import { Job, Company } from "@prisma/client";
 import SmallButton from "../SmallButton";
 
 type Props = {
