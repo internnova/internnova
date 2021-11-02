@@ -11,18 +11,18 @@ type JobProps = {
 };
 
 const Jobs = (props: JobProps) => {
-  const [job, setJob] = useState<Job | null>(props.jobs[0]);
-  const [company, setCompany] = useState<Company | null>(props.companies[0]);
+  const [job, setJob] = useState<Job | null>(null);
+  const [company, setCompany] = useState<Company | null>(null);
   console.log(props.jobs);
 
   useEffect(() => {
     if (props.jobs.length > 0) {
       setJob(props.jobs[0]);
-      setCompany(
-        props.companies.find((companyIter) => {
-          return companyIter.id === job?.companyId;
-        }) || null
-      );
+      props.companies.map((company) => {
+        if (company.id === props.jobs[0].companyId) {
+          setCompany(company);
+        }
+      });
     }
   }, [props.jobs, props.companies, job?.companyId]);
 
