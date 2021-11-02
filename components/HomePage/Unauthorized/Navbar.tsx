@@ -1,10 +1,10 @@
-import { useUser } from "@auth0/nextjs-auth0";
 import Link from "next/link";
 import SmallButton from "../../SmallButton";
+import { UserProfile } from "@auth0/nextjs-auth0";
 
-export default function Navbar() {
-  const { user } = useUser();
+type ProfileProps = { user: UserProfile };
 
+export default function Navbar({ user }: ProfileProps) {
   if (user) {
     return (
       <header className="flex justify-between items-center pt-5">
