@@ -1,12 +1,6 @@
-import { useSession, signIn } from "next-auth/react";
 import SmallButton from "../../SmallButton";
 
 export default function Navbar() {
-  const { data: session } = useSession();
-
-  if (session) {
-    return <div>You should not be here</div>;
-  }
   return (
     <header className="flex justify-between items-center pt-5">
       <div className="space-x-8 font-medium flex justify-between items-center">
@@ -46,7 +40,7 @@ export default function Navbar() {
       </div>
       <div className="hidden space-x-8 font-medium lg:block"></div>
       <div className="hidden font-medium lg:block flex justify-between items-center">
-        <SmallButton content="Login" onClick={() => signIn()} />
+        <SmallButton content="Login" />
       </div>
     </header>
   );
