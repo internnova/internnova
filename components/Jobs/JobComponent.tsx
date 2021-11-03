@@ -5,7 +5,7 @@ type Props = {
   company: Company | null;
 };
 
-// The JobComponent should also display a button that when clicked, will open /jobs/{job.id}
+// TODO: The JobComponent company name should open /jobs/{job.id}
 const JobComponent = (props: Props) => {
   if (!props.company || !props.job) return <></>;
   return (
