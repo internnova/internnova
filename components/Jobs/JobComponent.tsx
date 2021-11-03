@@ -1,4 +1,5 @@
 import { Job, Company } from "@prisma/client";
+import Link from "next/link";
 
 type Props = {
   job: (Job & { company: Company }) | null;
@@ -18,7 +19,9 @@ const JobComponent = (props: Props) => {
             alt="Job"
           />
           <div>
-            <h3 className="font-bold text-lg mb-1">{props.job.position}</h3>
+            <Link href={`/job?id=${props.job.id}`}>
+              <a className="text-lg mb-1 font-bold">{props.job.position}</a>
+            </Link>
             <h3 className="font-bold text-md mb-1 text-blue-500 underline">
               {props.company?.name}
             </h3>

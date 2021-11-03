@@ -5,12 +5,17 @@ import Link from "next/link";
 type Props = {
   job: (Job & { company: Company }) | null;
   company: Company | null;
+  responsive?: boolean;
 };
 
 const JobPage = (props: Props) => {
   if (!props.company || !props.job) return <></>;
   return (
-    <section className="bg-card-bg p-12 flex-1 rounded-md hidden lg:block">
+    <section
+      className={`bg-card-bg p-12 flex-1 rounded-md ${
+        props.responsive ? "" : "hidden lg:block"
+      }`}
+    >
       <article className="flex item-center justify-between mb-9">
         <div className="flex gap-4 mb-6">
           <img
@@ -41,7 +46,7 @@ const JobPage = (props: Props) => {
       <div
         className="
               bg-gray-100
-              flex
+              md:flex
               justify-between
               items-center
               rounded-md
@@ -49,15 +54,15 @@ const JobPage = (props: Props) => {
               mb-9
             "
       >
-        <article className="space-y-1">
+        <article className="pb-5">
           <h2 className="font-bold">Field</h2>
           <p className="text-muted">{props.job?.industry}</p>
         </article>
-        <article className="space-y-1">
+        <article className="pb-5">
           <h2 className="font-bold">Location</h2>
           <p className="text-muted">{props.job?.location}</p>
         </article>
-        <article className="space-y-1">
+        <article className="pb-5">
           <h2 className="font-bold">Salary</h2>
           <p className="text-muted">
             {props.job?.salary ? props.job?.salary : "Unpaid Internship"}

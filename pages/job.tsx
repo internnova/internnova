@@ -21,8 +21,9 @@ const JobsPage = (props: JobProps) => {
 
   return (
     <JobPage
-      job={props.job ? props.job : null}
-      company={props?.job?.company || null}
+      responsive
+      job={props.job || null}
+      company={props.job?.company || null}
     />
   );
 };
