@@ -7,6 +7,7 @@ const CreateCompany = () => {
   const [description, setDescription] = useState<string>("");
   const [website, setWebsite] = useState<string>("");
   const [industry, setIndustry] = useState<string>("");
+  const [CIN, setCIN] = useState<string>("");
 
   return (
     <FormWrapper title="Create a Company">
@@ -45,9 +46,9 @@ const CreateCompany = () => {
         <TextBox
           title="CIN Number"
           description="A CIN number is proof of official registration of a company. We only support India Registered Companies at the moment"
-          placeholder="Industry"
-          value={industry}
-          setValue={setIndustry}
+          placeholder="CIN"
+          value={CIN}
+          setValue={setCIN}
         />
         <div className="my-5">
           <button type="submit" className="button w-full">
