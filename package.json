@@ -15,18 +15,16 @@
   },
   "dependencies": {
     "@auth0/nextjs-auth0": "^1.6.1",
-    "@clerk/nextjs": "^2.0.3",
     "@prisma/client": "^3.4.0",
     "axios": "^0.23.0",
     "babel-plugin-superjson-next": "^0.4.2",
     "next": "latest",
-    "nodemailer": "^6.7.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
     "superjson": "^1.8.0"
   },
   "devDependencies": {
-    "@types/react": "^17.0.20",
+    "@types/react": "^17.0.33",
     "@typescript-eslint/eslint-plugin": "^4.11.1",
     "@typescript-eslint/parser": "^4.11.1",
     "autoprefixer": "^10.3.7",
@@ -42,8 +40,5 @@
     "prisma": "^3.4.0",
     "tailwindcss": "^2.2.15",
     "typescript": "^4.4.3"
-  },
-  "engines": {
-    "yarn": "1.22.17"
   }
 }
