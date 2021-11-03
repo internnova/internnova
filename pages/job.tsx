@@ -43,7 +43,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     where: { id: parseInt(id as string) },
     include: { company: true },
   });
-  console.log(job);
   if (job) {
     return {
       props: {

@@ -34,9 +34,8 @@ export default function Navbar({ user }: ProfileProps) {
               </a>
 
               <a
-                href="#"
+                href="#ContactUs"
                 className="text-blue-500 px-3 py-2 hover:underline font-extrabold"
-                id="ContactUs"
               >
                 Contact Us
               </a>
