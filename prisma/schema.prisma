@@ -26,7 +26,6 @@ enum Role {
 model User {
   id       Int     @id @default(autoincrement())
   email    String  @unique
-  username String  @unique
   role     Role
   name     String?
   picture  String
@@ -43,7 +42,7 @@ model Company {
   logo        String?
   website     String?
   industry    String
-  foundedYear Int
+  CIN         Int?
   jobs        Job[]
 }
 
