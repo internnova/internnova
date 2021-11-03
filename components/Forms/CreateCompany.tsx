@@ -5,6 +5,7 @@ import { useState } from "react";
 const CreateCompany = () => {
   const [companyName, setCompanyName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  const [logo, setLogo] = useState<string>("");
   const [website, setWebsite] = useState<string>("");
   const [industry, setIndustry] = useState<string>("");
   const [CIN, setCIN] = useState<string>("");
@@ -33,9 +34,9 @@ const CreateCompany = () => {
         </div>
         <TextBox
           title="Logo"
-          placeholder="website"
-          value={website}
-          setValue={setWebsite}
+          placeholder="Logo"
+          value={logo}
+          setValue={setLogo}
         />
         <TextBox
           title="Industry"
