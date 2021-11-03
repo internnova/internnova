@@ -1,9 +1,8 @@
 import { Job, Company } from "@prisma/client";
 
 type Props = {
-  job: Job | null;
+  job: (Job & { company: Company }) | null;
   company: Company | null;
-  setJob: (job: Job) => void;
 };
 
 // The JobComponent should also display a button that when clicked, will open /jobs/{job.id}
@@ -11,14 +10,7 @@ const JobComponent = (props: Props) => {
   if (!props.company || !props.job) return <></>;
   return (
     <a className="lg:pointer-events-none block">
-      <article
-        className="bg-card-bg p-6 rounded-md shadow-2xl hover:shadow-inner"
-        onClick={() => {
-          if (props.job) {
-            props.setJob(props.job);
-          }
-        }}
-      >
+      <article className="bg-card-bg p-6 rounded-md shadow-lg">
         <div className="flex gap-4 mb-6">
           <img
             src={props.company?.logo || ""}
@@ -53,11 +45,9 @@ const JobComponent = (props: Props) => {
             <img
               src={`/assets/img/${!props.job.salary && "un"}verified-check.svg`}
               alt="Checkmark"
-              className="ml-3 mr-2"
+              className="ml-3 mr-1"
             />
-            <p className="font-bold text-base">
-              {props.job.salary ? "Unpaid Internship" : props.job.salary}
-            </p>
+            <p>{!props.job.salary ? "Unpaid Internship" : props.job.salary}</p>
           </div>
         </div>
       </article>

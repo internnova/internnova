@@ -2,7 +2,7 @@ import { Job, Company } from "@prisma/client";
 import SmallButton from "../SmallButton";
 
 type Props = {
-  job: Job | null;
+  job: (Job & { company: Company }) | null;
   company: Company | null;
 };
 
@@ -11,9 +11,24 @@ const JobPage = (props: Props) => {
   return (
     <section className="bg-card-bg p-12 flex-1 rounded-md hidden lg:block">
       <article className="flex item-center justify-between mb-9">
-        <div>
-          <h1 className="font-bold text-xl mb-1">{props.job?.position}</h1>
-          <p className="text-muted">{props.job?.location}</p>
+        <div className="flex gap-4 mb-6">
+          <img
+            src={props.company?.logo || ""}
+            className="w-16 h-16"
+            alt="Job"
+          />
+          <div>
+            <h3 className="font-bold text-3xl mb-1">{props.job.position}</h3>
+            <h3 className="font-bold text-xl mb-1 text-blue-500 underline">
+              {props.company?.name}
+            </h3>
+            <p className="flex items-center gap-1 text-muted">
+              <span>
+                <img src="/assets/img/location.svg" alt="Location Icon" />
+              </span>
+              {props.job.location}
+            </p>
+          </div>
         </div>
         <p className="text-white">
           Posted {props.job?.postedAt.toDateString()}
