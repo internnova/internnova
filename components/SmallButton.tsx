@@ -1,10 +1,10 @@
 import React from "react";
 
-interface SmallButtonProps {
+type SmallButtonProps = {
   content: string;
   onClick?: (e: React.MouseEvent<HTMLButtonElement>) => void;
   buttonType?: "button" | "submit" | "reset";
-}
+};
 const SmallButton = ({ content, onClick, buttonType }: SmallButtonProps) => {
   return (
     <>
