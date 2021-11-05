@@ -1,5 +1,5 @@
-import FormWrapper from "../FormWrapper";
-import { TextBox } from "../TextBox";
+import FormWrapper from "./Components/FormWrapper";
+import TextBox from "./Components/TextBox";
 import { useState } from "react";
 
 const CreateCompany = () => {
@@ -37,6 +37,12 @@ const CreateCompany = () => {
           placeholder="Logo"
           value={logo}
           setValue={setLogo}
+        />
+        <TextBox
+          title="Website"
+          placeholder="Website"
+          value={website}
+          setValue={setWebsite}
         />
         <TextBox
           title="Industry"
