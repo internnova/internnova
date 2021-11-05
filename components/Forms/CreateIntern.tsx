@@ -1,10 +1,38 @@
-import FormWrapper from "../FormWrapper";
-import { TextBox } from "../TextBox";
+import FormWrapper from "./Components/FormWrapper";
+import DropDownList from "./Components/DropDownList";
+import TextBox from "./Components/TextBox";
 import { useState } from "react";
+
+const values = [
+  {
+    id: "Marketing",
+    value: "Marketing",
+  },
+  {
+    id: "Graphic_Design",
+    value: "Graphic Design",
+  },
+  {
+    id: "Programming",
+    value: "Programming",
+  },
+  {
+    id: "Communication",
+    value: "Communication",
+  },
+  {
+    id: "Charity",
+    value: "Charity",
+  },
+];
 
 const CreateCompany = () => {
   const [userFullName, setUserFullName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
+  /*eslint-disable  @typescript-eslint/no-unused-vars*/
+  const [interests, setInterests] = useState<{ id: string; value: string }[]>(
+    []
+  );
 
   return (
     <FormWrapper title="Create a Company">
@@ -17,6 +45,11 @@ const CreateCompany = () => {
             setValue={setUserFullName}
           />
         </div>
+        <DropDownList
+          values={values}
+          title="Choose an interest"
+          setChosenValues={setInterests}
+        />
         <div className={`flex flex-col gap-1`}>
           <h3 className="uppercase font-semibold text-muted1 text-sm">
             Description

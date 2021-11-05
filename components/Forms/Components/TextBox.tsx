@@ -13,7 +13,7 @@ type TextBoxProps = {
   max?: string | number;
 };
 
-export const TextBox = ({
+const TextBox = ({
   title,
   placeholder,
   value,
@@ -47,3 +47,5 @@ export const TextBox = ({
     </div>
   );
 };
+
+export default TextBox;
