@@ -35,14 +35,9 @@ const JobComponent = (props: Props) => {
         </div>
         <div className="flex items-center justify-between">
           <div>
-            {props.job.tags.map((tag, x) => (
-              <span
-                className="font-bold text-sm p-3 rounded inline-block text-blue-700 underline"
-                key={x}
-              >
-                {tag}
-              </span>
-            ))}
+            <span className="font-bold text-sm p-3 rounded inline-block text-blue-700 underline">
+              {props.job.industry?.replace("_", " ")}
+            </span>
           </div>
           <div className="flex">
             <img

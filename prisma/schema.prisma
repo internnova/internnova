@@ -14,6 +14,14 @@ enum JobType {
   FULL_TIME
 }
 
+enum Tag {
+  Marketing
+  Graphic_Design
+  Programming
+  Communication
+  Charity
+}
+
 enum Role {
   ADMINISTRATOR
   EMPLOYER
@@ -41,7 +49,6 @@ model Company {
   description String
   logo        String?
   website     String?
-  industry    String
   CIN         Int?
   jobs        Job[]
 }
@@ -50,8 +57,7 @@ model Intern {
   id              Int              @unique
   userId          Int              @unique
   bio             Int // This is information about the intern
-  interests       String[]
-  skills          String[]
+  interests       Tag[]
   jobApplications JobApplication[]
 }
 
@@ -72,16 +78,16 @@ model Job {
   id             Int       @id @default(autoincrement())
   position       String
   description    String
-  industry       String
   jobType        JobType
   skillsRequired String[]
-  tags           String[]
   numOfOpenings  Int       @default(1)
   expirationData DateTime?
   duration       String
   postedAt       DateTime  @default(now())
   location       String    @default("Remote")
   salary         String?
+  industry    Tag?
+  // TODO: update JobComponent and JobPage to display industry instead of Tag
 
   applications JobApplication[]
 
