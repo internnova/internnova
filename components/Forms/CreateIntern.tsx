@@ -38,15 +38,6 @@ const CreateIntern = (props: { user: UserProfile }) => {
 
   return (
     <FormWrapper title="Sign Up">
-      <button
-        type="submit"
-        className="underline text-blue-500 text-[18px] ml-1"
-        onClick={() => {
-          router.reload();
-        }}
-      >
-        Go Back
-      </button>
       <form
         onSubmit={(e) => {
           e.preventDefault();
