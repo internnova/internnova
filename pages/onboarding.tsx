@@ -1,20 +1,24 @@
 import onboardingRequired from "../lib/onboardingRequired";
 import { Role } from "@prisma/client";
-import { withPageAuthRequired, getSession } from "@auth0/nextjs-auth0";
+import {
+  withPageAuthRequired,
+  getSession,
+  UserProfile,
+} from "@auth0/nextjs-auth0";
 import { useState } from "react";
 import AccountOptions from "../components/Forms/AccountOptions";
 import CreateCompany from "../components/Forms/CreateCompany";
 import CreateIntern from "../components/Forms/CreateIntern";
 
-const OnboardingPage = () => {
+const OnboardingPage = ({ user }: { user: UserProfile }) => {
   const [doneWithStage1, setDoneWithStage1] = useState<boolean>(false);
   const [accountType, setAccountType] = useState<Role>("STANDARD");
 
   if (doneWithStage1) {
     if (accountType === "EMPLOYER") {
-      return <CreateCompany />;
+      return <CreateCompany user={user} />;
     } else if (accountType === "INTERN") {
-      return <CreateIntern />;
+      return <CreateIntern user={user} />;
     }
   }
 

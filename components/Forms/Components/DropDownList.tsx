@@ -1,16 +1,17 @@
+import { Tag } from "@prisma/client";
 import React, { useState } from "react";
 import SmallButton from "../../SmallButton";
 
 type DropDownListProps = {
   // values will not be a useState item, just a constant
   values: { id: string; value: string }[];
-  setChosenValues: (values: { id: string; value: string }[]) => void;
+  setChosenValues: (values: { id: Tag; value: string }[]) => void;
   title: string;
 };
 
 const DropDownList = (props: DropDownListProps) => {
   const [chosenValues, setChosenValues] = useState<
-    { id: string; value: string }[]
+    { id: Tag; value: string }[]
   >([]);
 
   const [tempChosenValue, setTempChosenValue] = useState<string>("");
@@ -61,7 +62,10 @@ const DropDownList = (props: DropDownListProps) => {
             );
 
             if (chosenValue && !((chosenValue as any) in chosenValues))
-              setChosenValues([...chosenValues, chosenValue]);
+              setChosenValues([...chosenValues, chosenValue] as {
+                id: Tag;
+                value: string;
+              }[]);
             props.setChosenValues(chosenValues);
           }}
         />

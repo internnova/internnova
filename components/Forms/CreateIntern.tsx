@@ -1,7 +1,9 @@
-import FormWrapper from "./Components/FormWrapper";
-import DropDownList from "./Components/DropDownList";
-import TextBox from "./Components/TextBox";
+import { Tag } from "@prisma/client";
 import { useState } from "react";
+import DropDownList from "./Components/DropDownList";
+import FormWrapper from "./Components/FormWrapper";
+import TextBox from "./Components/TextBox";
+import { UserProfile } from "@auth0/nextjs-auth0";
 
 const values = [
   {
@@ -26,17 +28,35 @@ const values = [
   },
 ];
 
-const CreateCompany = () => {
+const CreateIntern = (props: { user: UserProfile }) => {
   const [userFullName, setUserFullName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   /*eslint-disable  @typescript-eslint/no-unused-vars*/
-  const [interests, setInterests] = useState<{ id: string; value: string }[]>(
-    []
-  );
+  const [interests, setInterests] = useState<{ id: Tag; value: string }[]>([]);
 
   return (
     <FormWrapper title="Sign Up">
-      <form>
+      <form
+        onSubmit={(e) => {
+          e.preventDefault();
+
+          // TODO: create api route for creating interns and users
+          const createdUser = {
+            email: props.user.email as string,
+            name: props.user.name as string,
+            picture: props.user.picture as string,
+            role: "EMPLOYER",
+          };
+
+          const createdIntern = {
+            // TODO: fetch id from created User
+            userId: 1,
+            bio: description,
+            interests: interests.map((i) => i.id),
+          };
+          console.log(createdUser, createdIntern);
+        }}
+      >
         <div className="mt-5">
           <TextBox
             title="Full Name"
@@ -52,7 +72,7 @@ const CreateCompany = () => {
         />
         <div className={`flex flex-col gap-1`}>
           <h3 className="uppercase font-semibold text-muted1 text-sm">
-            Description
+            A bit about yourself
           </h3>
           <textarea
             placeholder="Enter A bio"
@@ -71,4 +91,4 @@ const CreateCompany = () => {
   );
 };
 
-export default CreateCompany;
+export default CreateIntern;
