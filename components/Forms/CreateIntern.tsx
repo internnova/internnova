@@ -4,6 +4,7 @@ import DropDownList from "./Components/DropDownList";
 import FormWrapper from "./Components/FormWrapper";
 import TextBox from "./Components/TextBox";
 import { UserProfile } from "@auth0/nextjs-auth0";
+import { useRouter } from "next/router";
 
 const values = [
   {
@@ -29,6 +30,7 @@ const values = [
 ];
 
 const CreateIntern = (props: { user: UserProfile }) => {
+  const router = useRouter();
   const [userFullName, setUserFullName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   /*eslint-disable  @typescript-eslint/no-unused-vars*/
@@ -36,6 +38,15 @@ const CreateIntern = (props: { user: UserProfile }) => {
 
   return (
     <FormWrapper title="Sign Up">
+      <button
+        type="submit"
+        className="underline text-blue-500 text-[18px] ml-1"
+        onClick={() => {
+          router.reload();
+        }}
+      >
+        Go Back
+      </button>
       <form
         onSubmit={(e) => {
           e.preventDefault();
