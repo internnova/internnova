@@ -49,14 +49,14 @@ model Company {
   description String
   logo        String?
   website     String?
-  CIN         Int?
+  CIN         String?
   jobs        Job[]
 }
 
 model Intern {
   id              Int              @unique
   userId          Int              @unique
-  bio             Int // This is information about the intern
+  bio             String // This is information about the intern
   interests       Tag[]
   jobApplications JobApplication[]
 }
