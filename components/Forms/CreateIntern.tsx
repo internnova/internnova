@@ -35,7 +35,7 @@ const CreateCompany = () => {
   );
 
   return (
-    <FormWrapper title="Create a Company">
+    <FormWrapper title="Sign Up">
       <form>
         <div className="mt-5">
           <TextBox

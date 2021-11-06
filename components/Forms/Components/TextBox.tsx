@@ -28,7 +28,7 @@ const TextBox = ({
   return (
     <div className="pb-5">
       <div className={`flex flex-col gap-1`}>
-        <h3 className="uppercase text-grey-700 font-semibold text-muted1 text-sm">
+        <h3 className="uppercase text-grey-700 font-semibold text-sm">
           {title}
         </h3>
         {description && (
