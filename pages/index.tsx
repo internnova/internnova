@@ -1,10 +1,9 @@
-import { useUser } from "@auth0/nextjs-auth0";
+import { Auth } from "@supabase/ui";
 import { Landing } from "../components/HomePage/Unauthorized";
-import { Loading } from "../components/Loading";
 
 const Index = () => {
-  const { user, isLoading } = useUser();
-  if (isLoading) return <Loading />;
+  const { user } = Auth.useUser();
+  console.log(user);
   return <Landing user={user ? user : null} />;
 };
 

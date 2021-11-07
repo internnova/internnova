@@ -1,19 +1,40 @@
-import React from "react";
-import { UserProfile, withPageAuthRequired } from "@auth0/nextjs-auth0";
+import { Card, Typography, Space, Button, IconLogOut } from "@supabase/ui";
+import { SupabaseUser } from "../lib/SupabaseUser";
+import { supabase } from "../lib/initSupabase";
+import { GetServerSideProps } from "next";
 
-type ProfileProps = { user: UserProfile };
-
-export default function Profile({ user }: ProfileProps): React.ReactElement {
+export default function Profile({ user }: { user: SupabaseUser }) {
   return (
-    <>
-      <h1>Profile</h1>
-
-      <div>
-        <h4>Profile (server rendered)</h4>
-        <pre data-testid="profile">{JSON.stringify(user, null, 2)}</pre>
-      </div>
-    </>
+    <div style={{ maxWidth: "420px", margin: "96px auto" }}>
+      <Card>
+        <Space direction="vertical" size={6}>
+          <Button
+            /*eslint-disable*/
+            icon={<IconLogOut />}
+            type="outline"
+            onClick={() => supabase.auth.signOut()}
+          >
+            Log out
+          </Button>
+          <Typography.Text>You're signed in</Typography.Text>
+          <Typography.Text strong>Email: {user.email}</Typography.Text>
+          <Typography.Text>
+            <pre>{JSON.stringify(user, null, 2)}</pre>
+          </Typography.Text>
+        </Space>
+      </Card>
+    </div>
   );
 }
 
-export const getServerSideProps = withPageAuthRequired();
+export const getServerSideProps: GetServerSideProps = async (ctx) => {
+  const { user } = await supabase.auth.api.getUserByCookie(ctx.req);
+
+  if (!user) {
+    // If no user, redirect to index.
+    return { props: {}, redirect: { destination: "/", permanent: false } };
+  }
+
+  // If there is a user, return it.
+  return { props: { user } };
+};

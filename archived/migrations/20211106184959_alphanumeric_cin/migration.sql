@@ -1,0 +1,2 @@
+-- AlterTable
+ALTER TABLE "Company" ALTER COLUMN "CIN" SET DATA TYPE TEXT;

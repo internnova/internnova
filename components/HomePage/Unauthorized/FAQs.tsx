@@ -1,9 +1,9 @@
 import { useState } from "react";
 
-interface FAQcomponentProps {
+type FAQcomponentProps = {
   question: string;
   answer: string;
-}
+};
 
 const FAQcomponent = ({ question, answer }: FAQcomponentProps) => {
   const [open, setOpen] = useState<boolean>(false);

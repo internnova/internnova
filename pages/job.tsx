@@ -28,8 +28,6 @@ const JobsPage = (props: JobProps) => {
   );
 };
 
-/*eslint-disable*/
-// @ts-ignore
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.query.id;
   if (!id) {
@@ -43,7 +41,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     where: { id: parseInt(id as string) },
     include: { company: true },
   });
-  console.log(job);
   if (job) {
     return {
       props: {

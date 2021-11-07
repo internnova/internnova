@@ -1,4 +1,4 @@
-import { UserProfile } from "@auth0/nextjs-auth0";
+import { SupabaseUser } from "../../../lib/SupabaseUser";
 import Head from "next/head";
 import React from "react";
 import Jobs from "../../SmallButton";
@@ -7,7 +7,7 @@ import FAQs from "./FAQs";
 import HowItWorks from "./HowItWorks";
 import Navbar from "./Navbar";
 
-type LandingProps = { user: UserProfile | null };
+type LandingProps = { user: SupabaseUser | null };
 
 export const Landing = ({ user }: LandingProps) => {
   return (
