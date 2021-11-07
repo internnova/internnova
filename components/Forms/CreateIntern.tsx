@@ -31,8 +31,6 @@ const values = [
 
 const CreateIntern = (props: { user: SupabaseUser }) => {
   const router = useRouter();
-  // Printing router to console to make ESLint shut up
-  console.log(router);
   const [userFullName, setUserFullName] = useState<string>("");
   const [bio, setBio] = useState<string>("");
   /*eslint-disable  @typescript-eslint/no-unused-vars*/
@@ -59,7 +57,7 @@ const CreateIntern = (props: { user: SupabaseUser }) => {
             },
           })
             .then((res) => res.text())
-            .then((text) => console.log(text));
+            .then(() => router.push("/"));
         }}
       >
         <div className="mt-5">
