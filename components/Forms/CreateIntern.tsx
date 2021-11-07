@@ -49,7 +49,7 @@ const CreateIntern = (props: { user: SupabaseUser }) => {
             name: userFullName,
             role: "INTERN",
             bio,
-            interests,
+            interests: interests.map((i) => i.id),
           };
           fetch("/api/db/createUserAndIntern", {
             method: "POST",

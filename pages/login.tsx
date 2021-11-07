@@ -59,7 +59,11 @@ const Index = () => {
       return (
         <Space direction="vertical" size={8}>
           <div>
-            <img src="http://internnova.co/images/logo.png" alt="" width="96" />
+            <img
+              src="https://www.internnova.co/assets/img/logo.png"
+              alt=""
+              width="96"
+            />
             <Typography.Title level={3}>Welcome to InternNova</Typography.Title>
           </div>
           <Auth

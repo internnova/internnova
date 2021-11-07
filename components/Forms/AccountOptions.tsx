@@ -89,7 +89,7 @@ const AccountTypeOption = ({
             : illustrationUrl
         }
         alt=""
-        className="max-w-[200px]"
+        className="max-w-[200px] mx-auto"
       />
 
       <h2 className="text-lg font-semibold text-white text-center">{title}</h2>

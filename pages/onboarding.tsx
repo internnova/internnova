@@ -32,6 +32,11 @@ const OnboardingPage = ({ user }: { user: SupabaseUser | null }) => {
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { user } = await supabase.auth.api.getUserByCookie(ctx.req);
 
+  if (!user) {
+    // If no user, redirect to login.
+    return { props: {}, redirect: { destination: "/login", permanent: false } };
+  }
+
   const onboardingRes = onboardingRequired(
     (user ? user.email : null) as string | null
   );
