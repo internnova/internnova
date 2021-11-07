@@ -44,20 +44,22 @@ const CreateIntern = (props: { user: SupabaseUser }) => {
         onSubmit={(e) => {
           e.preventDefault();
 
-          // TODO: create api route for creating interns and users
-          const createdUser = {
-            email: props.user?.email,
+          const createUserAndIntern = {
+            email: props.user.email,
             name: userFullName,
-            role: "EMPLOYER",
+            role: "INTERN",
+            bio,
+            interests,
           };
-
-          const createdIntern = {
-            // TODO: fetch id from created User
-            userId: 1,
-            bio: bio,
-            interests: interests.map((i) => i.id),
-          };
-          console.log(createdUser, createdIntern);
+          fetch("/api/db/createUserAndIntern", {
+            method: "POST",
+            body: JSON.stringify(createUserAndIntern),
+            headers: {
+              "Content-Type": "application/json",
+            },
+          })
+            .then((res) => res.text())
+            .then((text) => console.log(text));
         }}
       >
         <div className="mt-5">

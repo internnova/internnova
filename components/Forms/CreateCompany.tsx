@@ -44,8 +44,8 @@ const CreateCompany = (props: CreateCompanyProps) => {
                 "Content-Type": "application/json",
               },
             })
-              .then((res) => res.json())
-              .then((json) => console.log(json));
+              .then((res) => res.text())
+              .then((text) => console.log(text));
             /*eslint-disable*/
           } catch (e: any) {
             setError(e?.message);

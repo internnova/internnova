@@ -6,7 +6,6 @@ interface CreateUserAndIntern {
   email: string;
   name: string;
   role: "INTERN";
-  userId: number;
   bio: string;
   interests: Tag[];
 }
