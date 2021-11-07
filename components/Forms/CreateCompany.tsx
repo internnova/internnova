@@ -45,7 +45,7 @@ const CreateCompany = (props: CreateCompanyProps) => {
               },
             })
               .then((res) => res.text())
-              .then((text) => console.log(text));
+              .then(() => router.push("/"));
             /*eslint-disable*/
           } catch (e: any) {
             setError(e?.message);

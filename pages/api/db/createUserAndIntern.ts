@@ -16,13 +16,18 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return;
   } else {
     const body: CreateUserAndIntern = req.body;
+    const { name, email, role, bio, interests } = body;
+
     const user = await prisma.user.create({
       data: {
-        ...body,
+        name,
+        email,
+        role,
       },
     });
+
     const intern = await prisma.intern.create({
-      data: { ...body, userId: user.id },
+      data: { bio, interests: interests, userId: user.id },
     });
 
     res

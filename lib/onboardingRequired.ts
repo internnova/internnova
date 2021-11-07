@@ -14,31 +14,22 @@ const onboardingRequired = async (
       props: { error: "Email not provided" },
     };
   }
-  const user = await prisma.user.findFirst({ where: { email } });
 
-  if (user) {
-    if (user.role === "STANDARD") {
-      return {
-        redirect: {
-          permanent: false,
-          destination: "/onboarding",
-        },
-        props: {},
-      };
-    } else {
-      return {
-        redirect: {
-          permanent: false,
-          destination: "/",
-        },
-        props: {},
-      };
-    }
+  const user = await prisma.user.findUnique({ where: { email } });
+
+  if (!user || user?.role === "STANDARD" || !(user.email === email)) {
+    return {
+      redirect: {
+        permanent: false,
+        destination: "/onboarding",
+      },
+      props: {},
+    };
   } else {
     return {
       redirect: {
         permanent: false,
-        destination: "/login",
+        destination: "/",
       },
       props: {},
     };
