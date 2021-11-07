@@ -30,7 +30,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       },
     });
 
-    res.status(200).send({ message: "OK", company });
+    res
+      .status(200)
+      .send({ message: "successfully created user and company", company });
   }
 };
 

@@ -34,7 +34,7 @@ const CreateIntern = (props: { user: SupabaseUser }) => {
   // Printing router to console to make ESLint shut up
   console.log(router);
   const [userFullName, setUserFullName] = useState<string>("");
-  const [description, setDescription] = useState<string>("");
+  const [bio, setBio] = useState<string>("");
   /*eslint-disable  @typescript-eslint/no-unused-vars*/
   const [interests, setInterests] = useState<{ id: Tag; value: string }[]>([]);
 
@@ -54,7 +54,7 @@ const CreateIntern = (props: { user: SupabaseUser }) => {
           const createdIntern = {
             // TODO: fetch id from created User
             userId: 1,
-            bio: description,
+            bio: bio,
             interests: interests.map((i) => i.id),
           };
           console.log(createdUser, createdIntern);
@@ -80,8 +80,8 @@ const CreateIntern = (props: { user: SupabaseUser }) => {
           <textarea
             placeholder="Enter A bio"
             className="h-60 text-grey-700 rounded-md border p-5 mb-5"
-            value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            value={bio}
+            onChange={(e) => setBio(e.target.value)}
           ></textarea>
         </div>
         <div className="my-5">
