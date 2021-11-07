@@ -7,26 +7,11 @@ import { useRouter } from "next/router";
 import { SupabaseUser } from "../../lib/SupabaseUser";
 
 const values = [
-  {
-    id: "Marketing",
-    value: "Marketing",
-  },
-  {
-    id: "Graphic_Design",
-    value: "Graphic Design",
-  },
-  {
-    id: "Programming",
-    value: "Programming",
-  },
-  {
-    id: "Communication",
-    value: "Communication",
-  },
-  {
-    id: "Charity",
-    value: "Charity",
-  },
+  "Marketing",
+  "Graphic_Design",
+  "Programming",
+  "Communication",
+  "Charity",
 ];
 
 const CreateIntern = (props: { user: SupabaseUser }) => {
@@ -34,7 +19,7 @@ const CreateIntern = (props: { user: SupabaseUser }) => {
   const [userFullName, setUserFullName] = useState<string>("");
   const [bio, setBio] = useState<string>("");
   /*eslint-disable  @typescript-eslint/no-unused-vars*/
-  const [interests, setInterests] = useState<{ id: Tag; value: string }[]>([]);
+  const [interests, setInterests] = useState<string[]>([]);
 
   return (
     <FormWrapper title="Sign Up">
@@ -47,7 +32,7 @@ const CreateIntern = (props: { user: SupabaseUser }) => {
             name: userFullName,
             role: "INTERN",
             bio,
-            interests: interests.map((i) => i.id),
+            interests: interests,
           };
           fetch("/api/db/createUserAndIntern", {
             method: "POST",
