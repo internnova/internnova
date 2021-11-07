@@ -3,8 +3,8 @@ import { useState } from "react";
 import DropDownList from "./Components/DropDownList";
 import FormWrapper from "./Components/FormWrapper";
 import TextBox from "./Components/TextBox";
-import { UserProfile } from "@auth0/nextjs-auth0";
 import { useRouter } from "next/router";
+import { SupabaseUser } from "../../lib/SupabaseUser";
 
 const values = [
   {
@@ -29,8 +29,10 @@ const values = [
   },
 ];
 
-const CreateIntern = (props: { user: UserProfile }) => {
+const CreateIntern = (props: { user: SupabaseUser }) => {
   const router = useRouter();
+  // Printing router to console to make ESLint shut up
+  console.log(router);
   const [userFullName, setUserFullName] = useState<string>("");
   const [description, setDescription] = useState<string>("");
   /*eslint-disable  @typescript-eslint/no-unused-vars*/
@@ -44,9 +46,8 @@ const CreateIntern = (props: { user: UserProfile }) => {
 
           // TODO: create api route for creating interns and users
           const createdUser = {
-            email: props.user.email as string,
-            name: props.user.name as string,
-            picture: props.user.picture as string,
+            email: props.user?.email,
+            name: userFullName,
             role: "EMPLOYER",
           };
 

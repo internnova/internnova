@@ -1,12 +1,14 @@
 import { User } from "@prisma/client";
 import { prisma } from "./prisma";
 
-interface OnboardingRequired {
+interface OnboardingRequiredReturn {
   props: { error?: string; user?: User | null };
   redirect?: { permanent: boolean; destination: string };
 }
 
-export default async (email: string): Promise<OnboardingRequired> => {
+const onboardingRequired = async (
+  email: string | null
+): Promise<OnboardingRequiredReturn> => {
   if (!email) {
     return {
       props: { error: "Email not provided" },
@@ -25,16 +27,22 @@ export default async (email: string): Promise<OnboardingRequired> => {
       };
     } else {
       return {
-        props: { user },
+        redirect: {
+          permanent: false,
+          destination: "/",
+        },
+        props: {},
       };
     }
   } else {
     return {
       redirect: {
         permanent: false,
-        destination: "/api/auth/login",
+        destination: "/login",
       },
       props: {},
     };
   }
 };
+
+export default onboardingRequired;

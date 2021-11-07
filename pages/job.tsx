@@ -28,8 +28,6 @@ const JobsPage = (props: JobProps) => {
   );
 };
 
-/*eslint-disable*/
-// @ts-ignore
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.query.id;
   if (!id) {

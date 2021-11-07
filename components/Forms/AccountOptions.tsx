@@ -1,5 +1,4 @@
 import React from "react";
-import SmallButton from "../SmallButton";
 import { Role } from "@prisma/client";
 
 type AccountOptionsProps = {

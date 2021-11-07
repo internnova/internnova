@@ -1,8 +1,9 @@
 import Link from "next/link";
 import SmallButton from "../../SmallButton";
-import { UserProfile } from "@auth0/nextjs-auth0";
+import { SupabaseUser } from "../../../lib/SupabaseUser";
+import { supabase } from "../../../lib/initSupabase";
 
-type ProfileProps = { user: UserProfile | null };
+type ProfileProps = { user: SupabaseUser | null };
 
 export default function Navbar({ user }: ProfileProps) {
   if (!user) {
@@ -44,7 +45,7 @@ export default function Navbar({ user }: ProfileProps) {
         </div>
         <div className="hidden space-x-8 font-medium lg:block"></div>
         <div className="hidden font-medium lg:block flex justify-between items-center">
-          <Link href="/api/auth/login" passHref>
+          <Link href="/login" passHref>
             <a>
               <SmallButton content="Login" />
             </a>
@@ -66,11 +67,10 @@ export default function Navbar({ user }: ProfileProps) {
         </div>
 
         <div className="hidden font-medium lg:block flex justify-between items-center">
-          <Link href="/api/auth/logout" passHref>
-            <a>
-              <SmallButton content="Logout" />
-            </a>
-          </Link>
+          <SmallButton
+            content="Logout"
+            onClick={() => supabase.auth.signOut()}
+          />
         </div>
       </header>
     );

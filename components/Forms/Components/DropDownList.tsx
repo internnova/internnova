@@ -61,6 +61,7 @@ const DropDownList = (props: DropDownListProps) => {
               (value) => value.id === tempChosenValue
             );
 
+            /*eslint-disable*/
             if (chosenValue && !((chosenValue as any) in chosenValues))
               setChosenValues([...chosenValues, chosenValue] as {
                 id: Tag;
