@@ -4,20 +4,18 @@ import SmallButton from "../../SmallButton";
 
 type DropDownListProps = {
   // values will not be a useState item, just a constant
-  values: { id: string; value: string }[];
-  setChosenValues: (values: { id: Tag; value: string }[]) => void;
+  values: string[];
+  setChosenValues: (values: string[]) => void;
   title: string;
 };
 
 const DropDownList = (props: DropDownListProps) => {
-  const [chosenValues, setChosenValues] = useState<
-    { id: Tag; value: string }[]
-  >([]);
+  const [chosenValues, setChosenValues] = useState<string[]>([]);
 
   const [tempChosenValue, setTempChosenValue] = useState<string>("");
 
-  const removeValue = (value: { id: string; value: string }) => {
-    setChosenValues(chosenValues.filter((v) => v.id !== value.id));
+  const removeValue = (value: string) => {
+    setChosenValues(chosenValues.filter((v) => v !== value));
   };
 
   const buttonStyleRed =
@@ -48,8 +46,8 @@ const DropDownList = (props: DropDownListProps) => {
           onChange={(e) => setTempChosenValue(e.target.value)}
         >
           {props.values.map((value) => (
-            <option key={value.id} value={value.id}>
-              {value.value}
+            <option key={value} value={value}>
+              {value.replace("_", " ")}
             </option>
           ))}
         </select>
@@ -57,24 +55,21 @@ const DropDownList = (props: DropDownListProps) => {
           content="Add new interest"
           onClick={(e) => {
             e.preventDefault();
-            const chosenValue = props.values.find(
-              (value) => value.id === tempChosenValue
-            );
 
             /*eslint-disable*/
-            if (chosenValue && !((chosenValue as any) in chosenValues))
-              setChosenValues([...chosenValues, chosenValue] as {
-                id: Tag;
-                value: string;
-              }[]);
-            props.setChosenValues(chosenValues);
+            if (tempChosenValue && !(tempChosenValue in chosenValues)) {
+              props.setChosenValues([...chosenValues, tempChosenValue]);
+              setChosenValues([...chosenValues, tempChosenValue]);
+            }
           }}
         />
       </div>
       <div className="pl-4">
         {chosenValues.map((value) => (
-          <div className="flex mb-4 items-center mr-4" key={value.id}>
-            <p className="w-full text-gray-500 font-semibold">{value.value}</p>
+          <div className="flex mb-4 items-center mr-4" key={value}>
+            <p className="w-full text-gray-500 font-semibold">
+              {value.replace("_", " ")}
+            </p>
             <button
               className={buttonStyleRed}
               onClick={() => removeValue(value)}
