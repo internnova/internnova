@@ -32,6 +32,7 @@ const CreateCompany = (props: CreateCompanyProps) => {
               name: companyName,
               role: "EMPLOYER",
               logo: logo,
+              description: description,
               website: website,
               CIN: CIN,
             };
