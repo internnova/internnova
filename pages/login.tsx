@@ -1,6 +1,5 @@
 import Link from "next/link";
 import useSWR from "swr";
-import { useRouter } from "next/router";
 import {
   Auth,
   Card,
@@ -9,9 +8,9 @@ import {
   Button,
   IconLogOut,
 } from "@supabase/ui";
+import { useRouter } from "next/router";
 import { supabase } from "../lib/initSupabase";
 import { useEffect, useState } from "react";
-import SmallButton from "../components/SmallButton";
 
 const fetcher = (url: string, token: string) =>
   fetch(url, {
@@ -22,7 +21,6 @@ const fetcher = (url: string, token: string) =>
 
 const Index = () => {
   const router = useRouter();
-
   const { user, session } = Auth.useUser();
   const { data, error } = useSWR(
     session ? ["/api/getUser", session.access_token] : null,
@@ -81,62 +79,64 @@ const Index = () => {
       );
 
     return (
-      <>
+      <Space direction="vertical" size={6}>
         {authView === "update_password" && (
-          <Space direction="vertical" size={6}>
-            <Auth.UpdatePassword supabaseClient={supabase} />
-          </Space>
+          <Auth.UpdatePassword supabaseClient={supabase} />
         )}
-        {user && <SuccessPage />}
-      </>
+        {user && (
+          <>
+            <Typography.Text>You{"'"}re signed in</Typography.Text>
+            <Typography.Text strong>Email: {user.email}</Typography.Text>
+
+            <Button
+              icon={<IconLogOut />}
+              type="outline"
+              onClick={() => supabase.auth.signOut()}
+            >
+              Log out
+            </Button>
+            {error && (
+              <Typography.Text className="text-red-500">
+                Failed to fetch user!
+              </Typography.Text>
+            )}
+            {data && !error ? (
+              <>
+                <Typography.Text type="success">
+                  User data retrieved server-side (in API route):
+                </Typography.Text>
+
+                {(() => {
+                  router.push("/");
+                  return <></>;
+                })()}
+
+                <Typography.Text>
+                  <pre>{JSON.stringify(data, null, 2)}</pre>
+                </Typography.Text>
+              </>
+            ) : (
+              <div>Loading...</div>
+            )}
+
+            <Typography.Text>
+              <Link href="/profile">
+                <a>SSR example with getServerSideProps</a>
+              </Link>
+            </Typography.Text>
+          </>
+        )}
+      </Space>
     );
   };
 
-  return <SuccessPage />;
-};
-
-const SuccessPage = () => (
-  <div className="min-w-screen min-h-screen bg-blue-100 flex items-center p-5 lg:p-20 overflow-hidden relative">
-    <div className="flex-1 min-h-full min-w-full rounded-3xl bg-white shadow-xl p-10 lg:p-20 text-gray-800 relative md:flex items-center text-center md:text-left">
-      <div className="w-full md:w-1/2">
-        <div className="mb-10 lg:mb-20">
-          <img
-            src="https://flipstore.withun.link/identity/Group%201.svg"
-            alt=""
-          />
-        </div>
-        <div className="mb-10 md:mb-20 text-gray-600 font-light">
-          <h1 className="font-black text-3xl lg:text-5xl text-indigo-700 mb-10">
-            You have successfully logged in
-          </h1>
-          <p className="text-gray-600">You can now access your account.</p>
-          <div className="mt-5">
-            <Link href="/" passHref>
-              <a>
-                <SmallButton content="Go Home" />
-              </a>
-            </Link>
-          </div>
-        </div>
-        <div className="mb-20 md:mb-0">
-          <a href="http://twitter.com/InternNovaLabs">
-            <button className="text-lg font-light outline-none focus:outline-none transform transition-all hover:scale-110 text-blue-500 hover:text-blue-600">
-              Reach out to us on twitter
-            </button>
-          </a>
-        </div>
-      </div>
-      <div className="w-full md:w-1/2 text-center">
-        <img
-          src="/assets/img/graphics/success-page.png"
-          className="w-64 h-64"
-          alt=""
-        />
-      </div>
+  return (
+    <div style={{ maxWidth: "420px", margin: "96px auto" }}>
+      <Card>
+        <View />
+      </Card>
     </div>
-    <div className="w-64 md:w-96 h-96 md:h-full bg-blue-200 bg-opacity-30 absolute -top-64 md:-top-96 right-20 md:right-32 rounded-full pointer-events-none -rotate-45 transform"></div>
-    <div className="w-96 h-full bg-indigo-200 bg-opacity-20 absolute -bottom-96 right-64 rounded-full pointer-events-none -rotate-45 transform"></div>
-  </div>
-);
+  );
+};
 
 export default Index;
