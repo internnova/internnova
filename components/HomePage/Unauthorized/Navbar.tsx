@@ -17,8 +17,7 @@ export default function Navbar({ user }: ProfileProps) {
               className="max-w-[200px]"
             />
           </a>
-          {/* Hehe nice */}
-          <div className="hidden sm:block sm:ml-6 pb-[6.9px]">
+          <div className="hidden sm:block sm:ml-6">
             <div className="flex space-x-4">
               <a
                 href="#HowItWorks"

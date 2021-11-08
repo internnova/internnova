@@ -18,7 +18,7 @@ export const Landing = ({ user }: LandingProps) => {
       <div className="font-sans antialiased bg-gray-50 text-gray-900">
         <main>
           <div
-            className="bg-cover bg-no-repeat bg-right-top xl:bg-bottom"
+            className="bg-cover bg-no-repeat bg-right-topm"
             style={{ backgroundImage: "url('/assets/img/bg.jpg')" }}
           >
             <div className="container mx-auto px-5 pb-16 sm:pb-16 lg:pb-24 xl:pb-32">

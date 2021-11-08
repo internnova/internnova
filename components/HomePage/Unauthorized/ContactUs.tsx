@@ -7,7 +7,7 @@ export default function ContactUs() {
 
   return (
     <section
-      className="bg-gray-100 pt-12 pb-7 lg:pb-8 lg:pt-16 xl:pt-28"
+      className="bg-gray-100 pt-12 pb-7 lg:pt-16 xl:pt-28"
       id="ContactUs"
     >
       <div className="container mx-auto px-5">

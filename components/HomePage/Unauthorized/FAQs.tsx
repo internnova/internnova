@@ -84,7 +84,7 @@ const FAQs = () => {
     },
   ];
   return (
-    <section className="py-12 lg:py-16 xl:py-28">
+    <section className="py-12 lg:py-16 xl:py-28 bg-blue-200">
       <div className="container mx-auto px-5">
         <div className="grid gap-6 lg:gap-10 xl:grid-cols-3">
           <div className="space-y-2 lg:space-y-4">
