@@ -1,7 +1,7 @@
 import { SupabaseUser } from "../../../lib/SupabaseUser";
 import Head from "next/head";
 import React from "react";
-import Jobs from "../../SmallButton";
+import SmallButton from "../../SmallButton";
 import ContactUs from "./ContactUs";
 import FAQs from "./FAQs";
 import HowItWorks from "./HowItWorks";
@@ -34,7 +34,7 @@ export const Landing = ({ user }: LandingProps) => {
                   </p>
                 </div>
                 <a href="#HowItWorks">
-                  <Jobs content="See How It works" />
+                  <SmallButton content="See How It works" />
                 </a>
               </div>
             </div>
