@@ -1,4 +1,4 @@
-export const Loading = () => {
+const Loading = () => {
   return (
     <section className="flex h-screen">
       <img
@@ -9,3 +9,5 @@ export const Loading = () => {
     </section>
   );
 };
+
+export default Loading;

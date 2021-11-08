@@ -1,7 +1,7 @@
 import { SupabaseUser } from "../../../lib/SupabaseUser";
 import Head from "next/head";
 import React from "react";
-import Jobs from "../../SmallButton";
+import SmallButton from "../../SmallButton";
 import ContactUs from "./ContactUs";
 import FAQs from "./FAQs";
 import HowItWorks from "./HowItWorks";
@@ -18,7 +18,7 @@ export const Landing = ({ user }: LandingProps) => {
       <div className="font-sans antialiased bg-gray-50 text-gray-900">
         <main>
           <div
-            className="bg-cover bg-no-repeat bg-right-top xl:bg-bottom"
+            className="bg-cover bg-no-repeat bg-right-topm"
             style={{ backgroundImage: "url('/assets/img/bg.jpg')" }}
           >
             <div className="container mx-auto px-5 pb-16 sm:pb-16 lg:pb-24 xl:pb-32">
@@ -34,7 +34,7 @@ export const Landing = ({ user }: LandingProps) => {
                   </p>
                 </div>
                 <a href="#HowItWorks">
-                  <Jobs content="See How It works" />
+                  <SmallButton content="See How It works" />
                 </a>
               </div>
             </div>

@@ -2,12 +2,14 @@ import React from "react";
 
 const HowItWorks = () => {
   return (
-    <section className="py-12 lg:py-16 xl:py-28" id="HowItWorks">
-      <div className="container mx-auto px-5">
+    <section className="py-12 lg:py-16 xl:py-28 bg-blue-700" id="HowItWorks">
+      <div className="container mx-auto px-5 ">
         <div className="grid gap-6 lg:gap-10 xl:grid-cols-3">
           <div className="space-y-2 lg:space-y-4">
-            <h2 className="text-2xl font-black sm:text-3xl">How it works</h2>
-            <p className="w-full sm:w-1/2 xl:w-80 text-gray-600 md:text-lg">
+            <h2 className="text-2xl font-black sm:text-3xl text-white">
+              How it works
+            </h2>
+            <p className="w-full sm:w-1/2 xl:w-80 text-gray-600 text-blue-100 md:text-lg">
               A quick overview of how you can use InternNova and what actually
               happens behind the scenes.
             </p>

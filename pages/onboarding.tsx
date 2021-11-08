@@ -1,12 +1,12 @@
-import onboardingRequired from "../lib/onboardingRequired";
 import { Role } from "@prisma/client";
+import { GetServerSideProps } from "next";
 import { useState } from "react";
 import AccountOptions from "../components/Forms/AccountOptions";
 import CreateCompany from "../components/Forms/CreateCompany";
 import CreateIntern from "../components/Forms/CreateIntern";
-import { SupabaseUser } from "../lib/SupabaseUser";
 import { supabase } from "../lib/initSupabase";
-import { GetServerSideProps } from "next";
+import onboardingRequired from "../lib/onboardingRequired";
+import { SupabaseUser } from "../lib/SupabaseUser";
 
 const OnboardingPage = ({ user }: { user: SupabaseUser | null }) => {
   const [doneWithStage1, setDoneWithStage1] = useState<boolean>(false);
