@@ -8,8 +8,8 @@ type ProfileProps = { user: SupabaseUser | null };
 export default function Navbar({ user }: ProfileProps) {
   if (!user) {
     return (
-      <header className="flex justify-between items-center pt-5">
-        <div className="space-x-8 font-medium flex justify-between items-center">
+      <header className="flex items-center justify-between pt-5">
+        <div className="flex items-center justify-between space-x-8 font-medium">
           <a href="#0" className="">
             <img
               src="/assets/img/logo_text.png"
@@ -17,33 +17,32 @@ export default function Navbar({ user }: ProfileProps) {
               className="max-w-[200px]"
             />
           </a>
-          <div className="hidden sm:block sm:ml-6">
+          <div className="hidden md:block sm:ml-6">
             <div className="flex space-x-4">
               <a
                 href="#HowItWorks"
-                className="text-blue-500 px-3 py-2 hover:underline font-extrabold"
+                className="px-3 py-2 font-extrabold text-blue-500 hover:underline"
               >
                 How it Works
               </a>
 
               <a
                 href="#FAQs"
-                className="text-blue-500 px-3 py-2 hover:underline font-extrabold"
+                className="px-3 py-2 font-extrabold text-blue-500 hover:underline"
               >
                 FAQs
               </a>
 
               <a
                 href="#ContactUs"
-                className="text-blue-500 px-3 py-2 hover:underline font-extrabold"
+                className="px-3 py-2 font-extrabold text-blue-500 hover:underline"
               >
                 Contact Us
               </a>
             </div>
           </div>
         </div>
-        <div className="hidden space-x-8 font-medium lg:block"></div>
-        <div className="hidden font-medium lg:block flex justify-between items-center">
+        <div className="flex items-center justify-between font-medium lg:block">
           <Link href="/login" passHref>
             <a>
               <SmallButton content="Login" />
@@ -54,8 +53,8 @@ export default function Navbar({ user }: ProfileProps) {
     );
   } else {
     return (
-      <header className="flex justify-between items-center pt-5">
-        <div className="space-x-8 font-medium flex justify-between items-center">
+      <header className="flex items-center justify-between pt-5">
+        <div className="flex items-center justify-between space-x-8 font-medium">
           <a href="#0" className="">
             <img
               src="/assets/img/logo_text.png"
@@ -65,7 +64,7 @@ export default function Navbar({ user }: ProfileProps) {
           </a>
         </div>
 
-        <div className="hidden font-medium lg:block flex justify-between items-center">
+        <div className="flex items-center justify-between font-medium lg:block">
           <SmallButton
             content="Logout"
             onClick={() => supabase.auth.signOut()}

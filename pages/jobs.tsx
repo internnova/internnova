@@ -39,15 +39,15 @@ const Jobs = () => {
       {jobs.length === 0 && (
         <>
           <div
-            className="flex h-screen bg-cover bg-no-repeat bg-right-topm"
+            className="flex h-screen bg-no-repeat bg-cover bg-right-topm"
             style={{ backgroundImage: "url('/assets/img/bg.jpg')" }}
           >
-            <div className="container m-auto px-5 pb-5">
+            <div className="container px-5 pb-5 m-auto">
               <div className="space-y-4">
-                <h1 className="text-3xl font-black sm:w-2/3 sm:text-4xl md:max-w-xl md:text-5xl pb-2 font-fancy">
+                <h1 className="pb-2 text-3xl font-black sm:w-2/3 sm:text-4xl md:max-w-xl md:text-5xl font-fancy">
                   404 - Jobs not found
                 </h1>
-                <p className="max-w-sm text-lg text-gray-700 md:max-w-md md:text-xl pb-5 font-semibold text-grey-900">
+                <p className="max-w-sm pb-5 text-lg font-semibold text-gray-700 md:max-w-md md:text-xl text-grey-900">
                   We{"'"}re out of jobs, check back later!
                 </p>
               </div>
@@ -61,7 +61,7 @@ const Jobs = () => {
         </>
       )}
       {jobs.length !== 0 && (
-        <div className="container mx-auto md:px-10 py-10 bg-white">
+        <div className="container py-10 mx-auto bg-white md:px-10">
           <main className="flex items-start justify-center">
             {/* Jobs */}
             <section className="space-y-6 lg:mr-6 xl:mr-16">

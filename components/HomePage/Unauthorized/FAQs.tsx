@@ -9,19 +9,19 @@ const FAQcomponent = ({ question, answer }: FAQcomponentProps) => {
   const [open, setOpen] = useState<boolean>(false);
   return (
     <div
-      className="bg-white p-5 rounded-xl shadow-lg space-y-2 cursor-pointer transition duration-200 hover:shadow hover:text-blue-600 md:p-8"
+      className="p-5 space-y-2 transition duration-200 bg-white shadow-lg cursor-pointer rounded-xl hover:shadow hover:text-blue-600 md:p-8"
       id="FAQs"
     >
       <div
-        className="flex justify-between items-center"
+        className="flex items-center justify-between"
         onClick={() => setOpen(!open)}
       >
-        <h4 className="font-medium mr-4">{question}</h4>
+        <h4 className="mr-4 font-medium">{question}</h4>
         <span>
           {open ? (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6 text-blue-500"
+              className="w-6 h-6 text-blue-500"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -36,7 +36,7 @@ const FAQcomponent = ({ question, answer }: FAQcomponentProps) => {
           ) : (
             <svg
               xmlns="http://www.w3.org/2000/svg"
-              className="h-6 w-6"
+              className="w-6 h-6"
               fill="none"
               viewBox="0 0 24 24"
               stroke="currentColor"
@@ -51,7 +51,7 @@ const FAQcomponent = ({ question, answer }: FAQcomponentProps) => {
           )}
         </span>
       </div>
-      {open && <p className="text-gray-600 pt-4">{answer}</p>}
+      {open && <p className="pt-4 text-gray-600">{answer}</p>}
     </div>
   );
 };
@@ -84,8 +84,8 @@ const FAQs = () => {
     },
   ];
   return (
-    <section className="py-12 lg:py-16 xl:py-28 bg-blue-200">
-      <div className="container mx-auto px-5">
+    <section className="py-12 bg-blue-200 lg:py-16 xl:py-28">
+      <div className="container px-5 mx-auto">
         <div className="grid gap-6 lg:gap-10 xl:grid-cols-3">
           <div className="space-y-2 lg:space-y-4">
             <h2 className="text-2xl font-black sm:text-3xl">

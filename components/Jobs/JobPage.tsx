@@ -16,7 +16,7 @@ const JobPage = (props: Props) => {
         props.responsive ? "" : "hidden lg:block"
       }`}
     >
-      <article className="flex item-center justify-between mb-9">
+      <article className="flex justify-between item-center mb-9">
         <div className="flex gap-4 mb-6">
           <img
             src={props.company?.logo || ""}
@@ -25,10 +25,10 @@ const JobPage = (props: Props) => {
           />
           <div>
             <Link href={`/job?id=${props.job.id}`}>
-              <a className="text-3xl mb-1 font-bold">{props.job.position}</a>
+              <a className="mb-1 text-3xl font-bold">{props.job.position}</a>
             </Link>
 
-            <h3 className="font-bold text-xl mb-1 text-blue-500 underline">
+            <h3 className="mb-1 text-xl font-bold text-blue-500 underline">
               {props.company?.name}
             </h3>
             <p className="flex items-center gap-1 text-muted">
@@ -43,17 +43,7 @@ const JobPage = (props: Props) => {
           Posted {props.job?.postedAt.toDateString()}
         </p>
       </article>
-      <div
-        className="
-              bg-gray-100
-              md:flex
-              justify-between
-              items-center
-              rounded-md
-              p-6
-              mb-9
-            "
-      >
+      <div className="items-center justify-between p-6 bg-gray-100 rounded-md  md:flex mb-9">
         <article className="pb-5">
           <h2 className="font-bold">Field</h2>
           <p className="text-muted">{props.job?.industry}</p>
@@ -69,12 +59,12 @@ const JobPage = (props: Props) => {
           </p>
         </article>
       </div>
-      <article className="space-y-4 mb-6">
-        <h3 className="text-blue-700 font-bold">Job Overview</h3>
+      <article className="mb-6 space-y-4">
+        <h3 className="font-bold text-blue-700">Job Overview</h3>
         <p className="text-muted">{props.job?.description}</p>
       </article>
-      <article className="space-y-4 mb-6">
-        <h3 className="text-blue-700 font-bold">Job Requirements</h3>
+      <article className="mb-6 space-y-4">
+        <h3 className="font-bold text-blue-700">Job Requirements</h3>
         {props.job?.skillsRequired.map((skill, x) => (
           <div className="flex gap-3 text-muted" key={x}>
             <img src="/assets/img/verified-checkmark.svg" alt="Checkmark" />
@@ -82,8 +72,8 @@ const JobPage = (props: Props) => {
           </div>
         ))}
       </article>
-      <article className="space-y-4 mb-6">
-        <h3 className="text-blue-700 font-bold">Company Overview</h3>
+      <article className="mb-6 space-y-4">
+        <h3 className="font-bold text-blue-700">Company Overview</h3>
         <p className="text-muted">{props.company?.description || ""}</p>
       </article>
       <SmallButton content="Apply for the job" />

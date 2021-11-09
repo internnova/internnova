@@ -2,50 +2,25 @@ import React from "react";
 
 const HowItWorks = () => {
   return (
-    <section className="py-12 lg:py-16 xl:py-28 bg-blue-700" id="HowItWorks">
-      <div className="container mx-auto px-5 ">
+    <section className="py-12 bg-blue-700 lg:py-16 xl:py-28" id="HowItWorks">
+      <div className="container px-5 mx-auto ">
         <div className="grid gap-6 lg:gap-10 xl:grid-cols-3">
           <div className="space-y-2 lg:space-y-4">
-            <h2 className="text-2xl font-black sm:text-3xl text-white">
+            <h2 className="text-2xl font-black text-white sm:text-3xl">
               How it works
             </h2>
-            <p className="w-full sm:w-1/2 xl:w-80 text-gray-600 text-blue-100 md:text-lg">
+            <p className="w-full text-gray-600 text-blue-100 sm:w-1/2 xl:w-80 md:text-lg">
               A quick overview of how you can use InternNova and what actually
               happens behind the scenes.
             </p>
           </div>
           <div className="grid gap-6 sm:grid-cols-2 lg:gap-10 xl:col-span-2">
-            <div
-              className="
-                  relative
-                  bg-white
-                  p-5
-                  rounded-xl
-                  shadow
-                  space-y-2
-                  transition-shadow
-                  duration-200
-                  hover:shadow-lg
-                  md:p-8
-                "
-            >
+            <div className="relative p-5 space-y-2 transition-shadow duration-200 bg-white shadow  rounded-xl hover:shadow-lg md:p-8">
               <dt>
-                <div
-                  className="
-                      absolute
-                      flex
-                      items-center
-                      justify-center
-                      h-12
-                      w-12
-                      rounded-full
-                      bg-blue-500
-                      text-white
-                    "
-                >
+                <div className="absolute flex items-center justify-center w-12 h-12 text-white bg-blue-500 rounded-full ">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
+                    className="w-6 h-6"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -66,37 +41,12 @@ const HowItWorks = () => {
                 website.
               </dd>
             </div>
-            <div
-              className="
-                  relative
-                  bg-white
-                  p-5
-                  rounded-xl
-                  shadow
-                  space-y-2
-                  transition-shadow
-                  duration-200
-                  hover:shadow-lg
-                  md:p-8
-                "
-            >
+            <div className="relative p-5 space-y-2 transition-shadow duration-200 bg-white shadow  rounded-xl hover:shadow-lg md:p-8">
               <dt>
-                <div
-                  className="
-                      absolute
-                      flex
-                      items-center
-                      justify-center
-                      h-12
-                      w-12
-                      rounded-full
-                      bg-blue-500
-                      text-white
-                    "
-                >
+                <div className="absolute flex items-center justify-center w-12 h-12 text-white bg-blue-500 rounded-full ">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
+                    className="w-6 h-6"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -117,37 +67,12 @@ const HowItWorks = () => {
               </dd>
             </div>
 
-            <div
-              className="
-                  relative
-                  bg-white
-                  p-5
-                  rounded-xl
-                  shadow
-                  space-y-2
-                  transition-shadow
-                  duration-200
-                  hover:shadow-lg
-                  md:p-8
-                "
-            >
+            <div className="relative p-5 space-y-2 transition-shadow duration-200 bg-white shadow  rounded-xl hover:shadow-lg md:p-8">
               <dt>
-                <div
-                  className="
-                      absolute
-                      flex
-                      items-center
-                      justify-center
-                      h-12
-                      w-12
-                      rounded-full
-                      bg-blue-500
-                      text-white
-                    "
-                >
+                <div className="absolute flex items-center justify-center w-12 h-12 text-white bg-blue-500 rounded-full ">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
+                    className="w-6 h-6"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -169,37 +94,12 @@ const HowItWorks = () => {
                 help the employer know more about you
               </dd>
             </div>
-            <div
-              className="
-                  relative
-                  bg-white
-                  p-5
-                  rounded-xl
-                  shadow
-                  space-y-2
-                  transition-shadow
-                  duration-200
-                  hover:shadow-lg
-                  md:p-8
-                "
-            >
+            <div className="relative p-5 space-y-2 transition-shadow duration-200 bg-white shadow  rounded-xl hover:shadow-lg md:p-8">
               <dt>
-                <div
-                  className="
-                      absolute
-                      flex
-                      items-center
-                      justify-center
-                      h-12
-                      w-12
-                      rounded-full
-                      bg-blue-500
-                      text-white
-                    "
-                >
+                <div className="absolute flex items-center justify-center w-12 h-12 text-white bg-blue-500 rounded-full ">
                   <svg
                     xmlns="http://www.w3.org/2000/svg"
-                    className="h-6 w-6"
+                    className="w-6 h-6"
                     fill="none"
                     viewBox="0 0 24 24"
                     stroke="currentColor"
@@ -221,38 +121,13 @@ const HowItWorks = () => {
                 always try again for another one
               </dd>
             </div>
-            <div
-              className="
-                  relative
-                  bg-white
-                  p-5
-                  rounded-xl
-                  shadow
-                  space-y-2
-                  transition-shadow
-                  duration-200
-                  hover:shadow-lg
-                  md:p-8
-                "
-            >
+            <div className="relative p-5 space-y-2 transition-shadow duration-200 bg-white shadow  rounded-xl hover:shadow-lg md:p-8">
               <dt>
-                <div
-                  className="
-                      absolute
-                      flex
-                      items-center
-                      justify-center
-                      h-12
-                      w-12
-                      rounded-full
-                      bg-blue-500
-                      text-white
-                    "
-                >
+                <div className="absolute flex items-center justify-center w-12 h-12 text-white bg-blue-500 rounded-full ">
                   <img
                     src="/assets/img/graphics/certificate.svg"
                     alt="certificate"
-                    className="h-8 w-8 filter-white"
+                    className="w-8 h-8 filter-white"
                   />
                 </div>
                 <p className="ml-16 text-xl font-medium">Step 5</p>
@@ -264,38 +139,13 @@ const HowItWorks = () => {
                 exciting deals instead
               </dd>
             </div>
-            <div
-              className="
-                  relative
-                  bg-white
-                  p-5
-                  rounded-xl
-                  shadow
-                  space-y-2
-                  transition-shadow
-                  duration-200
-                  hover:shadow-lg
-                  md:p-8
-                "
-            >
+            <div className="relative p-5 space-y-2 transition-shadow duration-200 bg-white shadow  rounded-xl hover:shadow-lg md:p-8">
               <dt>
-                <div
-                  className="
-                      absolute
-                      flex
-                      items-center
-                      justify-center
-                      h-12
-                      w-12
-                      rounded-full
-                      bg-blue-500
-                      text-white
-                    "
-                >
+                <div className="absolute flex items-center justify-center w-12 h-12 text-white bg-blue-500 rounded-full ">
                   <img
                     src="/assets/img/graphics/troubleshooting.svg"
                     alt="certificate"
-                    className="h-8 w-8 filter-white"
+                    className="w-8 h-8 filter-white"
                   />
                 </div>
                 <p className="ml-16 text-xl font-medium">Trouble Shooting</p>
