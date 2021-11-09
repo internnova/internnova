@@ -4,7 +4,7 @@ import Link from "next/link";
 import moment from "moment";
 
 type Props = {
-  job: Job & { company: Company };
+  job: (Job & { company: Company }) | null;
   company: Company | null;
   responsive?: boolean;
 };

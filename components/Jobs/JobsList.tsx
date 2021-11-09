@@ -76,11 +76,7 @@ const JobsList = ({ queryApi }: { queryApi?: string }) => {
                 ))}
             </section>
             {/* Job Description */}
-            {() => {
-              if (job) {
-                return <JobPage job={job} company={company} />;
-              }
-            }}
+            <JobPage job={job} company={company} />;
           </main>
         </div>
       )}{" "}
