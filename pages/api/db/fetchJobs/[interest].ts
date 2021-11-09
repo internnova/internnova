@@ -7,10 +7,9 @@ const filterJobsByInterest = async (
   res: NextApiResponse
 ) => {
   const { interest } = req.query;
-  /*eslint-disable*/
   if (
     !interest ||
-    !(<any>Object).values(Tag).includes(interest) ||
+    !(Object.values(Tag) as string[]).includes(interest as string) ||
     !(interest as Tag)
   ) {
     res.status(200).json({ error: "Invalid or missing interest" });

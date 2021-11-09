@@ -3,6 +3,7 @@ import { NextSeo } from "next-seo";
 import { AppProps } from "next/app";
 import { supabase } from "../lib/initSupabase";
 import "../styles/globals.css";
+import "@fontsource/plus-jakarta-sans";
 
 const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
   return (

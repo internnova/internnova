@@ -15,7 +15,7 @@ export const Landing = ({ user }: LandingProps) => {
       <Head>
         <title>InternNova</title>
       </Head>
-      <div className="bg-gray-50 font-sans antialiased text-gray-900">
+      <div className="bg-gray-50 antialiased text-gray-900">
         <main>
           <div
             className="bg-right-topm bg-no-repeat bg-cover"

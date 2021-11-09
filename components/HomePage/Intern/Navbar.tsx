@@ -1,14 +1,16 @@
 import { useState } from "react";
+import { supabase } from "../../../lib/initSupabase";
+
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   return (
     <div>
-      <nav className="dark:bg-gray-800 bg-white shadow">
+      <nav className="bg-white shadow">
         <div className="md:flex md:justify-between md:items-center container px-6 py-3 mx-auto">
           <div className="flex items-center justify-between">
             <div>
               <a
-                className="dark:text-white md:text-2xl hover:text-gray-700 dark:hover:text-gray-300 text-xl font-bold text-gray-800"
+                className="md:text-2xl hover:text-gray-700 text-xl font-bold text-gray-800"
                 href="#"
               >
                 InternNova
@@ -18,7 +20,7 @@ const Navbar = () => {
             <div className="md:hidden flex">
               <button
                 type="button"
-                className="dark:text-gray-200 hover:text-gray-600 dark:hover:text-gray-400 focus:outline-none focus:text-gray-600 dark:focus:text-gray-400 text-gray-500"
+                className="hover:text-gray-600 focus:outline-none focus:text-gray-600 text-gray-500"
                 aria-label="toggle menu"
                 onClick={() => {
                   setOpen(!open);
@@ -37,23 +39,23 @@ const Navbar = () => {
           <div className={`md:flex items-center ${!open && "hidden md:block"}`}>
             <div className="md:flex-row md:mx-6 flex flex-col">
               <a
-                className="dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0 my-1 text-gray-700"
+                className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
                 href="#"
               >
                 Jobs
               </a>
               <a
-                className="dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0 my-1 text-gray-700"
+                className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
                 href="#"
               >
                 Applications
               </a>
-              <a
-                className="dark:text-gray-200 hover:text-indigo-500 dark:hover:text-indigo-400 md:mx-4 md:my-0 my-1 text-gray-700"
-                href="#"
+              <button
+                className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
+                onClick={() => supabase.auth.signOut()}
               >
                 Logout
-              </a>
+              </button>
             </div>
           </div>
         </div>

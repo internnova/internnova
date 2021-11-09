@@ -3,11 +3,14 @@ import { GetServerSideProps } from "next";
 import { Landing } from "../components/HomePage/Unauthorized";
 import { supabase } from "../lib/initSupabase";
 import onboardingRequired from "../lib/onboardingRequired";
+import InternHomepage from "../components/HomePage/Intern";
 
 const Index = () => {
   const { user } = Auth.useUser();
   if (!user) {
     return <Landing user={user ? user : null} />;
+  } else {
+    return <InternHomepage />;
   }
 };
 

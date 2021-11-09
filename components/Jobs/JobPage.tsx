@@ -1,15 +1,17 @@
 import { Job, Company } from "@prisma/client";
 import SmallButton from "../SmallButton";
 import Link from "next/link";
+import moment from "moment";
 
 type Props = {
-  job: (Job & { company: Company }) | null;
+  job: Job & { company: Company };
   company: Company | null;
   responsive?: boolean;
 };
 
 const JobPage = (props: Props) => {
   if (!props.company || !props.job) return <></>;
+  const postedAt = new Date(props.job.postedAt);
   return (
     <section
       className={`bg-card-bg p-12 flex-1 rounded-md ${
@@ -39,9 +41,7 @@ const JobPage = (props: Props) => {
             </p>
           </div>
         </div>
-        <p className="text-white">
-          Posted {props.job?.postedAt.toDateString()}
-        </p>
+        <p className="text-black">Posted {moment(postedAt).fromNow()}</p>
       </article>
       <div className="md:flex mb-9 items-center justify-between p-6 bg-gray-100 rounded-md">
         <article className="pb-5">

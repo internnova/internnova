@@ -32,6 +32,7 @@ module.exports = {
       },
     },
     fontFamily: {
+      sans: ["Plus Jakarta Sans"],
       fancy: ["Satisfy"],
     },
   },
