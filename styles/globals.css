@@ -6,7 +6,7 @@
 
 @layer components {
   .button {
-    @apply px-8 py-3 mr-4 font-semibold font-bold text-white transition duration-300 bg-blue-500 rounded-lg shadow hover:bg-blue-600;
+    @apply hover:bg-blue-600 px-8 py-3 mr-4 font-semibold font-bold text-white transition duration-300 bg-blue-500 rounded-lg shadow;
   }
 }
 

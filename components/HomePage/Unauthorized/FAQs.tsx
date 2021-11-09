@@ -9,7 +9,7 @@ const FAQcomponent = ({ question, answer }: FAQcomponentProps) => {
   const [open, setOpen] = useState<boolean>(false);
   return (
     <div
-      className="p-5 space-y-2 transition duration-200 bg-white shadow-lg cursor-pointer rounded-xl hover:shadow hover:text-blue-600 md:p-8"
+      className="rounded-xl hover:shadow hover:text-blue-600 md:p-8 p-5 space-y-2 transition duration-200 bg-white shadow-lg cursor-pointer"
       id="FAQs"
     >
       <div
@@ -84,15 +84,15 @@ const FAQs = () => {
     },
   ];
   return (
-    <section className="py-12 bg-blue-200 lg:py-16 xl:py-28">
+    <section className="lg:py-16 xl:py-28 py-12 bg-blue-200">
       <div className="container px-5 mx-auto">
-        <div className="grid gap-6 lg:gap-10 xl:grid-cols-3">
-          <div className="space-y-2 lg:space-y-4">
-            <h2 className="text-2xl font-black sm:text-3xl">
+        <div className="lg:gap-10 xl:grid-cols-3 grid gap-6">
+          <div className="lg:space-y-4 space-y-2">
+            <h2 className="sm:text-3xl text-2xl font-black">
               Frequently Asked Questions
             </h2>
           </div>
-          <div className="flex flex-col space-y-5 xl:col-span-2">
+          <div className="xl:col-span-2 flex flex-col space-y-5">
             {FAQsData.map((i, x) => {
               return (
                 <FAQcomponent question={i.question} answer={i.answer} key={x} />

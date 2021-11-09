@@ -10,10 +10,10 @@ type AccountOptionsProps = {
 const AccountOptions = (props: AccountOptionsProps) => {
   return (
     <>
-      <div className="flex items-center h-screen w-screen overflow-hidden">
+      <div className="flex items-center w-screen h-screen overflow-hidden">
         <div className="mx-auto text-left md:w-[60%] xl:w-[32rem]">
           <div className="flex flex-col gap-1 pb-10">
-            <h3 className="uppercase font-semibold text-blue-700 text-3xl">
+            <h3 className="text-3xl font-semibold text-blue-700 uppercase">
               Choose a role
             </h3>
             <AccountTypeOptions
@@ -92,7 +92,7 @@ const AccountTypeOption = ({
         className="max-w-[200px] mx-auto"
       />
 
-      <h2 className="text-lg font-semibold text-white text-center">{title}</h2>
+      <h2 className="text-lg font-semibold text-center text-white">{title}</h2>
     </div>
   );
 };

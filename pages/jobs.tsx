@@ -39,15 +39,15 @@ const Jobs = () => {
       {jobs.length === 0 && (
         <>
           <div
-            className="flex h-screen bg-no-repeat bg-cover bg-right-topm"
+            className="bg-right-topm flex h-screen bg-no-repeat bg-cover"
             style={{ backgroundImage: "url('/assets/img/bg.jpg')" }}
           >
             <div className="container px-5 pb-5 m-auto">
               <div className="space-y-4">
-                <h1 className="pb-2 text-3xl font-black sm:w-2/3 sm:text-4xl md:max-w-xl md:text-5xl font-fancy">
+                <h1 className="sm:w-2/3 sm:text-4xl md:max-w-xl md:text-5xl font-fancy pb-2 text-3xl font-black">
                   404 - Jobs not found
                 </h1>
-                <p className="max-w-sm pb-5 text-lg font-semibold text-gray-700 md:max-w-md md:text-xl text-grey-900">
+                <p className="md:max-w-md md:text-xl text-grey-900 max-w-sm pb-5 text-lg font-semibold text-gray-700">
                   We{"'"}re out of jobs, check back later!
                 </p>
               </div>
@@ -61,10 +61,10 @@ const Jobs = () => {
         </>
       )}
       {jobs.length !== 0 && (
-        <div className="container py-10 mx-auto bg-white md:px-10">
+        <div className="md:px-10 container py-10 mx-auto bg-white">
           <main className="flex items-start justify-center">
             {/* Jobs */}
-            <section className="space-y-6 lg:mr-6 xl:mr-16">
+            <section className="lg:mr-6 xl:mr-16 space-y-6">
               {jobs.length !== 0 &&
                 jobs.map((jobIter) => (
                   <div onClick={() => setJob(jobIter)} key={jobIter.id}>

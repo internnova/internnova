@@ -17,32 +17,32 @@ export default function Navbar({ user }: ProfileProps) {
               className="max-w-[200px]"
             />
           </a>
-          <div className="hidden md:block sm:ml-6">
+          <div className="md:block sm:ml-6 hidden">
             <div className="flex space-x-4">
               <a
                 href="#HowItWorks"
-                className="px-3 py-2 font-extrabold text-blue-500 hover:underline"
+                className="hover:underline px-3 py-2 font-extrabold text-blue-500"
               >
                 How it Works
               </a>
 
               <a
                 href="#FAQs"
-                className="px-3 py-2 font-extrabold text-blue-500 hover:underline"
+                className="hover:underline px-3 py-2 font-extrabold text-blue-500"
               >
                 FAQs
               </a>
 
               <a
                 href="#ContactUs"
-                className="px-3 py-2 font-extrabold text-blue-500 hover:underline"
+                className="hover:underline px-3 py-2 font-extrabold text-blue-500"
               >
                 Contact Us
               </a>
             </div>
           </div>
         </div>
-        <div className="flex items-center justify-between font-medium lg:block">
+        <div className="lg:block flex items-center justify-between font-medium">
           <Link href="/login" passHref>
             <a>
               <SmallButton content="Login" />
@@ -64,7 +64,7 @@ export default function Navbar({ user }: ProfileProps) {
           </a>
         </div>
 
-        <div className="flex items-center justify-between font-medium lg:block">
+        <div className="lg:block flex items-center justify-between font-medium">
           <SmallButton
             content="Logout"
             onClick={() => supabase.auth.signOut()}

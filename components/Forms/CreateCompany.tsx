@@ -64,13 +64,13 @@ const CreateCompany = (props: CreateCompanyProps) => {
           <div>
             <h3 className="text-red-500">{error}</h3>
           </div>
-          <h3 className="uppercase font-semibold text-sm">Description</h3>
+          <h3 className="text-sm font-semibold uppercase">Description</h3>
           <h3 className="text-sm">
             Enter a short description about your company
           </h3>
           <textarea
             placeholder="Enter A Description"
-            className="h-60 text-grey-700 rounded-md border p-5 mb-5"
+            className="h-60 text-grey-700 p-5 mb-5 border rounded-md"
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>

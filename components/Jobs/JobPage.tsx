@@ -16,7 +16,7 @@ const JobPage = (props: Props) => {
         props.responsive ? "" : "hidden lg:block"
       }`}
     >
-      <article className="flex justify-between item-center mb-9">
+      <article className="item-center mb-9 flex justify-between">
         <div className="flex gap-4 mb-6">
           <img
             src={props.company?.logo || ""}
@@ -31,7 +31,7 @@ const JobPage = (props: Props) => {
             <h3 className="mb-1 text-xl font-bold text-blue-500 underline">
               {props.company?.name}
             </h3>
-            <p className="flex items-center gap-1 text-muted">
+            <p className="text-muted flex items-center gap-1">
               <span>
                 <img src="/assets/img/location.svg" alt="Location Icon" />
               </span>
@@ -43,7 +43,7 @@ const JobPage = (props: Props) => {
           Posted {props.job?.postedAt.toDateString()}
         </p>
       </article>
-      <div className="items-center justify-between p-6 bg-gray-100 rounded-md  md:flex mb-9">
+      <div className="md:flex mb-9 items-center justify-between p-6 bg-gray-100 rounded-md">
         <article className="pb-5">
           <h2 className="font-bold">Field</h2>
           <p className="text-muted">{props.job?.industry}</p>
@@ -66,7 +66,7 @@ const JobPage = (props: Props) => {
       <article className="mb-6 space-y-4">
         <h3 className="font-bold text-blue-700">Job Requirements</h3>
         {props.job?.skillsRequired.map((skill, x) => (
-          <div className="flex gap-3 text-muted" key={x}>
+          <div className="text-muted flex gap-3" key={x}>
             <img src="/assets/img/verified-checkmark.svg" alt="Checkmark" />
             <p>{skill}</p>
           </div>

@@ -17,7 +17,7 @@ const SearchComponent = (props: SearchProps) => {
   const [open, setOpen] = useState(false);
   return (
     <div className="w-56">
-      <div className="flex justify-items-start">
+      <div className="justify-items-start flex">
         <button
           className="text-white bg-blue-200 hover:bg-blue-300 focus:ring-4 focus:ring-blue-600 font-medium rounded-lg text-sm px-4 py-2.5 text-center inline-flex items-center"
           type="button"
@@ -49,9 +49,9 @@ const SearchComponent = (props: SearchProps) => {
             props.setClickedSearch(true);
           }}
         >
-          <div className="ml-2 mt-2">
+          <div className="mt-2 ml-2">
             <svg
-              className="text-black h-6 w-6 fill-current"
+              className="w-6 h-6 text-black fill-current"
               xmlns="http://www.w3.org/2000/svg"
               xmlnsXlink="http://www.w3.org/1999/xlink"
               version="1.1"
@@ -71,14 +71,14 @@ const SearchComponent = (props: SearchProps) => {
       {/* Dropdown menu */}
       <div className={`${!open && "hidden"} pr-12`}>
         <div
-          className="bg-white text-base z-50 list-none divide-y divide-gray-100 rounded shadow my-4"
+          className="z-50 my-4 text-base list-none bg-white divide-y divide-gray-100 rounded shadow"
           id="dropdown"
         >
           <ul className="py-1" aria-labelledby="dropdown">
             {values.map((value) => (
               <li key={value}>
                 <button
-                  className="text-sm hover:bg-gray-100 text-gray-700 block px-4 py-2"
+                  className="hover:bg-gray-100 block px-4 py-2 text-sm text-gray-700"
                   onClick={(e) => {
                     e.preventDefault();
                     props.setResult(value);

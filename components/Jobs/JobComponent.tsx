@@ -10,8 +10,8 @@ type Props = {
 const JobComponent = (props: Props) => {
   if (!props.company || !props.job) return <></>;
   return (
-    <a className="block lg:pointer-events-none">
-      <article className="p-6 rounded-md shadow-lg bg-card-bg">
+    <a className="lg:pointer-events-none block">
+      <article className="bg-card-bg p-6 rounded-md shadow-lg">
         <div className="flex gap-4 mb-6">
           <img
             src={props.company?.logo || ""}
@@ -22,10 +22,10 @@ const JobComponent = (props: Props) => {
             <Link href={`/job?id=${props.job.id}`}>
               <a className="mb-1 text-lg font-bold">{props.job.position}</a>
             </Link>
-            <h3 className="mb-1 font-bold text-blue-500 underline text-md">
+            <h3 className="text-md mb-1 font-bold text-blue-500 underline">
               {props.company?.name}
             </h3>
-            <p className="flex items-center gap-1 text-muted">
+            <p className="text-muted flex items-center gap-1">
               <span>
                 <img src="/assets/img/location.svg" alt="Location Icon" />
               </span>
