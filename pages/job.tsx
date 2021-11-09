@@ -1,9 +1,9 @@
 import { Company, Job } from "@prisma/client";
 import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import JobPage from "../components/Jobs/JobPage";
 import { prisma } from "../lib/prisma";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
 
 type JobProps = {
   job?: (Job & { company: Company }) | null;

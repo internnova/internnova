@@ -1,4 +1,3 @@
-import { Tag } from "@prisma/client";
 import React, { useState } from "react";
 import SmallButton from "../../SmallButton";
 

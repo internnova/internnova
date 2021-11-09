@@ -39,7 +39,7 @@ const Jobs = () => {
       {jobs.length === 0 && (
         <>
           <div
-            className="bg-right-topm flex h-screen bg-no-repeat bg-cover"
+            className="bg-right-topm flex h-screen flex bg-no-repeat bg-cover"
             style={{ backgroundImage: "url('/assets/img/bg.jpg')" }}
           >
             <div className="container px-5 pb-5 m-auto">
@@ -64,7 +64,7 @@ const Jobs = () => {
         <div className="md:px-10 container py-10 mx-auto bg-white">
           <main className="flex items-start justify-center">
             {/* Jobs */}
-            <section className="lg:mr-6 xl:mr-16 space-y-6">
+            <section className="lg:mr-6 xl:mr-16 space-y-6 lg">
               {jobs.length !== 0 &&
                 jobs.map((jobIter) => (
                   <div onClick={() => setJob(jobIter)} key={jobIter.id}>

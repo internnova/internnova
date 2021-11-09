@@ -6,13 +6,7 @@ import TextBox from "./Components/TextBox";
 import { useRouter } from "next/router";
 import { SupabaseUser } from "../../lib/SupabaseUser";
 
-const values = [
-  "Marketing",
-  "Graphic_Design",
-  "Programming",
-  "Communication",
-  "Charity",
-];
+const values = Object.values(Tag);
 
 const CreateIntern = (props: { user: SupabaseUser }) => {
   const router = useRouter();

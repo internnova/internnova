@@ -1,12 +1,14 @@
+import { Auth } from "@supabase/ui";
 import { GetServerSideProps } from "next";
 import { Landing } from "../components/HomePage/Unauthorized";
-import { Auth } from "@supabase/ui";
 import { supabase } from "../lib/initSupabase";
 import onboardingRequired from "../lib/onboardingRequired";
 
 const Index = () => {
   const { user } = Auth.useUser();
-  return <Landing user={user ? user : null} />;
+  if (!user) {
+    return <Landing user={user ? user : null} />;
+  }
 };
 
 export default Index;
