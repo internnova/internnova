@@ -26,13 +26,15 @@ export default Index;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { user } = await supabase.auth.api.getUserByCookie(ctx.req);
+  if (!user) {
+    return { redirect: { destination: "/login", permanent: false } };
+  }
+
   const userDb = await prisma.user.findUnique({
     where: { email: user?.email },
   });
 
-  if (!user) {
-    return { redirect: { destination: "/login", permanent: false } };
-  } else if (userDb?.email !== user.email) {
+  if (userDb?.email !== user.email) {
     return { redirect: { destination: "/onboarding", permanent: false } };
   } else {
     return { props: { user, userDb } };

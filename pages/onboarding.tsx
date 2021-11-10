@@ -32,14 +32,15 @@ const OnboardingPage = ({ user }: { user: SupabaseUser | null }) => {
 };
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { user } = await supabase.auth.api.getUserByCookie(ctx.req);
-  const userDb = await prisma.user.findUnique({
-    where: { email: user?.email },
-  });
 
   if (!user) {
     // If no user, redirect to login.
     return { props: {}, redirect: { destination: "/login", permanent: false } };
   }
+
+  const userDb = await prisma.user.findUnique({
+    where: { email: user?.email },
+  });
 
   if (userDb && userDb.email === user.email) {
     return {
