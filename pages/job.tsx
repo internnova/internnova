@@ -1,12 +1,12 @@
 import { Company, Job } from "@prisma/client";
 import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 import JobPage from "../components/Jobs/JobPage";
 import { prisma } from "../lib/prisma";
-import { useEffect } from "react";
-import { useRouter } from "next/router";
 
 type JobProps = {
-  job?: (Job & { company: Company }) | null;
+  job: Job & { company: Company };
 };
 
 const JobsPage = (props: JobProps) => {
@@ -20,22 +20,14 @@ const JobsPage = (props: JobProps) => {
   }, [props.job, router]);
 
   return (
-    <JobPage
-      responsive
-      job={props.job || null}
-      company={props.job?.company || null}
-    />
+    <JobPage responsive job={props.job} company={props.job?.company || null} />
   );
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
   const id = context.query.id;
   if (!id) {
-    return {
-      props: {
-        job: null,
-      },
-    };
+    return { redirect: { destination: "/404", permanent: false } };
   }
   const job = await prisma.job.findFirst({
     where: { id: parseInt(id as string) },
@@ -47,12 +39,9 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
         job,
       },
     };
+  } else {
+    return { redirect: { destination: "/404", permanent: false } };
   }
-  return {
-    props: {
-      job: null,
-    },
-  };
 };
 
 export default JobsPage;

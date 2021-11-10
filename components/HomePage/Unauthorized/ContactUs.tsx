@@ -7,57 +7,37 @@ export default function ContactUs() {
 
   return (
     <section
-      className="bg-gray-100 pt-12 pb-7 lg:pt-16 xl:pt-28"
+      className="pb-7 lg:pt-16 xl:pt-28 pt-12 bg-gray-100"
       id="ContactUs"
     >
-      <div className="container mx-auto px-5">
-        <div className="grid gap-6 lg:gap-10 xl:grid-cols-3 mb-7 lg:mb-14">
-          <div className="flex flex-col justify-between space-y-10 xl:space-y-0">
-            <div className="space-y-2 lg:space-y-4">
-              <h2 className="text-2xl font-black sm:text-3xl">Contact us</h2>
+      <div className="container px-5 mx-auto">
+        <div className="lg:gap-10 xl:grid-cols-3 mb-7 lg:mb-14 grid gap-6">
+          <div className="xl:space-y-0 flex flex-col justify-between space-y-10">
+            <div className="lg:space-y-4 space-y-2">
+              <h2 className="sm:text-3xl text-2xl font-black">Contact us</h2>
               <a
                 href="#0"
-                className="
-                    block
-                    text-blue-500
-                    transition
-                    duration200
-                    hover:text-blue-600
-                    md:text-lg
-                  "
+                className="duration200 hover:text-blue-600 md:text-lg block text-blue-500 transition"
               >
                 +91 96062 14954
+                <br /> +91 80737 10648
               </a>
               <a
                 href="mailto:InternNova@outlook.com"
-                className="
-                    block
-                    text-blue-500
-                    transition
-                    duration-200
-                    hover:text-blue-600
-                    md:text-lg
-                  "
+                className="hover:text-blue-600 md:text-lg block text-blue-500 transition duration-200"
               >
                 internnova@outlook.com
               </a>
               <a
                 href="#0"
-                className="
-                    block
-                    text-blue-500
-                    transition
-                    duration-200
-                    hover:text-blue-600
-                    md:text-lg
-                  "
+                className="hover:text-blue-600 md:text-lg block text-blue-500 transition duration-200"
               >
                 @InternNovaLabs
               </a>
             </div>
           </div>
           <div className="xl:col-span-2">
-            <form className="w-full bg-white p-5 rounded-xl shadow md:p-8">
+            <form className="rounded-xl md:p-8 w-full p-5 bg-white shadow">
               <input type="hidden" name="remember" value="true" />
               <div className="flex flex-col space-y-5">
                 <input
@@ -121,7 +101,7 @@ export default function ContactUs() {
           </div>
         </div>
 
-        <div className="border-t border-gray-200 mb-7 lg:mb-8"></div>
+        <div className="mb-7 lg:mb-8 border-t border-gray-200"></div>
 
         <footer
           className="

@@ -6,13 +6,7 @@ import TextBox from "./Components/TextBox";
 import { useRouter } from "next/router";
 import { SupabaseUser } from "../../lib/SupabaseUser";
 
-const values = [
-  "Marketing",
-  "Graphic_Design",
-  "Programming",
-  "Communication",
-  "Charity",
-];
+const values = Object.values(Tag);
 
 const CreateIntern = (props: { user: SupabaseUser }) => {
   const router = useRouter();
@@ -59,12 +53,12 @@ const CreateIntern = (props: { user: SupabaseUser }) => {
           setChosenValues={setInterests}
         />
         <div className={`flex flex-col gap-1`}>
-          <h3 className="uppercase font-semibold text-muted1 text-sm">
+          <h3 className="text-muted1 text-sm font-semibold uppercase">
             A bit about yourself
           </h3>
           <textarea
             placeholder="Enter A bio"
-            className="h-60 text-grey-700 rounded-md border p-5 mb-5"
+            className="h-60 text-grey-700 p-5 mb-5 border rounded-md"
             value={bio}
             onChange={(e) => setBio(e.target.value)}
           ></textarea>

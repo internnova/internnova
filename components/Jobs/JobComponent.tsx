@@ -20,12 +20,12 @@ const JobComponent = (props: Props) => {
           />
           <div>
             <Link href={`/job?id=${props.job.id}`}>
-              <a className="text-lg mb-1 font-bold">{props.job.position}</a>
+              <a className="mb-1 text-lg font-bold">{props.job.position}</a>
             </Link>
-            <h3 className="font-bold text-md mb-1 text-blue-500 underline">
+            <h3 className="text-md mb-1 font-bold text-blue-500 underline">
               {props.company?.name}
             </h3>
-            <p className="flex items-center gap-1 text-muted">
+            <p className="text-muted flex items-center gap-1">
               <span>
                 <img src="/assets/img/location.svg" alt="Location Icon" />
               </span>
@@ -35,7 +35,7 @@ const JobComponent = (props: Props) => {
         </div>
         <div className="flex items-center justify-between">
           <div>
-            <span className="font-bold text-sm p-3 rounded inline-block text-blue-700 underline">
+            <span className="inline-block p-3 text-sm font-bold text-blue-700 underline rounded">
               {props.job.industry?.replace("_", " ")}
             </span>
           </div>

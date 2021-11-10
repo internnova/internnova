@@ -21,6 +21,8 @@ module.exports = {
           50: "#f6f9fb",
           100: "#e3f0fd",
           200: "#c5d9fa",
+          300: "#9db5f3",
+          400: "#798eea",
           500: "#6269e3",
           600: "#514dd6",
           700: "#3e39b6",
@@ -30,6 +32,7 @@ module.exports = {
       },
     },
     fontFamily: {
+      sans: ["Plus Jakarta Sans"],
       fancy: ["Satisfy"],
     },
   },

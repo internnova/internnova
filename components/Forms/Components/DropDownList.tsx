@@ -1,4 +1,3 @@
-import { Tag } from "@prisma/client";
 import React, { useState } from "react";
 import SmallButton from "../../SmallButton";
 
@@ -24,7 +23,7 @@ const DropDownList = (props: DropDownListProps) => {
   return (
     <div>
       <svg
-        className="w-2 h-2 absolute top-0 right-0 m-4 pointer-events-none"
+        className="absolute top-0 right-0 w-2 h-2 m-4 pointer-events-none"
         xmlns="http://www.w3.org/2000/svg"
         viewBox="0 0 412 232"
       >
@@ -35,14 +34,14 @@ const DropDownList = (props: DropDownListProps) => {
         />
       </svg>
       <div>
-        <h3 className="uppercase text-grey-700 font-semibold text-sm">
+        <h3 className="text-grey-700 text-sm font-semibold uppercase">
           {props.title}
         </h3>
       </div>
 
-      <div className="flex justify-between mb-4 items-center ">
+      <div className=" flex items-center justify-between mb-4">
         <select
-          className="border border-gray-300 rounded-full text-gray-600 h-10 pl-5 pr-10 bg-white hover:border-gray-400 focus:outline-none appearance-none"
+          className="hover:border-gray-400 focus:outline-none h-10 pl-5 pr-10 text-gray-600 bg-white border border-gray-300 rounded-full appearance-none"
           onChange={(e) => setTempChosenValue(e.target.value)}
         >
           {props.values.map((value) => (
@@ -66,8 +65,8 @@ const DropDownList = (props: DropDownListProps) => {
       </div>
       <div className="pl-4">
         {chosenValues.map((value) => (
-          <div className="flex mb-4 items-center mr-4" key={value}>
-            <p className="w-full text-gray-500 font-semibold">
+          <div className="flex items-center mb-4 mr-4" key={value}>
+            <p className="w-full font-semibold text-gray-500">
               {value.replace("_", " ")}
             </p>
             <button
