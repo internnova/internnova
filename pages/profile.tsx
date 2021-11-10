@@ -2,8 +2,10 @@ import { Card, Typography, Space, Button, IconLogOut } from "@supabase/ui";
 import { SupabaseUser } from "../lib/SupabaseUser";
 import { supabase } from "../lib/initSupabase";
 import { GetServerSideProps } from "next";
+import { useRouter } from "next/router";
 
 export default function Profile({ user }: { user: SupabaseUser }) {
+  const router = useRouter();
   return (
     <div style={{ maxWidth: "420px", margin: "96px auto" }}>
       <Card>
@@ -12,7 +14,7 @@ export default function Profile({ user }: { user: SupabaseUser }) {
             /*eslint-disable*/
             icon={<IconLogOut />}
             type="outline"
-            onClick={() => supabase.auth.signOut()}
+            onClick={() => router.push("/api/signout")}
           >
             Log out
           </Button>

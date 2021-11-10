@@ -85,45 +85,7 @@ const Index = () => {
         )}
         {user && (
           <>
-            <Typography.Text>You{"'"}re signed in</Typography.Text>
-            <Typography.Text strong>Email: {user.email}</Typography.Text>
-
-            <Button
-              icon={<IconLogOut />}
-              type="outline"
-              onClick={() => supabase.auth.signOut()}
-            >
-              Log out
-            </Button>
-            {error && (
-              <Typography.Text className="text-red-500">
-                Failed to fetch user!
-              </Typography.Text>
-            )}
-            {data && !error ? (
-              <>
-                <Typography.Text type="success">
-                  User data retrieved server-side (in API route):
-                </Typography.Text>
-
-                {(() => {
-                  router.push("/");
-                  return <></>;
-                })()}
-
-                <Typography.Text>
-                  <pre>{JSON.stringify(data, null, 2)}</pre>
-                </Typography.Text>
-              </>
-            ) : (
-              <div>Loading...</div>
-            )}
-
-            <Typography.Text>
-              <Link href="/profile">
-                <a>SSR example with getServerSideProps</a>
-              </Link>
-            </Typography.Text>
+            <h1 className="text-3xl text-blue-700">Loading...</h1>
           </>
         )}
       </Space>

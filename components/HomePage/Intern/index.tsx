@@ -15,9 +15,7 @@ const InternHomepage = (props: InternHomepageProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (!props.user) {
-      router.push("/login");
-    } else if (!props.userDb) {
+    if (!props.userDb) {
       router.push("/onboarding");
     }
   });

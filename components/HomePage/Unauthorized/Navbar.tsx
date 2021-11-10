@@ -1,11 +1,13 @@
 import Link from "next/link";
 import SmallButton from "../../SmallButton";
 import { SupabaseUser } from "../../../lib/SupabaseUser";
-import { supabase } from "../../../lib/initSupabase";
+import { useRouter } from "next/router";
 
 type ProfileProps = { user: SupabaseUser | null };
 
 export default function Navbar({ user }: ProfileProps) {
+  const router = useRouter();
+
   if (!user) {
     return (
       <header className="flex items-center justify-between pt-5">
@@ -67,7 +69,7 @@ export default function Navbar({ user }: ProfileProps) {
         <div className="lg:block flex items-center justify-between font-medium">
           <SmallButton
             content="Logout"
-            onClick={() => supabase.auth.signOut()}
+            onClick={() => router.push("/api/signOut")}
           />
         </div>
       </header>

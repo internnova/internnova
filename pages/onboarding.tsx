@@ -6,9 +6,15 @@ import { GetServerSideProps } from "next";
 import CreateIntern from "../components/Forms/CreateIntern";
 import { prisma } from "../lib/prisma";
 import { supabase } from "../lib/initSupabase";
-import { SupabaseUser } from "../lib/SupabaseUser";
+import { Auth } from "@supabase/ui";
+import { useRouter } from "next/router";
+import { User } from "@prisma/client";
+import { useEffect } from "react";
 
-const OnboardingPage = ({ user }: { user: SupabaseUser | null }) => {
+type LandingProps = { userDb: User | null };
+
+const OnboardingPage = (props: LandingProps) => {
+  const router = useRouter();
   // const [doneWithStage1, setDoneWithStage1] = useState<boolean>(false);
   // const [accountType, setAccountType] = useState<Role>("STANDARD");
   // console.log(user);
@@ -17,8 +23,18 @@ const OnboardingPage = ({ user }: { user: SupabaseUser | null }) => {
   //   if (accountType === "EMPLOYER") {
   //     return <CreateCompany user={user} />;
   //   } else if (accountType === "INTERN") {
+  const { user } = Auth.useUser();
+  useEffect(() => {
+    if (!user) {
+      router.push("/login");
+    } else if (props.userDb) {
+      router.push("/");
+    }
+  });
   if (user) return <CreateIntern user={user} />;
-  else return <></>;
+  else {
+    return <></>;
+  }
   //   }
   // }
   //
@@ -45,10 +61,10 @@ export const getServerSideProps: GetServerSideProps = async (ctx) => {
   if (userDb && userDb.email === user.email) {
     return {
       props: {},
-      redirect: { destination: "/dashboard", permanent: false },
+      redirect: { destination: "/", permanent: false },
     };
   }
-  return { props: {} };
+  return { props: { userDb } };
 };
 
 export default OnboardingPage;

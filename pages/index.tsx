@@ -16,9 +16,9 @@ const Index = ({
 }) => {
   const { user: userAuth } = Auth.useUser();
   if (!user) {
-    return <Landing user={userAuth ? userAuth : null} />;
+    return <Landing userDb={userDb} user={userAuth} />;
   } else {
-    return <InternHomepage userDb={userDb} user={user} />;
+    return <InternHomepage userDb={userDb} user={userAuth} />;
   }
 };
 
@@ -26,15 +26,15 @@ export default Index;
 
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { user } = await supabase.auth.api.getUserByCookie(ctx.req);
-  if (!user) {
-    return { redirect: { destination: "/login", permanent: false } };
+  let userDb: User | null = null;
+
+  if (user) {
+    userDb = await prisma.user.findUnique({
+      where: { email: user?.email },
+    });
   }
 
-  const userDb = await prisma.user.findUnique({
-    where: { email: user?.email },
-  });
-
-  if (userDb?.email !== user.email) {
+  if (user && userDb?.email !== user.email) {
     return { redirect: { destination: "/onboarding", permanent: false } };
   } else {
     return { props: { user, userDb } };
