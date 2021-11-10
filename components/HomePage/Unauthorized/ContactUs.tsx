@@ -20,6 +20,7 @@ export default function ContactUs() {
                 className="duration200 hover:text-blue-600 md:text-lg block text-blue-500 transition"
               >
                 +91 96062 14954
+                <br /> +91 80737 10648
               </a>
               <a
                 href="mailto:InternNova@outlook.com"
