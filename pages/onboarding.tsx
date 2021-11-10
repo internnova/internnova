@@ -4,8 +4,8 @@ import { GetServerSideProps } from "next";
 // import AccountOptions from "../components/Forms/AccountOptions";
 // import CreateCompany from "../components/Forms/CreateCompany";
 import CreateIntern from "../components/Forms/CreateIntern";
+import { prisma } from "../lib/prisma";
 import { supabase } from "../lib/initSupabase";
-import onboardingRequired from "../lib/onboardingRequired";
 import { SupabaseUser } from "../lib/SupabaseUser";
 
 const OnboardingPage = ({ user }: { user: SupabaseUser | null }) => {
@@ -32,19 +32,22 @@ const OnboardingPage = ({ user }: { user: SupabaseUser | null }) => {
 };
 export const getServerSideProps: GetServerSideProps = async (ctx) => {
   const { user } = await supabase.auth.api.getUserByCookie(ctx.req);
+  const userDb = await prisma.user.findUnique({
+    where: { email: user?.email },
+  });
 
   if (!user) {
     // If no user, redirect to login.
     return { props: {}, redirect: { destination: "/login", permanent: false } };
   }
 
-  const onboardingRes = onboardingRequired(
-    (user ? user.email : null) as string | null
-  );
-
-  if ((await onboardingRes).redirect?.destination === "/onboarding") {
-    return { props: { user } };
-  } else return onboardingRes;
+  if (userDb && userDb.email === user.email) {
+    return {
+      props: {},
+      redirect: { destination: "/dashboard", permanent: false },
+    };
+  }
+  return { props: {} };
 };
 
 export default OnboardingPage;

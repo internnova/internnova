@@ -2,10 +2,25 @@ import Navbar from "./Navbar";
 // import Search from "./Search";
 // import { useState } from "react";
 import JobsList from "../../Jobs/JobsList";
+import { SupabaseUser } from "../../../lib/SupabaseUser";
+import { User } from "@prisma/client";
+import { useRouter } from "next/router";
+import { useEffect } from "react";
 
-const InternHomepage = () => {
-  //   const [searchResult, setSearchResult] = useState<string>("");
-  //   const [clickedSearch, setClickedSearch] = useState<boolean>(false);
+type InternHomepageProps = { user: SupabaseUser | null; userDb: User | null };
+
+const InternHomepage = (props: InternHomepageProps) => {
+  //const [searchResult, setSearchResult] = useState<string>("");
+  //const [clickedSearch, setClickedSearch] = useState<boolean>(false);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!props.user) {
+      router.push("/login");
+    } else if (!props.userDb) {
+      router.push("/onboarding");
+    }
+  });
 
   return (
     <div>
