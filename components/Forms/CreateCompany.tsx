@@ -52,6 +52,9 @@ const CreateCompany = (props: CreateCompanyProps) => {
           }
         }}
       >
+        <div>
+          <h3 className="text-red-500">{error}</h3>
+        </div>
         <div className="mt-5">
           <TextBox
             title="Company Name"
@@ -61,9 +64,6 @@ const CreateCompany = (props: CreateCompanyProps) => {
           />
         </div>
         <div className={`flex flex-col gap-1`}>
-          <div>
-            <h3 className="text-red-500">{error}</h3>
-          </div>
           <h3 className="text-sm font-semibold uppercase">Description</h3>
           <h3 className="text-sm">
             Enter a short description about your company

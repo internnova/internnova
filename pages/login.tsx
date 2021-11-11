@@ -85,6 +85,10 @@ const Index = () => {
         )}
         {user && (
           <>
+            {(() => {
+              router.push("/");
+              return <></>;
+            })()}
             <h1 className="text-3xl text-blue-700">Loading...</h1>
           </>
         )}

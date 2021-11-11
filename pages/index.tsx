@@ -15,7 +15,7 @@ const Index = ({
   userDb: User | null;
 }) => {
   const { user: userAuth } = Auth.useUser();
-  if (!user) {
+  if (!userAuth) {
     return <Landing userDb={userDb} user={userAuth} />;
   } else {
     return <InternHomepage userDb={userDb} user={userAuth} />;

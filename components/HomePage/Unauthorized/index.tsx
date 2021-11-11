@@ -14,8 +14,10 @@ type LandingProps = { user: SupabaseUser | null; userDb: User | null };
 export const Landing = (props: LandingProps) => {
   const router = useRouter();
   useEffect(() => {
-    if (props.user && !props.userDb) {
-      router.push("/onboarding");
+    if (props.user) {
+      if (!props.userDb) {
+        router.push("/onboarding");
+      }
     }
   });
   return (
