@@ -36,16 +36,26 @@ const CreateIntern = (props: { user: SupabaseUser }) => {
               headers: {
                 "Content-Type": "application/json",
               },
-            })
-              .then((res) => res.text())
-              .then(() => router.push("/"));
+            }).then(() => {
+              setError("");
+              router.push("/");
+            });
           } catch (e: any) {
             setError(e?.message);
           }
         }}
       >
         <div>
-          <h3 className="text-red-500">{error}</h3>
+          <h3 className="text-red-500">
+            {(() => {
+              if (error !== "") {
+                setError("");
+                return "Please fill out all fields correctly and choose at least one interest";
+              } else {
+                return "";
+              }
+            })()}
+          </h3>
         </div>
         <div className="mt-5">
           <TextBox
@@ -53,6 +63,8 @@ const CreateIntern = (props: { user: SupabaseUser }) => {
             placeholder="Full Name"
             value={userFullName}
             setValue={setUserFullName}
+            minLength={10}
+            maxLength={100}
           />
         </div>
         <DropDownList
@@ -69,6 +81,8 @@ const CreateIntern = (props: { user: SupabaseUser }) => {
             className="h-60 text-grey-700 p-5 mb-5 border rounded-md"
             value={bio}
             onChange={(e) => setBio(e.target.value)}
+            minLength={100}
+            maxLength={1000}
           ></textarea>
         </div>
         <div className="my-5">

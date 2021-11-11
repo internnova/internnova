@@ -43,9 +43,10 @@ const CreateCompany = (props: CreateCompanyProps) => {
               headers: {
                 "Content-Type": "application/json",
               },
-            })
-              .then((res) => res.text())
-              .then(() => router.push("/"));
+            }).then(() => {
+              setError("");
+              router.push("/");
+            });
             /*eslint-disable*/
           } catch (e: any) {
             setError(e?.message);
@@ -53,7 +54,17 @@ const CreateCompany = (props: CreateCompanyProps) => {
         }}
       >
         <div>
-          <h3 className="text-red-500">{error}</h3>
+          <h3 className="text-red-500">
+            {" "}
+            {(() => {
+              if (error !== "") {
+                setError("");
+                return "Please fill out all fields correctly and choose at least one interest";
+              } else {
+                return "";
+              }
+            })()}
+          </h3>
         </div>
         <div className="mt-5">
           <TextBox
@@ -61,6 +72,8 @@ const CreateCompany = (props: CreateCompanyProps) => {
             placeholder="Company Name"
             value={companyName}
             setValue={setCompanyName}
+            minLength={10}
+            maxLength={100}
           />
         </div>
         <div className={`flex flex-col gap-1`}>
@@ -71,6 +84,8 @@ const CreateCompany = (props: CreateCompanyProps) => {
           <textarea
             placeholder="Enter A Description"
             className="h-60 text-grey-700 p-5 mb-5 border rounded-md"
+            minLength={100}
+            maxLength={1000}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
           ></textarea>
@@ -79,12 +94,16 @@ const CreateCompany = (props: CreateCompanyProps) => {
           title="Logo"
           description="A url that points to your company's logo"
           placeholder="Logo"
+          minLength={10}
+          maxLength={1000}
           value={logo}
           setValue={setLogo}
         />
         <TextBox
           title="Website"
           placeholder="Website"
+          minLength={10}
+          maxLength={128}
           value={website}
           setValue={setWebsite}
         />
@@ -92,6 +111,8 @@ const CreateCompany = (props: CreateCompanyProps) => {
           title="CIN Number"
           description="A CIN number is proof of official registration of a company. We only support India Registered Companies at the moment"
           placeholder="CIN"
+          minLength={21}
+          maxLength={21}
           value={CIN}
           setValue={setCIN}
         />

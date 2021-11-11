@@ -11,6 +11,8 @@ type TextBoxProps = {
   height?: string;
   min?: string | number;
   max?: string | number;
+  minLength?: number;
+  maxLength?: number;
 };
 
 const TextBox = ({
@@ -24,6 +26,8 @@ const TextBox = ({
   height = "h-[3rem]",
   min = undefined,
   max = undefined,
+  minLength = undefined,
+  maxLength = undefined,
 }: TextBoxProps) => {
   return (
     <div className="pb-5">
@@ -36,12 +40,15 @@ const TextBox = ({
         )}
         <input
           type={type}
+          required
           className={`${width} ${height} text-grey-700 rounded-md outline-none border p-5 `}
           placeholder={placeholder}
           value={value}
           onChange={(e) => setValue(e.target.value)}
           min={min}
           max={max}
+          minLength={minLength}
+          maxLength={maxLength}
         />
       </div>
     </div>
