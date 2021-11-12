@@ -12,6 +12,8 @@ export default async (
     },
   });
   const userDbData: User | null = await userDb.json();
-  setUserDb(userDbData);
+  if (userDbData && userDbData.email === email) {
+    setUserDb(userDbData);
+  }
   return;
 };
