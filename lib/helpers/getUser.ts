@@ -1,6 +1,6 @@
 import { User } from "@prisma/client";
 
-export default async (
+const getUser = async (
   email: string,
   setUserDb: (value: User | null) => void
 ) => {
@@ -17,3 +17,5 @@ export default async (
   }
   return;
 };
+
+export default getUser;
