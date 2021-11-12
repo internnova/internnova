@@ -1,11 +1,16 @@
+import { Auth } from "@supabase/ui";
 import Link from "next/link";
-import SmallButton from "../../SmallButton";
+import { useRouter } from "next/router";
 import { SupabaseUser } from "../../../lib/SupabaseUser";
+import SmallButton from "../../SmallButton";
 import { supabase } from "../../../lib/initSupabase";
 
 type ProfileProps = { user: SupabaseUser | null };
 
 export default function Navbar({ user }: ProfileProps) {
+  const router = useRouter();
+  const { session } = Auth.useUser();
+
   if (!user) {
     return (
       <header className="flex items-center justify-between pt-5">

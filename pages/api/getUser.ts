@@ -1,15 +1,19 @@
+import { Tag } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
-import { supabase } from "../../lib/initSupabase";
+import { prisma } from "../../lib/prisma";
 
-const getUser = async (req: NextApiRequest, res: NextApiResponse) => {
-  const token = req.headers.token;
+const handler = async (req: NextApiRequest, res: NextApiResponse) => {
+  if (req.method !== "POST") {
+    res.status(400).send({ message: "Only POST requests allowed" });
+    return;
+  } else {
+    const email: string = req.body.email;
 
-  const { data: user, error } = await supabase.auth.api.getUser(
-    token as string
-  );
-
-  if (error) return res.status(401).json({ error: error.message });
-  return res.status(200).json(user);
+    const user = await prisma.user.findFirst({ where: { email } });
+    res
+      .status(200)
+      .send({ message: "successfully created user and intern", user });
+  }
 };
 
-export default getUser;
+export default handler;

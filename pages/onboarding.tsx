@@ -1,14 +1,17 @@
 // import { Role } from "@prisma/client";
-import { GetServerSideProps } from "next";
-// import { useState } from "react";
-// import AccountOptions from "../components/Forms/AccountOptions";
-// import CreateCompany from "../components/Forms/CreateCompany";
+import { useState } from "react";
+// import AccountOptions from "@components/Forms/AccountOptions";
+// import CreateCompany from "@components/Forms/CreateCompany";
 import CreateIntern from "../components/Forms/CreateIntern";
-import { prisma } from "../lib/prisma";
-import { supabase } from "../lib/initSupabase";
-import { SupabaseUser } from "../lib/SupabaseUser";
+import { Auth } from "@supabase/ui";
+import { useRouter } from "next/router";
+import { User } from "@prisma/client";
+import { useEffect } from "react";
+import getUser from "../lib/helpers/getUser";
 
-const OnboardingPage = ({ user }: { user: SupabaseUser | null }) => {
+const OnboardingPage = () => {
+  const router = useRouter();
+  const [userDb, setUserDb] = useState<User | null>(null);
   // const [doneWithStage1, setDoneWithStage1] = useState<boolean>(false);
   // const [accountType, setAccountType] = useState<Role>("STANDARD");
   // console.log(user);
@@ -17,11 +20,24 @@ const OnboardingPage = ({ user }: { user: SupabaseUser | null }) => {
   //   if (accountType === "EMPLOYER") {
   //     return <CreateCompany user={user} />;
   //   } else if (accountType === "INTERN") {
+  const { user } = Auth.useUser();
+  useEffect(() => {
+    if (user && user.email) {
+      getUser(user.email, setUserDb);
+    }
+    if (!user) {
+      router.push("/login");
+    } else if (userDb) {
+      router.push("/");
+    }
+  }, [user]);
   if (user) return <CreateIntern user={user} />;
-  else return <></>;
+  else {
+    return <></>;
+  }
   //   }
   // }
-  //
+
   // return (
   //   <AccountOptions
   //     accountType={accountType}
@@ -29,25 +45,6 @@ const OnboardingPage = ({ user }: { user: SupabaseUser | null }) => {
   //     setDone={setDoneWithStage1}
   //   />
   // );
-};
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { user } = await supabase.auth.api.getUserByCookie(ctx.req);
-  const userDb = await prisma.user.findUnique({
-    where: { email: user?.email },
-  });
-
-  if (!user) {
-    // If no user, redirect to login.
-    return { props: {}, redirect: { destination: "/login", permanent: false } };
-  }
-
-  if (userDb && userDb.email === user.email) {
-    return {
-      props: {},
-      redirect: { destination: "/dashboard", permanent: false },
-    };
-  }
-  return { props: {} };
 };
 
 export default OnboardingPage;

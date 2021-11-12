@@ -12,6 +12,7 @@ const CreateIntern = (props: { user: SupabaseUser }) => {
   const router = useRouter();
   const [userFullName, setUserFullName] = useState<string>("");
   const [bio, setBio] = useState<string>("");
+  const [error, setError] = useState<string>("");
   /*eslint-disable  @typescript-eslint/no-unused-vars*/
   const [interests, setInterests] = useState<string[]>([]);
 
@@ -19,32 +20,51 @@ const CreateIntern = (props: { user: SupabaseUser }) => {
     <FormWrapper title="Sign Up">
       <form
         onSubmit={(e) => {
-          e.preventDefault();
+          try {
+            e.preventDefault();
 
-          const createUserAndIntern = {
-            email: props.user.email,
-            name: userFullName,
-            role: "INTERN",
-            bio,
-            interests: interests,
-          };
-          fetch("/api/db/createUserAndIntern", {
-            method: "POST",
-            body: JSON.stringify(createUserAndIntern),
-            headers: {
-              "Content-Type": "application/json",
-            },
-          })
-            .then((res) => res.text())
-            .then(() => router.push("/"));
+            const createUserAndIntern = {
+              email: props.user.email,
+              name: userFullName,
+              role: "INTERN",
+              bio,
+              interests: interests,
+            };
+            fetch("/api/db/createUserAndIntern", {
+              method: "POST",
+              body: JSON.stringify(createUserAndIntern),
+              headers: {
+                "Content-Type": "application/json",
+              },
+            }).then(() => {
+              setError("");
+              router.push("/");
+            });
+          } catch (e: any) {
+            setError(e?.message);
+          }
         }}
       >
+        <div>
+          <h3 className="text-red-500">
+            {(() => {
+              if (error !== "") {
+                setError("");
+                return "Please fill out all fields correctly and choose at least one interest";
+              } else {
+                return "";
+              }
+            })()}
+          </h3>
+        </div>
         <div className="mt-5">
           <TextBox
             title="Full Name"
             placeholder="Full Name"
             value={userFullName}
             setValue={setUserFullName}
+            minLength={10}
+            maxLength={100}
           />
         </div>
         <DropDownList
@@ -61,6 +81,8 @@ const CreateIntern = (props: { user: SupabaseUser }) => {
             className="h-60 text-grey-700 p-5 mb-5 border rounded-md"
             value={bio}
             onChange={(e) => setBio(e.target.value)}
+            minLength={100}
+            maxLength={1000}
           ></textarea>
         </div>
         <div className="my-5">
