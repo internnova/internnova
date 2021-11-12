@@ -1,20 +1,17 @@
 // import { Role } from "@prisma/client";
-import { GetServerSideProps } from "next";
-// import { useState } from "react";
-// import AccountOptions from "../components/Forms/AccountOptions";
-// import CreateCompany from "../components/Forms/CreateCompany";
+import { useState } from "react";
+// import AccountOptions from "@components/Forms/AccountOptions";
+// import CreateCompany from "@components/Forms/CreateCompany";
 import CreateIntern from "../components/Forms/CreateIntern";
-import { prisma } from "../lib/prisma";
-import { supabase } from "../lib/initSupabase";
 import { Auth } from "@supabase/ui";
 import { useRouter } from "next/router";
 import { User } from "@prisma/client";
 import { useEffect } from "react";
+import getUser from "../lib/helpers/getUser";
 
-type LandingProps = { userDb: User | null };
-
-const OnboardingPage = (props: LandingProps) => {
+const OnboardingPage = () => {
   const router = useRouter();
+  const [userDb, setUserDb] = useState<User | null>(null);
   // const [doneWithStage1, setDoneWithStage1] = useState<boolean>(false);
   // const [accountType, setAccountType] = useState<Role>("STANDARD");
   // console.log(user);
@@ -25,19 +22,22 @@ const OnboardingPage = (props: LandingProps) => {
   //   } else if (accountType === "INTERN") {
   const { user } = Auth.useUser();
   useEffect(() => {
+    if (user && user.email) {
+      getUser(user.email, setUserDb);
+    }
     if (!user) {
       router.push("/login");
-    } else if (props.userDb) {
+    } else if (userDb) {
       router.push("/");
     }
-  });
+  }, [user]);
   if (user) return <CreateIntern user={user} />;
   else {
     return <></>;
   }
   //   }
   // }
-  //
+
   // return (
   //   <AccountOptions
   //     accountType={accountType}
@@ -45,23 +45,6 @@ const OnboardingPage = (props: LandingProps) => {
   //     setDone={setDoneWithStage1}
   //   />
   // );
-};
-export const getServerSideProps: GetServerSideProps = async (ctx) => {
-  const { user } = await supabase.auth.api.getUserByCookie(ctx.req);
-
-  if (!user) return { props: {} };
-
-  const userDb = await prisma.user.findUnique({
-    where: { email: user?.email },
-  });
-
-  if (user && userDb && userDb.email === user.email) {
-    return {
-      props: {},
-      redirect: { destination: "/", permanent: false },
-    };
-  }
-  return { props: { userDb } };
 };
 
 export default OnboardingPage;

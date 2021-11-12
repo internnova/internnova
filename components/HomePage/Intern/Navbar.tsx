@@ -1,8 +1,12 @@
 import { useState } from "react";
+import { supabase } from "../../../lib/initSupabase";
 import { useRouter } from "next/router";
+import { Auth } from "@supabase/ui";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
+  const { user, session } = Auth.useUser();
+  console.log(user, session);
   const router = useRouter();
   return (
     <div>
@@ -53,7 +57,7 @@ const Navbar = () => {
               </a>
               <button
                 className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
-                onClick={() => router.push("/api/signOut")}
+                onClick={() => supabase.auth.signOut()}
               >
                 Logout
               </button>

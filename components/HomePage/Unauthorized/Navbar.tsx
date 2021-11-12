@@ -1,12 +1,15 @@
+import { Auth } from "@supabase/ui";
 import Link from "next/link";
-import SmallButton from "../../SmallButton";
-import { SupabaseUser } from "../../../lib/SupabaseUser";
 import { useRouter } from "next/router";
+import { SupabaseUser } from "../../../lib/SupabaseUser";
+import SmallButton from "../../SmallButton";
+import { supabase } from "../../../lib/initSupabase";
 
 type ProfileProps = { user: SupabaseUser | null };
 
 export default function Navbar({ user }: ProfileProps) {
   const router = useRouter();
+  const { session } = Auth.useUser();
 
   if (!user) {
     return (
@@ -69,7 +72,7 @@ export default function Navbar({ user }: ProfileProps) {
         <div className="lg:block flex items-center justify-between font-medium">
           <SmallButton
             content="Logout"
-            onClick={() => router.push("/api/signOut")}
+            onClick={() => supabase.auth.signOut()}
           />
         </div>
       </header>
