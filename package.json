@@ -8,8 +8,8 @@
     "start": "next start",
     "check-types": "tsc --pretty --noEmit",
     "check-format": "prettier --check .",
-    "check-lint": "eslint . --ext ts --ext tsx --ext js",
-    "format": "prettier --write .",
+    "check-lint": "eslint . --ext ts --ext tsx --ext js --max-warnings 0",
+    "format": "prettier --check .",
     "test-all": "yarn run check-format && yarn run check-lint && yarn run check-types && yarn run build",
     "prepare": "husky install"
   },
