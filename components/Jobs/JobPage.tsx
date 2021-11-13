@@ -60,6 +60,14 @@ const JobPage = (props: Props) => {
         </article>
       </div>
       <article className="mb-6 space-y-4">
+        <a
+          className="font-bold text-blue-500 hover:underline"
+          href={`/job/${props.job.id}`}
+        >
+          Full Page View
+        </a>
+      </article>
+      <article className="mb-6 space-y-4">
         <h3 className="font-bold text-blue-700">Job Overview</h3>
         <p className="text-muted">{props.job?.description}</p>
       </article>

@@ -13,7 +13,6 @@ const CreateIntern = (props: { user: SupabaseUser }) => {
   const [userFullName, setUserFullName] = useState<string>("");
   const [bio, setBio] = useState<string>("");
   const [error, setError] = useState<string>("");
-  /*eslint-disable  @typescript-eslint/no-unused-vars*/
   const [interests, setInterests] = useState<string[]>([]);
 
   return (
@@ -40,6 +39,7 @@ const CreateIntern = (props: { user: SupabaseUser }) => {
               setError("");
               router.push("/");
             });
+            /*eslint-disable*/
           } catch (e: any) {
             setError(e?.message);
           }

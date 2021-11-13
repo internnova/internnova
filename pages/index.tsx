@@ -4,18 +4,25 @@ import InternHomepage from "../components/HomePage/Intern";
 import { User } from "@prisma/client";
 import getUser from "../lib/helpers/getUser";
 import { useEffect, useState } from "react";
+import { useRouter } from "next/router";
 
 const Index = () => {
-  const { user: userAuth } = Auth.useUser();
+  const { user } = Auth.useUser();
   const [userDb, setUserDb] = useState<User | null>(null);
+  const router = useRouter();
 
   useEffect(() => {
-    if (userAuth && userAuth.email) getUser(userAuth.email, setUserDb);
-  }, [userAuth]);
-  if (!userAuth) {
-    return <Landing userDb={userDb} user={userAuth} />;
+    if (user && user.email) {
+      getUser(user.email, setUserDb);
+      if (!userDb) {
+        router.push("/onboarding");
+      }
+    }
+  }, [user, router, userDb]);
+  if (!user) {
+    return <Landing userDb={userDb} user={user} />;
   } else {
-    return <InternHomepage userDb={userDb} user={userAuth} />;
+    return <InternHomepage />;
   }
 };
 

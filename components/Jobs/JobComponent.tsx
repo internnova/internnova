@@ -1,13 +1,12 @@
 import { Job, Company } from "@prisma/client";
-import Link from "next/link";
 
-type Props = {
+type JobComponentProps = {
   job: (Job & { company: Company }) | null;
   company: Company | null;
 };
 
-// TODO: The JobComponent company name should open /jobs/{job.id}
-const JobComponent = (props: Props) => {
+// TODO: The JobComponent company name should open /copmany/{company.id}
+const JobComponent = (props: JobComponentProps) => {
   if (!props.company || !props.job) return <></>;
   return (
     <a className="lg:pointer-events-none block">
@@ -19,9 +18,12 @@ const JobComponent = (props: Props) => {
             alt="Job"
           />
           <div>
-            <Link href={`/job?id=${props.job.id}`}>
-              <a className="mb-1 text-lg font-bold">{props.job.position}</a>
-            </Link>
+            <a
+              className="mb-1 text-lg font-bold hover:underline"
+              href={`/job?id=${props.job.id}`}
+            >
+              {props.job.position}
+            </a>
             <h3 className="text-md mb-1 font-bold text-blue-500 underline">
               {props.company?.name}
             </h3>

@@ -12,7 +12,7 @@ const getUser = async (
     },
   });
   const userDbData: User | null = await userDb.json();
-  if (userDbData && userDbData.email === email) {
+  if (userDbData) {
     setUserDb(userDbData);
   }
   return;

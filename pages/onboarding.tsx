@@ -12,6 +12,7 @@ import getUser from "../lib/helpers/getUser";
 const OnboardingPage = () => {
   const router = useRouter();
   const [userDb, setUserDb] = useState<User | null>(null);
+  const { user } = Auth.useUser();
   // const [doneWithStage1, setDoneWithStage1] = useState<boolean>(false);
   // const [accountType, setAccountType] = useState<Role>("STANDARD");
   // console.log(user);
@@ -20,7 +21,6 @@ const OnboardingPage = () => {
   //   if (accountType === "EMPLOYER") {
   //     return <CreateCompany user={user} />;
   //   } else if (accountType === "INTERN") {
-  const { user } = Auth.useUser();
   useEffect(() => {
     if (user && user.email) {
       getUser(user.email, setUserDb);
@@ -30,7 +30,7 @@ const OnboardingPage = () => {
     } else if (userDb) {
       router.push("/");
     }
-  }, [user]);
+  }, [user, router, userDb]);
   if (user) return <CreateIntern user={user} />;
   else {
     return <></>;

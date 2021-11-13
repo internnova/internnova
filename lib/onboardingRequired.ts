@@ -15,7 +15,7 @@ const onboardingRequired = async (
     };
   }
 
-  const user = await prisma.user.findUnique({ where: { email } });
+  const user = await prisma.user.findFirst({ where: { email } });
 
   if (!user || user?.role === "STANDARD" || !(user.email === email)) {
     return {

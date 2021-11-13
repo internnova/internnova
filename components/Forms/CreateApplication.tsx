@@ -1,11 +1,13 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { SupabaseUser } from "../../lib/SupabaseUser";
+import { Job } from "@prisma/client";
 import FormWrapper from "./Components/FormWrapper";
 import TextBox from "./Components/TextBox";
 
 type CreateCompanyProps = {
   user: SupabaseUser;
+  job: Job;
 };
 
 const CreateCompany = (props: CreateCompanyProps) => {

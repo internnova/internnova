@@ -1,13 +1,8 @@
 import { useState } from "react";
 import { supabase } from "../../../lib/initSupabase";
-import { useRouter } from "next/router";
-import { Auth } from "@supabase/ui";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
-  const { user, session } = Auth.useUser();
-  console.log(user, session);
-  const router = useRouter();
   return (
     <div>
       <nav className="bg-white shadow">

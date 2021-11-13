@@ -32,10 +32,10 @@ enum Role {
 // --------------------------------------
 
 model User {
-  id       Int     @id @default(autoincrement())
-  email    String  @unique
-  role     Role
-  name     String?
+  id    Int     @id @default(autoincrement())
+  email String  @unique
+  role  Role
+  name  String?
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -53,7 +53,7 @@ model Company {
 }
 
 model Intern {
-  id          Int     @id @default(autoincrement())
+  id              Int              @id @default(autoincrement())
   userId          Int              @unique
   bio             String // This is information about the intern
   interests       Tag[]
@@ -65,6 +65,7 @@ model Intern {
 model JobApplication {
   id          Int    @id @default(autoincrement())
   description String
+  metadata    Json
 
   internId Int
   intern   Intern @relation(fields: [internId], references: [id])
@@ -85,7 +86,7 @@ model Job {
   postedAt       DateTime  @default(now())
   location       String    @default("Remote")
   salary         String?
-  industry    Tag?
+  industry       Tag?
   // TODO: update JobComponent and JobPage to display industry instead of Tag
 
   applications JobApplication[]
