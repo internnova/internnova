@@ -1,11 +1,25 @@
-import Navbar from "./Navbar";
-// import Search from "./Search";
-// import { useState } from "react";
+import { User } from "@prisma/client";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import getUser from "../../../lib/helpers/getUser";
+import { SupabaseUser } from "../../../lib/SupabaseUser";
 import JobsList from "../../Jobs/JobsList";
+import Navbar from "./Navbar";
 
-const InternHomepage = () => {
-  //const [searchResult, setSearchResult] = useState<string>("");
-  //const [clickedSearch, setClickedSearch] = useState<boolean>(false);
+type InternHomepageProps = { user: SupabaseUser };
+
+const InternHomepage = (props: InternHomepageProps) => {
+  const [userDb, setUserDb] = useState<User | null>(null);
+  const router = useRouter();
+
+  useEffect(() => {
+    if (props.user && props.user.email) {
+      getUser(props.user.email, setUserDb);
+      if (userDb?.email !== props.user.email) {
+        router.push("/onboarding");
+      }
+    }
+  }, [props.user, router, userDb]);
 
   return (
     <div>
@@ -13,11 +27,6 @@ const InternHomepage = () => {
       <div className="h-screen bg-gray-50">
         <div className="mx-auto py-10">
           <h1 className="text-4xl pb-2  m-auto text-center">Search For Jobs</h1>
-          {/* <Search */}
-          {/*   result={searchResult} */}
-          {/*   setResult={setSearchResult} */}
-          {/*   setClickedSearch={setClickedSearch} */}
-          {/* /> */}
         </div>
         <div>
           <JobsList />

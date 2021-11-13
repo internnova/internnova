@@ -1,10 +1,10 @@
-import { Auth } from "@supabase/ui";
-import { Landing } from "../components/HomePage/Unauthorized";
-import InternHomepage from "../components/HomePage/Intern";
 import { User } from "@prisma/client";
-import getUser from "../lib/helpers/getUser";
-import { useEffect, useState } from "react";
+import { Auth } from "@supabase/ui";
 import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import InternHomepage from "../components/HomePage/Intern";
+import { Landing } from "../components/HomePage/Unauthorized";
+import getUser from "../lib/helpers/getUser";
 
 const Index = () => {
   const { user } = Auth.useUser();
@@ -14,15 +14,12 @@ const Index = () => {
   useEffect(() => {
     if (user && user.email) {
       getUser(user.email, setUserDb);
-      if (!userDb) {
-        router.push("/onboarding");
-      }
     }
   }, [user, router, userDb]);
   if (!user) {
     return <Landing userDb={userDb} user={user} />;
   } else {
-    return <InternHomepage />;
+    return <InternHomepage user={user} />;
   }
 };
 

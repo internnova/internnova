@@ -9,6 +9,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     const email: string = req.body.email;
 
     const user = await prisma.user.findFirst({ where: { email } });
+    console.log(user);
     res
       .status(200)
       .send({ message: "successfully created user and intern", user });
