@@ -15,12 +15,12 @@ type JobProps = {
 
 const JobsPage = (props: JobProps) => {
   const router = useRouter();
-  const [userDb, setUserDb] = useState<User | null>(null);
+  const [userDb, setUserDb] = useState<User | null | undefined>(null);
   const { user } = Auth.useUser();
 
   useEffect(() => {
     if (user && user.email) {
-      getUser(user.email, setUserDb);
+      setUserDb(getUser(user.email) || null);
     }
     if (!user) {
       router.push("/login");

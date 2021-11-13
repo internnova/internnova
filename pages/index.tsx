@@ -8,19 +8,22 @@ import getUser from "../lib/helpers/getUser";
 
 const Index = () => {
   const { user } = Auth.useUser();
-  const [userDb, setUserDb] = useState<User | null>(null);
+  const [userDb, setUserDb] = useState<User | null | undefined>(null);
   const router = useRouter();
 
   useEffect(() => {
-    if (user && user.email) {
-      getUser(user.email, setUserDb);
+    if (user && user.email && !userDb) {
+      setUserDb(getUser(user.email) || null);
     }
   }, [user, router, userDb]);
-  if (!user) {
+  if (!user && userDb !== undefined) {
     return <Landing userDb={userDb} user={user} />;
   } else {
-    return <InternHomepage user={user} />;
+    if (user) {
+      return <InternHomepage user={user} />;
+    }
   }
+  return <></>;
 };
 
 export default Index;

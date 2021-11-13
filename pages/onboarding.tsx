@@ -7,11 +7,12 @@ import getUser from "../lib/helpers/getUser";
 
 const OnboardingPage = () => {
   const router = useRouter();
-  const [userDb, setUserDb] = useState<User | null>(null);
+  const [userDb, setUserDb] = useState<User | null | undefined>(undefined);
   const { user } = Auth.useUser();
   useEffect(() => {
-    if (user && user.email) {
-      getUser(user.email, setUserDb);
+    if (user && user.email && userDb !== undefined) {
+      console.log("hi", getUser(user.email) || null);
+      setUserDb(getUser(user.email) || null);
       if (userDb) {
         router.push("/");
       }

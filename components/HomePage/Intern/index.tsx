@@ -9,13 +9,13 @@ import Navbar from "./Navbar";
 type InternHomepageProps = { user: SupabaseUser };
 
 const InternHomepage = (props: InternHomepageProps) => {
-  const [userDb, setUserDb] = useState<User | null>(null);
+  const [userDb, setUserDb] = useState<User | null | undefined>(undefined);
   const router = useRouter();
 
   useEffect(() => {
-    if (props.user && props.user.email) {
-      getUser(props.user.email, setUserDb);
-      if (userDb?.email !== props.user.email) {
+    if (props.user && props.user.email && userDb !== undefined) {
+      setUserDb(getUser(props.user.email) || null);
+      if (userDb && userDb.email !== props.user.email) {
         router.push("/onboarding");
       }
     }
