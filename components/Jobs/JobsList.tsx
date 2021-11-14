@@ -6,7 +6,11 @@ import JobPage from "./JobPage";
 import SmallButton from "../SmallButton";
 import Link from "next/link";
 
-const JobsList = ({ queryApi }: { queryApi?: string }) => {
+type JobsListProps = {
+  queryApi?: string;
+};
+
+const JobsList = ({ queryApi }: JobsListProps) => {
   const [jobs, setJobs] = useState<(Job & { company: Company })[]>([]);
   const [loading, setLoading] = useState(true);
   const [job, setJob] = useState<(Job & { company: Company }) | null>(jobs[0]);

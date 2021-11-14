@@ -5,8 +5,8 @@ import { supabase } from "../../../lib/initSupabase";
 
 type ProfileProps = { user: SupabaseUser | null };
 
-export default function Navbar({ user }: ProfileProps) {
-  if (!user) {
+export default function Navbar(props: ProfileProps) {
+  if (!props.user) {
     return (
       <header className="flex items-center justify-between pt-5">
         <div className="flex items-center justify-between space-x-8 font-medium">

@@ -1,10 +1,10 @@
 import { User } from "@prisma/client";
 import { prisma } from "./prisma";
 
-interface OnboardingRequiredReturn {
+type OnboardingRequiredReturn = {
   props: { error?: string; user?: User | null };
   redirect?: { permanent: boolean; destination: string };
-}
+};
 
 const onboardingRequired = async (
   email: string | null

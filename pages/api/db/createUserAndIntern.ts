@@ -2,13 +2,13 @@ import { Tag } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../lib/prisma";
 
-interface CreateUserAndIntern {
+type CreateUserAndIntern = {
   email: string;
   name: string;
   role: "INTERN";
   bio: string;
   interests: Tag[];
-}
+};
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "POST") {

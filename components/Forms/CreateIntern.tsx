@@ -8,7 +8,11 @@ import { SupabaseUser } from "../../lib/SupabaseUser";
 
 const values = Object.values(Tag);
 
-const CreateIntern = (props: { user: SupabaseUser }) => {
+type CreateInternProps = {
+  user: SupabaseUser;
+};
+
+const CreateIntern = (props: CreateInternProps) => {
   const router = useRouter();
   const [userFullName, setUserFullName] = useState<string>("");
   const [bio, setBio] = useState<string>("");

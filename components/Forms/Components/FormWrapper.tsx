@@ -1,6 +1,11 @@
 import React from "react";
 
-const FormWrapper = (props: { children: React.ReactNode; title: string }) => {
+type FormWrapperProps = {
+  children: React.ReactNode;
+  title: string;
+};
+
+const FormWrapper = (props: FormWrapperProps) => {
   return (
     <div className="flex items-center w-full mt-20 overflow-hidden">
       <div className="mx-auto text-left w-[90%] md:w-[60%] xl:w-[32rem]">

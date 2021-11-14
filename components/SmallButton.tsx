@@ -6,15 +6,15 @@ type SmallButtonProps = {
   buttonType?: "button" | "submit" | "reset";
 };
 
-const SmallButton = ({ content, onClick, buttonType }: SmallButtonProps) => {
+const SmallButton = (props: SmallButtonProps) => {
   return (
     <>
       <button
         className="button"
-        onClick={(e) => onClick && onClick(e)}
-        type={buttonType}
+        onClick={(e) => props.onClick && props.onClick(e)}
+        type={props.buttonType}
       >
-        {content}
+        {props.content}
       </button>
     </>
   );

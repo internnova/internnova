@@ -3,13 +3,13 @@ import SmallButton from "../SmallButton";
 import Link from "next/link";
 import moment from "moment";
 
-type Props = {
+type JobPageProps = {
   job: (Job & { company: Company }) | null;
   company: Company | null;
   responsive?: boolean;
 };
 
-const JobPage = (props: Props) => {
+const JobPage = (props: JobPageProps) => {
   if (!props.company || !props.job) return <></>;
   const postedAt = new Date(props.job.postedAt);
   return (

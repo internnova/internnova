@@ -9,7 +9,7 @@ const HowItWorks = () => {
             <h2 className="sm:text-3xl text-2xl font-black text-white">
               How it works
             </h2>
-            <p className="sm:w-1/2 xl:w-80 md:text-lg w-full text-gray-600 text-blue-100">
+            <p className="sm:w-1/2 xl:w-80 md:text-lg w-full text-blue-100">
               A quick overview of how you can use InternNova and what actually
               happens behind the scenes.
             </p>

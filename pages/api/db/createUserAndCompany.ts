@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../lib/prisma";
 
-interface CreatedUserAndCompany {
+type CreatedUserAndCompany = {
   email: string;
   name: string;
   role: "EMPLOYER";
@@ -9,7 +9,7 @@ interface CreatedUserAndCompany {
   description: string;
   website: string;
   CIN: string;
-}
+};
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "POST") {
