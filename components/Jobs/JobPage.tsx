@@ -59,7 +59,7 @@ const JobPage = (props: JobPageProps) => {
           </p>
         </article>
       </div>
-      {props.responsive && (
+      {!props.responsive && (
         <article className="mb-6 space-y-4">
           <a
             className="font-bold text-blue-500 hover:underline"
