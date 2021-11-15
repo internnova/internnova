@@ -20,7 +20,7 @@ const JobComponent = (props: JobComponentProps) => {
           <div>
             <a
               className="mb-1 text-lg font-bold hover:underline"
-              href={`/job?id=${props.job.id}`}
+              href={`/job/${props.job.id}`}
             >
               {props.job.position}
             </a>

@@ -2,8 +2,8 @@ import { Company, Job } from "@prisma/client";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import JobPage from "../components/Jobs/JobPage";
-import { prisma } from "../lib/prisma";
+import JobPage from "../../components/Jobs/JobPage";
+import { prisma } from "../../lib/prisma";
 
 type JobProps = {
   job: Job & { company: Company };
@@ -25,7 +25,7 @@ const JobsPage = (props: JobProps) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const id = context.query.id;
+  const id = context.query.jobId;
   if (!id) {
     return { redirect: { destination: "/404", permanent: false } };
   }

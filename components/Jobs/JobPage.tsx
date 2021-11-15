@@ -26,7 +26,7 @@ const JobPage = (props: JobPageProps) => {
             alt="Job"
           />
           <div>
-            <Link href={`/job?id=${props.job.id}`}>
+            <Link href={`/job/${props.job.id}`}>
               <a className="mb-1 text-3xl font-bold">{props.job.position}</a>
             </Link>
 
