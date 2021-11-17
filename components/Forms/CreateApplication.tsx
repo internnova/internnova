@@ -3,24 +3,22 @@ import { useState } from "react";
 import { SupabaseUser } from "../../lib/SupabaseUser";
 import { Job } from "@prisma/client";
 import FormWrapper from "./Components/FormWrapper";
-import TextBox from "./Components/TextBox";
+import { Company } from "@prisma/client";
 
 type CreateCompanyProps = {
   user: SupabaseUser;
-  job: Job;
+  job: Job & { company: Company };
 };
 
-const CreateCompany = (props: CreateCompanyProps) => {
-  const [companyName, setCompanyName] = useState<string>("");
+const CreateApplication = (props: CreateCompanyProps) => {
   const [description, setDescription] = useState<string>("");
-  const [logo, setLogo] = useState<string>("");
-  const [website, setWebsite] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [CIN, setCIN] = useState<string>("");
   const router = useRouter();
 
   return (
-    <FormWrapper title="Create a Company">
+    <FormWrapper
+      title={`Apply to ${props.job.position} at ${props.job.company.name}`}
+    >
       <form
         onSubmit={(e) => {
           try {
@@ -28,13 +26,9 @@ const CreateCompany = (props: CreateCompanyProps) => {
             console.log(props.user, "user");
 
             const createdUserAndCompany = {
-              email: props.user?.email,
-              name: companyName,
-              role: "EMPLOYER",
-              logo: logo,
-              description: description,
-              website: website,
-              CIN: CIN,
+              description,
+              user: props.user,
+              job: props.job,
             };
 
             fetch("/api/db/createUserAndCompany", {
@@ -66,56 +60,20 @@ const CreateCompany = (props: CreateCompanyProps) => {
             })()}
           </h3>
         </div>
-        <div className="mt-5">
-          <TextBox
-            title="Company Name"
-            placeholder="Company Name"
-            value={companyName}
-            setValue={setCompanyName}
-            minLength={10}
-            maxLength={100}
-          />
-        </div>
         <div className={`flex flex-col gap-1`}>
           <h3 className="text-sm font-semibold uppercase">Description</h3>
           <h3 className="text-sm">
-            Enter a short description about your company
+            Why should you be hired by this company? What makes you unique?
           </h3>
           <textarea
             placeholder="Enter A Description"
-            className="h-60 text-grey-700 p-5 mb-5 border rounded-md"
+            className="h-60 text-gray-700 p-5 mb-5 border rounded-md"
             minLength={100}
             maxLength={1000}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
+          />
         </div>
-        <TextBox
-          title="Logo"
-          description="A url that points to your company's logo"
-          placeholder="Logo"
-          minLength={10}
-          maxLength={1000}
-          value={logo}
-          setValue={setLogo}
-        />
-        <TextBox
-          title="Website"
-          placeholder="Website"
-          minLength={10}
-          maxLength={128}
-          value={website}
-          setValue={setWebsite}
-        />
-        <TextBox
-          title="CIN Number"
-          description="A CIN number is proof of official registration of a company. We only support India Registered Companies at the moment"
-          placeholder="CIN"
-          minLength={21}
-          maxLength={21}
-          value={CIN}
-          setValue={setCIN}
-        />
         <div className="my-5">
           <button type="submit" className="button w-full">
             Create A Company
@@ -126,4 +84,4 @@ const CreateCompany = (props: CreateCompanyProps) => {
   );
 };
 
-export default CreateCompany;
+export default CreateApplication;

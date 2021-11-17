@@ -29,6 +29,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
   if (!id) {
     return { redirect: { destination: "/404", permanent: false } };
   }
+
   const job = await prisma.job.findFirst({
     where: { id: parseInt(id as string) },
     include: { company: true },

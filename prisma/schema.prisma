@@ -29,6 +29,12 @@ enum Role {
   STANDARD
 }
 
+enum Status {
+  APPLIED
+  REJECTED
+  HIRED
+}
+
 // --------------------------------------
 
 model User {
@@ -65,7 +71,7 @@ model Intern {
 model JobApplication {
   id          Int    @id @default(autoincrement())
   description String
-  metadata    Json
+  status    Status
 
   internId Int
   intern   Intern @relation(fields: [internId], references: [id])
@@ -87,7 +93,6 @@ model Job {
   location       String    @default("Remote")
   salary         String?
   industry       Tag?
-  // TODO: update JobComponent and JobPage to display industry instead of Tag
 
   applications JobApplication[]
 

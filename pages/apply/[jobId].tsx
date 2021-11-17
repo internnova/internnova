@@ -3,10 +3,11 @@ import { useState } from "react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import JobPage from "../../components/Jobs/JobPage";
+import CreateApplication from "../../components/Forms/CreateApplication";
 import { prisma } from "../../lib/prisma";
 import { Auth } from "@supabase/ui";
 import getUser from "../../lib/helpers/getUser";
+import { SupabaseUser } from "../../lib/SupabaseUser";
 
 type JobProps = {
   job: Job & { company: Company };
@@ -37,16 +38,15 @@ const JobsPage = (props: JobProps) => {
     }
   }, [props.job, router]);
 
-  return (
-    <JobPage responsive job={props.job} company={props.job?.company || null} />
-  );
+  return <CreateApplication user={user as SupabaseUser} job={props.job} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  const id = context.query.id;
+  const id = context.query.jobId;
   if (!id) {
     return { redirect: { destination: "/404", permanent: false } };
   }
+
   const job = await prisma.job.findFirst({
     where: { id: parseInt(id as string) },
     include: { company: true },

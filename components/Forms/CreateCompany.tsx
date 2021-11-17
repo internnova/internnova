@@ -86,7 +86,7 @@ const CreateCompany = (props: CreateCompanyProps) => {
             maxLength={1000}
             value={description}
             onChange={(e) => setDescription(e.target.value)}
-          ></textarea>
+          />
         </div>
         <TextBox
           title="Logo"

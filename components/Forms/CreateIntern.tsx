@@ -87,7 +87,7 @@ const CreateIntern = (props: CreateInternProps) => {
             onChange={(e) => setBio(e.target.value)}
             minLength={100}
             maxLength={1000}
-          ></textarea>
+          />
         </div>
         <div className="my-5">
           <button type="submit" className="button w-full">

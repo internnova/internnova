@@ -9,8 +9,8 @@ type TextBoxProps = {
   type?: string;
   width?: string;
   height?: string;
-  min?: string | number;
-  max?: string | number;
+  minValue?: string | number;
+  maxValue?: string | number;
   minLength?: number;
   maxLength?: number;
 };
@@ -32,8 +32,8 @@ const TextBox = (props: TextBoxProps) => {
           placeholder={props.placeholder}
           value={props.value}
           onChange={(e) => props.setValue(e.target.value)}
-          min={props.min}
-          max={props.max}
+          min={props.minValue}
+          max={props.maxValue}
           minLength={props.minLength}
           maxLength={props.maxLength}
         />

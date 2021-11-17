@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../lib/prisma";
 
-type CreatedUserAndCompany = {
+type CreateUserAndCompany = {
   email: string;
   name: string;
   role: "EMPLOYER";
@@ -16,7 +16,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(400).send({ message: "Only POST requests allowed" });
     return;
   } else {
-    const body: CreatedUserAndCompany = req.body;
+    const body: CreateUserAndCompany = req.body;
     const { email, role, name } = body;
     const user = await prisma.user.create({ data: { email, role, name } });
     const company = await prisma.company.create({
