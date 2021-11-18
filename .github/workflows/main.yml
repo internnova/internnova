@@ -21,6 +21,3 @@ jobs:
 
       - name: Lint ✅
         run: yarn run check-lint
-
-      - name: Build 🏗️
-        run: yarn run build
