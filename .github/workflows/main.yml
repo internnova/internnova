@@ -20,7 +20,7 @@ jobs:
         run: yarn install --frozen-lockfile
 
       - name: Lint ✅
-        run: yarn run lint --fix
+        run: yarn run check-lint
 
       - name: Build 🏗️
         run: yarn run build-ci
