@@ -1,18 +1,17 @@
 import { User } from "@prisma/client";
 
-const getUser = (email: string) => {
-  let userDb: User | null = null;
-  fetch(`/api/getUser`, {
+const getUser = async (email: string) => {
+  const res = await fetch(`/api/getUser`, {
     method: "POST",
     body: JSON.stringify({ email }),
     headers: {
       "Content-Type": "application/json",
     },
-  })
-    .then((res) => res.json())
-    .then((res) => {
-      userDb = res;
-    });
+  });
+  const userDb: User | null = await res.json();
+
+  console.log("email", email);
+  console.log("uuu", userDb);
   return userDb;
 };
 

@@ -24,7 +24,6 @@ const JobsList = ({ queryApi }: JobsListProps) => {
         queryApi ? `/api/db/fetchJobs?${queryApi}` : "/api/db/fetchJobs"
       );
       const data: (Job & { company: Company })[] = (await result.json()).jobs;
-      console.log(data);
       if (data.length !== 0) {
         setJobs(data);
         setJob(data[0] || []);

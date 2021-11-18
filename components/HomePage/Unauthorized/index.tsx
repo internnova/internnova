@@ -1,25 +1,15 @@
 import { SupabaseUser } from "../../../lib/SupabaseUser";
 import Head from "next/head";
-import React, { useEffect } from "react";
+import React from "react";
 import SmallButton from "../../SmallButton";
 import ContactUs from "./ContactUs";
 import FAQs from "./FAQs";
 import HowItWorks from "./HowItWorks";
 import Navbar from "./Navbar";
-import { User } from "@prisma/client";
-import { useRouter } from "next/router";
 
-type LandingProps = { user: SupabaseUser | null; userDb: User | null };
+type LandingProps = { user: SupabaseUser | null };
 
 export const Landing = (props: LandingProps) => {
-  const router = useRouter();
-  useEffect(() => {
-    if (props.user) {
-      if (!props.userDb) {
-        router.push("/onboarding");
-      }
-    }
-  });
   return (
     <div>
       <Head>

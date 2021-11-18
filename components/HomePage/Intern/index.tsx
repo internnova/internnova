@@ -13,11 +13,18 @@ const InternHomepage = (props: InternHomepageProps) => {
   const router = useRouter();
 
   useEffect(() => {
-    if (props.user && props.user.email && userDb !== undefined) {
-      setUserDb(getUser(props.user.email) || null);
-      if (userDb && userDb.email !== props.user.email) {
-        router.push("/onboarding");
-      }
+    if (
+      props.user &&
+      props.user.email !== "" &&
+      props.user.email !== undefined
+    ) {
+      (async () => {
+        const userDbRes = await getUser(props.user.email || "");
+        setUserDb(userDbRes);
+        if (!userDbRes || !userDbRes.email) {
+          router.push("/onboarding");
+        }
+      })();
     }
   }, [props.user, router, userDb]);
 

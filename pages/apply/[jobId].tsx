@@ -20,8 +20,14 @@ const JobsPage = (props: JobProps) => {
   const { user } = Auth.useUser();
 
   useEffect(() => {
-    if (user && user.email) {
-      setUserDb(getUser(user.email) || null);
+    if (user && user.email !== "" && user.email !== undefined) {
+      (async () => {
+        const userDbRes = await getUser(user.email || "");
+        setUserDb(userDbRes);
+        if (!userDbRes || !userDbRes.email) {
+          router.push("/onboarding");
+        }
+      })();
     }
     if (!user) {
       router.push("/login");

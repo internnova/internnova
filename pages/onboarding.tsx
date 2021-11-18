@@ -10,15 +10,19 @@ const OnboardingPage = () => {
   const [userDb, setUserDb] = useState<User | null | undefined>(undefined);
   const { user } = Auth.useUser();
   useEffect(() => {
-    if (user && user.email && userDb !== undefined) {
-      console.log("hi", getUser(user.email) || null);
-      setUserDb(getUser(user.email) || null);
-      if (userDb) {
-        router.push("/");
-      }
+    if (user && user.email !== "" && user.email !== undefined) {
+      (async () => {
+        const userDbRes = await getUser(user.email || "");
+        setUserDb(userDbRes);
+        if (!userDbRes || !userDbRes.email) {
+          router.push("/onboarding");
+        }
+      })();
     }
     if (!user) {
       router.push("/login");
+    } else if (userDb) {
+      router.push("/");
     }
   }, [user, router, userDb]);
   if (user) return <CreateIntern user={user} />;
