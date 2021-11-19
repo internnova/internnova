@@ -13,11 +13,13 @@ type CreateCompanyProps = {
 const CreateApplication = (props: CreateCompanyProps) => {
   const [description, setDescription] = useState<string>("");
   const [error, setError] = useState<string>("");
+  const [textLength, setTextLength] = useState<number>(0);
   const router = useRouter();
 
   return (
     <FormWrapper
-      title={`Apply to ${props.job.position} at ${props.job.company.name}`}
+      title={`Apply to ${props.job.company.name}, for the ${props.job.position} position`}
+      textSm
     >
       <form
         onSubmit={(e) => {
@@ -31,7 +33,7 @@ const CreateApplication = (props: CreateCompanyProps) => {
               job: props.job,
             };
 
-            fetch("/api/db/createUserAndCompany", {
+            fetch("/api/db/createApplication", {
               method: "POST",
               body: JSON.stringify(createdUserAndCompany),
               headers: {
@@ -46,6 +48,7 @@ const CreateApplication = (props: CreateCompanyProps) => {
             setError(e?.message);
           }
         }}
+        className="mt-8"
       >
         <div>
           <h3 className="text-red-500">
@@ -53,7 +56,7 @@ const CreateApplication = (props: CreateCompanyProps) => {
             {(() => {
               if (error !== "") {
                 setError("");
-                return "Please fill out all fields correctly and choose at least one interest";
+                return "Please fill out all fields";
               } else {
                 return "";
               }
@@ -62,21 +65,28 @@ const CreateApplication = (props: CreateCompanyProps) => {
         </div>
         <div className={`flex flex-col gap-1`}>
           <h3 className="text-sm font-semibold uppercase">Description</h3>
-          <h3 className="text-sm">
-            Why should you be hired by this company? What makes you unique?
+          <h3 className="text-sm my-1 mb-4">
+            Why should you be hired by this company? What makes you unique? Do
+            you have the skills and experience to do this job?
+            <br />
+            Use 100-1000 words
           </h3>
+          <span className="uppercase text-xs">Text Length: {textLength}</span>
           <textarea
             placeholder="Enter A Description"
             className="h-60 text-gray-700 p-5 mb-5 border rounded-md"
             minLength={100}
-            maxLength={1000}
+            maxLength={10000}
             value={description}
-            onChange={(e) => setDescription(e.target.value)}
+            onChange={(e) => {
+              setDescription(e.target.value);
+              setTextLength(description.length);
+            }}
           />
         </div>
         <div className="my-5">
           <button type="submit" className="button w-full">
-            Create A Company
+            Apply
           </button>
         </div>
       </form>

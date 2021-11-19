@@ -29,16 +29,11 @@ const JobsPage = (props: JobProps) => {
         }
       })();
     }
-    if (!user) {
-      router.push("/login");
-    } else if (userDb) {
-      router.push("/");
-    }
   }, [user, router, userDb]);
 
   useEffect(() => {
     if (props.job) {
-      window.document.title = `${props.job.position} - InternNova`;
+      window.document.title = `Apply: ${props.job.position} - InternNova`;
     } else {
       router.push("/404");
     }

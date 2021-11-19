@@ -31,7 +31,7 @@ const JobPage = (props: JobPageProps) => {
             </Link>
 
             <h3 className="mb-1 text-xl font-bold text-blue-500 underline">
-              {props.company?.name}
+              Company: {props.company?.name}
             </h3>
             <p className="text-muted flex items-center gap-1">
               <span>
@@ -63,7 +63,7 @@ const JobPage = (props: JobPageProps) => {
         <article className="mb-6 space-y-4">
           <a
             className="font-bold text-blue-500 hover:underline"
-            href={`/job?id=${props.job.id}`}
+            href={`/job/${props.job.id}`}
           >
             Full Page View
           </a>

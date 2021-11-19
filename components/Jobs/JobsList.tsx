@@ -45,7 +45,7 @@ const JobsList = ({ queryApi }: JobsListProps) => {
       {jobs.length === 0 && (
         <>
           <div
-            className="bg-right-topm flex h-screen flex bg-no-repeat bg-cover"
+            className="bg-right-topm flex h-screen bg-no-repeat bg-cover"
             style={{ backgroundImage: "url('/assets/img/bg.jpg')" }}
           >
             <div className="container px-5 pb-5 m-auto">
@@ -74,7 +74,7 @@ const JobsList = ({ queryApi }: JobsListProps) => {
               {jobs.length !== 0 &&
                 jobs.map((jobIter) => (
                   <div onClick={() => setJob(jobIter)} key={jobIter.id}>
-                    <JobComponent job={jobIter} company={jobIter.company} />
+                    <JobComponent job={jobIter} />
                   </div>
                 ))}
             </section>

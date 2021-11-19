@@ -2,18 +2,16 @@ import { Job, Company } from "@prisma/client";
 
 type JobComponentProps = {
   job: (Job & { company: Company }) | null;
-  company: Company | null;
 };
 
-// TODO: The JobComponent company name should open /copmany/{company.id}
 const JobComponent = (props: JobComponentProps) => {
-  if (!props.company || !props.job) return <></>;
+  if (!props.job?.company || !props.job) return <></>;
   return (
     <a className="lg:pointer-events-none block">
       <article className="bg-card-bg p-6 rounded-md shadow-lg">
         <div className="flex gap-4 mb-6">
           <img
-            src={props.company?.logo || ""}
+            src={props.job.company?.logo || ""}
             className="w-16 h-16"
             alt="Job"
           />
@@ -24,9 +22,6 @@ const JobComponent = (props: JobComponentProps) => {
             >
               {props.job.position}
             </a>
-            <h3 className="text-md mb-1 font-bold text-blue-500 underline">
-              {props.company?.name}
-            </h3>
             <p className="text-muted flex items-center gap-1">
               <span>
                 <img src="/assets/img/location.svg" alt="Location Icon" />
