@@ -72,7 +72,7 @@ export default function Navbar(props: ProfileProps) {
           </a>
         </div>
 
-        <div className="lg:block flex items-center justify-between font-medium">
+        <div className="lg:block flex items-center justify-between font-medium pt-4">
           <SmallButton
             content="Logout"
             onClick={() => supabase.auth.signOut()}
