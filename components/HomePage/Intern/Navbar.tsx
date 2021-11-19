@@ -8,7 +8,12 @@ const Navbar = () => {
       <nav className="bg-white shadow">
         <div className="md:flex md:justify-between md:items-center container px-6 py-3 mx-auto">
           <div className="flex items-center justify-between">
-            <div>
+            <div className="flex flex-row items-center">
+              <img
+                src="/assets/img/logo.png"
+                alt="logo"
+                className="w-8 mr-2 mt-1"
+              />
               <a
                 className="md:text-2xl hover:text-gray-700 text-xl font-bold text-gray-800"
                 href="#"
@@ -50,12 +55,12 @@ const Navbar = () => {
               >
                 Applications
               </a>
-              <button
+              <a
                 className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
                 onClick={() => supabase.auth.signOut()}
               >
                 Logout
-              </button>
+              </a>
             </div>
           </div>
         </div>
