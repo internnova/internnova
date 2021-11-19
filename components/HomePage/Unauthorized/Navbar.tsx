@@ -16,35 +16,37 @@ export default function Navbar(props: ProfileProps) {
                 <img
                   src="/assets/img/logo-transparent.png"
                   alt="logo"
-                  className="w-8 mr-2 mt-1"
+                  className="w-12 mr-2 mt-1"
                 />
                 <a
-                  className="md:text-2xl hover:text-gray-700 text-xl font-bold text-gray-800"
+                  className="md:text-2xl hover:text-gray-700 text-xl font-bold text-gray-800 pb-1"
                   href="#"
                 >
                   InternNova
                 </a>
               </div>
-              <a
-                href="#HowItWorks"
-                className="hover:underline px-3 py-2 font-extrabold text-blue-500"
-              >
-                How it Works
-              </a>
+              <div className="pt-4">
+                <a
+                  href="#HowItWorks"
+                  className="hover:underline px-3 py-2 font-extrabold text-blue-500"
+                >
+                  How it Works
+                </a>
 
-              <a
-                href="#FAQs"
-                className="hover:underline px-3 py-2 font-extrabold text-blue-500"
-              >
-                FAQs
-              </a>
+                <a
+                  href="#FAQs"
+                  className="hover:underline px-3 py-2 font-extrabold text-blue-500"
+                >
+                  FAQs
+                </a>
 
-              <a
-                href="#ContactUs"
-                className="hover:underline px-3 py-2 font-extrabold text-blue-500"
-              >
-                Contact Us
-              </a>
+                <a
+                  href="#ContactUs"
+                  className="hover:underline px-3 py-2 font-extrabold text-blue-500"
+                >
+                  Contact Us
+                </a>
+              </div>
             </div>
           </div>
         </div>
