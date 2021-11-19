@@ -10,7 +10,7 @@ export default function Navbar(props: ProfileProps) {
     return (
       <header className="flex items-center justify-between pt-5">
         <div className="flex items-center justify-between space-x-8 font-medium">
-          <div className="md:block sm:ml-6 hidden">
+          <div className="md:block hidden">
             <div className="flex space-x-4">
               <div className="flex flex-row items-center pb-[5px]">
                 <img
