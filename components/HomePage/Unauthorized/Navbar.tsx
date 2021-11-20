@@ -10,7 +10,7 @@ export default function Navbar(props: ProfileProps) {
     return (
       <header className="flex items-center justify-between pt-5">
         <div className="flex items-center justify-between space-x-8 font-medium">
-          <div className="md:block hidden">
+          <div>
             <div className="flex space-x-4">
               <div className="flex flex-row items-center pb-[5px]">
                 <img
@@ -25,7 +25,7 @@ export default function Navbar(props: ProfileProps) {
                   InternNova
                 </a>
               </div>
-              <div className="pt-4">
+              <div className="md:block hidden pt-3">
                 <a
                   href="#HowItWorks"
                   className="hover:underline px-3 py-2 font-extrabold text-blue-500"

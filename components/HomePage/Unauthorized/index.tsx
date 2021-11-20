@@ -34,7 +34,7 @@ export const Landing = (props: LandingProps) => {
                   </p>
                 </div>
                 <a href="#HowItWorks">
-                  <SmallButton content="See How It works" />
+                  <SmallButton content="See How It Works" />
                 </a>
               </div>
             </div>

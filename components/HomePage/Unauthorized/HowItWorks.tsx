@@ -7,7 +7,7 @@ const HowItWorks = () => {
         <div className="lg:gap-10 xl:grid-cols-3 grid gap-6">
           <div className="lg:space-y-4 space-y-2">
             <h2 className="sm:text-3xl text-2xl font-black text-white">
-              How it works
+              How it Works
             </h2>
             <p className="sm:w-1/2 xl:w-80 md:text-lg w-full text-blue-100">
               A quick overview of how you can use InternNova and what actually

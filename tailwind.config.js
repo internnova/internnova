@@ -32,7 +32,7 @@ module.exports = {
       },
     },
     fontFamily: {
-      sans: ["Plus Jakarta Sans"],
+      sans: ["Manrope"],
       fancy: ["Satisfy"],
     },
   },
