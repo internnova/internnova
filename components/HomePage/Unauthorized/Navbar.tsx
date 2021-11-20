@@ -30,7 +30,7 @@ export default function Navbar(props: ProfileProps) {
                   href="#HowItWorks"
                   className="hover:underline px-3 py-2 font-bold text-blue-500"
                 >
-                  How it Works
+                  How It Works
                 </a>
 
                 <a
