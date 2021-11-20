@@ -25,24 +25,24 @@ export default function Navbar(props: ProfileProps) {
                   InternNova
                 </a>
               </div>
-              <div className="md:block hidden pt-3">
+              <div className="md:block hidden pt-3.5">
                 <a
                   href="#HowItWorks"
-                  className="hover:underline px-3 py-2 font-extrabold text-blue-500"
+                  className="hover:underline px-3 py-2 font-bold text-blue-500"
                 >
                   How it Works
                 </a>
 
                 <a
                   href="#FAQs"
-                  className="hover:underline px-3 py-2 font-extrabold text-blue-500"
+                  className="hover:underline px-3 py-2 font-bold text-blue-500"
                 >
                   FAQs
                 </a>
 
                 <a
                   href="#ContactUs"
-                  className="hover:underline px-3 py-2 font-extrabold text-blue-500"
+                  className="hover:underline px-3 py-2 font-bold text-blue-500"
                 >
                   Contact Us
                 </a>
