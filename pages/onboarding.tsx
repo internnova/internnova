@@ -14,15 +14,13 @@ const OnboardingPage = () => {
       (async () => {
         const userDbRes = await getUser(user.email || "");
         setUserDb(userDbRes);
-        if (userDbRes?.email) {
+        if (userDbRes && userDbRes.email) {
           router.push("/");
         }
       })();
     }
     if (!user) {
       router.push("/login");
-    } else if (userDb) {
-      router.push("/");
     }
   }, [user, router, userDb]);
   if (user) return <CreateIntern user={user} />;
