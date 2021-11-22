@@ -14,8 +14,8 @@ const OnboardingPage = () => {
       (async () => {
         const userDbRes = await getUser(user.email || "");
         setUserDb(userDbRes);
-        if (!userDbRes || !userDbRes.email) {
-          router.push("/onboarding");
+        if (userDbRes?.email) {
+          router.push("/");
         }
       })();
     }
