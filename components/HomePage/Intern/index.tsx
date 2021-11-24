@@ -18,10 +18,12 @@ const InternHomepage = (props: InternHomepageProps) => {
       props.user.email !== "" &&
       props.user.email !== undefined
     ) {
+      // if the user(auth  user) exists, check for the user in db
       (async () => {
         const userDbRes = await getUser(props.user.email || "");
         setUserDb(userDbRes);
         if (!userDbRes || !userDbRes.email) {
+          // if the user is not in db send them to the onboarding page(which will make a new user in db)
           router.push("/onboarding");
         }
       })();

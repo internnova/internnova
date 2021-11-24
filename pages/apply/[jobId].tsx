@@ -21,10 +21,12 @@ const JobsPage = (props: JobProps) => {
 
   useEffect(() => {
     if (user && user.email !== "" && user.email !== undefined) {
+      // if the user(auth user) exists check for user in db
       (async () => {
         const userDbRes = await getUser(user.email || "");
         setUserDb(userDbRes);
         if (!userDbRes || !userDbRes.email) {
+          // if the user is not in db send them to the onboarding page(which will make a new user in db)
           router.push("/onboarding");
         }
       })();
@@ -43,6 +45,7 @@ const JobsPage = (props: JobProps) => {
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
+  // see pages/job/[jobId].tsx for explanation of this function
   const id = context.query.jobId;
   if (!id) {
     return { redirect: { destination: "/404", permanent: false } };

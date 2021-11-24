@@ -1,4 +1,5 @@
 const Loading = () => {
+  // very simple spinner
   return (
     <section className="flex h-screen">
       <img

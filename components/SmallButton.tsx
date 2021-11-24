@@ -7,6 +7,7 @@ type SmallButtonProps = {
 };
 
 const SmallButton = (props: SmallButtonProps) => {
+  // simple small button
   return (
     <>
       <button

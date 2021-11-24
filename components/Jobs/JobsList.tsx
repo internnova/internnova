@@ -20,15 +20,20 @@ const JobsList = ({ queryApi }: JobsListProps) => {
 
   useEffect(() => {
     const fetchData = async () => {
+      // fetch jobs
       const result = await fetch(
         queryApi ? `/api/db/fetchJobs?${queryApi}` : "/api/db/fetchJobs"
       );
+
+      //parse repsonse
       const data: (Job & { company: Company })[] = (await result.json()).jobs;
       if (data.length !== 0) {
+        // if jobs are found, do the following
         setJobs(data);
         setJob(data[0] || []);
         setCompany(job?.company || null);
       }
+      // stop spinner
       setLoading(false);
     };
     fetchData();

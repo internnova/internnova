@@ -1,3 +1,4 @@
+// this code in this folder is dumpster fire, desperate need to refactor
 import { SupabaseUser } from "../../../lib/SupabaseUser";
 import Head from "next/head";
 import React from "react";

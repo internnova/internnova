@@ -11,10 +11,12 @@ const OnboardingPage = () => {
   const { user } = Auth.useUser();
   useEffect(() => {
     if (user && user.email !== "" && user.email !== undefined) {
+      // if the user(auth user) exists check for user in db
       (async () => {
         const userDbRes = await getUser(user.email || "");
         setUserDb(userDbRes);
         if (userDbRes && userDbRes.email) {
+          // if user exists in db redirect to dashboard
           router.push("/");
         }
       })();
