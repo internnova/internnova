@@ -1,5 +1,6 @@
 import { User } from "@prisma/client";
 
+// wrapper for fetching user from db
 const fetchUser = async (email: string) => {
   const res = await fetch(`/api/db/fetchUser`, {
     method: "POST",
