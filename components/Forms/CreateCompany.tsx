@@ -23,7 +23,6 @@ const CreateCompany = (props: CreateCompanyProps) => {
         onSubmit={(e) => {
           try {
             e.preventDefault();
-            console.log(props.user, "user");
 
             const createdUserAndCompany = {
               email: props.user?.email,

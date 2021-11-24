@@ -25,7 +25,6 @@ const CreateApplication = (props: CreateCompanyProps) => {
         onSubmit={(e) => {
           try {
             e.preventDefault();
-            console.log(props.user, "user");
 
             const createdUserAndCompany = {
               description,

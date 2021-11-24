@@ -18,21 +18,28 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   } else {
     const body: CreateUserAndCompany = req.body;
     const { email, role, name } = body;
-    const user = await prisma.user.create({ data: { email, role, name } });
-    const company = await prisma.company.create({
-      data: {
-        userId: user.id,
-        name: name,
-        description: body.description,
-        logo: body.logo,
-        website: body.website,
-        CIN: body.CIN,
-      },
-    });
+    try {
+      const user = await prisma.user.create({ data: { email, role, name } });
+      const company = await prisma.company.create({
+        data: {
+          userId: user.id,
+          name: name,
+          description: body.description,
+          logo: body.logo,
+          website: body.website,
+          CIN: body.CIN,
+        },
+      });
 
-    res
-      .status(200)
-      .send({ message: "successfully created user and company", company });
+      res
+        .status(200)
+        .send({ message: "successfully created user and company", company });
+    } catch (e) {
+      // the only reason the error would be thrown is if the job or company exist
+      res
+        .status(400)
+        .send({ error: "either the user or company already exists" });
+    }
   }
 };
 

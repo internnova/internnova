@@ -12,7 +12,8 @@ const filterJobsByInterest = async (
     !(Object.values(Tag) as string[]).includes(interest as string) ||
     !(interest as Tag)
   ) {
-    res.status(200).json({ error: "Invalid or missing interest" });
+    // if there is no interest or the interest is not a valid tag return an error
+    res.status(400).json({ error: "Invalid or missing interest" });
     return;
   } else {
     const jobs = await prisma.job.findMany({
