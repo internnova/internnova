@@ -6,7 +6,7 @@ import { useEffect } from "react";
 import CreateApplication from "../../components/Forms/CreateApplication";
 import { prisma } from "../../lib/prisma";
 import { Auth } from "@supabase/ui";
-import getUser from "../../lib/helpers/getUser";
+import fetchUser from "../../lib/helpers/fetchUser";
 import { SupabaseUser } from "../../lib/SupabaseUser";
 
 type JobProps = {
@@ -23,7 +23,7 @@ const JobsPage = (props: JobProps) => {
     if (user && user.email !== "" && user.email !== undefined) {
       // if the user(auth user) exists check for user in db
       (async () => {
-        const userDbRes = await getUser(user.email || "");
+        const userDbRes = await fetchUser(user.email || "");
         setUserDb(userDbRes);
         if (!userDbRes || !userDbRes.email) {
           // if the user is not in db send them to the onboarding page(which will make a new user in db)

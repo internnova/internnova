@@ -1,7 +1,7 @@
 import { User } from "@prisma/client";
 
-const getUser = async (email: string) => {
-  const res = await fetch(`/api/db/getUser`, {
+const fetchUser = async (email: string) => {
+  const res = await fetch(`/api/db/fetchUser`, {
     method: "POST",
     body: JSON.stringify({ email }),
     headers: {
@@ -13,4 +13,4 @@ const getUser = async (email: string) => {
   return userDb;
 };
 
-export default getUser;
+export default fetchUser;

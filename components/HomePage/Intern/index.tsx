@@ -1,7 +1,7 @@
 import { User } from "@prisma/client";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import getUser from "../../../lib/helpers/getUser";
+import fetchUser from "../../../lib/helpers/fetchUser";
 import { SupabaseUser } from "../../../lib/SupabaseUser";
 import JobsList from "../../Jobs/JobsList";
 import Navbar from "./Navbar";
@@ -20,7 +20,7 @@ const InternHomepage = (props: InternHomepageProps) => {
     ) {
       // if the user(auth  user) exists, check for the user in db
       (async () => {
-        const userDbRes = await getUser(props.user.email || "");
+        const userDbRes = await fetchUser(props.user.email || "");
         setUserDb(userDbRes);
         if (!userDbRes || !userDbRes.email) {
           // if the user is not in db send them to the onboarding page(which will make a new user in db)
