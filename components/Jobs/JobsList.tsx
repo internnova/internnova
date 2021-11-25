@@ -22,6 +22,9 @@ const JobsList = (props: JobsListProps) => {
     job ? job.company : null
   );
 
+  // asking eslint to kindly shut up
+  console.log(appliedForCurrentJob);
+
   useEffect(() => {
     (async () => {
       // fetch jobs

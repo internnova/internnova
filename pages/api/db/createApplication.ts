@@ -1,11 +1,10 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../lib/prisma";
-import { SupabaseUser } from "../../../lib/SupabaseUser";
 import { Job } from "@prisma/client";
 
 type CreateApplication = {
   description: string;
-  user: SupabaseUser;
+  email: string;
   job: Job;
 };
 
@@ -14,14 +13,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     res.status(400).send({ message: "Only POST requests allowed" });
     return;
   } else {
-    const { description, user, job }: CreateApplication = req.body;
+    const { description, email, job }: CreateApplication = req.body;
 
     // check if user exist
     const userDb = await prisma.user.findFirst({
-      where: { email: user.email },
+      where: { email: email },
     });
 
-    if ((!userDb && user.email) || user.role !== "INTERN") {
+    if (!userDb || !email || userDb?.role !== "INTERN") {
       // return a 404 if user doesn't exist or user is not an intern
       res.status(404).send({ message: "User not found" });
       return;

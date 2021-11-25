@@ -14,10 +14,9 @@
     "prepare": "husky install"
   },
   "dependencies": {
+    "@clerk/nextjs": "^2.2.1",
     "@fontsource/plus-jakarta-sans": "^4.5.0",
     "@prisma/client": "^3.5.0",
-    "@supabase/supabase-js": "^1.27.0",
-    "@supabase/ui": "^0.35.0",
     "axios": "^0.23.0",
     "babel-plugin-superjson-next": "^0.4.2",
     "moment": "^2.29.1",

@@ -1,7 +1,7 @@
 import { SocialIcon } from "react-social-icons";
 
 const Footer = () => {
-  // very simple spinner
+  // very simple footer
   return (
     <div className="bg-gray-200">
       <div

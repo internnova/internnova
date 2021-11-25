@@ -1,12 +1,22 @@
-import { Auth } from "@supabase/ui";
 import { NextSeo } from "next-seo";
 import { AppProps } from "next/app";
-import { supabase } from "../lib/initSupabase";
 import "../styles/globals.css";
 import "@fontsource/plus-jakarta-sans";
-import Footer from "../components/Footer";
+import { useRouter } from "next/router";
+import {
+  ClerkProvider,
+  SignedIn,
+  SignedOut,
+  RedirectToSignIn,
+} from "@clerk/nextjs";
+
+const publicPages: string[] = ["/", "/jobs"];
 
 const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
+  const { pathname } = useRouter();
+
+  const isPublicPage = publicPages.includes(pathname);
+
   return (
     <>
       <NextSeo
@@ -34,12 +44,23 @@ const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
         }}
       />
       <main className="light flex flex-col h-screen">
-        <div className="flex-grow">
-          <Auth.UserContextProvider supabaseClient={supabase}>
-            <Component {...pageProps} />
-          </Auth.UserContextProvider>
-        </div>
-        <Footer />
+        <ClerkProvider>
+          {isPublicPage ? (
+            <>
+              <Component {...pageProps} />
+            </>
+          ) : (
+            <>
+              <SignedIn>
+                <Component {...pageProps} />
+              </SignedIn>
+
+              <SignedOut>
+                <RedirectToSignIn />
+              </SignedOut>
+            </>
+          )}
+        </ClerkProvider>
       </main>
     </>
   );

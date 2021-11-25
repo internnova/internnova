@@ -4,12 +4,11 @@ import DropDownList from "./Components/DropDownList";
 import FormWrapper from "./Components/FormWrapper";
 import TextBox from "./Components/TextBox";
 import { useRouter } from "next/router";
-import { SupabaseUser } from "../../lib/SupabaseUser";
 
 const values = Object.values(Tag);
 
 type CreateInternProps = {
-  user: SupabaseUser;
+  email: string;
 };
 
 const CreateIntern = (props: CreateInternProps) => {
@@ -27,7 +26,7 @@ const CreateIntern = (props: CreateInternProps) => {
             e.preventDefault();
 
             const createUserAndIntern = {
-              email: props.user.email,
+              email: props.email,
               name: userFullName,
               role: "INTERN",
               bio,

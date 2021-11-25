@@ -1,12 +1,11 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { SupabaseUser } from "../../lib/SupabaseUser";
 import { Job } from "@prisma/client";
 import FormWrapper from "./Components/FormWrapper";
 import { Company } from "@prisma/client";
 
 type CreateCompanyProps = {
-  user: SupabaseUser;
+  email: string;
   job: Job & { company: Company };
 };
 
@@ -28,7 +27,7 @@ const CreateApplication = (props: CreateCompanyProps) => {
 
             const createdUserAndCompany = {
               description,
-              user: props.user,
+              email: props.email,
               job: props.job,
             };
 
