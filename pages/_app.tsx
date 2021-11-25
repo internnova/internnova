@@ -4,6 +4,7 @@ import { AppProps } from "next/app";
 import { supabase } from "../lib/initSupabase";
 import "../styles/globals.css";
 import "@fontsource/plus-jakarta-sans";
+import Footer from "../components/Footer";
 
 const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
   return (
@@ -32,10 +33,13 @@ const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
           cardType: "summary_large_image",
         }}
       />
-      <main className="light">
-        <Auth.UserContextProvider supabaseClient={supabase}>
-          <Component {...pageProps} />
-        </Auth.UserContextProvider>
+      <main className="light flex flex-col h-screen">
+        <div className="flex-grow">
+          <Auth.UserContextProvider supabaseClient={supabase}>
+            <Component {...pageProps} />
+          </Auth.UserContextProvider>
+        </div>
+        <Footer />
       </main>
     </>
   );

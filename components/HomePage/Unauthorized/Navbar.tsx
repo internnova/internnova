@@ -16,7 +16,7 @@ export default function Navbar(props: ProfileProps) {
                 <img
                   src="/assets/img/logo-transparent.png"
                   alt="logo"
-                  className="w-12 mr-2 mt-1"
+                  className="w-12 mr-2 mt-0.5"
                 />
                 <a
                   className="md:text-2xl hover:text-gray-700 text-xl font-bold text-gray-800 pb-1"
