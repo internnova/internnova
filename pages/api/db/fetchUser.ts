@@ -11,7 +11,19 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
     const user = await prisma.user.findFirst({ where: { email } });
 
-    res.status(200).send({ ...user });
+    if (user && user.role === "INTERN") {
+      const intern = await prisma.intern.findFirst({
+        where: { userId: user.id },
+      });
+      res.status(200).send({ ...user, internId: intern?.id });
+    } else if (user && user.role === "EMPLOYER") {
+      const company = await prisma.company.findFirst({
+        where: { userId: user.id },
+      });
+      res.status(200).send({ ...user, companyId: company?.id });
+    } else {
+      res.status(200).send({ ...user });
+    }
   }
 };
 

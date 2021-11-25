@@ -1,7 +1,6 @@
-import { User } from "@prisma/client";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import fetchUser from "../../../lib/helpers/fetchUser";
+import fetchUser, { UserOnSteriods } from "../../../lib/helpers/fetchUser";
 import { SupabaseUser } from "../../../lib/SupabaseUser";
 import JobsList from "../../Jobs/JobsList";
 import Navbar from "./Navbar";
@@ -9,7 +8,7 @@ import Navbar from "./Navbar";
 type InternHomepageProps = { user: SupabaseUser };
 
 const InternHomepage = (props: InternHomepageProps) => {
-  const [userDb, setUserDb] = useState<User | null | undefined>(undefined);
+  const [userDb, setUserDb] = useState<UserOnSteriods | null>(null);
   const router = useRouter();
 
   useEffect(() => {
@@ -38,7 +37,7 @@ const InternHomepage = (props: InternHomepageProps) => {
           <h1 className="text-4xl pb-2  m-auto text-center">Search For Jobs</h1>
         </div>
         <div>
-          <JobsList />
+          <JobsList userDb={userDb} />
         </div>
       </div>
     </div>
