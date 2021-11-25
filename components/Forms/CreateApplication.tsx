@@ -3,6 +3,7 @@ import { useState } from "react";
 import { Job } from "@prisma/client";
 import FormWrapper from "./Components/FormWrapper";
 import { Company } from "@prisma/client";
+import Loading from "../Loading";
 
 type CreateCompanyProps = {
   email: string;
@@ -13,7 +14,10 @@ const CreateApplication = (props: CreateCompanyProps) => {
   const [description, setDescription] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [textLength, setTextLength] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
+
+  if (loading) return <Loading />;
 
   return (
     <FormWrapper
@@ -23,6 +27,7 @@ const CreateApplication = (props: CreateCompanyProps) => {
       <form
         onSubmit={(e) => {
           try {
+            setLoading(true);
             e.preventDefault();
 
             const createdUserAndCompany = {
@@ -43,6 +48,7 @@ const CreateApplication = (props: CreateCompanyProps) => {
             });
             /*eslint-disable*/
           } catch (e: any) {
+            setLoading(false);
             setError(e?.message);
           }
         }}

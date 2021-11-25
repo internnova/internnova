@@ -3,6 +3,7 @@ import { useState } from "react";
 import DropDownList from "./Components/DropDownList";
 import FormWrapper from "./Components/FormWrapper";
 import TextBox from "./Components/TextBox";
+import Loading from "../Loading";
 import { useRouter } from "next/router";
 
 const values = Object.values(Tag);
@@ -14,15 +15,19 @@ type CreateInternProps = {
 const CreateIntern = (props: CreateInternProps) => {
   const router = useRouter();
   const [userFullName, setUserFullName] = useState<string>("");
+  const [loading, setLoading] = useState<boolean>(false);
   const [bio, setBio] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [interests, setInterests] = useState<string[]>([]);
+
+  if (loading) return <Loading />;
 
   return (
     <FormWrapper title="Sign Up">
       <form
         onSubmit={(e) => {
           try {
+            setLoading(true);
             e.preventDefault();
 
             const createUserAndIntern = {
@@ -44,6 +49,7 @@ const CreateIntern = (props: CreateInternProps) => {
             });
             /*eslint-disable*/
           } catch (e: any) {
+            setLoading(false);
             setError(e?.message);
           }
         }}
