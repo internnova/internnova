@@ -29,9 +29,11 @@ const InternHomepage = () => {
   return (
     <div>
       <Navbar />
-      <div className="h-screen bg-gray-50">
+      <div className="h-screen">
         <div className="mx-auto py-10">
-          <h1 className="text-4xl pb-2  m-auto text-center">Search For Jobs</h1>
+          <h1 className="text-4xl pb-2 m-auto text-center heading">
+            Search For Jobs
+          </h1>
         </div>
         <div>
           <JobsList userDb={userDb} />

@@ -37,11 +37,10 @@ module.exports = {
     },
     fontFamily: {
       sans: ["Plus Jakarta Sans"],
-      fancy: ["Satisfy"],
     },
   },
   variants: {
     extend: {},
   },
-  plugins: [],
+  plugins: [require("tailwind-glassmorphism")],
 };

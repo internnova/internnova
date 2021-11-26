@@ -78,7 +78,8 @@ const CreateIntern = (props: CreateInternProps) => {
         </div>
         <DropDownList
           values={values}
-          title="Choose an interest"
+          title="Choose your interests"
+          description="Choose at least one interest"
           setChosenValues={setInterests}
         />
         <div className={`flex flex-col gap-1`}>

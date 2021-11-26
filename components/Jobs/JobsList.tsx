@@ -71,7 +71,7 @@ const JobsList = (props: JobsListProps) => {
   if (loading) return <Loading />;
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-white">
       {jobs.length === 0 && (
         <>
           <div
@@ -80,7 +80,7 @@ const JobsList = (props: JobsListProps) => {
           >
             <div className="container px-5 pb-5 m-auto">
               <div className="space-y-4">
-                <h1 className="sm:w-2/3 sm:text-4xl md:max-w-xl md:text-5xl font-fancy pb-2 text-3xl font-black">
+                <h1 className="sm:w-2/3 sm:text-4xl md:max-w-xl md:text-5xl heading pb-2 text-3xl font-black">
                   404 - Jobs not found
                 </h1>
                 <p className="md:max-w-md md:text-xl text-grey-900 max-w-sm pb-5 text-lg font-semibold text-gray-700">

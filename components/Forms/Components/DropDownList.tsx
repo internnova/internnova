@@ -6,6 +6,7 @@ type DropDownListProps = {
   values: string[];
   setChosenValues: (values: string[]) => void;
   title: string;
+  description?: string;
 };
 
 const DropDownList = (props: DropDownListProps) => {
@@ -37,6 +38,9 @@ const DropDownList = (props: DropDownListProps) => {
         <h3 className="text-grey-700 text-sm font-semibold uppercase">
           {props.title}
         </h3>
+        <h3 className="text-muted1 text-sm font-semibold uppercase">
+          {props.description}
+        </h3>
       </div>
 
       <div className=" flex items-center justify-between mb-4">
@@ -51,7 +55,8 @@ const DropDownList = (props: DropDownListProps) => {
           ))}
         </select>
         <SmallButton
-          content="Add new interest"
+          content="Add"
+          smaller
           onClick={(e) => {
             e.preventDefault();
 
