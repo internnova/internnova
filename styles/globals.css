@@ -3,11 +3,16 @@
 @tailwind utilities;
 
 @import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
 
 @layer components {
   .button {
     @apply hover:bg-blue-600 px-8 py-3 mr-4 font-bold text-white transition duration-300 bg-blue-500 rounded-lg shadow;
   }
+}
+
+.heading {
+  font-family: "Poppins", sans-serif;
 }
 
 /*used to make images white*/

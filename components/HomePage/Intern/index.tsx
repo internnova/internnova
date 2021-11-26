@@ -31,7 +31,7 @@ const InternHomepage = () => {
       <Navbar />
       <div className="h-screen">
         <div className="mx-auto py-10">
-          <h1 className="text-4xl pb-2 font-semibold m-auto text-center underline">
+          <h1 className="text-4xl pb-2 m-auto text-center heading">
             Search For Jobs
           </h1>
         </div>
