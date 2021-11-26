@@ -16,22 +16,40 @@ export const Landing = () => {
       <div className="antialiased text-gray-900">
         <main>
           <Navbar />
-          <div className="bg-right-topm bg-no-repeat">
-            <div className="flex flex-row item-center justify-between">
-              <div className="relative sm:pb-16 lg:pb-24 xl:pb-32 container px-5 pb-16 mx-auto">
-                <div className="lg:mt-24 xl:mt-28 mt-16 space-y-8">
-                  <div className="space-y-4">
-                    <h1 className="sm:w-2/3 sm:text-4xl md:max-w-xl md:text-5xl heading pb-2 text-3xl font-black text-gray-800">
-                      Experience the world beyond the confines of a school wall
-                    </h1>
-                    <p className="md:max-w-md md:text-xl text-grey-900 max-w-sm pb-5 text-lg font-semibold text-gray-400">
-                      InternNova makes finding internships easy and accessible
-                      to high-school students all over the world!
-                    </p>
+          <div className="max-w-6xl mx-auto px-4 sm:px-6">
+            {/* Hero content */}
+            <div className="pt-32 pb-12 md:pt-40 md:pb-20">
+              {/* Section header */}
+              <div className="text-center pb-12 md:pb-16">
+                <h1 className="text-5xl md:text-6xl font-black leading-tighter tracking-tighter mb-4 heading">
+                  Experience the world <span className="gradient">beyond </span>
+                  a classroom
+                </h1>
+                <div className="max-w-3xl mx-auto">
+                  <p className="text-xl text-gray-600 mb-8">
+                    InternNova makes finding internships easy and accessible to
+                    high-school students all over the world!
+                  </p>
+                  <div className="max-w-xs mx-auto sm:max-w-none sm:flex sm:justify-center"></div>
+                </div>
+              </div>
+
+              {/* Hero image */}
+              <div>
+                <div
+                  className="relative flex justify-center mb-8"
+                  data-aos="zoom-y-out"
+                  data-aos-delay="450"
+                >
+                  <div className="flex flex-col justify-center">
+                    <img
+                      className="mx-auto shadow-2xl rounded-3xl"
+                      src="/assets/img/preview.png"
+                      width="768"
+                      height="432"
+                      alt="Hero"
+                    />
                   </div>
-                  <a href="#HowItWorks">
-                    <SmallButton content="See How It Works" />
-                  </a>
                 </div>
               </div>
             </div>
