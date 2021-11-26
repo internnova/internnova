@@ -59,7 +59,7 @@ const FAQcomponent = (props: FAQcomponentProps) => {
 const FAQs = () => {
   const FAQsData = [
     {
-      question: "How Long are the internships?",
+      question: "How long are the internships?",
       answer:
         "Internship duration varies by company and project. It could vary from 1 week to a few months. You can choose to apply based on your availability. All internships are part-time",
     },
@@ -84,7 +84,7 @@ const FAQs = () => {
     },
   ];
   return (
-    <section className="lg:py-16 xl:py-28 py-12 bg-blue-200">
+    <section className="lg:py-16 xl:py-28 py-12 bg-gray-200">
       <div className="container px-5 mx-auto">
         <div className="lg:gap-10 xl:grid-cols-3 grid gap-6">
           <div className="lg:space-y-4 space-y-2">

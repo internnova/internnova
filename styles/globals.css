@@ -2,8 +2,7 @@
 @tailwind components;
 @tailwind utilities;
 
-@import url("https://fonts.googleapis.com/css2?family=Satisfy&display=swap");
-@import url("https://fonts.googleapis.com/css2?family=Poppins&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
 
 @layer components {
   .button {
@@ -12,7 +11,7 @@
 }
 
 .heading {
-  font-family: "Poppins", sans-serif;
+  font-family: "Nunito Sans", sans-serif;
 }
 
 /*used to make images white*/

@@ -289,6 +289,11 @@
     minimatch "^3.0.4"
     strip-json-comments "^3.1.1"
 
+"@fontsource/nunito-sans@^4.5.1":
+  version "4.5.1"
+  resolved "https://registry.yarnpkg.com/@fontsource/nunito-sans/-/nunito-sans-4.5.1.tgz#ef625d7615112c96306c805323ef32b9ae9f7cb5"
+  integrity sha512-sOqaGHmT9dQ8sQ95uLjZecmhtw7ivZNOb7Nd6khT1x0pKcgHQa93kzzg+UI3/0HjO80Dn+/87kgwaU2IIZDZuA==
+
 "@fontsource/plus-jakarta-sans@^4.5.0":
   version "4.5.0"
   resolved "https://registry.yarnpkg.com/@fontsource/plus-jakarta-sans/-/plus-jakarta-sans-4.5.0.tgz#79db20d5de22acc3312794f67d3ceffcb05b2f9f"
@@ -4511,6 +4516,11 @@ table@^6.0.9:
     slice-ansi "^4.0.0"
     string-width "^4.2.3"
     strip-ansi "^6.0.1"
+
+tailwind-glassmorphism@^1.0.6:
+  version "1.0.6"
+  resolved "https://registry.yarnpkg.com/tailwind-glassmorphism/-/tailwind-glassmorphism-1.0.6.tgz#9800f8ddf60b6adb53b1d48b921f834ef9e4c378"
+  integrity sha512-ToxQko9QOwMbQy7U7l3Anqz5NwWYQTywzd8rjR/NC8VvTjpp/JaZFOJ7kQXxSkN6D9up58fE+KGocQ/HO7YU4g==
 
 tailwindcss@^2.2.15:
   version "2.2.19"

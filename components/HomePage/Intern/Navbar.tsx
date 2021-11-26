@@ -4,14 +4,14 @@ import { UserButton } from "@clerk/nextjs";
 const Navbar = () => {
   const [open, setOpen] = useState(false);
   return (
-    <div>
-      <nav className="bg-white shadow">
+    <div className="glassmorphism-50 w-full sticky top-0 z-50">
+      <nav className="shadow">
         <div className="md:flex md:justify-between md:items-center container px-6 py-3 mx-auto">
           <div className="flex items-center justify-between">
             <img
               src="/assets/img/logo.png"
               alt="logo"
-              className="w-8 mr-2 mt-1"
+              className="w-12 mr-2 mt-0.5"
             />
             {/* Mobile menu button */}
             <div className="md:hidden flex">

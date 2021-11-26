@@ -15,7 +15,7 @@ const JobPage = (props: JobPageProps) => {
   const postedAt = new Date(props.job.postedAt);
   return (
     <section
-      className={`bg-card-bg p-12 flex-1 rounded-md ${
+      className={`bg-card-bg p-12 flex-1 rounded-md max-auto ${
         props.responsive ? "" : "hidden lg:block"
       }`}
     >
@@ -42,8 +42,13 @@ const JobPage = (props: JobPageProps) => {
             </p>
           </div>
         </div>
-        <p className="text-black">Posted {moment(postedAt).fromNow()}</p>
+        <p className="text-black hidden md:block">
+          Posted {moment(postedAt).fromNow()}
+        </p>
       </article>
+      <p className="text-black md:hidden pl-2 pb-4 text-md">
+        Posted {moment(postedAt).fromNow()}
+      </p>
       <div className="md:flex mb-9 items-center justify-between p-6 bg-gray-100 rounded-md">
         <article className="pb-5">
           <h2 className="font-bold">Field</h2>

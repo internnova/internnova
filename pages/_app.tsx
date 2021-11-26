@@ -9,6 +9,7 @@ import { NextSeo } from "next-seo";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import "../styles/globals.css";
+import "@fontsource/nunito-sans";
 
 const publicPages: string[] = ["/", "/jobs"];
 
