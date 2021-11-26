@@ -1,14 +1,14 @@
-import { NextSeo } from "next-seo";
-import { AppProps } from "next/app";
-import "../styles/globals.css";
-import "@fontsource/plus-jakarta-sans";
-import { useRouter } from "next/router";
 import {
   ClerkProvider,
+  RedirectToSignIn,
   SignedIn,
   SignedOut,
-  RedirectToSignIn,
 } from "@clerk/nextjs";
+import "@fontsource/plus-jakarta-sans";
+import { NextSeo } from "next-seo";
+import { AppProps } from "next/app";
+import { useRouter } from "next/router";
+import "../styles/globals.css";
 
 const publicPages: string[] = ["/", "/jobs"];
 
@@ -32,7 +32,7 @@ const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
               url: "/seo-image.png",
               width: 800,
               height: 420,
-              alt: "Samrath",
+              alt: "InternNova",
             },
           ],
           site_name: "InternNova",
