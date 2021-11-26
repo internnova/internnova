@@ -28,14 +28,6 @@ const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
           title: "InternNova - Find internships, for highschoolers",
           description:
             "Experience the world beyond the confines of a school wall. InternNova makes finding internships easy and accessible to high-school students all over the world!",
-          images: [
-            {
-              url: "/seo-image.png",
-              width: 800,
-              height: 420,
-              alt: "InternNova",
-            },
-          ],
           site_name: "InternNova",
         }}
         twitter={{
