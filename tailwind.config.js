@@ -1,6 +1,3 @@
-/*eslint-disable */
-const colors = require("tailwindcss/colors");
-
 module.exports = {
   mode: "jit",
   purge: ["./pages/**/*.{js,ts,jsx,tsx}", "./components/**/*.{js,ts,jsx,tsx}"],
@@ -8,7 +5,6 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        gray: colors.blueGray,
         navy: {
           50: "#f3f8f9",
           100: "#daf1fa",

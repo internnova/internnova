@@ -10,7 +10,6 @@ type JobPageProps = {
 };
 
 const JobPage = (props: JobPageProps) => {
-  // empty page is props are null/invalid
   if (!props.company || !props.job) return <></>;
   const postedAt = new Date(props.job.postedAt);
   return (

@@ -5,8 +5,9 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import CreateApplication from "../../components/Forms/CreateApplication";
 import { prisma } from "../../lib/prisma";
-import fetchUser from "../../lib/helpers/fetchUser";
-import { useUser } from "@clerk/nextjs";
+import { Auth } from "@supabase/ui";
+import getUser from "../../lib/helpers/getUser";
+import { SupabaseUser } from "../../lib/SupabaseUser";
 
 type JobProps = {
   job: Job & { company: Company };
@@ -16,22 +17,19 @@ type JobProps = {
 const JobsPage = (props: JobProps) => {
   const router = useRouter();
   const [userDb, setUserDb] = useState<User | null | undefined>(null);
-  const user = useUser();
-  const email = user.primaryEmailAddress?.emailAddress;
+  const { user } = Auth.useUser();
 
   useEffect(() => {
-    if (user && email !== undefined) {
-      // if the user(auth user) exists check for user in db
+    if (user && user.email !== "" && user.email !== undefined) {
       (async () => {
-        const userDbRes = await fetchUser(email || "");
+        const userDbRes = await getUser(user.email || "");
         setUserDb(userDbRes);
         if (!userDbRes || !userDbRes.email) {
-          // if the user is not in db send them to the onboarding page(which will make a new user in db)
           router.push("/onboarding");
         }
       })();
     }
-  }, [user, router, userDb, email]);
+  }, [user, router, userDb]);
 
   useEffect(() => {
     if (props.job) {
@@ -41,11 +39,10 @@ const JobsPage = (props: JobProps) => {
     }
   }, [props.job, router]);
 
-  return <CreateApplication email={email || ""} job={props.job} />;
+  return <CreateApplication user={user as SupabaseUser} job={props.job} />;
 };
 
 export const getServerSideProps: GetServerSideProps = async (context) => {
-  // see pages/job/[jobId].tsx for explanation of this function
   const id = context.query.jobId;
   if (!id) {
     return { redirect: { destination: "/404", permanent: false } };

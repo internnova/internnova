@@ -5,7 +5,6 @@ declare global {
   var prisma: PrismaClient | undefined;
 }
 
-// this prisma object keeps prisma from spawning new instances
 export const prisma =
   global.prisma ||
   new PrismaClient({

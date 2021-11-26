@@ -5,7 +5,6 @@ type JobComponentProps = {
 };
 
 const JobComponent = (props: JobComponentProps) => {
-  // empty page if props are null
   if (!props.job?.company || !props.job) return <></>;
   return (
     <a className="lg:pointer-events-none block">

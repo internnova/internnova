@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { UserButton } from "@clerk/nextjs";
+import { supabase } from "../../../lib/initSupabase";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -55,8 +55,13 @@ const Navbar = () => {
               >
                 Applications
               </a>
+              <a
+                className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
+                onClick={() => supabase.auth.signOut()}
+              >
+                Logout
+              </a>
             </div>
-            <UserButton />
           </div>
         </div>
       </nav>

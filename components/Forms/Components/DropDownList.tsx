@@ -51,7 +51,7 @@ const DropDownList = (props: DropDownListProps) => {
           ))}
         </select>
         <SmallButton
-          content="Add new interest"
+          content="Add"
           onClick={(e) => {
             e.preventDefault();
 

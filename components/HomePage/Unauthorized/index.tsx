@@ -1,4 +1,4 @@
-// this code in this folder is dumpster fire, desperate need to refactor
+import { SupabaseUser } from "../../../lib/SupabaseUser";
 import Head from "next/head";
 import React from "react";
 import SmallButton from "../../SmallButton";
@@ -7,7 +7,9 @@ import FAQs from "./FAQs";
 import HowItWorks from "./HowItWorks";
 import Navbar from "./Navbar";
 
-export const Landing = () => {
+type LandingProps = { user: SupabaseUser | null };
+
+export const Landing = (props: LandingProps) => {
   return (
     <div>
       <Head>
@@ -20,7 +22,7 @@ export const Landing = () => {
             style={{ backgroundImage: "url('/assets/img/bg.jpg')" }}
           >
             <div className="sm:pb-16 lg:pb-24 xl:pb-32 container px-5 pb-16 mx-auto">
-              <Navbar />
+              <Navbar user={props.user} />
               <div className="lg:mt-24 xl:mt-28 mt-16 space-y-8">
                 <div className="space-y-4">
                   <h1 className="sm:w-2/3 sm:text-4xl md:max-w-xl md:text-5xl font-fancy pb-2 text-3xl font-black">
