@@ -71,7 +71,7 @@ const JobsList = (props: JobsListProps) => {
   if (loading) return <Loading />;
 
   return (
-    <div className="bg-gray-50">
+    <div className="bg-white">
       {jobs.length === 0 && (
         <>
           <div

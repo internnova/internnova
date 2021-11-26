@@ -8,21 +8,16 @@ const Navbar = () => {
       <nav className="bg-white shadow">
         <div className="md:flex md:justify-between md:items-center container px-6 py-3 mx-auto">
           <div className="flex items-center justify-between">
-            <div className="flex flex-row items-center">
-              <img
-                src="/assets/img/logo.png"
-                alt="logo"
-                className="w-8 mr-2 mt-1"
-              />
-              <a
-                className="md:text-2xl hover:text-gray-700 text-xl font-bold text-gray-800"
-                href="#"
-              >
-                InternNova
-              </a>
-            </div>
+            <img
+              src="/assets/img/logo.png"
+              alt="logo"
+              className="w-8 mr-2 mt-1"
+            />
             {/* Mobile menu button */}
             <div className="md:hidden flex">
+              <div className="mx-5">
+                <UserButton />
+              </div>
               <button
                 type="button"
                 className="hover:text-gray-600 focus:outline-none focus:text-gray-600 text-gray-500"
@@ -40,7 +35,6 @@ const Navbar = () => {
               </button>
             </div>
           </div>
-          {/* Mobile Menu open: "block", Menu closed: "hidden" */}
           <div className={`md:flex items-center ${!open && "hidden md:block"}`}>
             <div className="md:flex-row md:mx-6 flex flex-col">
               <a
@@ -56,7 +50,9 @@ const Navbar = () => {
                 Applications
               </a>
             </div>
-            <UserButton />
+            <div className={open ? "hidden" : ""}>
+              <UserButton />
+            </div>
           </div>
         </div>
       </nav>
