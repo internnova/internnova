@@ -1,5 +1,6 @@
 import { Company, Job } from "@prisma/client";
 import { GetServerSideProps } from "next";
+import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import JobPage from "../../components/Jobs/JobPage";
@@ -20,7 +21,36 @@ const JobsPage = (props: JobProps) => {
   }, [props.job, router]);
 
   return (
-    <JobPage responsive job={props.job} company={props.job?.company || null} />
+    <>
+      <NextSeo
+        title={`${props.job.position} - InternNova`}
+        description={props.job.description}
+        openGraph={{
+          url: "https://www.internnova.co",
+          title: `${props.job.position} - InternNova`,
+          description: props.job.description,
+          images: [
+            {
+              url: "/seo-image.png",
+              width: 800,
+              height: 420,
+              alt: "InternNova",
+            },
+          ],
+          site_name: "InternNova",
+        }}
+        twitter={{
+          handle: "@InternNovaLabs",
+          site: "https://www.internnova.co",
+          cardType: "summary_large_image",
+        }}
+      />
+      <JobPage
+        responsive
+        job={props.job}
+        company={props.job?.company || null}
+      />
+    </>
   );
 };
 
