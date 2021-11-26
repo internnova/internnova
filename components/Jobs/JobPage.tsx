@@ -3,13 +3,14 @@ import SmallButton from "../SmallButton";
 import Link from "next/link";
 import moment from "moment";
 
-type Props = {
+type JobPageProps = {
   job: (Job & { company: Company }) | null;
   company: Company | null;
   responsive?: boolean;
 };
 
-const JobPage = (props: Props) => {
+const JobPage = (props: JobPageProps) => {
+  // empty page is props are null/invalid
   if (!props.company || !props.job) return <></>;
   const postedAt = new Date(props.job.postedAt);
   return (
@@ -26,12 +27,12 @@ const JobPage = (props: Props) => {
             alt="Job"
           />
           <div>
-            <Link href={`/job?id=${props.job.id}`}>
+            <Link href={`/job/${props.job.id}`}>
               <a className="mb-1 text-3xl font-bold">{props.job.position}</a>
             </Link>
 
             <h3 className="mb-1 text-xl font-bold text-blue-500 underline">
-              {props.company?.name}
+              Company: {props.company?.name}
             </h3>
             <p className="text-muted flex items-center gap-1">
               <span>
@@ -59,6 +60,16 @@ const JobPage = (props: Props) => {
           </p>
         </article>
       </div>
+      {!props.responsive && (
+        <article className="mb-6 space-y-4">
+          <a
+            className="font-bold text-blue-500 hover:underline"
+            href={`/job/${props.job.id}`}
+          >
+            Full Page View
+          </a>
+        </article>
+      )}
       <article className="mb-6 space-y-4">
         <h3 className="font-bold text-blue-700">Job Overview</h3>
         <p className="text-muted">{props.job?.description}</p>

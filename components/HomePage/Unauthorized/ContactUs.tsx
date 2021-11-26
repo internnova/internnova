@@ -100,38 +100,6 @@ export default function ContactUs() {
             </form>
           </div>
         </div>
-
-        <div className="mb-7 lg:mb-8 border-t border-gray-200"></div>
-
-        <footer
-          className="
-              flex flex-col
-              justify-between
-              space-y-1.5
-              text-gray-500 text-sm text-center
-              sm:flex-row sm:space-y-0 sm:text-justify
-            "
-        >
-          <p>Copyright © 2021 InternNova.</p>
-          <p>
-            Images from
-            <a
-              className="text-blue-500"
-              href="https://unsplash.com"
-              rel="noreferrer"
-              target="_blank"
-            >
-              {" unsplash.com "}
-            </a>
-            and
-            <a
-              className="text-blue-500"
-              href="https://www.freepik.com/vectors/background"
-            >
-              {" freepik.com"}
-            </a>
-          </p>
-        </footer>
       </div>
     </section>
   );

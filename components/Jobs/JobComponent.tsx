@@ -1,30 +1,28 @@
 import { Job, Company } from "@prisma/client";
-import Link from "next/link";
 
-type Props = {
+type JobComponentProps = {
   job: (Job & { company: Company }) | null;
-  company: Company | null;
 };
 
-// TODO: The JobComponent company name should open /jobs/{job.id}
-const JobComponent = (props: Props) => {
-  if (!props.company || !props.job) return <></>;
+const JobComponent = (props: JobComponentProps) => {
+  // empty page if props are null
+  if (!props.job?.company || !props.job) return <></>;
   return (
     <a className="lg:pointer-events-none block">
       <article className="bg-card-bg p-6 rounded-md shadow-lg">
         <div className="flex gap-4 mb-6">
           <img
-            src={props.company?.logo || ""}
+            src={props.job.company?.logo || ""}
             className="w-16 h-16"
             alt="Job"
           />
           <div>
-            <Link href={`/job?id=${props.job.id}`}>
-              <a className="mb-1 text-lg font-bold">{props.job.position}</a>
-            </Link>
-            <h3 className="text-md mb-1 font-bold text-blue-500 underline">
-              {props.company?.name}
-            </h3>
+            <a
+              className="mb-1 text-lg font-bold hover:underline"
+              href={`/job/${props.job.id}`}
+            >
+              {props.job.position}
+            </a>
             <p className="text-muted flex items-center gap-1">
               <span>
                 <img src="/assets/img/location.svg" alt="Location Icon" />

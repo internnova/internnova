@@ -1,7 +1,7 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "../../../lib/prisma";
 
-interface CreatedUserAndCompany {
+type CreateUserAndCompany = {
   email: string;
   name: string;
   role: "EMPLOYER";
@@ -9,30 +9,37 @@ interface CreatedUserAndCompany {
   description: string;
   website: string;
   CIN: string;
-}
+};
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   if (req.method !== "POST") {
     res.status(400).send({ message: "Only POST requests allowed" });
     return;
   } else {
-    const body: CreatedUserAndCompany = req.body;
+    const body: CreateUserAndCompany = req.body;
     const { email, role, name } = body;
-    const user = await prisma.user.create({ data: { email, role, name } });
-    const company = await prisma.company.create({
-      data: {
-        userId: user.id,
-        name: name,
-        description: body.description,
-        logo: body.logo,
-        website: body.website,
-        CIN: body.CIN,
-      },
-    });
+    try {
+      const user = await prisma.user.create({ data: { email, role, name } });
+      const company = await prisma.company.create({
+        data: {
+          userId: user.id,
+          name: name,
+          description: body.description,
+          logo: body.logo,
+          website: body.website,
+          CIN: body.CIN,
+        },
+      });
 
-    res
-      .status(200)
-      .send({ message: "successfully created user and company", company });
+      res
+        .status(200)
+        .send({ message: "successfully created user and company", company });
+    } catch (e) {
+      // the only reason the error would be thrown is if the job or company exist
+      res
+        .status(400)
+        .send({ error: "either the user or company already exists" });
+    }
   }
 };
 

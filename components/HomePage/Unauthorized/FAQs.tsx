@@ -5,7 +5,7 @@ type FAQcomponentProps = {
   answer: string;
 };
 
-const FAQcomponent = ({ question, answer }: FAQcomponentProps) => {
+const FAQcomponent = (props: FAQcomponentProps) => {
   const [open, setOpen] = useState<boolean>(false);
   return (
     <div
@@ -16,7 +16,7 @@ const FAQcomponent = ({ question, answer }: FAQcomponentProps) => {
         className="flex items-center justify-between"
         onClick={() => setOpen(!open)}
       >
-        <h4 className="mr-4 font-medium">{question}</h4>
+        <h4 className="mr-4 font-medium">{props.question}</h4>
         <span>
           {open ? (
             <svg
@@ -51,7 +51,7 @@ const FAQcomponent = ({ question, answer }: FAQcomponentProps) => {
           )}
         </span>
       </div>
-      {open && <p className="pt-4 text-gray-600">{answer}</p>}
+      {open && <p className="pt-4 text-gray-600">{props.answer}</p>}
     </div>
   );
 };

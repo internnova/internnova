@@ -1,50 +1,38 @@
-// import { Role } from "@prisma/client";
-import { useState } from "react";
-// import AccountOptions from "@components/Forms/AccountOptions";
-// import CreateCompany from "@components/Forms/CreateCompany";
-import CreateIntern from "../components/Forms/CreateIntern";
-import { Auth } from "@supabase/ui";
-import { useRouter } from "next/router";
 import { User } from "@prisma/client";
-import { useEffect } from "react";
-import getUser from "../lib/helpers/getUser";
+import { useRouter } from "next/router";
+import { useEffect, useState } from "react";
+import CreateIntern from "../components/Forms/CreateIntern";
+import { useUser } from "@clerk/nextjs";
+import fetchUser from "../lib/helpers/fetchUser";
 
 const OnboardingPage = () => {
   const router = useRouter();
-  const [userDb, setUserDb] = useState<User | null>(null);
-  // const [doneWithStage1, setDoneWithStage1] = useState<boolean>(false);
-  // const [accountType, setAccountType] = useState<Role>("STANDARD");
-  // console.log(user);
-  //
-  // if (doneWithStage1 && user) {
-  //   if (accountType === "EMPLOYER") {
-  //     return <CreateCompany user={user} />;
-  //   } else if (accountType === "INTERN") {
-  const { user } = Auth.useUser();
+  const [userDb, setUserDb] = useState<User | null | undefined>(undefined);
+  const user = useUser();
+  const email = user.primaryEmailAddress?.emailAddress;
+
   useEffect(() => {
-    if (user && user.email) {
-      getUser(user.email, setUserDb);
+    if (user && email !== undefined) {
+      // if the user(auth user) exists check for user in db
+      (async () => {
+        const userDbRes = await fetchUser(email || "");
+        setUserDb(userDbRes);
+        if (userDbRes && userDbRes.email) {
+          // if user exists in db redirect to dashboard
+          router.push("/");
+        }
+      })();
     }
     if (!user) {
       router.push("/login");
-    } else if (userDb) {
-      router.push("/");
     }
-  }, [user]);
-  if (user) return <CreateIntern user={user} />;
-  else {
-    return <></>;
-  }
-  //   }
-  // }
+  }, [user, router, userDb, email]);
 
-  // return (
-  //   <AccountOptions
-  //     accountType={accountType}
-  //     setAccountType={setAccountType}
-  //     setDone={setDoneWithStage1}
-  //   />
-  // );
+  return (
+    <div className="pb-10">
+      <CreateIntern email={email || ""} />
+    </div>
+  );
 };
 
 export default OnboardingPage;

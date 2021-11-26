@@ -1,25 +1,13 @@
-import { SupabaseUser } from "../../../lib/SupabaseUser";
+// this code in this folder is dumpster fire, desperate need to refactor
 import Head from "next/head";
-import React, { useEffect } from "react";
+import React from "react";
 import SmallButton from "../../SmallButton";
 import ContactUs from "./ContactUs";
 import FAQs from "./FAQs";
 import HowItWorks from "./HowItWorks";
 import Navbar from "./Navbar";
-import { User } from "@prisma/client";
-import { useRouter } from "next/router";
 
-type LandingProps = { user: SupabaseUser | null; userDb: User | null };
-
-export const Landing = (props: LandingProps) => {
-  const router = useRouter();
-  useEffect(() => {
-    if (props.user) {
-      if (!props.userDb) {
-        router.push("/onboarding");
-      }
-    }
-  });
+export const Landing = () => {
   return (
     <div>
       <Head>
@@ -32,7 +20,7 @@ export const Landing = (props: LandingProps) => {
             style={{ backgroundImage: "url('/assets/img/bg.jpg')" }}
           >
             <div className="sm:pb-16 lg:pb-24 xl:pb-32 container px-5 pb-16 mx-auto">
-              <Navbar user={props.user} />
+              <Navbar />
               <div className="lg:mt-24 xl:mt-28 mt-16 space-y-8">
                 <div className="space-y-4">
                   <h1 className="sm:w-2/3 sm:text-4xl md:max-w-xl md:text-5xl font-fancy pb-2 text-3xl font-black">
@@ -44,7 +32,7 @@ export const Landing = (props: LandingProps) => {
                   </p>
                 </div>
                 <a href="#HowItWorks">
-                  <SmallButton content="See How It works" />
+                  <SmallButton content="See How It Works" />
                 </a>
               </div>
             </div>
