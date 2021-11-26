@@ -1,32 +1,30 @@
-import { User } from "@prisma/client";
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import getUser from "../../../lib/helpers/getUser";
-import { SupabaseUser } from "../../../lib/SupabaseUser";
+import fetchUser, { UserOnSteriods } from "../../../lib/helpers/fetchUser";
 import JobsList from "../../Jobs/JobsList";
 import Navbar from "./Navbar";
+import { useUser } from "@clerk/nextjs";
 
-type InternHomepageProps = { user: SupabaseUser };
-
-const InternHomepage = (props: InternHomepageProps) => {
-  const [userDb, setUserDb] = useState<User | null | undefined>(undefined);
+const InternHomepage = () => {
+  const [userDb, setUserDb] = useState<UserOnSteriods | null>(null);
+  const user = useUser();
   const router = useRouter();
 
   useEffect(() => {
-    if (
-      props.user &&
-      props.user.email !== "" &&
-      props.user.email !== undefined
-    ) {
+    if (user && user.primaryEmailAddress !== undefined) {
+      // if the user(auth  user) exists, check for the user in db
       (async () => {
-        const userDbRes = await getUser(props.user.email || "");
+        const userDbRes = await fetchUser(
+          user.primaryEmailAddress?.emailAddress || ""
+        );
         setUserDb(userDbRes);
         if (!userDbRes || !userDbRes.email) {
+          // if the user is not in db send them to the onboarding page(which will make a new user in db)
           router.push("/onboarding");
         }
       })();
     }
-  }, [props.user, router, userDb]);
+  }, [user, router, userDb]);
 
   return (
     <div>
@@ -36,7 +34,7 @@ const InternHomepage = (props: InternHomepageProps) => {
           <h1 className="text-4xl pb-2  m-auto text-center">Search For Jobs</h1>
         </div>
         <div>
-          <JobsList />
+          <JobsList userDb={userDb} />
         </div>
       </div>
     </div>

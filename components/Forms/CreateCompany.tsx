@@ -1,11 +1,10 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { SupabaseUser } from "../../lib/SupabaseUser";
 import FormWrapper from "./Components/FormWrapper";
 import TextBox from "./Components/TextBox";
 
 type CreateCompanyProps = {
-  user: SupabaseUser;
+  email: string;
 };
 
 const CreateCompany = (props: CreateCompanyProps) => {
@@ -23,10 +22,9 @@ const CreateCompany = (props: CreateCompanyProps) => {
         onSubmit={(e) => {
           try {
             e.preventDefault();
-            console.log(props.user, "user");
 
             const createdUserAndCompany = {
-              email: props.user?.email,
+              email: props.email,
               name: companyName,
               role: "EMPLOYER",
               logo: logo,

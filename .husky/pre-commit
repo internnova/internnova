@@ -1,11 +1,12 @@
 #!/bin/sh
+
 . "$(dirname "$0")/_/husky.sh"
 
 echo '🏗️👷 Styling, testing and building your project before committing'
 
 # gordon ramsey but in commit hooks
 # Check Prettier standards
-yarn run prettier --write . ||
+yarn run check-format ||
 (
     echo '🤢🤮🤢🤮 YOU SURPRISE ME BY HOW BAD YOUR FORMATTING IS - Your styling looks disgusting. 🤢🤮🤢🤮
             Prettier Check Failed. Run yarn run format, add changes and try commit again.';

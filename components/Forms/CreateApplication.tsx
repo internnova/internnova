@@ -1,12 +1,12 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import { SupabaseUser } from "../../lib/SupabaseUser";
 import { Job } from "@prisma/client";
 import FormWrapper from "./Components/FormWrapper";
 import { Company } from "@prisma/client";
+import Loading from "../Loading";
 
 type CreateCompanyProps = {
-  user: SupabaseUser;
+  email: string;
   job: Job & { company: Company };
 };
 
@@ -14,7 +14,10 @@ const CreateApplication = (props: CreateCompanyProps) => {
   const [description, setDescription] = useState<string>("");
   const [error, setError] = useState<string>("");
   const [textLength, setTextLength] = useState<number>(0);
+  const [loading, setLoading] = useState<boolean>(false);
   const router = useRouter();
+
+  if (loading) return <Loading />;
 
   return (
     <FormWrapper
@@ -24,12 +27,12 @@ const CreateApplication = (props: CreateCompanyProps) => {
       <form
         onSubmit={(e) => {
           try {
+            setLoading(true);
             e.preventDefault();
-            console.log(props.user, "user");
 
             const createdUserAndCompany = {
               description,
-              user: props.user,
+              email: props.email,
               job: props.job,
             };
 
@@ -45,6 +48,7 @@ const CreateApplication = (props: CreateCompanyProps) => {
             });
             /*eslint-disable*/
           } catch (e: any) {
+            setLoading(false);
             setError(e?.message);
           }
         }}

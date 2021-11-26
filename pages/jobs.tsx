@@ -7,7 +7,7 @@ const Jobs = () => {
   let { interest } = router.query;
   interest = interest as string;
   if (!(Object.values(Tag) as string[]).includes(interest)) {
-    return <JobsList queryApi={interest} />;
+    return <JobsList />;
   }
 };
 

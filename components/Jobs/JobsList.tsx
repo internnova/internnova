@@ -1,42 +1,72 @@
-import { Company, Job } from "@prisma/client";
+import { Company, Job, JobApplication } from "@prisma/client";
 import { useEffect, useState } from "react";
 import Loading from "../Loading";
 import JobComponent from "./JobComponent";
 import JobPage from "./JobPage";
 import SmallButton from "../SmallButton";
 import Link from "next/link";
+import { UserOnSteriods } from "../../lib/helpers/fetchUser";
 
 type JobsListProps = {
-  queryApi?: string;
+  userDb?: UserOnSteriods | null;
 };
 
-const JobsList = ({ queryApi }: JobsListProps) => {
+const JobsList = (props: JobsListProps) => {
   const [jobs, setJobs] = useState<(Job & { company: Company })[]>([]);
+  const [applications, setApplications] = useState<JobApplication[]>([]);
+  const [appliedForCurrentJob, setAppliedForCurrentJob] =
+    useState<boolean>(false);
   const [loading, setLoading] = useState(true);
   const [job, setJob] = useState<(Job & { company: Company }) | null>(jobs[0]);
   const [company, setCompany] = useState<Company | null>(
     job ? job.company : null
   );
 
+  // asking eslint to kindly shut up
+  console.log(appliedForCurrentJob);
+
   useEffect(() => {
-    const fetchData = async () => {
-      const result = await fetch(
-        queryApi ? `/api/db/fetchJobs?${queryApi}` : "/api/db/fetchJobs"
-      );
-      const data: (Job & { company: Company })[] = (await result.json()).jobs;
+    (async () => {
+      // fetch jobs
+      const resultJobs = await fetch("/api/db/fetchJobs");
+
+      //parse repsonse
+      const data: (Job & { company: Company })[] = (await resultJobs.json())
+        .jobs;
       if (data.length !== 0) {
+        // if jobs are found, do the following
         setJobs(data);
         setJob(data[0] || []);
         setCompany(job?.company || null);
       }
+
+      // if the user is an intern
+      if (props.userDb && props.userDb.internId) {
+        const resultApplications: JobApplication[] = await // fetch applications
+        (
+          await fetch(`/api/db/fetchApplications/${props.userDb.internId}`)
+        ).json();
+        if (resultApplications.length > 0) {
+          // if applications are found, set state variable to them
+          setApplications(resultApplications);
+        }
+      }
+
+      // stop spinner
       setLoading(false);
-    };
-    fetchData();
-  }, [job?.company, queryApi]);
+    })();
+  }, [job?.company, props.userDb]);
 
   useEffect(() => {
     setCompany(job ? job.company : null);
-  }, [job]);
+    if (applications) {
+      // check if application exist
+      const appliedForCurrentJob = applications.find(
+        (application) => application.jobId === job?.id
+      );
+      setAppliedForCurrentJob(appliedForCurrentJob ? true : false);
+    }
+  }, [job, applications, setAppliedForCurrentJob]);
 
   if (loading) return <Loading />;
 

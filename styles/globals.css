@@ -6,10 +6,11 @@
 
 @layer components {
   .button {
-    @apply hover:bg-blue-600 px-8 py-3 mr-4 font-semibold font-bold text-white transition duration-300 bg-blue-500 rounded-lg shadow;
+    @apply hover:bg-blue-600 px-8 py-3 mr-4 font-bold text-white transition duration-300 bg-blue-500 rounded-lg shadow;
   }
 }
 
+/*used to make images white*/
 .filter-white {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(148deg)
     brightness(107%) contrast(101%);

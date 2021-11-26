@@ -1,7 +1,3 @@
-<p align="center">
-  <img src="https://www.internnova.co/assets/img/logo.png">
-</p>
-
 <h1 align="center">InternNova Web</h1>
 <h4 align="center">
 Helping high schoolers find internships</h1>

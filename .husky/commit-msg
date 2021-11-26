@@ -1,5 +1,4 @@
-yarn run commitlint --edit || (
-  echo '🚨 DIGUSTING COMMIT MESSAGE Commitlint failed, please fix the errors and try again'
-  exit 1
-)
-undefined
+#!/bin/sh
+. "$(dirname "$0")/_/husky.sh"
+
+yarn commitlint --edit 
