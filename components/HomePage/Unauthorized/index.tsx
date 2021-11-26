@@ -21,7 +21,7 @@ export const Landing = () => {
             <div className="pt-32 pb-12 md:pt-40 md:pb-20">
               {/* Section header */}
               <div className="text-center pb-12 md:pb-16">
-                <h1 className="text-5xl md:text-6xl font-black leading-tighter tracking-tighter mb-4 heading">
+                <h1 className="text-5xl md:text-6xl leading-tighter tracking-tighter mb-4 heading">
                   Experience the world <span className="gradient">beyond </span>
                   a classroom
                 </h1>
