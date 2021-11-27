@@ -4,6 +4,12 @@
 
 @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
 
+@layer components {
+  .button {
+    @apply hover:bg-blue-600 px-8 py-3 font-bold text-white transition duration-300 bg-blue-500 rounded-lg shadow;
+  }
+}
+
 .gradient {
   background: radial-gradient(
     at right center,
