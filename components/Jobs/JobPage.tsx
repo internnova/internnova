@@ -16,7 +16,7 @@ const JobPage = (props: JobPageProps) => {
   const postedAt = new Date(props.job.postedAt);
   return (
     <>
-      <Navbar />
+      {props.responsive && <Navbar />}
       <section
         className={`py-12 flex-1 rounded-md max-auto ${
           props.responsive ? "md:px-28" : "hidden lg:block"
