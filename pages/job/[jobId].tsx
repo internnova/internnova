@@ -2,9 +2,33 @@ import { Company, Job } from "@prisma/client";
 import { GetServerSideProps } from "next";
 import { NextSeo } from "next-seo";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import React, { useEffect } from "react";
 import JobPage from "../../components/Jobs/JobPage";
 import { prisma } from "../../lib/prisma";
+import { useState } from "react";
+import fetchUser, { UserOnSteriods } from "../../lib/helpers/fetchUser";
+import { useUser, SignedIn } from "@clerk/nextjs";
+
+const RequireOnboarding = () => {
+  const router = useRouter();
+  const [userDb, setUserDb] = useState<UserOnSteriods | null>(null);
+  const user = useUser();
+
+  useEffect(() => {
+    // if the user(auth  user) exists, check for the user in db
+    (async () => {
+      const userDbRes = await fetchUser(
+        user.primaryEmailAddress?.emailAddress || ""
+      );
+      setUserDb(userDbRes);
+      if (!userDbRes || !userDbRes.email) {
+        // if the user is not in db send them to the onboarding page(which will make a new user in db)
+        router.push("/onboarding");
+      }
+    })();
+  }, [user, router, userDb]);
+  return <></>;
+};
 
 type JobProps = {
   job: Job & { company: Company };
@@ -12,6 +36,7 @@ type JobProps = {
 
 const JobsPage = (props: JobProps) => {
   const router = useRouter();
+
   useEffect(() => {
     if (props.job) {
       window.document.title = `${props.job.position} - InternNova`;
@@ -45,11 +70,16 @@ const JobsPage = (props: JobProps) => {
           cardType: "summary_large_image",
         }}
       />
-      <JobPage
-        responsive
-        job={props.job}
-        company={props.job?.company || null}
-      />
+      <SignedIn>
+        <RequireOnboarding />
+      </SignedIn>
+      <div>
+        <JobPage
+          responsive
+          job={props.job}
+          company={props.job?.company || null}
+        />
+      </div>
     </>
   );
 };

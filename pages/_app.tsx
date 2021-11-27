@@ -11,7 +11,7 @@ import { useRouter } from "next/router";
 import "../styles/globals.css";
 import "@fontsource/nunito-sans";
 
-const publicPages: string[] = ["/", "/jobs"];
+const publicPages: string[] = ["/", "/jobs", "/job/[jobId]"];
 
 const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
   const { pathname } = useRouter();

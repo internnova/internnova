@@ -38,7 +38,7 @@ const DropDownList = (props: DropDownListProps) => {
         <h3 className="text-grey-700 text-sm font-semibold uppercase">
           {props.title}
         </h3>
-        <h3 className="text-muted1 text-sm font-semibold uppercase">
+        <h3 className="text-muted1 text-sm font-semibold">
           {props.description}
         </h3>
       </div>
