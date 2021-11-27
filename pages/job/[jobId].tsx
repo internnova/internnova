@@ -5,6 +5,9 @@ import { useRouter } from "next/router";
 import { useEffect } from "react";
 import JobPage from "../../components/Jobs/JobPage";
 import { prisma } from "../../lib/prisma";
+import { useState } from "react";
+import fetchUser, { UserOnSteriods } from "../../lib/helpers/fetchUser";
+import { useUser } from "@clerk/nextjs";
 
 type JobProps = {
   job: Job & { company: Company };
@@ -12,6 +15,25 @@ type JobProps = {
 
 const JobsPage = (props: JobProps) => {
   const router = useRouter();
+  const [userDb, setUserDb] = useState<UserOnSteriods | null>(null);
+  const user = useUser();
+
+  useEffect(() => {
+    if (user && user.primaryEmailAddress !== undefined) {
+      // if the user(auth  user) exists, check for the user in db
+      (async () => {
+        const userDbRes = await fetchUser(
+          user.primaryEmailAddress?.emailAddress || ""
+        );
+        setUserDb(userDbRes);
+        if (!userDbRes || !userDbRes.email) {
+          // if the user is not in db send them to the onboarding page(which will make a new user in db)
+          router.push("/onboarding");
+        }
+      })();
+    }
+  }, [user, router, userDb]);
+
   useEffect(() => {
     if (props.job) {
       window.document.title = `${props.job.position} - InternNova`;
