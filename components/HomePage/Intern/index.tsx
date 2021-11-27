@@ -2,7 +2,7 @@ import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
 import fetchUser, { UserOnSteriods } from "../../../lib/helpers/fetchUser";
 import JobsList from "../../Jobs/JobsList";
-import Navbar from "./Navbar";
+import Navbar from "../../Navbar";
 import { useUser } from "@clerk/nextjs";
 
 const InternHomepage = () => {

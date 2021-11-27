@@ -45,11 +45,13 @@ const JobsPage = (props: JobProps) => {
           cardType: "summary_large_image",
         }}
       />
-      <JobPage
-        responsive
-        job={props.job}
-        company={props.job?.company || null}
-      />
+      <div>
+        <JobPage
+          responsive
+          job={props.job}
+          company={props.job?.company || null}
+        />
+      </div>
     </>
   );
 };
