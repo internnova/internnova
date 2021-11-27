@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { UserButton } from "@clerk/nextjs";
+import { SignedIn } from "@clerk/nextjs";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -35,25 +36,29 @@ const Navbar = () => {
               </button>
             </div>
           </div>
-          <div className={`md:flex items-center ${!open && "hidden md:block"}`}>
-            <div className="md:flex-row md:mx-6 flex flex-col">
-              <a
-                className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
-                href="#"
-              >
-                Jobs
-              </a>
-              <a
-                className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
-                href="#"
-              >
-                Applications
-              </a>
+          <SignedIn>
+            <div
+              className={`md:flex items-center ${!open && "hidden md:block"}`}
+            >
+              <div className="md:flex-row md:mx-6 flex flex-col">
+                <a
+                  className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
+                  href="#"
+                >
+                  Jobs
+                </a>
+                <a
+                  className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
+                  href="#"
+                >
+                  Applications
+                </a>
+              </div>
+              <div className={open ? "hidden" : ""}>
+                <UserButton />
+              </div>
             </div>
-            <div className={open ? "hidden" : ""}>
-              <UserButton />
-            </div>
-          </div>
+          </SignedIn>
         </div>
       </nav>
     </div>

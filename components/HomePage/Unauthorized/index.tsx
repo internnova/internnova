@@ -1,7 +1,6 @@
 // this code in this folder is dumpster fire, desperate need to refactor
 import Head from "next/head";
 import React from "react";
-import SmallButton from "../../SmallButton";
 import ContactUs from "./ContactUs";
 import FAQs from "./FAQs";
 import HowItWorks from "./HowItWorks";
