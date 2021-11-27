@@ -1,8 +1,14 @@
+<p align="center"><img src="https://internnova.co/assets/img/logo.png"></p>
+
 <h1 align="center">InternNova Web</h1>
-<h4 align="center">
-Helping high schoolers find internships</h1>
+
+<h4 align="center">Helping high schoolers find internships</h4>
+
 <p align="center">
-  <img src="https://img.shields.io/badge/version-1.0.0--beta-green"> <img src="https://img.shields.io/github/license/InternNova-Labs/web"> <img src="https://img.shields.io/tokei/lines/github/InternNova-Labs/web?label=lines%20of%20code"> <img src="https://img.shields.io/github/languages/top/InternNova-Labs/web">
+  <img src="https://img.shields.io/badge/version-1.0.0--beta-green">
+  <img src="https://img.shields.io/github/license/InternNova-Labs/web">
+  <img src="https://img.shields.io/tokei/lines/github/InternNova-Labs/web?label=lines%20of%20code">
+  <img src="https://img.shields.io/github/languages/top/InternNova-Labs/web">
   <img src="https://img.shields.io/github/repo-size/InternNova-Labs/web">
 </p>
 
@@ -50,7 +56,7 @@ yarn run dev
 
 ## Authors
 
-[samrath2007](https://github.com/samrath2007) - Role in the project.
+[samrath2007](https://github.com/samrath2007) - Lead contributor and maintainer
 
 See also the list of [contributors](https://github.com/web/contributors) who contributed to this.
 
