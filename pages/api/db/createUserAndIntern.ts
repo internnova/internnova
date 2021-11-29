@@ -28,7 +28,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       });
 
       const intern = await prisma.intern.create({
-        data: { bio, interests: interests, userId: user.id },
+        data: { bio, interests: interests, userId: user.id, email },
       });
 
       res

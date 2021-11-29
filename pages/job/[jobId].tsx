@@ -26,7 +26,7 @@ const RequireOnboarding = () => {
         router.push("/onboarding");
       }
     })();
-  }, [user, router, userDb]);
+  }, []);
   return <></>;
 };
 
@@ -43,7 +43,7 @@ const JobsPage = (props: JobProps) => {
     } else {
       router.push("/404");
     }
-  }, [props.job, router]);
+  }, []);
 
   return (
     <>

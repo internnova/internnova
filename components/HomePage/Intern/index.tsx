@@ -24,7 +24,7 @@ const InternHomepage = () => {
         }
       })();
     }
-  }, [user, router, userDb]);
+  }, [user]);
 
   return (
     <div>

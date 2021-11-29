@@ -3,8 +3,6 @@ import { useEffect, useState } from "react";
 import Loading from "../Loading";
 import JobComponent from "./JobComponent";
 import JobPage from "./JobPage";
-import SmallButton from "../SmallButton";
-import Link from "next/link";
 import { UserOnSteriods } from "../../lib/helpers/fetchUser";
 
 type JobsListProps = {
@@ -55,18 +53,21 @@ const JobsList = (props: JobsListProps) => {
       // stop spinner
       setLoading(false);
     })();
-  }, [job?.company, props.userDb]);
+    /*eslint-disable-next-line */
+  }, []);
 
   useEffect(() => {
     setCompany(job ? job.company : null);
     if (applications) {
       // check if application exist
-      const appliedForCurrentJob = applications.find(
-        (application) => application.jobId === job?.id
-      );
-      setAppliedForCurrentJob(appliedForCurrentJob ? true : false);
+      if (job) {
+        const appliedForCurrentJob = applications.find(
+          (application) => application.jobId === job.id
+        );
+        setAppliedForCurrentJob(appliedForCurrentJob ? true : false);
+      }
     }
-  }, [job, applications, setAppliedForCurrentJob]);
+  }, [job, applications]);
 
   if (loading) return <Loading />;
 
@@ -74,24 +75,14 @@ const JobsList = (props: JobsListProps) => {
     <div className="bg-white">
       {jobs.length === 0 && (
         <>
-          <div
-            className="bg-right-topm flex h-screen bg-no-repeat bg-cover"
-            style={{ backgroundImage: "url('/assets/img/bg.jpg')" }}
-          >
-            <div className="container px-5 pb-5 m-auto">
-              <div className="space-y-4">
-                <h1 className="sm:w-2/3 sm:text-4xl md:max-w-xl md:text-5xl heading pb-2 text-3xl font-black">
-                  404 - Jobs not found
-                </h1>
-                <p className="md:max-w-md md:text-xl text-grey-900 max-w-sm pb-5 text-lg font-semibold text-gray-700">
-                  We{"'"}re out of jobs, check back later!
-                </p>
-              </div>
-              <Link href="/" passHref>
-                <a>
-                  <SmallButton content="Go Home" />
-                </a>
-              </Link>
+          <div className="container px-5 pb-5 m-auto text-center pt-10">
+            <div className="space-y-4">
+              <h1 className="sm:text-4xl  md:text-5xl heading pb-2 text-3xl font-black text-center">
+                404 - Jobs not found
+              </h1>
+              <p className="md:text-xl text-grey-900 pb-5 text-lg font-semibold text-gray-700 text-center">
+                We{"'"}re out of jobs, check back later!
+              </p>
             </div>
           </div>
         </>

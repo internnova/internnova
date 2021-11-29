@@ -31,7 +31,7 @@ const JobsPage = (props: JobProps) => {
         }
       })();
     }
-  }, [user, router, userDb, email]);
+  }, []);
 
   useEffect(() => {
     if (props.job) {

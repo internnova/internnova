@@ -26,7 +26,7 @@ const OnboardingPage = () => {
     if (!user) {
       router.push("/login");
     }
-  }, [user, router, userDb, email]);
+  }, []);
 
   return (
     <div className="pb-10">
