@@ -26,7 +26,7 @@ const HeadMeta = (props: MetaPropTypes) => {
         content={props.image || "https://www.internnova.co/assets/img/logo.png"}
       />
 
-      <meta name="twitter:card" content={props.description} />
+      <meta name="twitter:card" content="app" />
       <meta name="twitter:title" content={props.title} />
       <meta name="twitter:description" content={props.description} />
       <meta
