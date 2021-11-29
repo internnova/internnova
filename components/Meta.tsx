@@ -23,19 +23,19 @@ const HeadMeta = (props: MetaPropTypes) => {
       <meta property="og:url" content={props.url || "https://internnova.co"} />
       <meta
         property="og:image"
-        content={props.image || "https://www.internnova.co/assets/img/logo.png"}
+        content={
+          props.image || "https://www.internnova.co/assets/img/twitter.png"
+        }
       />
 
-      <meta name="twitter:card" content="app" />
+      <meta name="twitter:card" content="summary_large_image" />
+      <meta name="twitter:text:title" content={props.title} />
       <meta name="twitter:title" content={props.title} />
       <meta name="twitter:description" content={props.description} />
-      <meta
-        name="twitter:site"
-        content={props.url || "https://internnova.co"}
-      />
+      <meta name="twitter:site" content="@InternNovaLabs" />
       <meta
         property="twitter:image"
-        content={props.image || "https://www.internnova.co/assets/img/logo.png"}
+        content="https://www.internnova.co/assets/img/twitter.png"
       />
 
       <meta name="keywords" content={props.keywords.join(", ")} />

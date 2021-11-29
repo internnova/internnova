@@ -49,7 +49,6 @@ const JobsPage = (props: JobProps) => {
       <Meta
         title={`${props.job.position}: ${props.job.company.name} - InternNova`}
         description={props.job.description}
-        image={props.job.company.logo || undefined}
         keywords={[
           "Education",
           "Internships",
