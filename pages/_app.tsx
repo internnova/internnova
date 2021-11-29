@@ -5,7 +5,7 @@ import {
   SignedOut,
 } from "@clerk/nextjs";
 import "@fontsource/plus-jakarta-sans";
-import { NextSeo } from "next-seo";
+import Meta from "../components/Meta";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import "../styles/globals.css";
@@ -20,21 +20,18 @@ const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
 
   return (
     <>
-      <NextSeo
+      <Meta
         title="InternNova - Find internships, for highschoolers"
         description="Experience the world beyond the confines of a school wall! InternNova makes finding internships easy and accessible to high-school students all over the world."
-        openGraph={{
-          url: "https://www.internnova.co",
-          title: "InternNova - Find internships, for highschoolers",
-          description:
-            "Experience the world beyond the confines of a school wall. InternNova makes finding internships easy and accessible to high-school students all over the world!",
-          site_name: "InternNova",
-        }}
-        twitter={{
-          handle: "@InternNovaLabs",
-          site: "https://www.internnova.co",
-          cardType: "summary_large_image",
-        }}
+        keywords={[
+          "Education",
+          "Internships",
+          "High-school",
+          "School",
+          "Job",
+          "Teenager jobs",
+          "India",
+        ]}
       />
       <main className="light flex flex-col h-screen">
         <ClerkProvider>
