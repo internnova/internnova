@@ -7,7 +7,7 @@ import fetchUser from "../lib/helpers/fetchUser";
 
 const OnboardingPage = () => {
   const router = useRouter();
-  const [userDb, setUserDb] = useState<User | null | undefined>(undefined);
+  const [userDb, setUserDb] = useState<User | null>(null);
   const user = useUser();
   const email = user.primaryEmailAddress?.emailAddress;
 
@@ -26,11 +26,12 @@ const OnboardingPage = () => {
     if (!user) {
       router.push("/login");
     }
-  }, [user, router, userDb, email]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <div className="pb-10">
-      <CreateIntern email={email || ""} />
+      <CreateIntern email={userDb?.email || ""} />
     </div>
   );
 };

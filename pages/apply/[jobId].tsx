@@ -1,5 +1,4 @@
 import { Company, Job, User } from "@prisma/client";
-import { useState } from "react";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
@@ -15,7 +14,6 @@ type JobProps = {
 
 const JobsPage = (props: JobProps) => {
   const router = useRouter();
-  const [userDb, setUserDb] = useState<User | null | undefined>(null);
   const user = useUser();
   const email = user.primaryEmailAddress?.emailAddress;
 
@@ -24,14 +22,14 @@ const JobsPage = (props: JobProps) => {
       // if the user(auth user) exists check for user in db
       (async () => {
         const userDbRes = await fetchUser(email || "");
-        setUserDb(userDbRes);
         if (!userDbRes || !userDbRes.email) {
           // if the user is not in db send them to the onboarding page(which will make a new user in db)
           router.push("/onboarding");
         }
       })();
     }
-  }, [user, router, userDb, email]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   useEffect(() => {
     if (props.job) {
@@ -39,7 +37,8 @@ const JobsPage = (props: JobProps) => {
     } else {
       router.push("/404");
     }
-  }, [props.job, router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return <CreateApplication email={email || ""} job={props.job} />;
 };

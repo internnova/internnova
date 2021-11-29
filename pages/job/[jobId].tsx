@@ -5,13 +5,11 @@ import { useRouter } from "next/router";
 import React, { useEffect } from "react";
 import JobPage from "../../components/Jobs/JobPage";
 import { prisma } from "../../lib/prisma";
-import { useState } from "react";
-import fetchUser, { UserOnSteriods } from "../../lib/helpers/fetchUser";
+import fetchUser from "../../lib/helpers/fetchUser";
 import { useUser, SignedIn } from "@clerk/nextjs";
 
 const RequireOnboarding = () => {
   const router = useRouter();
-  const [userDb, setUserDb] = useState<UserOnSteriods | null>(null);
   const user = useUser();
 
   useEffect(() => {
@@ -20,13 +18,13 @@ const RequireOnboarding = () => {
       const userDbRes = await fetchUser(
         user.primaryEmailAddress?.emailAddress || ""
       );
-      setUserDb(userDbRes);
       if (!userDbRes || !userDbRes.email) {
         // if the user is not in db send them to the onboarding page(which will make a new user in db)
         router.push("/onboarding");
       }
     })();
-  }, [user, router, userDb]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return <></>;
 };
 
@@ -43,7 +41,8 @@ const JobsPage = (props: JobProps) => {
     } else {
       router.push("/404");
     }
-  }, [props.job, router]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   return (
     <>

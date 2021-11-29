@@ -25,15 +25,18 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           userId: user.id,
           name: name,
           description: body.description,
+          email,
           logo: body.logo,
           website: body.website,
           CIN: body.CIN,
         },
       });
 
-      res
-        .status(200)
-        .send({ message: "successfully created user and company", company });
+      res.status(200).send({
+        message: "successfully created user and company",
+        company,
+        email,
+      });
     } catch (e) {
       // the only reason the error would be thrown is if the job or company exist
       res

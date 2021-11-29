@@ -15,55 +15,44 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   } else {
     const { description, email, job }: CreateApplication = req.body;
 
-    // check if user exist
-    const userDb = await prisma.user.findFirst({
-      where: { email: email },
+    const intern = await prisma.intern.findFirst({
+      where: { email },
     });
 
-    if (!userDb || !email || userDb?.role !== "INTERN") {
-      // return a 404 if user doesn't exist or user is not an intern
-      res.status(404).send({ message: "User not found" });
+    if (!intern || !email) {
+      // return a 404 if user doesn't exist
+      res.status(404).send({ message: "user not onboarded or not found" });
       return;
     } else {
-      if (userDb) {
-        // find the intern object in the database
-        const intern = await prisma.intern.findFirst({
-          where: { userId: userDb.id },
+      // if the intern exists go to next step
+
+      // check if the application exists
+      const applicationCheck = await prisma.jobApplication.findFirst({
+        where: { internId: intern.id, jobId: job.id },
+      });
+
+      // if application doesn't exist, create it
+      if (!applicationCheck) {
+        const application = prisma.jobApplication.create({
+          data: {
+            internId: intern.id,
+            status: "APPLIED",
+            jobId: job.id,
+            description,
+          },
         });
-        if (intern) {
-          // if the intern exists go to next step
 
-          // check if the application exists
-          const applicationCheck = await prisma.jobApplication.findFirst({
-            where: { internId: intern.id, jobId: job.id },
-          });
-
-          // if application doesn't exist, create it
-          if (!applicationCheck) {
-            const application = prisma.jobApplication.create({
-              data: {
-                internId: intern.id,
-                status: "APPLIED",
-                jobId: job.id,
-                description,
-              },
-            });
-
-            res.status(200).send({
-              message: "successfully created application",
-              application,
-            });
-            return;
-          } else {
-            // if application exists, return error
-            res.status(400).send({ message: "Application already exists" });
-            return;
-          }
-        }
+        res.status(200).send({
+          message: "successfully created application",
+          application,
+        });
+        return;
+      } else {
+        // if application exists, return error
+        res.status(400).send({ message: "Application already exists" });
+        return;
       }
     }
-    res.status(400).send({ message: "user not onboarded or not found" });
-    return;
   }
 };
 
