@@ -17,15 +17,14 @@ const InternHomepage = () => {
         const userDbRes = await fetchUser(
           user.primaryEmailAddress?.emailAddress || ""
         );
-        setUserDb(userDbRes);
-        if (!userDbRes || !userDbRes.email) {
-          // if the user is not in db send them to the onboarding page(which will make a new user in db)
+        if (userDbRes === null || !userDbRes.email) {
           router.push("/onboarding");
         }
+        setUserDb(userDbRes);
       })();
     }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [user]);
+    /*eslint-disable-next-line */
+  }, []);
 
   return (
     <div>

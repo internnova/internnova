@@ -12,16 +12,15 @@ type JobsListProps = {
 const JobsList = (props: JobsListProps) => {
   const [jobs, setJobs] = useState<(Job & { company: Company })[]>([]);
   const [applications, setApplications] = useState<JobApplication[]>([]);
-  const [appliedForCurrentJob, setAppliedForCurrentJob] =
-    useState<boolean>(false);
+  const [appliedForCurrentJob, setAppliedForCurrentJob] = useState<
+    boolean | null
+  >(null);
+
   const [loading, setLoading] = useState(true);
   const [job, setJob] = useState<(Job & { company: Company }) | null>(jobs[0]);
   const [company, setCompany] = useState<Company | null>(
     job ? job.company : null
   );
-
-  // asking eslint to kindly shut up
-  console.log(appliedForCurrentJob);
 
   useEffect(() => {
     (async () => {
@@ -39,19 +38,28 @@ const JobsList = (props: JobsListProps) => {
       }
 
       // if the user is an intern
-      if (props.userDb && props.userDb.internId) {
-        const resultApplications: JobApplication[] = await // fetch applications
-        (
-          await fetch(`/api/db/fetchApplications/${props.userDb.internId}`)
-        ).json();
-        if (resultApplications.length > 0) {
-          // if applications are found, set state variable to them
-          setApplications(resultApplications);
-        }
-      }
 
       // stop spinner
       setLoading(false);
+    })();
+    /*eslint-disable-next-line */
+  }, []);
+
+  useEffect(() => {
+    (async () => {
+      if (props.userDb && props.userDb.role === "INTERN") {
+        const resultApplications: { applications: JobApplication[] | null } =
+          await (
+            await fetch(`/api/db/fetchApplications/${props.userDb.internId}`)
+          ).json();
+        if (
+          resultApplications.applications &&
+          resultApplications.applications.length > 0
+        ) {
+          // if applications are found, set state variable to them
+          setApplications(resultApplications.applications);
+        }
+      }
     })();
     /*eslint-disable-next-line */
   }, []);
@@ -67,7 +75,7 @@ const JobsList = (props: JobsListProps) => {
         setAppliedForCurrentJob(appliedForCurrentJob ? true : false);
       }
     }
-  }, [job, applications]);
+  }, [job, applications, appliedForCurrentJob]);
 
   if (loading) return <Loading />;
 
@@ -100,7 +108,11 @@ const JobsList = (props: JobsListProps) => {
                 ))}
             </section>
             {/* Job Description */}
-            <JobPage job={job} company={company} />
+            <JobPage
+              job={job}
+              company={company}
+              appliedForCurrentJob={appliedForCurrentJob}
+            />
           </main>
         </div>
       )}{" "}

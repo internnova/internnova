@@ -1,0 +1,9 @@
+# *
+User-agent: *
+Allow: /
+
+# Host
+Host: https://internnova.co
+
+# Sitemaps
+Sitemap: https://internnova.co/sitemap.xml

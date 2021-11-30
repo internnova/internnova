@@ -2,15 +2,23 @@ import { Company, Job } from "@prisma/client";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import Meta from "../../components/Meta";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import JobPage from "../../components/Jobs/JobPage";
 import { prisma } from "../../lib/prisma";
-import fetchUser from "../../lib/helpers/fetchUser";
-import { useUser, SignedIn } from "@clerk/nextjs";
+import fetchUser, { UserOnSteriods } from "../../lib/helpers/fetchUser";
+import { useUser, SignedIn, SignedOut } from "@clerk/nextjs";
 
-const RequireOnboarding = () => {
+type JobProps = {
+  job: Job & { company: Company };
+};
+
+const SignedInView = (props: JobProps) => {
   const router = useRouter();
   const user = useUser();
+  const [userDb, setUserDb] = useState<UserOnSteriods | null>(null);
+  const [appliedForCurrentJob, setAppliedForCurrentJob] = useState<
+    boolean | null
+  >(null);
 
   useEffect(() => {
     // if the user(auth  user) exists, check for the user in db
@@ -21,15 +29,44 @@ const RequireOnboarding = () => {
       if (!userDbRes || !userDbRes.email) {
         // if the user is not in db send them to the onboarding page(which will make a new user in db)
         router.push("/onboarding");
+      } else {
+        setUserDb(userDbRes);
       }
     })();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
+    /*eslint-disable-next-line*/
   }, []);
-  return <></>;
-};
 
-type JobProps = {
-  job: Job & { company: Company };
+  useEffect(() => {
+    (async () => {
+      const res = await fetch("/api/db/fetchApplications", {
+        method: "POST",
+        body: JSON.stringify({
+          internId: userDb?.internId,
+          jobId: props.job.id,
+        }),
+        headers: {
+          "Content-Type": "application/json",
+        },
+      });
+      if (res.status === 200) {
+        setAppliedForCurrentJob(true);
+      } else {
+        setAppliedForCurrentJob(false);
+      }
+    })();
+    /*eslint-disable-next-line*/
+  }, [props.job]);
+
+  return (
+    <>
+      <JobPage
+        responsive
+        job={props.job}
+        company={props.job.company}
+        appliedForCurrentJob={appliedForCurrentJob}
+      />
+    </>
+  );
 };
 
 const JobsPage = (props: JobProps) => {
@@ -47,7 +84,7 @@ const JobsPage = (props: JobProps) => {
   return (
     <>
       <Meta
-        title={`${props.job.position} - InternNova`}
+        title={`${props.job.position}: ${props.job.company.name} - InternNova`}
         description={props.job.description}
         keywords={[
           "Education",
@@ -61,15 +98,16 @@ const JobsPage = (props: JobProps) => {
         ]}
       />
       <SignedIn>
-        <RequireOnboarding />
+        <SignedInView job={props.job} />
       </SignedIn>
-      <div>
+      <SignedOut>
         <JobPage
           responsive
           job={props.job}
-          company={props.job?.company || null}
+          company={props.job.company}
+          appliedForCurrentJob={undefined}
         />
-      </div>
+      </SignedOut>
     </>
   );
 };

@@ -8,6 +8,41 @@ type JobPageProps = {
   job: (Job & { company: Company }) | null;
   company: Company | null;
   responsive?: boolean;
+  appliedForCurrentJob: boolean | null | undefined;
+};
+
+const ApplyPart = (props: {
+  appliedForCurrentJob: boolean | null | undefined;
+  jobId: number;
+}) => {
+  if (props.appliedForCurrentJob === null) {
+    return <>Loading application data. Please wait...</>;
+  } else if (props.appliedForCurrentJob === undefined) {
+    return (
+      <p className="py-4 text-blue-700 text-2xl">
+        Login to apply for this job.
+      </p>
+    );
+  }
+  return (
+    <>
+      {props.appliedForCurrentJob ? (
+        <>
+          <article className="mb-6 space-y-4">
+            <p className="text-red-500 text-xl">
+              You have already applied for this job.
+            </p>
+          </article>
+        </>
+      ) : (
+        <>
+          <a href={`/apply/${props.jobId}`}>
+            <SmallButton content="Apply for the job" />
+          </a>
+        </>
+      )}
+    </>
+  );
 };
 
 const JobPage = (props: JobPageProps) => {
@@ -98,7 +133,10 @@ const JobPage = (props: JobPageProps) => {
             <h3 className="font-bold text-blue-700">Company Overview</h3>
             <p className="text-muted">{props.company?.description || ""}</p>
           </article>
-          <SmallButton content="Apply for the job" />
+          <ApplyPart
+            appliedForCurrentJob={props.appliedForCurrentJob}
+            jobId={props.job.id}
+          />
         </div>
       </section>
     </>

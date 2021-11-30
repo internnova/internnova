@@ -43,9 +43,14 @@ const CreateIntern = (props: CreateInternProps) => {
               headers: {
                 "Content-Type": "application/json",
               },
-            }).then(() => {
-              setError("");
-              router.push("/");
+            }).then((text) => {
+              text.json().then((data) => {
+                if (data.error) {
+                  setError(data.error);
+                } else {
+                  router.push("/");
+                }
+              });
             });
             /*eslint-disable*/
           } catch (e: any) {

@@ -5,6 +5,7 @@
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "postbuild": "next-sitemap",
     "start": "next start",
     "check-types": "tsc --pretty --noEmit",
     "check-format": "prettier --check .",
@@ -44,6 +45,7 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-webpack-plugin": "^2.4.1",
     "husky": "^7.0.0",
+    "next-sitemap": "^1.6.203",
     "postcss": "^8.3.6",
     "prettier": "^2.4.1",
     "tailwindcss": "^2.2.15",
