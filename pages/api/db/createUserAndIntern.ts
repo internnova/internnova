@@ -27,8 +27,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         },
       });
 
-      const intern = await prisma.intern.create({
-        data: { bio, interests: interests, userId: user.id, email },
+      const intern = await prisma.intern.createMany({
+        data: [{ bio, interests: interests, userId: user.id, email }],
       });
 
       res
@@ -36,9 +36,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         .send({ message: "successfully created user and intern", intern });
     } catch (e) {
       // the only reason the error would be thrown is if the job or company exist
-      res
-        .status(400)
-        .send({ error: "either the user or intern already exists" });
+      res.status(400).send({ error: e as string });
     }
   }
 };

@@ -31,7 +31,7 @@ const OnboardingPage = () => {
 
   return (
     <div className="pb-10">
-      <CreateIntern email={userDb?.email || ""} />
+      <CreateIntern email={email || ""} />
     </div>
   );
 };

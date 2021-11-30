@@ -66,6 +66,7 @@ const JobsList = (props: JobsListProps) => {
         }
       }
     })();
+    /*eslint-disable-next-line */
   }, [props.userDb]);
 
   useEffect(() => {

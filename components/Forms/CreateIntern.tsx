@@ -43,7 +43,11 @@ const CreateIntern = (props: CreateInternProps) => {
               headers: {
                 "Content-Type": "application/json",
               },
-            }).then(() => {
+            }).then((text) => {
+              text.json().then((data) => {
+                console.log(data);
+              });
+
               setError("");
               router.push("/");
             });

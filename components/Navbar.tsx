@@ -10,7 +10,7 @@ const Navbar = () => {
         <div className="md:flex md:justify-between md:items-center container px-6 py-3 mx-auto">
           <div className="flex items-center justify-between">
             <img
-              src="/assets/img/logo.png"
+              src="/assets/img/logo-transparent.png"
               alt="logo"
               className="w-12 mr-2 mt-0.5"
             />
