@@ -45,11 +45,12 @@ const CreateIntern = (props: CreateInternProps) => {
               },
             }).then((text) => {
               text.json().then((data) => {
-                console.log(data);
+                if (data.error) {
+                  setError(data.error);
+                } else {
+                  router.push("/");
+                }
               });
-
-              setError("");
-              router.push("/");
             });
             /*eslint-disable*/
           } catch (e: any) {

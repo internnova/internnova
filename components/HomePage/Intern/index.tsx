@@ -11,11 +11,9 @@ const InternHomepage = () => {
   const router = useRouter();
 
   useEffect(() => {
-    console.log("email", user.primaryEmailAddress?.emailAddress);
     if (user && user.primaryEmailAddress !== undefined) {
       // if the user(auth  user) exists, check for the user in db
       (async () => {
-        console.log("hi");
         const userDbRes = await fetchUser(
           user.primaryEmailAddress?.emailAddress || ""
         );
@@ -26,13 +24,11 @@ const InternHomepage = () => {
       })();
     }
     /*eslint-disable-next-line */
-  }, [user]);
+  }, []);
 
   return (
     <div>
       <Navbar />
-      <p>{JSON.stringify(userDb)}</p>
-      <p>{JSON.stringify(user.primaryEmailAddress?.emailAddress)}</p>
       <div className="h-screen">
         <div className="mx-auto py-10">
           <h1 className="text-4xl pb-2 m-auto text-center heading">

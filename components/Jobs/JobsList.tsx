@@ -22,9 +22,6 @@ const JobsList = (props: JobsListProps) => {
     job ? job.company : null
   );
 
-  // asking eslint to kindly shut up
-  console.log(appliedForCurrentJob);
-
   useEffect(() => {
     (async () => {
       // fetch jobs
@@ -46,7 +43,7 @@ const JobsList = (props: JobsListProps) => {
       setLoading(false);
     })();
     /*eslint-disable-next-line */
-  }, [props.userDb]);
+  }, []);
 
   useEffect(() => {
     (async () => {
@@ -55,19 +52,17 @@ const JobsList = (props: JobsListProps) => {
           await (
             await fetch(`/api/db/fetchApplications/${props.userDb.internId}`)
           ).json();
-        console.log(resultApplications);
         if (
           resultApplications.applications &&
           resultApplications.applications.length > 0
         ) {
           // if applications are found, set state variable to them
           setApplications(resultApplications.applications);
-          console.log(applications);
         }
       }
     })();
     /*eslint-disable-next-line */
-  }, [props.userDb]);
+  }, []);
 
   useEffect(() => {
     setCompany(job ? job.company : null);
@@ -80,7 +75,6 @@ const JobsList = (props: JobsListProps) => {
         setAppliedForCurrentJob(appliedForCurrentJob ? true : false);
       }
     }
-    console.log(applications, appliedForCurrentJob);
   }, [job, applications, appliedForCurrentJob]);
 
   if (loading) return <Loading />;
