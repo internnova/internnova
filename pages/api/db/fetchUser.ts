@@ -21,8 +21,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         where: { userId: user.id },
       });
       res.status(200).send({ ...user, companyId: company?.id });
-    } else {
-      res.status(200).send({ ...user });
     }
   }
 };
