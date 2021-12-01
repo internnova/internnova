@@ -1,8 +1,11 @@
 import { Job, Company } from "@prisma/client";
+import { useState } from "react";
 import SmallButton from "../SmallButton";
 import Link from "next/link";
 import moment from "moment";
 import Navbar from "../Navbar";
+import Loading from "../Loading";
+import { useRouter } from "next/router";
 
 type JobPageProps = {
   job: (Job & { company: Company }) | null;
@@ -14,7 +17,9 @@ type JobPageProps = {
 const ApplyPart = (props: {
   appliedForCurrentJob: boolean | null | undefined;
   jobId: number;
+  setLoading: (loading: boolean) => void;
 }) => {
+  const router = useRouter();
   if (props.appliedForCurrentJob === null) {
     return <>Loading application data. Please wait...</>;
   } else if (props.appliedForCurrentJob === undefined) {
@@ -36,9 +41,13 @@ const ApplyPart = (props: {
         </>
       ) : (
         <>
-          <a href={`/apply/${props.jobId}`}>
-            <SmallButton content="Apply for the job" />
-          </a>
+          <SmallButton
+            content="Apply for the job"
+            onClick={() => {
+              props.setLoading(true);
+              router.push(`/apply/${props.jobId}`);
+            }}
+          />
         </>
       )}
     </>
@@ -47,6 +56,17 @@ const ApplyPart = (props: {
 
 const JobPage = (props: JobPageProps) => {
   // empty page is props are null/invalid
+  const [loading, setLoading] = useState<boolean>(false);
+  if (loading)
+    return (
+      <section
+        className={`py-12 flex-1 rounded-md max-auto ${
+          props.responsive ? "px-10 md:px-28" : "hidden lg:block"
+        }`}
+      >
+        <Loading />
+      </section>
+    );
   if (!props.company || !props.job) return <></>;
   const postedAt = new Date(props.job.postedAt);
   return (
@@ -54,7 +74,7 @@ const JobPage = (props: JobPageProps) => {
       {props.responsive && <Navbar />}
       <section
         className={`py-12 flex-1 rounded-md max-auto ${
-          props.responsive ? "md:px-28" : "hidden lg:block"
+          props.responsive ? "px-10 md:px-28" : "hidden lg:block"
         }`}
       >
         <div className="md:pr-2">
@@ -93,7 +113,9 @@ const JobPage = (props: JobPageProps) => {
           <div className="md:flex mb-9 items-center justify-between p-6 bg-gray-100 rounded-md">
             <article className="pb-5">
               <h2 className="font-bold">Field</h2>
-              <p className="text-muted">{props.job?.industry}</p>
+              <p className="text-muted">
+                {props.job?.industry.replace("_", " ")}
+              </p>
             </article>
             <article className="pb-5">
               <h2 className="font-bold">Location</h2>
@@ -122,12 +144,20 @@ const JobPage = (props: JobPageProps) => {
           </article>
           <article className="mb-6 space-y-4">
             <h3 className="font-bold text-blue-700">Job Requirements</h3>
-            {props.job?.skillsRequired.map((skill, x) => (
-              <div className="text-muted flex gap-3" key={x}>
-                <img src="/assets/img/verified-checkmark.svg" alt="Checkmark" />
-                <p>{skill}</p>
-              </div>
-            ))}
+            {props.job?.skillsRequired
+              ?.split(process.env.SEPERATOR || "I HATE MYSQL")
+              ?.map(
+                (skill, x) =>
+                  skill !== "" && (
+                    <div className="text-muted flex gap-3" key={x}>
+                      <img
+                        src="/assets/img/verified-checkmark.svg"
+                        alt="Checkmark"
+                      />
+                      <p>{skill}</p>
+                    </div>
+                  )
+              )}
           </article>
           <article className="mb-6 space-y-4">
             <h3 className="font-bold text-blue-700">Company Overview</h3>
@@ -136,6 +166,7 @@ const JobPage = (props: JobPageProps) => {
           <ApplyPart
             appliedForCurrentJob={props.appliedForCurrentJob}
             jobId={props.job.id}
+            setLoading={setLoading}
           />
         </div>
       </section>

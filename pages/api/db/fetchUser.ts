@@ -22,7 +22,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       });
       res.status(200).send({ ...user, companyId: company?.id });
     } else {
-      res.status(404).send({});
+      res.status(404).send(null);
     }
   }
 };
