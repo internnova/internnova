@@ -17,7 +17,7 @@ const InternHomepage = () => {
         const userDbRes = await fetchUser(
           user.primaryEmailAddress?.emailAddress || ""
         );
-        if (userDbRes === null || !userDbRes.email) {
+        if (userDbRes === null) {
           router.push("/onboarding");
         }
         setUserDb(userDbRes);

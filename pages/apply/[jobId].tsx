@@ -22,7 +22,7 @@ const JobsPage = (props: JobProps) => {
       // if the user(auth user) exists check for user in db
       (async () => {
         const userDbRes = await fetchUser(email || "");
-        if (!userDbRes || !userDbRes.email) {
+        if (!userDbRes) {
           // if the user is not in db send them to the onboarding page(which will make a new user in db)
           router.push("/onboarding");
         }
