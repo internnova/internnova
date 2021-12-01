@@ -52,12 +52,12 @@ const JobsList = (props: JobsListProps) => {
           await (
             await fetch(`/api/db/fetchApplications/${props.userDb.internId}`)
           ).json();
-        if (
-          resultApplications.applications &&
-          resultApplications.applications.length > 0
-        ) {
-          // if applications are found, set state variable to them
-          setApplications(resultApplications.applications);
+        console.log(resultApplications);
+        // if applications are found, set state variable to them
+        try {
+          setApplications(resultApplications.applications as JobApplication[]);
+        } catch {
+          console.log("application error");
         }
       }
     })();
@@ -72,7 +72,7 @@ const JobsList = (props: JobsListProps) => {
         const appliedForCurrentJob = applications.find(
           (application) => application.jobId === job.id
         );
-        console.log("got here", appliedForCurrentJob);
+        console.log("got here", appliedForCurrentJob, applications);
         if (appliedForCurrentJob?.description) {
           setAppliedForCurrentJob(true);
         } else {
