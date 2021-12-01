@@ -33,7 +33,7 @@ const CreateApplication = (props: CreateCompanyProps) => {
             const createdUserAndCompany = {
               description,
               email: props.email,
-              job: props.job,
+              jobId: props.job.id,
             };
 
             fetch("/api/db/createApplication", {
@@ -43,9 +43,12 @@ const CreateApplication = (props: CreateCompanyProps) => {
                 "Content-Type": "application/json",
               },
             }).then((res) => {
+              res.json().then((data) => {
+                console.log(data);
+              });
               if (res.status === 200) {
                 setError("");
-                router.push("/applications");
+                router.push("/");
               } else {
                 res.json().then((data) => {
                   setError(

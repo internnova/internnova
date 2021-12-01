@@ -30,7 +30,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       where: { email },
     });
 
-    if (!intern) {
+    if (!intern || intern.email !== email) {
       // return a 404 if user doesn't exist
       res.status(404).json({ message: "user not onboarded or not found" });
       return;
@@ -43,25 +43,26 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       });
 
       // if application doesn't exist, create it
-      if (!applicationCheck) {
-        const createdApplication = {
-          internId: intern.id,
-          status: Status.APPLIED,
-          jobId: jobId,
-          description,
-        };
-        const application = prisma.jobApplication.createMany({
-          data: [createdApplication],
+      if (!applicationCheck && jobId) {
+        const application = await prisma.jobApplication.create({
+          data: {
+            internId: intern.id,
+            status: Status.APPLIED,
+            jobId: jobId,
+            description,
+          },
         });
 
         res.status(200).json({
           message: "successfully created application",
-          application,
+          application: application,
         });
         return;
       } else {
         // if application exists, return error
-        res.status(400).json({ message: "Application already exists" });
+        res.status(400).json({
+          message: "Application already exists or jobId not provided",
+        });
         return;
       }
     }

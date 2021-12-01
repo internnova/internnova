@@ -72,7 +72,12 @@ const JobsList = (props: JobsListProps) => {
         const appliedForCurrentJob = applications.find(
           (application) => application.jobId === job.id
         );
-        setAppliedForCurrentJob(appliedForCurrentJob ? true : false);
+        console.log("got here", appliedForCurrentJob);
+        if (appliedForCurrentJob?.description) {
+          setAppliedForCurrentJob(true);
+        } else {
+          setAppliedForCurrentJob(false);
+        }
       }
     }
   }, [job, applications, appliedForCurrentJob]);
