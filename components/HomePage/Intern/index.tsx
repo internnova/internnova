@@ -4,8 +4,23 @@ import fetchUser, { UserOnSteriods } from "../../../lib/helpers/fetchUser";
 import JobsList from "../../Jobs/JobsList";
 import Navbar from "../../Navbar";
 import { useUser } from "@clerk/nextjs";
+import toast, { Toaster } from "react-hot-toast";
 
-const InternHomepage = () => {
+const notify = () =>
+  toast("Successfully applied to the job, you will get updates on your email", {
+    icon: "👏",
+    style: {
+      borderRadius: "10px",
+      background: "#9db5f3",
+      color: "#000",
+    },
+    duration: 4000,
+  });
+
+type InternHomepageProps = {
+  success?: boolean;
+};
+const InternHomepage = (props: InternHomepageProps) => {
   const [userDb, setUserDb] = useState<UserOnSteriods | null>(null);
   const user = useUser();
   const router = useRouter();
@@ -19,6 +34,8 @@ const InternHomepage = () => {
         );
         if (userDbRes === null) {
           router.push("/onboarding");
+        } else if (props.success) {
+          notify();
         }
         setUserDb(userDbRes);
       })();
@@ -36,6 +53,7 @@ const InternHomepage = () => {
           </h1>
         </div>
         <div>
+          <Toaster />
           <JobsList userDb={userDb} />
         </div>
       </div>

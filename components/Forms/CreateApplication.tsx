@@ -48,7 +48,7 @@ const CreateApplication = (props: CreateCompanyProps) => {
               });
               if (res.status === 200) {
                 setError("");
-                router.push("/");
+                router.push("/?success=true");
               } else {
                 res.json().then((data) => {
                   setError(
