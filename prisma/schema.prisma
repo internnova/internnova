@@ -1,10 +1,13 @@
-datasource db {
-  provider = "postgresql"
-  url      = env("DATABASE_URL")
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["referentialIntegrity"]
 }
 
-generator client {
-  provider = "prisma-client-js"
+datasource db {
+  provider             = "mysql"
+  url                  = env("DATABASE_URL")
+  shadowDatabaseUrl    = env("SHADOW_DATABASE_URL")
+  referentialIntegrity = "prisma"
 }
 
 // --------------------------------------
@@ -51,11 +54,11 @@ model User {
 model Company {
   id          Int     @id @default(autoincrement())
   userId      Int     @unique
-  name        String  @unique
-  description String
-  logo        String?
-  website     String?
-  CIN         String? @unique
+  name        String  @unique @db.VarChar(100)
+  description String  @db.VarChar(1000)
+  logo        String? @db.VarChar(2000)
+  website     String? @db.VarChar(50)
+  CIN         String? @unique @db.VarChar(200)
   jobs        Job[]
   email       String  @unique
 
@@ -66,10 +69,10 @@ model Company {
 model Intern {
   id              Int              @id @default(autoincrement())
   userId          Int              @unique
-  bio             String // This is information about the intern
-  interests       Tag[]
+  bio             String           @db.VarChar(1000)
+  interests       String
   jobApplications JobApplication[]
-  email           String           @unique
+  email           String           @unique @db.VarChar(100)
 
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
@@ -79,7 +82,7 @@ model Intern {
 
 model JobApplication {
   id          Int    @id @default(autoincrement())
-  description String
+  description String @db.VarChar(200)
   status      Status
 
   internId Int
@@ -94,16 +97,15 @@ model JobApplication {
 
 model Job {
   id             Int       @id @default(autoincrement())
-  position       String
-  description    String
+  position       String    @db.VarChar(50)
+  description    String    @db.VarChar(1000)
   jobType        JobType
-  skillsRequired String[]
+  skillsRequired String    @db.VarChar(10000)
   numOfOpenings  Int       @default(1)
-  expirationData DateTime?
-  duration       String
+  duration       String    @db.VarChar(100)
   postedAt       DateTime  @default(now())
-  location       String    @default("Remote")
-  salary         String?
+  location       String    @default("Remote") @db.VarChar(100)
+  salary         String?   @db.VarChar(100)
   industry       Tag
   closed         Boolean   @default(false)
 

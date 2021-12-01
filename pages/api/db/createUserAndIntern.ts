@@ -16,8 +16,8 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     return;
   } else {
     try {
-      const body: CreateUserAndIntern = req.body;
-      const { name, email, role, bio, interests } = body;
+      const { name, email, role, bio, interests }: CreateUserAndIntern =
+        req.body;
 
       const user = await prisma.user.create({
         data: {
@@ -28,7 +28,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       });
 
       const intern = await prisma.intern.createMany({
-        data: [{ bio, interests: interests, userId: user.id, email }],
+        data: [
+          {
+            bio,
+            interests: interests.join(process.env.SEPERATOR || "MYSQL SUCKS"),
+            userId: user.id,
+            email,
+          },
+        ],
       });
 
       res
