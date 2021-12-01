@@ -96,10 +96,10 @@ const JobsList = (props: JobsListProps) => {
         </>
       )}
       {jobs.length !== 0 && (
-        <div className="md:px-10 container py-10 mx-auto bg-white">
+        <div className="px-5 container py-10 mx-auto bg-white">
           <main className="flex items-start justify-center">
             {/* Jobs */}
-            <section className="lg:mr-6 xl:mr-16 space-y-6 lg">
+            <section className="lg:mr-6 xl:mr-16 space-y-6">
               {jobs.length !== 0 &&
                 jobs.map((jobIter) => (
                   <div onClick={() => setJob(jobIter)} key={jobIter.id}>

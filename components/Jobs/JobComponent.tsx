@@ -13,7 +13,7 @@ const JobComponent = (props: JobComponentProps) => {
         <div className="flex gap-4 mb-6">
           <img
             src={props.job.company?.logo || ""}
-            className="w-16 h-16"
+            className="max-w-12 max-h-12"
             alt="Job"
           />
           <div>
@@ -33,17 +33,12 @@ const JobComponent = (props: JobComponentProps) => {
         </div>
         <div className="flex items-center justify-between">
           <div>
-            <span className="inline-block p-3 text-sm font-bold text-blue-700 underline rounded">
-              {props.job.industry?.replace("_", " ")}
+            <span className="inline-block p-3 text-sm font-bold text-blue-700 underline rounded pr-6">
+              {props.job.industry.replace("_", " ")}
             </span>
           </div>
-          <div className="flex">
-            <img
-              src={`/assets/img/${!props.job.salary && "un"}verified-check.svg`}
-              alt="Checkmark"
-              className="ml-3 mr-1"
-            />
-            <p>{!props.job.salary ? "Unpaid Internship" : props.job.salary}</p>
+          <div className="flex pr-2">
+            <p>{`Openings: ${props.job.numOfOpenings}`}</p>
           </div>
         </div>
       </article>

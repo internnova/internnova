@@ -62,7 +62,7 @@ const JobPage = (props: JobPageProps) => {
             <div className="flex gap-4 mb-6">
               <img
                 src={props.company?.logo || ""}
-                className="w-16 h-16"
+                className="max-h-16"
                 alt="Job"
               />
               <div>

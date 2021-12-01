@@ -17,6 +17,7 @@ enum JobType {
 enum Tag {
   Marketing
   Graphic_Design
+  Education
   Programming
   Communication
   Charity
@@ -103,7 +104,7 @@ model Job {
   postedAt       DateTime  @default(now())
   location       String    @default("Remote")
   salary         String?
-  industry       Tag?
+  industry       Tag
   closed         Boolean   @default(false)
 
   applications JobApplication[]
