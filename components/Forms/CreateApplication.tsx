@@ -42,9 +42,18 @@ const CreateApplication = (props: CreateCompanyProps) => {
               headers: {
                 "Content-Type": "application/json",
               },
-            }).then(() => {
-              setError("");
-              router.push("/");
+            }).then((res) => {
+              if (res.status === 200) {
+                setError("");
+                router.push("/applications");
+              } else {
+                res.json().then((data) => {
+                  setError(
+                    `Something went wrong, please try again, the error is: ${data.error}`
+                  );
+                  setLoading(false);
+                });
+              }
             });
             /*eslint-disable*/
           } catch (e: any) {
@@ -55,17 +64,7 @@ const CreateApplication = (props: CreateCompanyProps) => {
         className="mt-8"
       >
         <div>
-          <h3 className="text-red-500">
-            {" "}
-            {(() => {
-              if (error !== "") {
-                setError("");
-                return "Please fill out all fields";
-              } else {
-                return "";
-              }
-            })()}
-          </h3>
+          <h3 className="text-red-500">{error}</h3>
         </div>
         <div className={`flex flex-col gap-1`}>
           <h3 className="text-sm font-semibold uppercase">Description</h3>

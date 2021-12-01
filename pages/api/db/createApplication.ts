@@ -44,14 +44,14 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
 
       // if application doesn't exist, create it
       if (!applicationCheck) {
-        const newLocal = {
+        const createdApplication = {
           internId: intern.id,
           status: Status.APPLIED,
           jobId: jobId,
           description,
         };
-        const application = prisma.jobApplication.create({
-          data: newLocal,
+        const application = prisma.jobApplication.createMany({
+          data: [createdApplication],
         });
 
         res.status(200).json({

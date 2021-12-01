@@ -26,7 +26,7 @@ const SignedInView = (props: JobProps) => {
       const userDbRes = await fetchUser(
         user.primaryEmailAddress?.emailAddress || ""
       );
-      if (!userDbRes || !userDbRes.email) {
+      if (!userDbRes) {
         // if the user is not in db send them to the onboarding page(which will make a new user in db)
         router.push("/onboarding");
       } else {
