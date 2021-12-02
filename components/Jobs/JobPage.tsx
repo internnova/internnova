@@ -4,6 +4,8 @@ import SmallButton from "../SmallButton";
 import Link from "next/link";
 import moment from "moment";
 import Navbar from "../Navbar";
+import NavbarUnauthorized from "../HomePage/Unauthorized/Navbar";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Loading from "../Loading";
 import { useRouter } from "next/router";
 
@@ -54,6 +56,19 @@ const ApplyPart = (props: {
   );
 };
 
+const NavbarChooser = () => {
+  return (
+    <>
+      <SignedIn>
+        <Navbar />
+      </SignedIn>
+      <SignedOut>
+        <NavbarUnauthorized notHomepage />
+      </SignedOut>
+    </>
+  );
+};
+
 const JobPage = (props: JobPageProps) => {
   // empty page is props are null/invalid
   const [loading, setLoading] = useState<boolean>(false);
@@ -71,7 +86,7 @@ const JobPage = (props: JobPageProps) => {
   const postedAt = new Date(props.job.postedAt);
   return (
     <>
-      {props.responsive && <Navbar />}
+      {props.responsive && <NavbarChooser />}
       <section
         className={`py-12 flex-1 rounded-md max-auto ${
           props.responsive ? "px-10 md:px-28" : "hidden lg:block"
@@ -82,7 +97,7 @@ const JobPage = (props: JobPageProps) => {
             <div className="flex gap-4 mb-6">
               <img
                 src={props.company?.logo || ""}
-                className="max-h-16"
+                className="hidden sm:block max-h-16"
                 alt="Job"
               />
               <div>

@@ -5,6 +5,7 @@ import ContactUs from "./ContactUs";
 import FAQs from "./FAQs";
 import HowItWorks from "./HowItWorks";
 import Navbar from "./Navbar";
+import Footer from "../../Footer";
 
 export const Landing = () => {
   return (
@@ -65,6 +66,7 @@ export const Landing = () => {
           <div className="border-t border-gray-200"></div>
 
           <ContactUs />
+          <Footer />
         </main>
       </div>
     </div>
