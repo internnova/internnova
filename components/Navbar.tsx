@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { UserButton } from "@clerk/nextjs";
-import { SignedIn } from "@clerk/nextjs";
+import { SignedIn, SignedOut } from "@clerk/nextjs";
 
 const Navbar = () => {
   const [open, setOpen] = useState(false);
@@ -59,6 +59,14 @@ const Navbar = () => {
               </div>
             </div>
           </SignedIn>
+          <SignedOut>
+            <a
+              className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
+              href="/login"
+            >
+              Login
+            </a>
+          </SignedOut>
         </div>
       </nav>
     </div>
