@@ -31,31 +31,17 @@ const SignedInView = (props: JobProps) => {
         router.push("/onboarding");
       } else {
         setUserDb(userDbRes);
+        if (userDbRes.jobApplications) {
+          userDbRes.jobApplications.filter(
+            (jobApplication) => jobApplication.jobId === props.job.id
+          ).length > 0
+            ? setAppliedForCurrentJob(true)
+            : setAppliedForCurrentJob(false);
+        }
       }
     })();
     /*eslint-disable-next-line*/
   }, []);
-
-  useEffect(() => {
-    (async () => {
-      const res = await fetch("/api/db/fetchApplications", {
-        method: "POST",
-        body: JSON.stringify({
-          internId: userDb?.internId,
-          jobId: props.job.id,
-        }),
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
-      if (res.status === 200) {
-        setAppliedForCurrentJob(true);
-      } else {
-        setAppliedForCurrentJob(false);
-      }
-    })();
-    /*eslint-disable-next-line*/
-  }, [props.job]);
 
   return (
     <>

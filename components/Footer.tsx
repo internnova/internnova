@@ -27,7 +27,7 @@ const Footer = () => {
           sm:justify-start
         "
         >
-          <a href="" className="mr-3 text-gray-500">
+          <a href="" className="text-gray-500">
             <SocialIcon
               network="twitter"
               url="https://twitter.com/InternNovaLabs"

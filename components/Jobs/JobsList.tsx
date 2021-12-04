@@ -1,4 +1,4 @@
-import { Company, Job, JobApplication } from "@prisma/client";
+import { Company, Job } from "@prisma/client";
 import { useEffect, useState } from "react";
 import Loading from "../Loading";
 import JobComponent from "./JobComponent";
@@ -11,7 +11,6 @@ type JobsListProps = {
 
 const JobsList = (props: JobsListProps) => {
   const [jobs, setJobs] = useState<(Job & { company: Company })[]>([]);
-  const [applications, setApplications] = useState<JobApplication[]>([]);
   const [appliedForCurrentJob, setAppliedForCurrentJob] = useState<
     boolean | null
   >(null);
@@ -46,33 +45,13 @@ const JobsList = (props: JobsListProps) => {
   }, []);
 
   useEffect(() => {
-    (async () => {
-      if (props.userDb && props.userDb.role === "INTERN") {
-        const resultApplications: { applications: JobApplication[] | null } =
-          await (
-            await fetch(`/api/db/fetchApplications/${props.userDb.internId}`)
-          ).json();
-        console.log(resultApplications);
-        // if applications are found, set state variable to them
-        try {
-          setApplications(resultApplications.applications as JobApplication[]);
-        } catch {
-          console.log("application error");
-        }
-      }
-    })();
-    /*eslint-disable-next-line */
-  }, []);
-
-  useEffect(() => {
     setCompany(job ? job.company : null);
-    if (applications) {
+    if (props.userDb?.jobApplications) {
       // check if application exist
       if (job) {
-        const appliedForCurrentJob = applications.find(
+        const appliedForCurrentJob = props.userDb.jobApplications.find(
           (application) => application.jobId === job.id
         );
-        console.log("got here", appliedForCurrentJob, applications);
         if (appliedForCurrentJob?.description) {
           setAppliedForCurrentJob(true);
         } else {
@@ -80,7 +59,7 @@ const JobsList = (props: JobsListProps) => {
         }
       }
     }
-  }, [job, applications, appliedForCurrentJob]);
+  }, [job, props.userDb, appliedForCurrentJob]);
 
   if (loading) return <Loading />;
 

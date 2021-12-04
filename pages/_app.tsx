@@ -1,15 +1,18 @@
 import {
+  ClerkLoaded,
+  ClerkLoading,
   ClerkProvider,
   RedirectToSignIn,
   SignedIn,
   SignedOut,
 } from "@clerk/nextjs";
+import "@fontsource/nunito-sans";
 import "@fontsource/plus-jakarta-sans";
-import Meta from "../components/Meta";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
+import Loading from "../components/Loading";
+import Meta from "../components/Meta";
 import "../styles/globals.css";
-import "@fontsource/nunito-sans";
 
 const publicPages: string[] = ["/", "/jobs", "/job/[jobId]"];
 
@@ -35,21 +38,26 @@ const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
       />
       <main className="light flex flex-col h-screen">
         <ClerkProvider>
-          {isPublicPage ? (
-            <>
-              <Component {...pageProps} />
-            </>
-          ) : (
-            <>
-              <SignedIn>
+          <ClerkLoading>
+            <Loading />
+          </ClerkLoading>
+          <ClerkLoaded>
+            {isPublicPage ? (
+              <>
                 <Component {...pageProps} />
-              </SignedIn>
+              </>
+            ) : (
+              <>
+                <SignedIn>
+                  <Component {...pageProps} />
+                </SignedIn>
 
-              <SignedOut>
-                <RedirectToSignIn />
-              </SignedOut>
-            </>
-          )}
+                <SignedOut>
+                  <RedirectToSignIn />
+                </SignedOut>
+              </>
+            )}
+          </ClerkLoaded>
         </ClerkProvider>
       </main>
     </>
