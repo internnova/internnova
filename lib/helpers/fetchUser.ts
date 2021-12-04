@@ -1,8 +1,9 @@
-import { User } from "@prisma/client";
+import { User, JobApplication } from "@prisma/client";
 
 export interface UserOnSteriods extends User {
   internId?: number;
   companyId?: number;
+  jobApplications?: JobApplication[];
 }
 
 // wrapper for fetching user from db
