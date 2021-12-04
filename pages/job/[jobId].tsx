@@ -110,7 +110,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     // include company will allow us to access job.company
     include: { company: true },
   });
-  if (job) {
+  if (job && !job?.closed) {
     // if the job is found, return it as props
     return {
       props: {
