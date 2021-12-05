@@ -1,9 +1,9 @@
 import { Tag } from "@prisma/client";
 import { useState } from "react";
-import DropDownList from "./Components/DropDownList";
-import FormWrapper from "./Components/FormWrapper";
-import TextBox from "./Components/TextBox";
-import Loading from "../Loading";
+import DropDownList from "components/Forms/Components/DropDownList";
+import FormWrapper from "components/Forms/Components/FormWrapper";
+import TextBox from "components/Forms/Components/TextBox";
+import Loading from "components/Loading";
 import { useRouter } from "next/router";
 
 const values = Object.values(Tag);

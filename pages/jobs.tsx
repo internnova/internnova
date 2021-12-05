@@ -1,4 +1,4 @@
-import JobsList from "../components/Jobs/JobsList";
+import JobsList from "components/Jobs/JobsList";
 import { useRouter } from "next/router";
 import { Tag } from "@prisma/client";
 

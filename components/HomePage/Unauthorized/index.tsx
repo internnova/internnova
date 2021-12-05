@@ -1,11 +1,11 @@
 // this code in this folder is dumpster fire, desperate need to refactor
 import Head from "next/head";
 import React from "react";
-import ContactUs from "./ContactUs";
-import FAQs from "./FAQs";
-import HowItWorks from "./HowItWorks";
-import Navbar from "./Navbar";
-import Footer from "../../Footer";
+import ContactUs from "components/HomePage/Unauthorized/ContactUs";
+import FAQs from "components/HomePage/Unauthorized/FAQs";
+import HowItWorks from "components/HomePage/Unauthorized/HowItWorks";
+import Navbar from "components/HomePage/Unauthorized/Navbar";
+import Footer from "components/Footer";
 
 export const Landing = () => {
   return (

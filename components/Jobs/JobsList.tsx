@@ -1,9 +1,9 @@
 import { Company, Job } from "@prisma/client";
 import { useEffect, useState } from "react";
-import Loading from "../Loading";
-import JobComponent from "./JobComponent";
-import JobPage from "./JobPage";
-import { UserOnSteriods } from "../../lib/helpers/fetchUser";
+import Loading from "components/Loading";
+import JobComponent from "components/Jobs/JobComponent";
+import JobPage from "components/Jobs/JobPage";
+import { UserOnSteriods } from "lib/helpers/fetchUser";
 
 type JobsListProps = {
   userDb?: UserOnSteriods | null;

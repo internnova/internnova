@@ -1,7 +1,7 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
-import FormWrapper from "./Components/FormWrapper";
-import TextBox from "./Components/TextBox";
+import FormWrapper from "components/Forms/Components/FormWrapper";
+import TextBox from "components/Forms/Components/TextBox";
 
 type CreateCompanyProps = {
   email: string;

@@ -1,11 +1,11 @@
 import { Company, Job } from "@prisma/client";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import Meta from "../../components/Meta";
+import Meta from "components/Meta";
 import React, { useEffect, useState } from "react";
-import JobPage from "../../components/Jobs/JobPage";
-import { prisma } from "../../lib/prisma";
-import fetchUser, { UserOnSteriods } from "../../lib/helpers/fetchUser";
+import JobPage from "components/Jobs/JobPage";
+import { prisma } from "lib/prisma";
+import fetchUser, { UserOnSteriods } from "lib/helpers/fetchUser";
 import { useUser, SignedIn, SignedOut } from "@clerk/nextjs";
 
 type JobProps = {

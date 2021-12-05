@@ -10,9 +10,9 @@ import "@fontsource/nunito-sans";
 import "@fontsource/plus-jakarta-sans";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
-import Loading from "../components/Loading";
-import Meta from "../components/Meta";
-import "../styles/globals.css";
+import Loading from "components/Loading";
+import Meta from "components/Meta";
+import "styles/globals.css";
 
 const publicPages: string[] = ["/", "/jobs", "/job/[jobId]"];
 

@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import CreateIntern from "../components/Forms/CreateIntern";
+import CreateIntern from "components/Forms/CreateIntern";
 import { useUser } from "@clerk/nextjs";
-import fetchUser from "../lib/helpers/fetchUser";
+import fetchUser from "lib/helpers/fetchUser";
 
 const OnboardingPage = () => {
   const router = useRouter();

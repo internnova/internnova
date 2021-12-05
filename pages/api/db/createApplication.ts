@@ -1,6 +1,6 @@
 import type { NextApiRequest, NextApiResponse } from "next";
 import { Status } from "@prisma/client";
-import { prisma } from "../../../lib/prisma";
+import { prisma } from "lib/prisma";
 
 type CreateApplication = {
   description: string;

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import SmallButton from "../../SmallButton";
+import SmallButton from "components/SmallButton";
 
 type DropDownListProps = {
   // values will not be a useState item, just a constant

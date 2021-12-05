@@ -1,5 +1,5 @@
 import { useState } from "react";
-import SmallButton from "../../SmallButton";
+import SmallButton from "components/SmallButton";
 
 export default function ContactUs() {
   const [title, setTitle] = useState<string>("");
