@@ -1,5 +1,3 @@
-import React from "react";
-
 type TextBoxProps = {
   title: string;
   description?: string;

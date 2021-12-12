@@ -1,5 +1,5 @@
-import InternHomepage from "../components/HomePage/Intern";
-import { Landing } from "../components/HomePage/Unauthorized";
+import InternHomepage from "components/HomePage/Intern";
+import { Landing } from "components/HomePage/Unauthorized";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import { useRouter } from "next/router";
 

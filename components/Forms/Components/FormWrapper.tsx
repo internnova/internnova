@@ -1,5 +1,3 @@
-import React from "react";
-
 type FormWrapperProps = {
   children: React.ReactNode;
   title: string;

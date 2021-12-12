@@ -29,6 +29,15 @@ const Footer = () => {
         >
           <a href="" className="text-gray-500">
             <SocialIcon
+              network="github"
+              url="https://github.com/InternNova-Labs"
+              target="blank"
+              bgColor="#455a64"
+              fgColor="#fff"
+            />
+          </a>
+          <a href="" className="text-gray-500">
+            <SocialIcon
               network="twitter"
               url="https://twitter.com/InternNovaLabs"
               target="blank"

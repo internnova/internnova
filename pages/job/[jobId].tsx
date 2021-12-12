@@ -1,11 +1,11 @@
 import { Company, Job } from "@prisma/client";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import Meta from "../../components/Meta";
+import Meta from "components/Meta";
 import React, { useEffect, useState } from "react";
-import JobPage from "../../components/Jobs/JobPage";
-import { prisma } from "../../lib/prisma";
-import fetchUser, { UserOnSteriods } from "../../lib/helpers/fetchUser";
+import JobPage from "components/Jobs/JobPage";
+import { prisma } from "lib/prisma";
+import fetchUser from "lib/helpers/fetchUser";
 import { useUser, SignedIn, SignedOut } from "@clerk/nextjs";
 
 type JobProps = {
@@ -15,7 +15,6 @@ type JobProps = {
 const SignedInView = (props: JobProps) => {
   const router = useRouter();
   const user = useUser();
-  const [userDb, setUserDb] = useState<UserOnSteriods | null>(null);
   const [appliedForCurrentJob, setAppliedForCurrentJob] = useState<
     boolean | null
   >(null);
@@ -26,11 +25,12 @@ const SignedInView = (props: JobProps) => {
       const userDbRes = await fetchUser(
         user.primaryEmailAddress?.emailAddress || ""
       );
-      if (!userDbRes) {
+      if (props.job.closed) {
+        router.push("404");
+      } else if (!userDbRes) {
         // if the user is not in db send them to the onboarding page(which will make a new user in db)
         router.push("/onboarding");
       } else {
-        setUserDb(userDbRes);
         if (userDbRes.jobApplications) {
           userDbRes.jobApplications.filter(
             (jobApplication) => jobApplication.jobId === props.job.id
@@ -110,7 +110,7 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     // include company will allow us to access job.company
     include: { company: true },
   });
-  if (job) {
+  if (job && !job?.closed) {
     // if the job is found, return it as props
     return {
       props: {

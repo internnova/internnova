@@ -1,8 +1,8 @@
 import { useRouter } from "next/router";
 import { useEffect, useState } from "react";
-import fetchUser, { UserOnSteriods } from "../../../lib/helpers/fetchUser";
-import JobsList from "../../Jobs/JobsList";
-import Navbar from "../../Navbar";
+import fetchUser, { UserOnSteriods } from "lib/helpers/fetchUser";
+import JobsList from "components/Jobs/JobsList";
+import Navbar from "components/Navbar";
 import { useUser } from "@clerk/nextjs";
 import toast, { Toaster } from "react-hot-toast";
 

@@ -1,9 +1,9 @@
 import { useRouter } from "next/router";
 import { useState } from "react";
 import { Job } from "@prisma/client";
-import FormWrapper from "./Components/FormWrapper";
+import FormWrapper from "components/Forms/Components/FormWrapper";
 import { Company } from "@prisma/client";
-import Loading from "../Loading";
+import Loading from "components/Loading";
 
 type CreateCompanyProps = {
   email: string;

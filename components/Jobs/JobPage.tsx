@@ -1,9 +1,9 @@
 import { Job, Company } from "@prisma/client";
 import { useState } from "react";
-import SmallButton from "../SmallButton";
+import SmallButton from "components/SmallButton";
 import Link from "next/link";
 import moment from "moment";
-import Navbar from "../Navbar";
+import Navbar from "components/Navbar";
 import NavbarUnauthorized from "../HomePage/Unauthorized/Navbar";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Loading from "../Loading";

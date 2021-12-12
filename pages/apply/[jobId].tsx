@@ -2,9 +2,9 @@ import { Company, Job, User } from "@prisma/client";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
-import CreateApplication from "../../components/Forms/CreateApplication";
-import { prisma } from "../../lib/prisma";
-import fetchUser from "../../lib/helpers/fetchUser";
+import CreateApplication from "components/Forms/CreateApplication";
+import { prisma } from "lib/prisma";
+import fetchUser from "lib/helpers/fetchUser";
 import { useUser } from "@clerk/nextjs";
 
 type JobProps = {
