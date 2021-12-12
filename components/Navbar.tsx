@@ -39,10 +39,10 @@ const Navbar = (props: NavbarProps) => {
             </div>
           </div>
           <SignedIn>
-            {props.noOptions && (
-              <div
-                className={`md:flex items-center ${!open && "hidden md:block"}`}
-              >
+            <div
+              className={`md:flex items-center ${!open && "hidden md:block"}`}
+            >
+              {!props.noOptions && (
                 <div className="md:flex-row md:mx-6 flex flex-col">
                   <a
                     className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
@@ -57,11 +57,11 @@ const Navbar = (props: NavbarProps) => {
                     Applications
                   </a>
                 </div>
-                <div className={open ? "hidden" : ""}>
-                  <UserButton />
-                </div>
+              )}
+              <div className={open ? "hidden" : ""}>
+                <UserButton />
               </div>
-            )}
+            </div>
           </SignedIn>
           <SignedOut>
             <a
