@@ -26,21 +26,21 @@ export default function Navbar(props: NavbarProps) {
               <div className="md:block hidden pt-4">
                 <a
                   href="#HowItWorks"
-                  className="hover:underline px-6 py-2 font-bold text-gray-500 active:text-blue-700"
+                  className="hover:underline px-6 py-2 tracking-wide text-gray-500 active:text-blue-700"
                 >
                   How It Works
                 </a>
 
                 <a
                   href="#FAQs"
-                  className="hover:underline px-6 py-2 font-bold text-gray-500 active:text-blue-700"
+                  className="hover:underline px-6 py-2 tracking-wide text-gray-500 active:text-blue-700"
                 >
                   FAQs
                 </a>
 
                 <a
                   href="#ContactUs"
-                  className="hover:underline px-6 py-2 font-bold text-gray-500 active:text-blue-700"
+                  className="hover:underline px-6 py-2 tracking-wide text-gray-500 active:text-blue-700"
                 >
                   Contact Us
                 </a>
