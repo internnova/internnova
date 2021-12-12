@@ -5,7 +5,7 @@ import Meta from "components/Meta";
 import React, { useEffect, useState } from "react";
 import JobPage from "components/Jobs/JobPage";
 import { prisma } from "lib/prisma";
-import fetchUser, { UserOnSteriods } from "lib/helpers/fetchUser";
+import fetchUser from "lib/helpers/fetchUser";
 import { useUser, SignedIn, SignedOut } from "@clerk/nextjs";
 
 type JobProps = {
@@ -15,7 +15,6 @@ type JobProps = {
 const SignedInView = (props: JobProps) => {
   const router = useRouter();
   const user = useUser();
-  const [userDb, setUserDb] = useState<UserOnSteriods | null>(null);
   const [appliedForCurrentJob, setAppliedForCurrentJob] = useState<
     boolean | null
   >(null);
@@ -32,7 +31,6 @@ const SignedInView = (props: JobProps) => {
         // if the user is not in db send them to the onboarding page(which will make a new user in db)
         router.push("/onboarding");
       } else {
-        setUserDb(userDbRes);
         if (userDbRes.jobApplications) {
           userDbRes.jobApplications.filter(
             (jobApplication) => jobApplication.jobId === props.job.id

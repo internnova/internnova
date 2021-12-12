@@ -14,7 +14,7 @@ import Loading from "components/Loading";
 import Meta from "components/Meta";
 import "styles/globals.css";
 
-const publicPages: string[] = ["/", "/jobs", "/job/[jobId]"];
+const publicPages: string[] = ["/", "/job/[jobId]"];
 
 const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
   const { pathname } = useRouter();

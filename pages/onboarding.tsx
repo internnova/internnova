@@ -3,6 +3,7 @@ import { useEffect } from "react";
 import CreateIntern from "components/Forms/CreateIntern";
 import { useUser } from "@clerk/nextjs";
 import fetchUser from "lib/helpers/fetchUser";
+import Navbar from "components/Navbar";
 
 const OnboardingPage = () => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const OnboardingPage = () => {
 
   return (
     <div className="pb-10">
+      <Navbar />
       <CreateIntern email={email || ""} />
     </div>
   );
