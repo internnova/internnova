@@ -29,7 +29,7 @@ const OnboardingPage = () => {
 
   return (
     <div className="pb-10">
-      <Navbar />
+      <Navbar noOptions />
       <CreateIntern email={email || ""} />
     </div>
   );

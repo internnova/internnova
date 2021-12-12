@@ -2,7 +2,9 @@ import { useState } from "react";
 import { UserButton } from "@clerk/nextjs";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 
-const Navbar = () => {
+type NavbarProps = { noOptions?: boolean };
+
+const Navbar = (props: NavbarProps) => {
   const [open, setOpen] = useState(false);
   return (
     <div className="glassmorphism-50 w-full sticky top-0 z-50">
@@ -37,27 +39,29 @@ const Navbar = () => {
             </div>
           </div>
           <SignedIn>
-            <div
-              className={`md:flex items-center ${!open && "hidden md:block"}`}
-            >
-              <div className="md:flex-row md:mx-6 flex flex-col">
-                <a
-                  className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
-                  href="#"
-                >
-                  Jobs
-                </a>
-                <a
-                  className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
-                  href="#"
-                >
-                  Applications
-                </a>
+            {props.noOptions && (
+              <div
+                className={`md:flex items-center ${!open && "hidden md:block"}`}
+              >
+                <div className="md:flex-row md:mx-6 flex flex-col">
+                  <a
+                    className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
+                    href="#"
+                  >
+                    Jobs
+                  </a>
+                  <a
+                    className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
+                    href="#"
+                  >
+                    Applications
+                  </a>
+                </div>
+                <div className={open ? "hidden" : ""}>
+                  <UserButton />
+                </div>
               </div>
-              <div className={open ? "hidden" : ""}>
-                <UserButton />
-              </div>
-            </div>
+            )}
           </SignedIn>
           <SignedOut>
             <a
