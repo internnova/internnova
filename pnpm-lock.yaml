@@ -43,8 +43,6 @@ importers:
       '@types/react': ^17.0.33
       autoprefixer: ^10.3.7
       babel-plugin-superjson-next: ^0.4.2
-      components: workspace:*
-      lib: workspace:*
       moment: ^2.29.1
       next: latest
       next-sitemap: ^1.6.203
@@ -81,17 +79,9 @@ importers:
     devDependencies:
       '@types/react': 17.0.37
       autoprefixer: 10.4.0_postcss@8.4.5
-      components: link:../../packages/components
-      lib: link:../../packages/lib
       next-sitemap: 1.6.203_next@12.0.7
       postcss: 8.4.5
       tailwindcss: 2.2.19_16a290f6d0e3717bf6d2667234aebd30
-
-  packages/components:
-    specifiers: {}
-
-  packages/lib:
-    specifiers: {}
 
 packages:
 
