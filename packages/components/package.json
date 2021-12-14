@@ -1,0 +1,15 @@
+{
+  "name": "components",
+  "version": "0.0.1",
+  "license": "MIT",
+  "files": [
+    "Footer.tsx",
+    "Forms",
+    "HomePage",
+    "Jobs",
+    "Loading.tsx",
+    "Meta.tsx",
+    "Navbar.tsx",
+    "SmallButton.tsx"
+  ]
+}

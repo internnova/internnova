@@ -12,7 +12,7 @@ import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import Loading from "components/Loading";
 import Meta from "components/Meta";
-import "styles/globals.css";
+import "../styles/globals.css";
 
 const publicPages: string[] = ["/", "/job/[jobId]"];
 

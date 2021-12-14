@@ -2,11 +2,14 @@
   "name": "internnova-web",
   "description": "The webiste for internnova.co",
   "private": true,
+  "workspaces": [
+    "apps/*",
+    "packages/*"
+  ],
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "postbuild": "next-sitemap",
-    "start": "next start",
+    "build": "turbo run build",
+    "dev": "turbo run dev --parallel",
+    "start": "turbo run start",
     "check-types": "tsc --pretty --noEmit",
     "check-format": "prettier --check .",
     "check-lint": "eslint . --ext ts --ext tsx --ext js",
@@ -50,6 +53,32 @@
     "next-sitemap": "^1.6.203",
     "postcss": "^8.3.6",
     "prettier": "^2.4.1",
-    "tailwindcss": "^2.2.15"
+    "tailwindcss": "^2.2.15",
+    "turbo": "^1.0.9"
+  },
+  "turbo": {
+    "baseBranch": "origin/main",
+    "pipeline": {
+      "build": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": [
+          ".next/**"
+        ]
+      },
+      "test": {
+        "dependsOn": [
+          "^build"
+        ],
+        "outputs": []
+      },
+      "lint": {
+        "outputs": []
+      },
+      "dev": {
+        "cache": false
+      }
+    }
   }
 }
