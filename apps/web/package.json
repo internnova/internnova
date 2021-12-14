@@ -22,6 +22,7 @@
     "babel-plugin-superjson-next": "^0.4.2",
     "moment": "^2.29.1",
     "next": "latest",
+    "next-transpile-modules": "^9.0.0",
     "prisma": "^3.6.0",
     "react": "^17.0.2",
     "react-dom": "^17.0.2",
@@ -35,10 +36,10 @@
   "devDependencies": {
     "@types/react": "^17.0.33",
     "autoprefixer": "^10.3.7",
-    "next-sitemap": "^1.6.203",
-    "postcss": "^8.3.6",
     "components": "workspace:*",
     "lib": "workspace:*",
+    "next-sitemap": "^1.6.203",
+    "postcss": "^8.3.6",
     "tailwindcss": "^2.2.15"
   }
 }
