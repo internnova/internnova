@@ -1,2 +1,0 @@
--- AlterTable
-ALTER TABLE "Intern" ALTER COLUMN "bio" SET DATA TYPE TEXT;
