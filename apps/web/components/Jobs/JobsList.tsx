@@ -32,7 +32,7 @@ const JobsList = (props: JobsListProps) => {
       if (data.length !== 0) {
         // if jobs are found, do the following
         setJobs(data);
-        setJob(data[0] || []);
+        if (data.length > 0) setJob(data[0]);
         setCompany(job?.company || null);
       }
 

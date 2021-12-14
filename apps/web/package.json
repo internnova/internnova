@@ -3,10 +3,6 @@
   "version": "0.0.1",
   "description": "The webiste for internnova.co",
   "private": true,
-  "workspaces": [
-    "apps/*",
-    "packages/*"
-  ],
   "scripts": {
     "dev": "next dev",
     "build": "next build",
@@ -36,8 +32,6 @@
   "devDependencies": {
     "@types/react": "^17.0.33",
     "autoprefixer": "^10.3.7",
-    "components": "workspace:*",
-    "lib": "workspace:*",
     "next-sitemap": "^1.6.203",
     "postcss": "^8.3.6",
     "tailwindcss": "^2.2.15"

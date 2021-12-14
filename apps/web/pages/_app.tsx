@@ -36,39 +36,6 @@ const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
           "India",
         ]}
       />
-      <style global jsx>{`
-        @tailwind base;
-        @tailwind components;
-        @tailwind utilities;
-
-        @import url("https://fonts.googleapis.com/css2?family=Nunito+Sans&display=swap");
-
-        @layer components {
-          .button {
-            @apply hover:bg-blue-600 px-8 py-3 font-bold text-white transition duration-300 bg-blue-500 rounded-lg shadow;
-          }
-        }
-
-        .gradient {
-          background: radial-gradient(
-            at right center,
-            rgb(56, 189, 248),
-            rgb(49, 46, 129)
-          );
-          -webkit-background-clip: text;
-          -webkit-text-fill-color: transparent;
-        }
-
-        .heading {
-          font-family: "Nunito Sans", sans-serif;
-        }
-
-        /*used to make images white*/
-        .filter-white {
-          filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(148deg)
-            brightness(107%) contrast(101%);
-        }
-      `}</style>
       <main className="light flex flex-col h-screen">
         <ClerkProvider>
           <ClerkLoading>
