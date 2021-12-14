@@ -12,11 +12,11 @@ jobs:
         with:
           node-version: "14.x"
 
-      - name: Install yarn 🧶
-        run: npm i -g yarn
+      - name: Install pnpm 
+        run: npm i -g pnpm
 
       - name: Install dependencies 🔧
-        run: yarn install --frozen-lockfile
+        run: pnpm install --frozen-lockfile
 
       - name: Lint ✅
-        run: yarn run check-lint
+        run: pnpm run check-lint
