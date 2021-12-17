@@ -32,11 +32,7 @@ const SignedInView = (props: JobProps) => {
         router.push("/onboarding");
       } else {
         if (userDbRes.jobApplications) {
-          userDbRes.jobApplications.filter(
-            (jobApplication) => jobApplication.jobId === props.job.id
-          ).length > 0
-            ? setAppliedForCurrentJob(true)
-            : setAppliedForCurrentJob(false);
+          
         }
       }
     })();
