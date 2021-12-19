@@ -23,6 +23,3 @@ jobs:
 
       - name: Build client ✅
         run: pnpm run build
-
-      - name: Test server 🖥
-        run: pnpm run test
