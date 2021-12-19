@@ -1,5 +1,5 @@
 {
-  "name": "internnova-web",
+  "name": "internnova",
   "description": "The webiste for internnova.co",
   "private": true,
   "workspaces": [
@@ -8,7 +8,7 @@
   ],
   "scripts": {
     "build": "turbo run build",
-    "dev": "turbo run dev",
+    "dev": "turbo run dev --parallel",
     "start": "turbo run start",
     "check-types": "tsc --pretty --noEmit",
     "check-format": "prettier --check .",
@@ -41,7 +41,8 @@
           "^build"
         ],
         "outputs": [
-          ".next/**"
+          ".next/**",
+          "dist/**"
         ]
       },
       "test": {
@@ -52,6 +53,9 @@
       },
       "lint": {
         "outputs": []
+      },
+      "start": {
+        "cache": false
       },
       "dev": {
         "cache": false

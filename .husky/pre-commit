@@ -21,8 +21,17 @@ pnpm run check-lint ||
         false; 
 )
 
+# # Test server
+# cd apps/server && pnpm run test && cd ../.. ||
+# (
+#     echo '🤡😂❌🤡🧪 Failed Tests 🧪🤡😂❌🤡
+#             Are you seriously trying to write that? Fix that shit.'
+#     false;
+# )
+
+
 # Check tsconfig standards
-cd apps/web && pnpm run check-types && cd ../.. ||
+cd apps/client && pnpm run check-types && cd ../.. ||
 (
     echo '🤡😂❌🤡 Failed Type check. 🤡😂❌🤡
             Are you seriously trying to write that? Make the changes required above.'

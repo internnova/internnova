@@ -18,5 +18,11 @@ jobs:
       - name: Install dependencies 🔧
         run: pnpm install --frozen-lockfile
 
-      - name: Lint ✅
+      - name: Lint 🖊
         run: pnpm run check-lint
+
+      - name: Build client ✅
+        run: pnpm run build
+
+      - name: Test server 🖥
+        run: pnpm run test
