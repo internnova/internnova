@@ -1,0 +1,31 @@
+import { GraphQLResolveInfo } from "graphql";
+import { AggregateCompanyArgs } from "./args/AggregateCompanyArgs";
+import { CreateCompanyArgs } from "./args/CreateCompanyArgs";
+import { CreateManyCompanyArgs } from "./args/CreateManyCompanyArgs";
+import { DeleteCompanyArgs } from "./args/DeleteCompanyArgs";
+import { DeleteManyCompanyArgs } from "./args/DeleteManyCompanyArgs";
+import { FindFirstCompanyArgs } from "./args/FindFirstCompanyArgs";
+import { FindManyCompanyArgs } from "./args/FindManyCompanyArgs";
+import { FindUniqueCompanyArgs } from "./args/FindUniqueCompanyArgs";
+import { GroupByCompanyArgs } from "./args/GroupByCompanyArgs";
+import { UpdateCompanyArgs } from "./args/UpdateCompanyArgs";
+import { UpdateManyCompanyArgs } from "./args/UpdateManyCompanyArgs";
+import { UpsertCompanyArgs } from "./args/UpsertCompanyArgs";
+import { Company } from "../../../models/Company";
+import { AffectedRowsOutput } from "../../outputs/AffectedRowsOutput";
+import { AggregateCompany } from "../../outputs/AggregateCompany";
+import { CompanyGroupBy } from "../../outputs/CompanyGroupBy";
+export declare class CompanyCrudResolver {
+    company(ctx: any, info: GraphQLResolveInfo, args: FindUniqueCompanyArgs): Promise<Company | null>;
+    findFirstCompany(ctx: any, info: GraphQLResolveInfo, args: FindFirstCompanyArgs): Promise<Company | null>;
+    companies(ctx: any, info: GraphQLResolveInfo, args: FindManyCompanyArgs): Promise<Company[]>;
+    createCompany(ctx: any, info: GraphQLResolveInfo, args: CreateCompanyArgs): Promise<Company>;
+    createManyCompany(ctx: any, info: GraphQLResolveInfo, args: CreateManyCompanyArgs): Promise<AffectedRowsOutput>;
+    deleteCompany(ctx: any, info: GraphQLResolveInfo, args: DeleteCompanyArgs): Promise<Company | null>;
+    updateCompany(ctx: any, info: GraphQLResolveInfo, args: UpdateCompanyArgs): Promise<Company | null>;
+    deleteManyCompany(ctx: any, info: GraphQLResolveInfo, args: DeleteManyCompanyArgs): Promise<AffectedRowsOutput>;
+    updateManyCompany(ctx: any, info: GraphQLResolveInfo, args: UpdateManyCompanyArgs): Promise<AffectedRowsOutput>;
+    upsertCompany(ctx: any, info: GraphQLResolveInfo, args: UpsertCompanyArgs): Promise<Company>;
+    aggregateCompany(ctx: any, info: GraphQLResolveInfo, args: AggregateCompanyArgs): Promise<AggregateCompany>;
+    groupByCompany(ctx: any, info: GraphQLResolveInfo, args: GroupByCompanyArgs): Promise<CompanyGroupBy[]>;
+}

@@ -25,10 +25,10 @@ yarn-debug.log*
 yarn-error.log*
 
 # local env files
-.env
-.env.local
-.env.development.local
-.env.production.local
+**/.env
+**/.env.local
+**/.env.development.local
+**/.env.production.local
 
 # vercel
 .vercel
@@ -43,3 +43,9 @@ yarn-error.log*
 **/public/worker-*.js.map
 
 tsconfig.tsbuildinfo
+
+.turbo
+
+build/**
+dist/**
+.next/**
