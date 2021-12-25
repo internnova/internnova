@@ -31,7 +31,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         data: [
           {
             bio,
-            interests: interests,
+            interests: interests.join(process.env.SEPERATOR),
             userId: user.id,
             email,
           },
