@@ -97,7 +97,7 @@ const JobPage = (props: JobPageProps) => {
             <div className="flex gap-4 mb-6">
               <img
                 src={props.company?.logo || ""}
-                className="hidden sm:block max-h-16"
+                className="hidden sm:block object-contain w-16 h-16"
                 alt="Job"
               />
               <div>
@@ -159,7 +159,7 @@ const JobPage = (props: JobPageProps) => {
           </article>
           <article className="mb-6 space-y-4">
             <h3 className="font-bold text-blue-700">Job Requirements</h3>
-            {props.job?.skillsRequired?.map(
+            {props.job?.skillsRequired?.split(process.env.SEPERATOR).map(
               (skill, x) =>
                 skill !== "" && (
                   <div className="text-muted flex gap-3" key={x}>
