@@ -83,7 +83,9 @@ const JobPage = (props: JobPageProps) => {
       </section>
     );
   if (!props.company || !props.job) return <></>;
+
   const postedAt = new Date(props.job.postedAt);
+
   return (
     <>
       {props.responsive && <NavbarChooser />}
@@ -118,11 +120,8 @@ const JobPage = (props: JobPageProps) => {
                 </p>
               </div>
             </div>
-            <p className="text-black hidden md:block">
-              Posted {moment(postedAt).fromNow()}
-            </p>
           </article>
-          <p className="text-black md:hidden pl-2 pb-4 text-md">
+          <p className="text-black pl-2 pb-4 text-md">
             Posted {moment(postedAt).fromNow()}
           </p>
           <div className="md:flex mb-9 items-center justify-between p-6 bg-gray-100 rounded-md">
