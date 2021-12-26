@@ -27,6 +27,7 @@
     "superjson": "^1.8.0",
     "swr": "^1.0.1",
     "tailwind-glassmorphism": "^1.0.6",
+    "tailwindcss-border-gradient-radius": "^2.0.0",
     "typescript": "^4.5.4"
   },
   "devDependencies": {

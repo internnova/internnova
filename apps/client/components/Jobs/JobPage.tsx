@@ -83,7 +83,9 @@ const JobPage = (props: JobPageProps) => {
       </section>
     );
   if (!props.company || !props.job) return <></>;
+
   const postedAt = new Date(props.job.postedAt);
+
   return (
     <>
       {props.responsive && <NavbarChooser />}
@@ -97,7 +99,7 @@ const JobPage = (props: JobPageProps) => {
             <div className="flex gap-4 mb-6">
               <img
                 src={props.company?.logo || ""}
-                className="hidden sm:block max-h-16"
+                className="hidden sm:block object-contain w-16 h-16"
                 alt="Job"
               />
               <div>
@@ -118,11 +120,8 @@ const JobPage = (props: JobPageProps) => {
                 </p>
               </div>
             </div>
-            <p className="text-black hidden md:block">
-              Posted {moment(postedAt).fromNow()}
-            </p>
           </article>
-          <p className="text-black md:hidden pl-2 pb-4 text-md">
+          <p className="text-black pl-2 pb-4 text-md">
             Posted {moment(postedAt).fromNow()}
           </p>
           <div className="md:flex mb-9 items-center justify-between p-6 bg-gray-100 rounded-md">
@@ -159,7 +158,7 @@ const JobPage = (props: JobPageProps) => {
           </article>
           <article className="mb-6 space-y-4">
             <h3 className="font-bold text-blue-700">Job Requirements</h3>
-            {props.job?.skillsRequired?.map(
+            {props.job?.skillsRequired?.split(process.env.SEPERATOR).map(
               (skill, x) =>
                 skill !== "" && (
                   <div className="text-muted flex gap-3" key={x}>

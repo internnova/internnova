@@ -21,5 +21,10 @@ jobs:
       - name: Lint 🖊
         run: pnpm run check-lint
 
+      - name: set env vars
+        run: |
+          touch apps/client/.env
+          echo NEXT_PUBLIC_CLERK_FRONTEND_API=clerk.8bqex.mkl5j.lcl.dev >> apps/client/.env
+
       - name: Build client ✅
-        run: pnpm run build
+        run: cd apps/client && pnpx prisma generate && cd ../.. && pnpm run build
