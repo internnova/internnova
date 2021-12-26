@@ -22,4 +22,6 @@ jobs:
         run: pnpm run check-lint
 
       - name: Build client ✅
+        env:
+          NEXT_PUBLIC_CLERK_FRONTEND_API: "clerk.8bqex.mkl5j.lcl.dev"
         run: cd apps/client && pnpx prisma generate && cd ../.. && pnpm run build
