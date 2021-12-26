@@ -21,7 +21,8 @@ const JobComponent = (props: JobComponentProps) => {
   return (
     <a
       className={`lg:pointer-events-none rounded-lg block p-1 ${
-        focus && "bg-gradient-to-r from-green-400 via-blue-300 to-blue-700"
+        focus &&
+        "lg:bg-gradient-to-r lg:from-green-400 lg:via-blue-300 lg:to-blue-700"
       }`}
     >
       <article className="bg-card-bg p-6 shadow-lg bg-white">
