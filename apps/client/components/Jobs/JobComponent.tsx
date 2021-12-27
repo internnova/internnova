@@ -1,19 +1,35 @@
 import { Job, Company } from "@prisma/client";
+import { useState, useEffect } from "react";
 
 type JobComponentProps = {
   job: (Job & { company: Company }) | null;
+  currentJobId: number | null;
 };
 
 const JobComponent = (props: JobComponentProps) => {
   // empty page if props are null
+  const [focus, setFocus] = useState(false);
+
+  useEffect(() => {
+    if (props?.currentJobId === props.job?.id) {
+      setFocus(true);
+    } else setFocus(false);
+  }, [props.job, props.currentJobId]);
+
   if (!props.job?.company || !props.job) return <></>;
+
   return (
-    <a className="lg:pointer-events-none block">
-      <article className="bg-card-bg p-6 rounded-md shadow-lg">
+    <a
+      className={`lg:pointer-events-none rounded-lg block p-1 ${
+        focus &&
+        "lg:bg-gradient-to-r lg:from-green-400 lg:via-blue-300 lg:to-blue-700"
+      }`}
+    >
+      <article className="bg-card-bg p-6 shadow-lg bg-white">
         <div className="flex gap-4 mb-6">
           <img
             src={props.job.company?.logo || ""}
-            className="max-w-12 max-h-12"
+            className="object-contain w-16 h-16"
             alt="Job"
           />
           <div>

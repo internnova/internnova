@@ -51,5 +51,8 @@ module.exports = {
   variants: {
     extend: {},
   },
-  plugins: [require("tailwind-glassmorphism")],
+  plugins: [
+    require("tailwind-glassmorphism"),
+    require("tailwindcss-border-gradient-radius"),
+  ],
 };

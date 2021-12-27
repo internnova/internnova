@@ -16,6 +16,7 @@ const JobsList = (props: JobsListProps) => {
   >(null);
 
   const [loading, setLoading] = useState(true);
+  // job in focus
   const [job, setJob] = useState<(Job & { company: Company }) | null>(jobs[0]);
   const [company, setCompany] = useState<Company | null>(
     job ? job.company : null
@@ -87,7 +88,7 @@ const JobsList = (props: JobsListProps) => {
               {jobs.length !== 0 &&
                 jobs.map((jobIter) => (
                   <div onClick={() => setJob(jobIter)} key={jobIter.id}>
-                    <JobComponent job={jobIter} />
+                    <JobComponent job={jobIter} currentJobId={job.id} />
                   </div>
                 ))}
             </section>

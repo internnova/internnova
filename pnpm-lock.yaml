@@ -57,6 +57,7 @@ importers:
       swr: ^1.0.1
       tailwind-glassmorphism: ^1.0.6
       tailwindcss: ^2.2.15
+      tailwindcss-border-gradient-radius: ^2.0.0
       typescript: ^4.5.4
     dependencies:
       '@clerk/nextjs': 2.4.4_next@12.0.7+react@17.0.2
@@ -75,6 +76,7 @@ importers:
       superjson: 1.8.0
       swr: 1.1.2_react@17.0.2
       tailwind-glassmorphism: 1.0.6
+      tailwindcss-border-gradient-radius: 2.0.0
       typescript: 4.5.4
     devDependencies:
       '@types/react': 17.0.37
@@ -2149,7 +2151,13 @@ packages:
     dependencies:
       color-name: 1.1.4
       simple-swizzle: 0.2.2
-    dev: true
+
+  /color/3.2.1:
+    resolution: {integrity: sha512-aBl7dZI9ENN6fUGC7mWpMTPNHmWUSNan9tuWN6ahh5ZLNk9baLJOnSMlrQkHcrfFgz2/RigjUVAjdx36VcemKA==}
+    dependencies:
+      color-convert: 1.9.3
+      color-string: 1.9.0
+    dev: false
 
   /color/4.1.0:
     resolution: {integrity: sha512-o2rkkxyLGgYoeUy1OodXpbPAQNmlNBrirQ8ODO8QutzDiDMNdezSOZLNnusQ6pUpCQJUsaJIo9DZJKqa2HgH7A==}
@@ -3734,7 +3742,6 @@ packages:
 
   /is-arrayish/0.3.2:
     resolution: {integrity: sha512-eVRqCvVlZbuw3GrM63ovNSNAeA1K16kaR/LRY/92w0zxQ5/1YzwblUX652i4Xs9RwAGjW9d9y6X88t8OaAJfWQ==}
-    dev: true
 
   /is-bigint/1.0.4:
     resolution: {integrity: sha512-zB9CruMamjym81i2JZ3UMn54PKGsQzsJeo6xvN3HJJ4CAsQNB6iRutp2To77OfCNuoxspsIhzaPoO1zyCEhFOg==}
@@ -4199,7 +4206,6 @@ packages:
 
   /lodash/4.17.21:
     resolution: {integrity: sha512-v2kDEe57lecTulaDIuNTPy3Ry4gLGJ6Z1O3vE1krgXZNrsQ+LFTGHVxVjcXPs17LhbZVGedAJv8XZ1tvj5FvSg==}
-    dev: true
 
   /loglevel/1.8.0:
     resolution: {integrity: sha512-G6A/nJLRgWOuuwdNuA6koovfEV1YpqqAG4pRUlFaz3jj2QNZ8M4vBqnVA+HBTmU/AMNUtlOsMmSpF6NyOjztbA==}
@@ -5517,7 +5523,6 @@ packages:
     resolution: {integrity: sha1-pNprY1/8zMoz9w0Xy5JZLeleVXo=}
     dependencies:
       is-arrayish: 0.3.2
-    dev: true
 
   /slash/3.0.0:
     resolution: {integrity: sha512-g9Q1haeby36OSStwb4ntCGGGaKsaVSjQ68fBxoQcutl5fS1vuY18H3wSt3jFyFtrkx+Kz0V1G85A4MyAdDMi2Q==}
@@ -5816,6 +5821,13 @@ packages:
 
   /tailwind-glassmorphism/1.0.6:
     resolution: {integrity: sha512-ToxQko9QOwMbQy7U7l3Anqz5NwWYQTywzd8rjR/NC8VvTjpp/JaZFOJ7kQXxSkN6D9up58fE+KGocQ/HO7YU4g==}
+    dev: false
+
+  /tailwindcss-border-gradient-radius/2.0.0:
+    resolution: {integrity: sha512-CDAkVgeSa0RqpnNHfF+JTHKCuR3izZLlMeCASkCGES9T/th2JN/Vaqnp2l77l+lJqv96ECnSFQ4YatcuslBcvg==}
+    dependencies:
+      color: 3.2.1
+      lodash: 4.17.21
     dev: false
 
   /tailwindcss/2.2.19_16a290f6d0e3717bf6d2667234aebd30:
