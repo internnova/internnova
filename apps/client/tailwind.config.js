@@ -33,7 +33,16 @@ module.exports = {
           800: "#2b2788",
           900: "#181956",
         },
+
+        brand: "#8EC1D6",
+        dark: "#475569",
+        mid: "#CBD5E1",
+        light: "#FFFFFF",
       },
+      brand: "#8EC1D6",
+      dark: "#475569",
+      mid: "#CBD5E1",
+      light: "#FFFFFF",
     },
     fontFamily: {
       sans: ["Plus Jakarta Sans"],

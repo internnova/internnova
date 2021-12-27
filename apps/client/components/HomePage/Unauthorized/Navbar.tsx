@@ -1,5 +1,6 @@
 import Link from "next/link";
 import SmallButton from "../../SmallButton";
+import { SignInButton } from "@clerk/nextjs";
 
 type NavbarProps = {
   notHomepage?: boolean;
@@ -49,11 +50,9 @@ export default function Navbar(props: NavbarProps) {
           )}
         </div>
         <div className="lg:block flex items-center justify-between font-medium mb-2">
-          <Link href="/login" passHref>
-            <a>
-              <SmallButton content="Login" />
-            </a>
-          </Link>
+          <SignInButton>
+            <SmallButton content="Login" />
+          </SignInButton>
         </div>
       </header>
     </div>

@@ -46,7 +46,6 @@ model User {
   email String  @unique
   role  Role
   name  String?
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -61,7 +60,6 @@ model Company {
   CIN         String? @unique @db.VarChar(200)
   jobs        Job[]
   email       String  @unique
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -73,7 +71,6 @@ model Intern {
   interests       String
   jobApplications JobApplication[]
   email           String           @unique @db.VarChar(100)
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -84,13 +81,10 @@ model JobApplication {
   id          Int    @id @default(autoincrement())
   description String @db.VarChar(200)
   status      Status
-
   internId Int
   intern   Intern @relation(fields: [internId], references: [id])
-
   jobId Int
   job   Job @relation(fields: [jobId], references: [id])
-
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
@@ -108,11 +102,8 @@ model Job {
   salary         String?   @db.VarChar(100)
   industry       Tag
   closed         Boolean   @default(false)
-
   applications JobApplication[]
-
   companyId Int
   company   Company @relation(fields: [companyId], references: [id])
-
   updatedAt DateTime @updatedAt
 }
