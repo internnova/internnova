@@ -11,7 +11,7 @@
     "check-types": "tsc --pretty --noEmit"
   },
   "dependencies": {
-    "@clerk/nextjs": "^2.2.1",
+    "@clerk/nextjs": "^2.4.4",
     "@fontsource/nunito-sans": "^4.5.1",
     "@fontsource/plus-jakarta-sans": "^4.5.0",
     "@prisma/client": "^3.6.0",
