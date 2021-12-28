@@ -7,9 +7,11 @@
     "packages/*"
   ],
   "scripts": {
-    "build": "turbo run build",
-    "dev": "turbo run dev --parallel",
-    "start": "turbo run start",
+    "dev": "next dev",
+    "build": "next build",
+    "postbuild": "next-sitemap",
+    "start": "next start",
+    "check-types": "tsc --pretty --noEmit",
     "check-types": "tsc --pretty --noEmit",
     "check-format": "prettier --check .",
     "check-lint": "eslint . --ext ts --ext tsx --ext js",
@@ -17,7 +19,32 @@
     "test-all": "yarn run check-format && yarn run check-lint && yarn run check-types && yarn run build",
     "prepare": "husky install"
   },
+  "dependencies": {
+    "@clerk/nextjs": "^2.4.4",
+    "@fontsource/nunito-sans": "^4.5.1",
+    "@fontsource/plus-jakarta-sans": "^4.5.0",
+    "@prisma/client": "^3.6.0",
+    "babel-plugin-superjson-next": "^0.4.2",
+    "moment": "^2.29.1",
+    "next": "latest",
+    "next-transpile-modules": "^9.0.0",
+    "prisma": "^3.6.0",
+    "react": "^17.0.2",
+    "react-dom": "^17.0.2",
+    "react-hot-toast": "^2.1.1",
+    "react-social-icons": "^5.6.1",
+    "superjson": "^1.8.0",
+    "swr": "^1.0.1",
+    "tailwind-glassmorphism": "^1.0.6",
+    "tailwindcss-border-gradient-radius": "^2.0.0",
+    "typescript": "^4.5.4"
+  },
   "devDependencies": {
+    "@types/react": "^17.0.33",
+    "autoprefixer": "^10.3.7",
+    "next-sitemap": "^1.6.203",
+    "postcss": "^8.3.6",
+    "tailwindcss": "^2.2.15",
     "@commitlint/cli": "^15.0.0",
     "@commitlint/config-conventional": "^15.0.0",
     "@types/react": "^17.0.33",
@@ -30,36 +57,6 @@
     "eslint-plugin-react-hooks": "^4.2.0",
     "eslint-webpack-plugin": "^2.4.1",
     "husky": "^7.0.0",
-    "prettier": "^2.4.1",
-    "turbo": "^1.0.9"
-  },
-  "turbo": {
-    "baseBranch": "origin/main",
-    "pipeline": {
-      "build": {
-        "dependsOn": [
-          "^build"
-        ],
-        "outputs": [
-          ".next/**",
-          "dist/**"
-        ]
-      },
-      "test": {
-        "dependsOn": [
-          "^build"
-        ],
-        "outputs": []
-      },
-      "lint": {
-        "outputs": []
-      },
-      "start": {
-        "cache": false
-      },
-      "dev": {
-        "cache": false
-      }
-    }
+    "prettier": "^2.4.1"
   }
 }
