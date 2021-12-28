@@ -45,7 +45,7 @@ module.exports = {
       light: "#FFFFFF",
     },
     fontFamily: {
-      sans: ["Plus Jakarta Sans"],
+      sans: ["Nunito Sans"],
     },
   },
   variants: {
