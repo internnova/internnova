@@ -1,4 +1,4 @@
-<p align="center"><img src="https://internnova.co/assets/img/logo-transparent.png" width="200px" height="200px"></p>
+<p align="center"><img src="https://internnova.co/assets/img/logo.png"></p>
 
 <h1 align="center">InternNova Web</h1>
 

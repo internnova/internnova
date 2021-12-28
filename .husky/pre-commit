@@ -31,7 +31,7 @@ pnpm run check-lint ||
 
 
 # Check tsconfig standards
-cd apps/client && pnpm run check-types && cd ../.. ||
+pnpm run check-types ||
 (
     echo '🤡😂❌🤡 Failed Type check. 🤡😂❌🤡
             Are you seriously trying to write that? Make the changes required above.'
