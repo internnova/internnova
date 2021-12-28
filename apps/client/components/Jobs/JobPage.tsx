@@ -125,7 +125,7 @@ const JobPage = (props: JobPageProps) => {
           <p className="text-black pl-2 pb-4 text-md">
             Posted {moment(postedAt).fromNow()}
           </p>
-          <div className="md:flex mb-9 items-center justify-between p-6 bg-gray-100 rounded-md">
+          <div className="md:flex mb-9 items-center justify-between px-6 pt-4 bg-gray-100 rounded-md">
             <article className="pb-5">
               <h2 className="font-bold">Field</h2>
               <p className="text-muted">
