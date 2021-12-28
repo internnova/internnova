@@ -8,6 +8,7 @@ import NavbarUnauthorized from "../HomePage/Unauthorized/Navbar";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Loading from "../Loading";
 import { useRouter } from "next/router";
+import globals from "lib/globals";
 
 type JobPageProps = {
   job: (Job & { company: Company }) | null;
@@ -158,7 +159,7 @@ const JobPage = (props: JobPageProps) => {
           </article>
           <article className="mb-6 space-y-4">
             <h3 className="font-bold text-blue-700">Job Requirements</h3>
-            {props.job?.skillsRequired?.split(process.env.SEPERATOR).map(
+            {props.job?.skillsRequired?.split(globals.SEPERATOR).map(
               (skill, x) =>
                 skill !== "" && (
                   <div className="text-muted flex gap-3" key={x}>
