@@ -42,26 +42,26 @@ enum Status {
 // --------------------------------------
 
 model User {
-  id    Int     @id @default(autoincrement())
-  email String  @unique
-  role  Role
-  name  String?
+  id        Int      @id @default(autoincrement())
+  email     String   @unique
+  role      Role
+  name      String?
   createdAt DateTime @default(now())
   updatedAt DateTime @updatedAt
 }
 
 model Company {
-  id          Int     @id @default(autoincrement())
-  userId      Int     @unique
-  name        String  @unique @db.VarChar(100)
-  description String  @db.VarChar(1000)
-  logo        String? @db.VarChar(2000)
-  website     String? @db.VarChar(50)
-  CIN         String? @unique @db.VarChar(200)
+  id          Int      @id @default(autoincrement())
+  userId      Int      @unique
+  name        String   @unique @db.VarChar(100)
+  description String   @db.VarChar(1000)
+  logo        String?  @db.VarChar(2000)
+  website     String?  @db.VarChar(50)
+  CIN         String?  @unique @db.VarChar(200)
   jobs        Job[]
-  email       String  @unique
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  email       String   @unique
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Intern {
@@ -71,39 +71,42 @@ model Intern {
   interests       String
   jobApplications JobApplication[]
   email           String           @unique @db.VarChar(100)
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
 }
 
 // --------------------------------------
 
 model JobApplication {
-  id          Int    @id @default(autoincrement())
-  description String @db.VarChar(200)
+  id          Int      @id @default(autoincrement())
+  description String   @db.VarChar(200)
   status      Status
-  internId Int
-  intern   Intern @relation(fields: [internId], references: [id])
-  jobId Int
-  job   Job @relation(fields: [jobId], references: [id])
-  createdAt DateTime @default(now())
-  updatedAt DateTime @updatedAt
+  internId    Int
+  intern      Intern   @relation(fields: [internId], references: [id])
+  jobId       Int
+  job         Job      @relation(fields: [jobId], references: [id])
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
 }
 
 model Job {
-  id             Int       @id @default(autoincrement())
-  position       String    @db.VarChar(50)
-  description    String    @db.VarChar(1000)
+  id             Int              @id @default(autoincrement())
+  position       String           @db.VarChar(50)
+  description    String           @db.VarChar(1000)
   jobType        JobType
-  skillsRequired String    @db.VarChar(10000)
-  numOfOpenings  Int       @default(1)
-  duration       String    @db.VarChar(100)
-  postedAt       DateTime  @default(now())
-  location       String    @default("Remote") @db.VarChar(100)
-  salary         String?   @db.VarChar(100)
+  skillsRequired String           @db.VarChar(10000)
+  numOfOpenings  Int              @default(1)
+  duration       String           @db.VarChar(100)
+  postedAt       DateTime         @default(now())
+  location       String           @default("Remote") @db.VarChar(100)
+  salary         String?          @db.VarChar(100)
   industry       Tag
-  closed         Boolean   @default(false)
-  applications JobApplication[]
-  companyId Int
-  company   Company @relation(fields: [companyId], references: [id])
+  closed         Boolean          @default(false)
+  applications   JobApplication[]
+
+  companyId   Int
+  companyName String
+  company     Company @relation(fields: [companyId], references: [id])
+
   updatedAt DateTime @updatedAt
 }

@@ -1,4 +1,3 @@
-import Link from "next/link";
 import SmallButton from "../../SmallButton";
 import { SignInButton } from "@clerk/nextjs";
 
