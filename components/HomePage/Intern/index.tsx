@@ -22,6 +22,8 @@ type InternHomepageProps = {
 };
 const InternHomepage = (props: InternHomepageProps) => {
   const [userDb, setUserDb] = useState<UserOnSteriods | null>(null);
+  const [search, setSearch] = useState<string>("");
+  const [tempSearch, setTempSearch] = useState<string>("");
   const user = useUser();
   const router = useRouter();
 
@@ -43,18 +45,37 @@ const InternHomepage = (props: InternHomepageProps) => {
     /*eslint-disable-next-line */
   }, []);
 
+  useEffect(() => {
+    if (tempSearch === "") setSearch("");
+  }, [tempSearch]);
+
   return (
     <div>
       <Navbar />
       <div className="h-screen">
-        <div className="mx-auto py-10">
+        <div className="mx-auto py-10 md:max-w-md">
           <h1 className="text-4xl pb-2 m-auto text-center heading">
             Search For Jobs
           </h1>
+          <div className="mt-10 mx-10 md:mx-0 flex items-center bg-white rounded-lg overflow-hidden px-2 py-2 justify-between border-2 border-gray-300">
+            <input
+              className="text-base text-gray-800 flex-grow outline-none px-2"
+              type="text"
+              placeholder="What are you looking for?"
+              onChange={(e) => setTempSearch(e.target.value)}
+              value={tempSearch}
+            />
+            <button
+              className="bg-blue-500 text-white text-base rounded-lg px-4 py-2 font-thin"
+              onClick={() => setSearch(tempSearch)}
+            >
+              Search
+            </button>
+          </div>
         </div>
         <div>
           <Toaster />
-          <JobsList userDb={userDb} />
+          <JobsList userDb={userDb} search={search} />
         </div>
       </div>
     </div>
