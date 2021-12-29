@@ -7,6 +7,7 @@ import { UserOnSteriods } from "lib/helpers/fetchUser";
 
 type JobsListProps = {
   userDb?: UserOnSteriods | null;
+  search: string | null;
 };
 
 const JobsList = (props: JobsListProps) => {
@@ -14,7 +15,8 @@ const JobsList = (props: JobsListProps) => {
   const [appliedForCurrentJob, setAppliedForCurrentJob] = useState<
     boolean | null
   >(null);
-
+  const [triggeredAtLeastOnce, setTriggeredAtLeastOnce] =
+    useState<boolean>(false);
   const [loading, setLoading] = useState(true);
   // job in focus
   const [job, setJob] = useState<(Job & { company: Company }) | null>(jobs[0]);
@@ -46,6 +48,39 @@ const JobsList = (props: JobsListProps) => {
   }, []);
 
   useEffect(() => {
+    if (props.search || props.search !== "" || triggeredAtLeastOnce) {
+      setTriggeredAtLeastOnce(true);
+      setLoading(true);
+
+      (async () => {
+        // fetch jobs
+        const resultJobs = await fetch(
+          `/api/db/fetchJobs/search?search=${props.search}`
+        );
+        console.log(
+          `/api/db/fetchJobs/search?search=${props.search}`,
+          "got here"
+        );
+
+        //parse repsonse
+        const data: (Job & { company: Company })[] = await resultJobs.json();
+        console.log(data);
+        console.log("got here 2");
+        // if jobs are found, do the following
+        setJobs(data);
+        if (data.length > 0) setJob(data[0]);
+        setCompany(job?.company || null);
+
+        // if the user is an intern
+
+        // stop spinner
+        setLoading(false);
+      })();
+    }
+    /*eslint-disable-next-line */
+  }, [props.search]);
+
+  useEffect(() => {
     setCompany(job ? job.company : null);
     if (props.userDb?.jobApplications) {
       // check if application exist
@@ -74,7 +109,8 @@ const JobsList = (props: JobsListProps) => {
                 404 - Jobs not found
               </h1>
               <p className="md:text-xl text-grey-900 pb-5 text-lg font-semibold text-gray-700 text-center">
-                We{"'"}re out of jobs, check back later!
+                We{"'"}re either out of jobs, or can{"'"}t find any jobs that
+                meet your search criteria
               </p>
             </div>
           </div>

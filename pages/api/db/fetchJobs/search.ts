@@ -17,6 +17,7 @@ const filterJobsByInterest = async (
     console.log("searchFiltered in tags");
     const jobs = await prisma.job.findMany({
       where: {
+        closed: false,
         OR: [
           {
             description: {
@@ -41,6 +42,7 @@ const filterJobsByInterest = async (
           },
         ],
       },
+      include: { company: true },
     });
     res.status(200).json(jobs);
     return;
@@ -48,6 +50,7 @@ const filterJobsByInterest = async (
 
   const jobs = await prisma.job.findMany({
     where: {
+      closed: false,
       OR: [
         {
           description: {
@@ -66,6 +69,7 @@ const filterJobsByInterest = async (
         },
       ],
     },
+    include: { company: true },
   });
   res.status(200).json(jobs);
 };
