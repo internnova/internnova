@@ -64,6 +64,11 @@ const InternHomepage = (props: InternHomepageProps) => {
               placeholder="What are you looking for?"
               onChange={(e) => setTempSearch(e.target.value)}
               value={tempSearch}
+              onKeyUp={(e) => {
+                if (e.key === "Enter") {
+                  setSearch(tempSearch);
+                }
+              }}
             />
             <button
               className="bg-blue-500 text-white text-base rounded-lg px-4 py-2 font-thin"
