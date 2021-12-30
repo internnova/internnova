@@ -52,8 +52,6 @@ yarn run dev
 
 [![Stargazers repo roster for https://github.com/internnovahq/internnova](https://reporoster.com/stars/internnovahq/internnova)](https://github.com/internnovahq/internnova/stargazers)
 
-[![Forkers repo roster for https://github.com/InternNova-Labs/web](https://reporoster.com/forks/InternNova-Labs/web)](https://github.com/internnovahq/internnova/network/members)
-
 ## Authors
 
 [Samrath Chadha](https://github.com/yosamrath) - Lead contributor and maintainer
