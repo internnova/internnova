@@ -26,9 +26,19 @@ const CreateIntern = (props: CreateInternProps) => {
     <FormWrapper title="Sign Up">
       <form
         onSubmit={(e) => {
+          e.preventDefault();
+
+          if (bio.length < 100) {
+            setError("Write a longer bio, at least 100 characters");
+            return;
+          } else if (interests.length < 1) {
+            setError("Write at least one interest");
+            return;
+          } else if (userFullName.length < 10) {
+            setError("Write a longer name, at least 10 characters");
+          }
           try {
             setLoading(true);
-            e.preventDefault();
 
             const createUserAndIntern = {
               email: props.email,
@@ -94,6 +104,7 @@ const CreateIntern = (props: CreateInternProps) => {
           <textarea
             placeholder="Enter A bio"
             className="h-60 text-grey-700 p-5 mb-5 border rounded-md"
+            required
             value={bio}
             onChange={(e) => setBio(e.target.value)}
             minLength={100}
