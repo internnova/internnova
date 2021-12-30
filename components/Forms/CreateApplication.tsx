@@ -26,9 +26,14 @@ const CreateApplication = (props: CreateCompanyProps) => {
     >
       <form
         onSubmit={(e) => {
-          try {
-            setLoading(true);
+          if (description.split(" ").length < 100) {
             e.preventDefault();
+            setError("Fill in at least 100 characters");
+            return;
+          }
+          try {
+            e.preventDefault();
+            setLoading(true);
 
             const createdUserAndCompany = {
               description,
@@ -43,9 +48,6 @@ const CreateApplication = (props: CreateCompanyProps) => {
                 "Content-Type": "application/json",
               },
             }).then((res) => {
-              res.json().then((data) => {
-                console.log(data);
-              });
               if (res.status === 200) {
                 setError("");
                 router.push("/?success=true");
@@ -81,12 +83,13 @@ const CreateApplication = (props: CreateCompanyProps) => {
           <textarea
             placeholder="Enter A Description"
             className="h-60 text-gray-700 p-5 mb-5 border rounded-md"
+            required
             minLength={100}
             maxLength={10000}
             value={description}
             onChange={(e) => {
               setDescription(e.target.value);
-              setTextLength(description.length);
+              setTextLength(description.split(" ").length);
             }}
           />
         </div>
