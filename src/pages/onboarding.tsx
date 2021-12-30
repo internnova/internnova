@@ -3,7 +3,6 @@ import { useEffect } from "react";
 import CreateIntern from "components/Forms/CreateIntern";
 import { useUser } from "@clerk/nextjs";
 import fetchUser from "lib/helpers/fetchUser";
-import Navbar from "components/Navbar";
 
 const OnboardingPage = () => {
   const router = useRouter();
@@ -27,12 +26,7 @@ const OnboardingPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  return (
-    <div className="pb-10">
-      <Navbar noOptions />
-      <CreateIntern email={email || ""} />
-    </div>
-  );
+  return <CreateIntern email={email || ""} />;
 };
 
 export default OnboardingPage;

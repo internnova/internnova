@@ -13,7 +13,6 @@ const CreateCompany = (props: CreateCompanyProps) => {
   const [logo, setLogo] = useState<string>("");
   const [website, setWebsite] = useState<string>("");
   const [error, setError] = useState<string>("");
-  const [CIN, setCIN] = useState<string>("");
   const router = useRouter();
 
   return (
@@ -30,7 +29,6 @@ const CreateCompany = (props: CreateCompanyProps) => {
               logo: logo,
               description: description,
               website: website,
-              CIN: CIN,
             };
 
             fetch("/api/db/createUserAndCompany", {
@@ -102,15 +100,6 @@ const CreateCompany = (props: CreateCompanyProps) => {
           maxLength={128}
           value={website}
           setValue={setWebsite}
-        />
-        <TextBox
-          title="CIN Number"
-          description="A CIN number is proof of official registration of a company. We only support India Registered Companies at the moment"
-          placeholder="CIN"
-          minLength={21}
-          maxLength={21}
-          value={CIN}
-          setValue={setCIN}
         />
         <div className="my-5">
           <button type="submit" className="button w-full">
