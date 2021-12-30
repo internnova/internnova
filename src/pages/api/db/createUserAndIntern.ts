@@ -1,7 +1,6 @@
 import { Tag } from "@prisma/client";
 import type { NextApiRequest, NextApiResponse } from "next";
 import { prisma } from "lib/prisma";
-import globals from "lib/globals";
 
 type CreateUserAndIntern = {
   email: string;
@@ -32,7 +31,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         data: [
           {
             bio,
-            interests: interests.join(globals.SEPERATOR),
+            interests: interests,
             userId: user.id,
             email,
           },

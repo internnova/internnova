@@ -21,7 +21,8 @@ const filterJobsByInterest = async (
         OR: [
           {
             description: {
-              contains: search as string,
+              search: search as string,
+              mode: "insensitive", // Default value: default
             },
           },
           {
@@ -33,16 +34,25 @@ const filterJobsByInterest = async (
           {
             position: {
               contains: search as string,
+              mode: "insensitive", // Default value: default
             },
           },
           {
             companyName: {
               contains: search as string,
+              mode: "insensitive", // Default value: default
             },
           },
         ],
       },
       include: { company: true },
+      orderBy: {
+        _relevance: {
+          fields: ["description"],
+          search: search as string,
+          sort: "asc",
+        },
+      },
     });
     res.status(200).json(jobs);
     return;
@@ -54,22 +64,32 @@ const filterJobsByInterest = async (
       OR: [
         {
           description: {
-            contains: search as string,
+            search: search as string,
+            mode: "insensitive", // Default value: default
           },
         },
         {
           position: {
             contains: search as string,
+            mode: "insensitive", // Default value: default
           },
         },
         {
           companyName: {
             contains: search as string,
+            mode: "insensitive", // Default value: default
           },
         },
       ],
     },
     include: { company: true },
+    orderBy: {
+      _relevance: {
+        fields: ["description"],
+        search: search as string,
+        sort: "asc",
+      },
+    },
   });
   res.status(200).json(jobs);
 };

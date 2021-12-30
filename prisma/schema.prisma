@@ -1,13 +1,11 @@
 generator client {
   provider        = "prisma-client-js"
-  previewFeatures = ["referentialIntegrity"]
+  previewFeatures = ["fullTextSearch"]
 }
 
 datasource db {
-  provider             = "mysql"
+  provider             = "postgres"
   url                  = env("DATABASE_URL")
-  shadowDatabaseUrl    = env("SHADOW_DATABASE_URL")
-  referentialIntegrity = "prisma"
 }
 
 // --------------------------------------
@@ -57,7 +55,6 @@ model Company {
   description String   @db.VarChar(1000)
   logo        String?  @db.VarChar(2000)
   website     String?  @db.VarChar(50)
-  CIN         String?  @unique @db.VarChar(200)
   jobs        Job[]
   email       String   @unique
   createdAt   DateTime @default(now())
@@ -68,7 +65,7 @@ model Intern {
   id              Int              @id @default(autoincrement())
   userId          Int              @unique
   bio             String           @db.VarChar(1000)
-  interests       String
+  interests       String[]
   jobApplications JobApplication[]
   email           String           @unique @db.VarChar(100)
   createdAt       DateTime         @default(now())
@@ -94,7 +91,7 @@ model Job {
   position       String           @db.VarChar(50)
   description    String           @db.VarChar(1000)
   jobType        JobType
-  skillsRequired String           @db.VarChar(10000)
+  skillsRequired String[]
   numOfOpenings  Int              @default(1)
   duration       String           @db.VarChar(100)
   postedAt       DateTime         @default(now())

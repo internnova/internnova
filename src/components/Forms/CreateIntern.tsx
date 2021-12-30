@@ -32,7 +32,7 @@ const CreateIntern = (props: CreateInternProps) => {
             setError("Write a longer bio, at least 100 characters");
             return;
           } else if (interests.length < 1) {
-            setError("Write at least one interest");
+            setError("Choose at least one interest");
             return;
           } else if (userFullName.length < 10) {
             setError("Write a longer name, at least 10 characters");
@@ -70,16 +70,7 @@ const CreateIntern = (props: CreateInternProps) => {
         }}
       >
         <div>
-          <h3 className="text-red-500">
-            {(() => {
-              if (error !== "") {
-                setError("");
-                return "Please fill out all fields correctly and choose at least one interest";
-              } else {
-                return "";
-              }
-            })()}
-          </h3>
+          <h3 className="text-red-500">{error}</h3>
         </div>
         <div className="mt-5">
           <TextBox

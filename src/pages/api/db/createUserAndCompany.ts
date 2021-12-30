@@ -8,7 +8,6 @@ type CreateUserAndCompany = {
   logo: string;
   description: string;
   website: string;
-  CIN: string;
 };
 
 const handler = async (req: NextApiRequest, res: NextApiResponse) => {
@@ -28,7 +27,6 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
           email,
           logo: body.logo,
           website: body.website,
-          CIN: body.CIN,
         },
       });
 
