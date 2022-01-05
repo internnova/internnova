@@ -61,16 +61,19 @@ const DropDownList = (props: DropDownListProps) => {
             e.preventDefault();
 
             /*eslint-disable*/
-            if (tempChosenValue && !(tempChosenValue in chosenValues)) {
+            if (tempChosenValue && !chosenValues.includes(tempChosenValue)) {
               props.setChosenValues([...chosenValues, tempChosenValue]);
               setChosenValues([...chosenValues, tempChosenValue]);
+            } else if (tempChosenValue === "") {
+              props.setChosenValues([...chosenValues, "Marketing"]);
+              setChosenValues([...chosenValues, "Marketing"]);
             }
           }}
         />
       </div>
       <div className="pl-4">
         {chosenValues.map((value) => (
-          <div className="flex items-center mb-4 mr-4" key={value}>
+          <div className="flex items-center mb-4" key={value}>
             <p className="w-full font-semibold text-gray-500">
               {value.replace("_", " ")}
             </p>
