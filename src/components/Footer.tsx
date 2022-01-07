@@ -4,7 +4,11 @@ const Footer = () => {
     <footer>
       <div className="container flex flex-col p-4 mx-auto md:p-8 lg:flex-row divide-gray-400">
         <div className="self-center py-6 space-y-4 text-center sm:flex sm:space-y-0 sm:justify-around sm:space-x-4 lg:flex-1 lg:justify-start">
-          <a href="https://vercel.com/?utm_source=internnova&utm_campaign=oss">
+          <a
+            href="https://vercel.com/?utm_source=internnova&utm_campaign=oss"
+            target="blank"
+            rel="noreferrer"
+          >
             <img
               src="/assets/img/powered-by-vercel.svg"
               alt="powered by vercel"
@@ -16,6 +20,8 @@ const Footer = () => {
             <a
               href="https://instagram.com/internnova"
               title="Instagram"
+              target="blank"
+              rel="noreferrer"
               className="flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10"
             >
               <svg
@@ -31,6 +37,8 @@ const Footer = () => {
             <a
               href="https://twitter.com/internnovahq"
               title="Twitter"
+              target="blank"
+              rel="noreferrer"
               className="flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10"
             >
               <svg
@@ -44,6 +52,8 @@ const Footer = () => {
             </a>
             <a
               href="https://github.com/internnovahq/internnova"
+              target="blank"
+              rel="noreferrer"
               title="Github"
               className="flex items-center justify-center w-8 h-8 rounded-full sm:w-10 sm:h-10"
             >
