@@ -58,18 +58,9 @@ yarn run dev
 
 See also the list of [contributors](https://github.com/internnovahq/internnova/contributors) who contributed to this.
 
+## InternNova is supported by and hosted on vercel!
+<a href="https://vercel.com/?utm_source=internnova&utm_campaign=oss" target="blank" rel="noreferrer"> <img src="https://internnova.co/assets/img/powered-by-vercel.svg" alt="powered by vercel" /> </a>
+
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-<a
-href="https://vercel.com/?utm_source=internnova&utm_campaign=oss"
-target="blank"
-rel="noreferrer"
-
-> <img
-
-    src="https://internnova.co/assets/img/powered-by-vercel.svg"
-    alt="powered by vercel"
-
-/>
-</a>
