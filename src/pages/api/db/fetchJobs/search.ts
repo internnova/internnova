@@ -91,7 +91,7 @@ const filterJobsByInterest = async (
       },
     },
   });
-  res.status(200).json(jobs);
+  res.status(200).json({ jobs });
 };
 
 export default filterJobsByInterest;
