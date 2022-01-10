@@ -1,4 +1,4 @@
-import { Company, Job, JobApplication } from "@prisma/client";
+import { Company, Job } from "@prisma/client";
 import { useEffect, useState } from "react";
 import Loading from "components/Loading";
 import JobComponent from "components/Jobs/JobComponent";

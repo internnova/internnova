@@ -1,6 +1,6 @@
 import { useState } from "react";
-import { UserButton } from "@clerk/nextjs";
-import { SignedIn, SignedOut } from "@clerk/nextjs";
+import { SignOutButton, UserButton } from "@clerk/nextjs";
+import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 
 type NavbarProps = { noOptions?: boolean };
 
@@ -64,12 +64,7 @@ const Navbar = (props: NavbarProps) => {
             </div>
           </SignedIn>
           <SignedOut>
-            <a
-              className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
-              href="/login"
-            >
-              Login
-            </a>
+            <SignInButton>Login</SignInButton>
           </SignedOut>
         </div>
       </nav>

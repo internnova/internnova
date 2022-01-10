@@ -26,7 +26,7 @@ const CreateApplication = (props: CreateCompanyProps) => {
     >
       <form
         onSubmit={(e) => {
-          if (description.split(" ").length < 100) {
+          if (description.split(" ").filter((x) => x !== " ").length < 100) {
             e.preventDefault();
             setError("Fill in at least 100 characters");
             return;
@@ -89,7 +89,9 @@ const CreateApplication = (props: CreateCompanyProps) => {
             value={description}
             onChange={(e) => {
               setDescription(e.target.value);
-              setTextLength(description.split(" ").length);
+              setTextLength(
+                description.split(" ").filter((x) => x !== " ").length
+              );
             }}
           />
         </div>
