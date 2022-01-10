@@ -4,8 +4,8 @@ generator client {
 }
 
 datasource db {
-  provider             = "postgres"
-  url                  = env("DATABASE_URL")
+  provider = "postgres"
+  url      = env("DATABASE_URL")
 }
 
 // --------------------------------------
@@ -51,10 +51,10 @@ model User {
 model Company {
   id          Int      @id @default(autoincrement())
   userId      Int      @unique
-  name        String   @unique @db.VarChar(100)
-  description String   @db.VarChar(1000)
-  logo        String?  @db.VarChar(2000)
-  website     String?  @db.VarChar(50)
+  name        String   @unique
+  description String
+  logo        String?
+  website     String?
   jobs        Job[]
   email       String   @unique
   createdAt   DateTime @default(now())
@@ -64,10 +64,10 @@ model Company {
 model Intern {
   id              Int              @id @default(autoincrement())
   userId          Int              @unique
-  bio             String           @db.VarChar(1000)
+  bio             String
   interests       String[]
   jobApplications JobApplication[]
-  email           String           @unique @db.VarChar(100)
+  email           String           @unique
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
 }
@@ -76,7 +76,7 @@ model Intern {
 
 model JobApplication {
   id          Int      @id @default(autoincrement())
-  description String   @db.VarChar(200)
+  description String
   status      Status
   internId    Int
   intern      Intern   @relation(fields: [internId], references: [id])
@@ -88,15 +88,15 @@ model JobApplication {
 
 model Job {
   id             Int              @id @default(autoincrement())
-  position       String           @db.VarChar(50)
-  description    String           @db.VarChar(1000)
+  position       String
+  description    String
   jobType        JobType
   skillsRequired String[]
   numOfOpenings  Int              @default(1)
-  duration       String           @db.VarChar(100)
+  duration       String
   postedAt       DateTime         @default(now())
-  location       String           @default("Remote") @db.VarChar(100)
-  salary         String?          @db.VarChar(100)
+  location       String           @default("Remote")
+  salary         String?
   industry       Tag
   closed         Boolean          @default(false)
   applications   JobApplication[]
