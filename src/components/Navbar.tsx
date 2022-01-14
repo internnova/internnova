@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { SignOutButton, UserButton } from "@clerk/nextjs";
+import { UserButton } from "@clerk/nextjs";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 
 type NavbarProps = { noOptions?: boolean };
