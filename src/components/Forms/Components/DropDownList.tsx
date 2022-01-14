@@ -64,9 +64,12 @@ const DropDownList = (props: DropDownListProps) => {
             if (tempChosenValue && !chosenValues.includes(tempChosenValue)) {
               props.setChosenValues([...chosenValues, tempChosenValue]);
               setChosenValues([...chosenValues, tempChosenValue]);
-            } else if (tempChosenValue === "") {
-              props.setChosenValues([...chosenValues, "Marketing"]);
-              setChosenValues([...chosenValues, "Marketing"]);
+            } else if (
+              tempChosenValue === "" &&
+              !chosenValues.includes(props.values[0])
+            ) {
+              props.setChosenValues([...chosenValues, props.values[0]]);
+              setChosenValues([...chosenValues, props.values[0]]);
             }
           }}
         />
