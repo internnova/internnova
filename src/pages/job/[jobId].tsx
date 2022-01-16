@@ -1,12 +1,12 @@
+import { SignedIn, SignedOut, useUser } from "@clerk/nextjs";
 import { Company, Job } from "@prisma/client";
+import JobPage from "components/Jobs/JobPage";
+import { NextSeo } from "next-seo";
+import fetchUser from "lib/helpers/fetchUser";
+import { prisma } from "lib/prisma";
 import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
-import Meta from "components/Meta";
 import React, { useEffect, useState } from "react";
-import JobPage from "components/Jobs/JobPage";
-import { prisma } from "lib/prisma";
-import fetchUser from "lib/helpers/fetchUser";
-import { useUser, SignedIn, SignedOut } from "@clerk/nextjs";
 
 type JobProps = {
   job: Job & { company: Company };
@@ -69,20 +69,29 @@ const JobsPage = (props: JobProps) => {
 
   return (
     <>
-      <Meta
-        title={`${props.job.position}: ${props.job.company.name} - InternNova`}
+      <NextSeo
+        title={props.job.position}
         description={props.job.description}
-        keywords={[
-          "Education",
-          "Internships",
-          "High-school",
-          "School",
-          "Job",
-          "Teenager jobs",
-          "India",
-          props.job.jobType,
-        ]}
+        canonical={`https://internnova.co/job/${props.job.id}`}
+        openGraph={{
+          url: `https://internnova.co/job/${props.job.id}`,
+          title: props.job.position,
+          description: props.job.description,
+          images: [
+            {
+              url: props.job.company.logo,
+              alt: props.job.company.name,
+            },
+          ],
+          site_name: "InternNova",
+        }}
+        twitter={{
+          handle: "@internnovahq",
+          site: "@internnovahq",
+          cardType: "summary",
+        }}
       />
+
       <SignedIn>
         <SignedInView job={props.job} />
       </SignedIn>
