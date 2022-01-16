@@ -73,18 +73,18 @@ const JobsPage = (props: JobProps) => {
         title={props.job.position}
         description={props.job.description}
         canonical={`https://internnova.co/job/${props.job.id}`}
-        openGraph={{
-          url: `https://internnova.co/job/${props.job.id}`,
-          title: props.job.position,
-          description: props.job.description,
-          images: [
-            {
-              url: props.job.company.logo,
-              alt: props.job.company.name,
-            },
-          ],
-          site_name: "InternNova",
-        }}
+        // openGraph={{
+        //   url: `https://internnova.co/job/${props.job.id}`,
+        //   title: props.job.position,
+        //   description: props.job.description,
+        //   images: [
+        //     {
+        //       url: props.job.company.logo,
+        //       alt: props.job.company.name,
+        //     },
+        //   ],
+        //   site_name: "InternNova",
+        // }}
         twitter={{
           handle: "@internnovahq",
           site: "@internnovahq",
