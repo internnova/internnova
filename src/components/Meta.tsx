@@ -32,10 +32,12 @@ const HeadMeta = (props: MetaPropTypes) => {
       <meta name="twitter:text:title" content={props.title} />
       <meta name="twitter:title" content={props.title} />
       <meta name="twitter:description" content={props.description} />
-      <meta name="twitter:site" content="@InternNovaLabs" />
+      <meta name="twitter:site" content="@internnovahq" />
       <meta
         property="twitter:image"
-        content="https://www.internnova.co/assets/img/twitter.png"
+        content={
+          props.image || "https://www.internnova.co/assets/img/twitter.png"
+        }
       />
 
       <meta name="keywords" content={props.keywords.join(", ")} />
