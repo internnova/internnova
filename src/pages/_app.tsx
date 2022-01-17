@@ -16,7 +16,7 @@ import { useRouter } from "next/router";
 import Script from "next/script";
 import "../styles/globals.css";
 
-const publicPages: string[] = ["/", "/job/[jobId]"];
+const publicPages: string[] = ["/", "/job/[jobId]", "404"];
 
 const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
   const { pathname } = useRouter();
