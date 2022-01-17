@@ -4,7 +4,6 @@ import JobPage from "components/Jobs/JobPage";
 import { NextSeo } from "next-seo";
 import fetchUser from "lib/helpers/fetchUser";
 import { prisma } from "lib/prisma";
-import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 
@@ -73,18 +72,18 @@ const JobsPage = (props: JobProps) => {
         title={props.job.position}
         description={props.job.description}
         canonical={`https://internnova.co/job/${props.job.id}`}
-        // openGraph={{
-        //   url: `https://internnova.co/job/${props.job.id}`,
-        //   title: props.job.position,
-        //   description: props.job.description,
-        //   images: [
-        //     {
-        //       url: props.job.company.logo,
-        //       alt: props.job.company.name,
-        //     },
-        //   ],
-        //   site_name: "InternNova",
-        // }}
+        openGraph={{
+          url: `https://internnova.co/job/${props.job.id}`,
+          title: props.job.position,
+          description: props.job.description,
+          images: [
+            {
+              url: props.job.company.logo,
+              alt: props.job.company.name,
+            },
+          ],
+          site_name: "InternNova",
+        }}
         twitter={{
           handle: "@internnovahq",
           site: "@internnovahq",
@@ -107,8 +106,38 @@ const JobsPage = (props: JobProps) => {
   );
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  const id = context.query.jobId;
+export const getStaticPaths = async () => {
+  const jobs = await prisma.job.findMany({
+    where: {
+      closed: false,
+    },
+  });
+
+  let paths: { params: { jobId: string } }[] = [];
+
+  if (jobs) {
+    paths = jobs.map((job) => {
+      return {
+        params: {
+          jobId: String(job.id),
+        },
+      };
+    });
+  }
+
+  return {
+    paths,
+    fallback: true,
+  };
+};
+
+export async function getStaticProps({
+  params,
+}: {
+  params: { jobId: string };
+}) {
+  const id = params.jobId;
+
   if (!id || parseInt(id as string) === NaN) {
     // if the id doesn't exist(or isn't a number) redirect to 404
     return { redirect: { destination: "/404", permanent: false } };
@@ -130,6 +159,6 @@ export const getServerSideProps: GetServerSideProps = async (context) => {
     // if the job isn't found, redirect to 404
     return { redirect: { destination: "/404", permanent: false } };
   }
-};
+}
 
 export default JobsPage;
