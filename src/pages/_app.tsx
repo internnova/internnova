@@ -9,6 +9,7 @@ import {
 import "@fontsource/nunito-sans";
 import "@fontsource/plus-jakarta-sans";
 import Loading from "components/Loading";
+import Meta from "components/Meta";
 import { NextSeo } from "next-seo";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
@@ -24,6 +25,22 @@ const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
 
   return (
     <>
+      <Meta
+        title="InternNova - Find internships, for highschoolers"
+        description="Experience the world beyond the confines of a school wall! InternNova makes finding internships easy and accessible to high-school students all over the world."
+        url="https://internnova.co"
+        image="https://internnova.co/assets/img/twitter.png"
+        keywords={[
+          "Education",
+          "Internships",
+          "High-school",
+          "School",
+          "Job",
+          "Teenager jobs",
+          "India",
+        ]}
+      />
+
       <NextSeo
         title="InternNova - Find internships, for highschoolers"
         description="Experience the world beyond the confines of a school wall! InternNova makes finding internships easy and accessible to high-school students all over the world."
