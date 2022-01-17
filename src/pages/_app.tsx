@@ -25,41 +25,27 @@ const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
 
   return (
     <>
-      <Meta
-        title="InternNova - Find internships, for highschoolers"
-        description="Experience the world beyond the confines of a school wall! InternNova makes finding internships easy and accessible to high-school students all over the world."
-        keywords={[
-          "Education",
-          "Internships",
-          "High-school",
-          "School",
-          "Job",
-          "Teenager jobs",
-          "India",
-        ]}
-      />
-
       <NextSeo
         title="InternNova - Find internships, for highschoolers"
         description="Experience the world beyond the confines of a school wall! InternNova makes finding internships easy and accessible to high-school students all over the world."
-        canonical="https://internnova.co/"
         openGraph={{
-          url: "https://internnova.co/",
+          url: "https://www.internnova.co",
           title: "InternNova - Find internships, for highschoolers",
           description:
-            "Experience the world beyond the confines of a school wall! InternNova makes finding internships easy and accessible to high-school students all over the world.",
+            "Experience the world beyond the confines of a school wall. InternNova makes finding internships easy and accessible to high-school students all over the world!",
           images: [
             {
-              url: "https://internnova.co/assets/img/twitter.png",
-              alt: "InternNova - Find internships, for highschoolers",
-              type: "image/png",
+              url: "/assets/img/twitter.png",
+              height: 1212,
+              width: 2114,
+              alt: "Samrath",
             },
           ],
           site_name: "InternNova",
         }}
         twitter={{
-          handle: "@internnovahq",
-          site: "@internnovahq",
+          handle: "@InternNovaLabs",
+          site: "https://www.internnova.co",
           cardType: "summary_large_image",
         }}
       />
