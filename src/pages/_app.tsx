@@ -8,11 +8,13 @@ import {
 } from "@clerk/nextjs";
 import "@fontsource/nunito-sans";
 import "@fontsource/plus-jakarta-sans";
+import Loading from "components/Loading";
+import Meta from "components/Meta";
+import { NextSeo } from "next-seo";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
-import Loading from "components/Loading";
-import "../styles/globals.css";
 import Script from "next/script";
+import "../styles/globals.css";
 
 const publicPages: string[] = ["/", "/job/[jobId]"];
 
@@ -23,6 +25,46 @@ const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
 
   return (
     <>
+      <Meta
+        title="InternNova - Find internships, for highschoolers"
+        description="Experience the world beyond the confines of a school wall! InternNova makes finding internships easy and accessible to high-school students all over the world."
+        url="https://internnova.co"
+        image="https://internnova.co/assets/img/twitter.png"
+        keywords={[
+          "Education",
+          "Internships",
+          "High-school",
+          "School",
+          "Job",
+          "Teenager jobs",
+          "India",
+        ]}
+      />
+
+      <NextSeo
+        title="InternNova - Find internships, for highschoolers"
+        description="Experience the world beyond the confines of a school wall! InternNova makes finding internships easy and accessible to high-school students all over the world."
+        canonical="https://internnova.co/"
+        openGraph={{
+          url: "https://internnova.co/",
+          title: "InternNova - Find internships, for highschoolers",
+          description:
+            "Experience the world beyond the confines of a school wall! InternNova makes finding internships easy and accessible to high-school students all over the world.",
+          images: [
+            {
+              url: "https://internnova.co/assets/img/twitter.png",
+              alt: "InternNova - Find internships, for highschoolers",
+              type: "image/png",
+            },
+          ],
+          site_name: "InternNova",
+        }}
+        twitter={{
+          handle: "@internnovahq",
+          site: "@internnovahq",
+          cardType: "summary_large_image",
+        }}
+      />
       <Script
         strategy="lazyOnload"
         src={`https://www.googletagmanager.com/gtag/js?id=${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}`}

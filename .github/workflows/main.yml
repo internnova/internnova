@@ -18,13 +18,11 @@ jobs:
       - name: Install dependencies 🔧
         run: pnpm install
 
+      - name: Format 🤝
+        run: pnpm run check-format
+
       - name: Lint 🖊
         run: pnpm run check-lint
 
-      - name: Set environment variables 🔏
-        run: |
-          touch .env
-          echo NEXT_PUBLIC_CLERK_FRONTEND_API=clerk.8bqex.mkl5j.lcl.dev >> .env
-
-      - name: Build ✅
-        run: pnpx prisma generate && pnpm run build
+      - name: Check types ✓
+        run: pnpm run check-types
