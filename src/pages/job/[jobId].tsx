@@ -63,7 +63,7 @@ const SignedInView = (props: JobProps) => {
         twitter={{
           handle: "@InternNovaLabs",
           site: "https://www.internnova.co",
-          cardType: "summary_large_image",
+          cardType: "summary",
         }}
       />
       <JobPage
