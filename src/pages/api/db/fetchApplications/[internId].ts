@@ -10,6 +10,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   } else {
     const jobApplications = await prisma.jobApplication.findMany({
       where: { internId: parseInt(internId as string) },
+      include: {
+        job: true,
+      },
     });
 
     res.status(200).json({ applications: jobApplications || [] });
