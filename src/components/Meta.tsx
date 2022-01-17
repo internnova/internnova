@@ -10,6 +10,7 @@ type MetaPropTypes = {
 };
 
 const HeadMeta = (props: MetaPropTypes) => {
+  console.log(props);
   return (
     <Head>
       <title>{props.title}</title>
