@@ -45,10 +45,31 @@ const SignedInView = (props: JobProps) => {
 
   return (
     <>
+      <NextSeo
+        title={`${props.job.position} - InternNova`}
+        description={props.job.description}
+        openGraph={{
+          url: "https://www.internnova.co",
+          title: `${props.job.position} - InternNova`,
+          description: props.job.description,
+          images: [
+            {
+              url: props.job.company.logo || "/assets/img/twitter.png",
+              alt: "InternNova",
+            },
+          ],
+          site_name: "InternNova",
+        }}
+        twitter={{
+          handle: "@InternNovaLabs",
+          site: "https://www.internnova.co",
+          cardType: "summary",
+        }}
+      />
       <JobPage
-        responsive
         job={props.job}
-        company={props.job.company}
+        company={props.job?.company || null}
+        responsive
         appliedForCurrentJob={appliedForCurrentJob}
       />
     </>
