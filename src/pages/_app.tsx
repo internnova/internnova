@@ -29,9 +29,10 @@ const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
         description="Experience the world beyond the confines of a school wall! InternNova makes finding internships easy and accessible to high-school students all over the world."
         canonical="https://internnova.co/"
         openGraph={{
-          url: "https://www.url.ie/a",
-          title: "Open Graph Title",
-          description: "Open Graph Description",
+          url: "https://internnova.co/",
+          title: "InternNova - Find internships, for highschoolers",
+          description:
+            "Experience the world beyond the confines of a school wall! InternNova makes finding internships easy and accessible to high-school students all over the world.",
           images: [
             {
               url: "https://internnova.co/assets/img/twitter.png",
