@@ -9,8 +9,7 @@ import {
 import "@fontsource/nunito-sans";
 import "@fontsource/plus-jakarta-sans";
 import Loading from "components/Loading";
-import Meta from "components/Meta";
-import { NextSeo } from "next-seo";
+import { DefaultSeo } from "next-seo";
 import { AppProps } from "next/app";
 import { useRouter } from "next/router";
 import Script from "next/script";
@@ -25,7 +24,7 @@ const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
 
   return (
     <>
-      <NextSeo
+      <DefaultSeo
         title="InternNova - Find internships, for highschoolers"
         description="Experience the world beyond the confines of a school wall! InternNova makes finding internships easy and accessible to high-school students all over the world."
         openGraph={{
