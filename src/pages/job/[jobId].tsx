@@ -6,6 +6,7 @@ import fetchUser from "lib/helpers/fetchUser";
 import { prisma } from "lib/prisma";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import Meta from "components/Meta";
 
 type JobProps = {
   job: Job & { company: Company };
@@ -89,6 +90,20 @@ const JobsPage = (props: JobProps) => {
           site: "@internnovahq",
           cardType: "summary",
         }}
+      />
+      <Meta
+        title={props.job.position}
+        description={props.job.description}
+        keywords={[
+          props.job.company.name,
+          props.job.position,
+          props.job.industry,
+          "InternNova",
+          "highschooler",
+          "college",
+          "internship",
+        ]}
+        image={props.job.company.logo}
       />
 
       <SignedIn>

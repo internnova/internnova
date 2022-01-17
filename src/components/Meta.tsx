@@ -6,6 +6,7 @@ type MetaPropTypes = {
   keywords: string[];
   image?: string;
   url?: string;
+  large?: boolean;
 };
 
 const HeadMeta = (props: MetaPropTypes) => {
@@ -28,7 +29,10 @@ const HeadMeta = (props: MetaPropTypes) => {
         }
       />
 
-      <meta name="twitter:card" content="summary_large_image" />
+      <meta
+        name="twitter:card"
+        content={props.large ? "summary_large_image" : "summary"}
+      />
       <meta name="twitter:text:title" content={props.title} />
       <meta name="twitter:title" content={props.title} />
       <meta name="twitter:description" content={props.description} />
