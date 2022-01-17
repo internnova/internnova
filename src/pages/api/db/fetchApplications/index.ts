@@ -25,6 +25,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         internId: parseInt(internId as string),
         jobId: parseInt(jobId as string),
       },
+      include: {
+        job: true,
+      },
     });
     // return 404 if no application is found
     if (!application) {

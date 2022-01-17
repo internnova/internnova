@@ -28,8 +28,6 @@ const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
       <Meta
         title="InternNova - Find internships, for highschoolers"
         description="Experience the world beyond the confines of a school wall! InternNova makes finding internships easy and accessible to high-school students all over the world."
-        url="https://internnova.co"
-        image="https://internnova.co/assets/img/twitter.png"
         keywords={[
           "Education",
           "Internships",
