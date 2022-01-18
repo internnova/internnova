@@ -6,10 +6,9 @@ import fetchUser from "lib/helpers/fetchUser";
 import { prisma } from "lib/prisma";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
-import Meta from "components/Meta";
 
 type JobProps = {
-  job: Job & { company: Company };
+  job?: Job & { company: Company };
 };
 
 const SignedInView = (props: JobProps) => {
@@ -25,8 +24,8 @@ const SignedInView = (props: JobProps) => {
       const userDbRes = await fetchUser(
         user.primaryEmailAddress?.emailAddress || ""
       );
-      if (props.job.closed) {
-        router.push("404");
+      if (!props.job || props.job.closed) {
+        router.push("/404");
       } else if (!userDbRes) {
         // if the user is not in db send them to the onboarding page(which will make a new user in db)
         router.push("/onboarding");
@@ -45,27 +44,6 @@ const SignedInView = (props: JobProps) => {
 
   return (
     <>
-      <NextSeo
-        title={`${props.job.position} - InternNova`}
-        description={props.job.description}
-        openGraph={{
-          url: "https://www.internnova.co",
-          title: `${props.job.position} - InternNova`,
-          description: props.job.description,
-          images: [
-            {
-              url: props.job.company.logo || "/assets/img/twitter.png",
-              alt: "InternNova",
-            },
-          ],
-          site_name: "InternNova",
-        }}
-        twitter={{
-          handle: "@InternNovaLabs",
-          site: "https://www.internnova.co",
-          cardType: "summary",
-        }}
-      />
       <JobPage
         job={props.job}
         company={props.job?.company || null}
@@ -91,40 +69,25 @@ const JobsPage = (props: JobProps) => {
   return (
     <>
       <NextSeo
-        title={props.job.position}
+        title={`${props.job.position} - InternNova`}
         description={props.job.description}
-        canonical={`https://internnova.co/job/${props.job.id}`}
         openGraph={{
-          url: `https://internnova.co/job/${props.job.id}`,
-          title: props.job.position,
+          url: "https://www.internnova.co",
+          title: `${props.job.position} - InternNova`,
           description: props.job.description,
           images: [
             {
-              url: props.job.company.logo,
-              alt: props.job.company.name,
+              url: props.job.company.logo || "/assets/img/twitter.png",
+              alt: "InternNova",
             },
           ],
           site_name: "InternNova",
         }}
         twitter={{
-          handle: "@internnovahq",
-          site: "@internnovahq",
+          handle: "@InternNovaLabs",
+          site: "https://www.internnova.co",
           cardType: "summary",
         }}
-      />
-      <Meta
-        title={props.job.position}
-        description={props.job.description}
-        keywords={[
-          props.job.company.name,
-          props.job.position,
-          props.job.industry,
-          "InternNova",
-          "highschooler",
-          "college",
-          "internship",
-        ]}
-        image={props.job.company.logo}
       />
 
       <SignedIn>
@@ -193,7 +156,7 @@ export async function getStaticProps({
     };
   } else {
     // if the job isn't found, redirect to 404
-    return { redirect: { destination: "/404", permanent: false } };
+    return { props: { job: null } };
   }
 }
 
