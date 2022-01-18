@@ -5,6 +5,7 @@ import JobsList from "components/Jobs/JobsList";
 import Navbar from "components/Navbar";
 import { useUser } from "@clerk/nextjs";
 import toast, { Toaster } from "react-hot-toast";
+import { Company, Job } from "@prisma/client";
 
 const notify = () =>
   toast("Successfully applied to the job, you will get updates on your email", {
@@ -19,7 +20,9 @@ const notify = () =>
 
 type InternHomepageProps = {
   success?: boolean;
+  jobs: (Job & { company: Company })[] | null;
 };
+
 const InternHomepage = (props: InternHomepageProps) => {
   const [userDb, setUserDb] = useState<UserOnSteriods | null>(null);
   const [search, setSearch] = useState<string>("");
@@ -70,17 +73,14 @@ const InternHomepage = (props: InternHomepageProps) => {
                 }
               }}
             />
-            <button
-              className="bg-blue-500 text-white text-base rounded-lg px-4 py-2 font-thin"
-              onClick={() => setSearch(tempSearch)}
-            >
-              Search
+            <button className="text-2xl" onClick={() => setSearch(tempSearch)}>
+              🔍
             </button>
           </div>
         </div>
         <div>
           <Toaster />
-          <JobsList userDb={userDb} search={search} />
+          <JobsList userDb={userDb} search={search} jobs={props.jobs} />
         </div>
       </div>
     </div>
