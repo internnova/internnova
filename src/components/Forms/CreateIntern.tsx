@@ -58,7 +58,7 @@ const CreateIntern = (props: CreateInternProps) => {
                 if (data.error) {
                   setError(data.error);
                 } else {
-                  router.push("/accepted");
+                  router.push("/");
                 }
               });
             });
