@@ -10,6 +10,27 @@ import fetchJobs from "lib/helpers/fetchJobs";
 type JobsListProps = {
   userDb?: UserOnSteriods | null;
   search: string | null;
+  jobs: (Job & { company: Company })[] | null;
+};
+
+//eslint-disable-next-line
+const searchJobs = (arr: (Job & { company: Company })[], searchKey: string) => {
+  if (searchKey === "") {
+    return arr;
+  }
+  return arr.filter((job) => {
+    if (
+      (job.position.includes(searchKey) ||
+        job.location.includes(searchKey) ||
+        job.skillsRequired.join(" ").includes(searchKey) ||
+        job.description.includes(searchKey) ||
+        job.company.description.includes(searchKey) ||
+        job.companyName.includes(searchKey)) &&
+      !job.closed
+    ) {
+      return job;
+    }
+  });
 };
 
 const JobsList = (props: JobsListProps) => {
@@ -35,12 +56,22 @@ const JobsList = (props: JobsListProps) => {
       // fetch jobs
       let jobsRes: null | (Job & { company: Company })[];
 
+      setLoading(true);
       if (!triggeredAtLeastOnce) {
-        jobsRes = await fetchJobs();
+        if (!props.jobs) {
+          jobsRes = await fetchJobs();
+        } else {
+          // exlcude all closed jobs
+          jobsRes = props.jobs.filter((job) => !job.closed);
+        }
         setTriggeredAtLeastOnce(true);
       } else {
-        jobsRes = await fetchJobs(props.search);
-        console.log("got herer");
+        if (props.search !== "" || !props.jobs) {
+          jobsRes = await fetchJobs(props.search);
+        } else {
+          jobsRes = props.jobs.filter((job) => !job.closed);
+          setJobs(searchJobs(props.jobs, props.search));
+        }
       }
 
       setJobs(jobsRes);
@@ -51,7 +82,7 @@ const JobsList = (props: JobsListProps) => {
       console.log("jobs", jobsRes);
     })();
     /*eslint-disable-next-line */
-  }, [props.search]);
+  }, [props.search, props.jobs]);
 
   useEffect(() => {
     // match applications and assign company

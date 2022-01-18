@@ -39,7 +39,7 @@ const CreateCompany = (props: CreateCompanyProps) => {
               },
             }).then(() => {
               setError("");
-              router.push("/");
+              router.push("/jobs");
             });
             /*eslint-disable*/
           } catch (e: any) {
