@@ -1,5 +1,4 @@
 import { Company, Job, User } from "@prisma/client";
-import { GetServerSideProps } from "next";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import CreateApplication from "components/Forms/CreateApplication";
@@ -8,7 +7,7 @@ import fetchUser from "lib/helpers/fetchUser";
 import { useUser } from "@clerk/nextjs";
 
 type JobProps = {
-  job: Job & { company: Company };
+  job: (Job & { company: Company }) | null;
   userDb: User;
 };
 
@@ -22,7 +21,9 @@ const JobsPage = (props: JobProps) => {
       // if the user(auth user) exists check for user in db
       (async () => {
         const userDbRes = await fetchUser(email || "");
-        if (!userDbRes) {
+        if (!props.job) {
+          router.push("/404");
+        } else if (!userDbRes) {
           // if the user is not in db send them to the onboarding page(which will make a new user in db)
           router.push("/onboarding");
         }
@@ -43,26 +44,59 @@ const JobsPage = (props: JobProps) => {
   return <CreateApplication email={email || ""} job={props.job} />;
 };
 
-export const getServerSideProps: GetServerSideProps = async (context) => {
-  // see pages/job/[jobId].tsx for explanation of this function
-  const id = context.query.jobId;
-  if (!id) {
+export const getStaticPaths = async () => {
+  const jobs = await prisma.job.findMany({
+    where: {
+      closed: false,
+    },
+  });
+
+  let paths: { params: { jobId: string } }[] = [];
+
+  if (jobs) {
+    paths = jobs.map((job) => {
+      return {
+        params: {
+          jobId: String(job.id),
+        },
+      };
+    });
+  }
+
+  return {
+    paths,
+    fallback: true,
+  };
+};
+
+export async function getStaticProps({
+  params,
+}: {
+  params: { jobId: string };
+}) {
+  const id = params.jobId;
+
+  if (!id || parseInt(id as string) === NaN) {
+    // if the id doesn't exist(or isn't a number) redirect to 404
     return { redirect: { destination: "/404", permanent: false } };
   }
 
   const job = await prisma.job.findFirst({
     where: { id: parseInt(id as string) },
+    // include company will allow us to access job.company
     include: { company: true },
   });
-  if (job) {
+  if (job && !job?.closed) {
+    // if the job is found, return it as props
     return {
       props: {
         job,
       },
     };
   } else {
-    return { redirect: { destination: "/404", permanent: false } };
+    // if the job isn't found, redirect to 404
+    return { props: { job: null } };
   }
-};
+}
 
 export default JobsPage;
