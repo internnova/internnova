@@ -18,8 +18,8 @@ const notify = () =>
 
 type InternHomepageProps = {
   success: boolean;
-  successId: string;
-  applicationId: string;
+  successId: string | null;
+  applicationId: string | null;
   jobs: (Job & { company: Company })[] | null;
 };
 
