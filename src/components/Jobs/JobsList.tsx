@@ -79,7 +79,6 @@ const JobsList = (props: JobsListProps) => {
 
       // stop spinner
       setLoading(false);
-      console.log("jobs", jobsRes);
     })();
     /*eslint-disable-next-line */
   }, [props.search, props.jobs]);

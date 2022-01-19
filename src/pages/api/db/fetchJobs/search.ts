@@ -14,7 +14,6 @@ const filterJobsByInterest = async (
   const searchFiltered = (search as string).toLowerCase();
 
   if (tags.includes(searchFiltered)) {
-    console.log("searchFiltered in tags");
     const jobs = await prisma.job.findMany({
       where: {
         closed: false,

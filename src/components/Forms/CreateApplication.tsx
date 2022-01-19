@@ -26,7 +26,14 @@ const CreateApplication = (props: CreateCompanyProps) => {
     >
       <form
         onSubmit={(e) => {
-          if (description.split(" ").filter((x) => x !== " ").length < 100) {
+          if (
+            description.split(" ").filter((x) => {
+              if (x !== " " && x !== "") {
+                return true;
+              }
+              return false;
+            }).length < 100
+          ) {
             e.preventDefault();
             setError("Fill in at least 100 words");
             return;
@@ -47,10 +54,14 @@ const CreateApplication = (props: CreateCompanyProps) => {
               headers: {
                 "Content-Type": "application/json",
               },
-            }).then((res) => {
+            }).then(async (res) => {
               if (res.status === 200) {
                 setError("");
-                router.push(`/jobs?success=true&successId=${props.job.id}`);
+                router.push(
+                  `/jobs?success=true&successId=${props.job.id}&applicationId=${
+                    (await res.json()).id
+                  }`
+                );
               } else {
                 res.json().then((data) => {
                   setError(
@@ -90,7 +101,12 @@ const CreateApplication = (props: CreateCompanyProps) => {
             onChange={(e) => {
               setDescription(e.target.value);
               setTextLength(
-                description.split(" ").filter((x) => x !== " ").length
+                description.split(" ").filter((x) => {
+                  if (x !== " " && x !== "") {
+                    return true;
+                  }
+                  return false;
+                }).length
               );
             }}
           />

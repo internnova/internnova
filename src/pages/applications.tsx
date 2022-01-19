@@ -37,7 +37,6 @@ const OnboardingPage = () => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  console.log(applications);
   if (applications === null) return <Loading />;
   return (
     <>
