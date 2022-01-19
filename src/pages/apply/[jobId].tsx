@@ -1,10 +1,11 @@
-import { Company, Job, User, JobApplication } from "@prisma/client";
+import { Company, Job, User } from "@prisma/client";
 import { useRouter } from "next/router";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import CreateApplication from "components/Forms/CreateApplication";
 import { prisma } from "lib/prisma";
 import fetchUser from "lib/helpers/fetchUser";
 import { useUser } from "@clerk/nextjs";
+import Loading from "components/Loading";
 
 type JobProps = {
   job: (Job & { company: Company }) | null;
@@ -15,12 +16,16 @@ type JobProps = {
 const JobsPage = (props: JobProps) => {
   const router = useRouter();
   const user = useUser();
+  const [loading, setLoading] = useState<boolean>(true);
   const email = user.primaryEmailAddress?.emailAddress;
 
-  const routerEmail = router.query.email as string;
   useEffect(() => {
     if (user && email !== undefined) {
       // if the user(auth user) exists check for user in db
+      if (props.emails.includes(email || "")) {
+        router.push(`/job/${props.job?.id}`);
+        setLoading(false);
+      }
       (async () => {
         const userDbRes = await fetchUser(email || "");
         if (!props.job) {
@@ -31,14 +36,12 @@ const JobsPage = (props: JobProps) => {
         }
       })();
     }
+    setLoading(false);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   // redirect to job page if already applied
   useEffect(() => {
-    if (props.emails.includes(email || "")) {
-      router.push(`/job/${props.job?.id}`);
-    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.emails]);
 
@@ -50,6 +53,8 @@ const JobsPage = (props: JobProps) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  if (loading) return <Loading />;
 
   return <CreateApplication email={email || ""} job={props.job} />;
 };
@@ -103,9 +108,11 @@ export async function getStaticProps({
   });
 
   // only give intern email
-  const emails = applications.map((application) => {
-    return application.intern.email;
-  });
+  const emails = applications
+    ? applications.map((application) => {
+        return application.intern.email;
+      })
+    : [];
 
   if (job && !job?.closed) {
     // if the job is found, return it as props
