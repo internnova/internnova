@@ -12,11 +12,12 @@ const Index = (props: JobPageProps) => {
 
   const success = router.query.success ? true : false;
   const successId = router.query.successId;
-  console.log(successId);
+  const applicationId = router.query.applicationId;
   return (
     <InternHomepage
       success={success}
       successId={successId as string}
+      applicationId={applicationId as string}
       jobs={props.jobs}
     />
   );

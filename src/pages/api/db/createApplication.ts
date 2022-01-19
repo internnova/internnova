@@ -56,6 +56,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
         res.status(200).json({
           message: "successfully created application",
           application: application,
+          id: application.id,
         });
         return;
       } else {

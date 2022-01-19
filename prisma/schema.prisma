@@ -83,6 +83,7 @@ model JobApplication {
   jobId       Int
   job         Job      @relation(fields: [jobId], references: [id])
   createdAt   DateTime @default(now())
+  shownNotification Boolean @default(false)
   updatedAt   DateTime @updatedAt
 }
 

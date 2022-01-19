@@ -18,7 +18,8 @@ const notify = () =>
 
 type InternHomepageProps = {
   success: boolean;
-  successId: string;
+  successId: string | null;
+  applicationId: string | null;
   jobs: (Job & { company: Company })[] | null;
 };
 
@@ -42,8 +43,11 @@ const InternHomepage = (props: InternHomepageProps) => {
           const successCheck = userDbRes.jobApplications.find((application) => {
             return String(application.jobId) === props.successId;
           });
-          if (successCheck) {
+          if (successCheck && !successCheck.shownNotification) {
             notify();
+            await fetch(
+              `/api/db/createNotificationApplication/${props.applicationId}`
+            );
           } else {
             history.pushState({}, null, "/jobs");
           }

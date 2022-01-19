@@ -6,7 +6,6 @@ const fetchJobs = async (search?: string) => {
     const url = search
       ? `api/db/fetchJobs/search?search=${search}`
       : `api/db/fetchJobs`;
-    console.log(url);
     const res = await fetch(url, {
       method: "POST",
       headers: {
