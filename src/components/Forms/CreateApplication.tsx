@@ -21,7 +21,7 @@ const CreateApplication = (props: CreateCompanyProps) => {
 
   return (
     <FormWrapper
-      title={`Apply to ${props.job.company.name}, for the ${props.job.position} position`}
+      title={`Apply to ${props.job.company.name} - ${props.job.position}`}
       textSm
     >
       <form
@@ -68,9 +68,6 @@ const CreateApplication = (props: CreateCompanyProps) => {
         }}
         className="mt-8"
       >
-        <div>
-          <h3 className="text-red-500">{error}</h3>
-        </div>
         <div className={`flex flex-col gap-1`}>
           <h3 className="text-sm font-semibold uppercase">Description</h3>
           <h3 className="text-sm my-1 mb-4">
@@ -80,6 +77,9 @@ const CreateApplication = (props: CreateCompanyProps) => {
             Use 100-1000 words
           </h3>
           <span className="uppercase text-xs">Text Length: {textLength}</span>
+          <div>
+            <h3 className="text-red-500">{error}</h3>
+          </div>
           <textarea
             placeholder="Enter A Description"
             className="h-60 text-gray-700 p-5 mb-5 border rounded-md"
