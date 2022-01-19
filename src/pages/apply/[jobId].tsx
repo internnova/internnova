@@ -1,4 +1,4 @@
-import { Company, Job, User } from "@prisma/client";
+import { Company, Job, User, JobApplication } from "@prisma/client";
 import { useRouter } from "next/router";
 import { useEffect } from "react";
 import CreateApplication from "components/Forms/CreateApplication";
@@ -8,6 +8,7 @@ import { useUser } from "@clerk/nextjs";
 
 type JobProps = {
   job: (Job & { company: Company }) | null;
+  emails: string[];
   userDb: User;
 };
 
@@ -31,6 +32,14 @@ const JobsPage = (props: JobProps) => {
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
+
+  // redirect to job page if already applied
+  useEffect(() => {
+    if (props.emails.includes(email || "")) {
+      router.push(`/jobs/${props.job?.id}`);
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [props.emails]);
 
   useEffect(() => {
     if (props.job) {
@@ -86,12 +95,25 @@ export async function getStaticProps({
     // include company will allow us to access job.company
     include: { company: true },
   });
+
+  const applications = await prisma.jobApplication.findMany({
+    where: { job: { id: parseInt(id as string) } },
+    include: { intern: true },
+  });
+
+  // only give intern email
+  const emails = applications.map((application) => {
+    return application.intern.email;
+  });
+
   if (job && !job?.closed) {
     // if the job is found, return it as props
     return {
       props: {
         job,
+        emails,
       },
+      revalidate: 30,
     };
   } else {
     // if the job isn't found, redirect to 404

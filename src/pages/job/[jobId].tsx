@@ -40,7 +40,7 @@ const SignedInView = (props: JobProps) => {
       }
     })();
     /*eslint-disable-next-line*/
-  }, []);
+  }, [props.job]);
 
   return (
     <>
@@ -153,6 +153,7 @@ export async function getStaticProps({
       props: {
         job,
       },
+      revalidate: 30,
     };
   } else {
     // if the job isn't found, redirect to 404
