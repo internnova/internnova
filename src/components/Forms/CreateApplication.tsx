@@ -50,7 +50,7 @@ const CreateApplication = (props: CreateCompanyProps) => {
             }).then((res) => {
               if (res.status === 200) {
                 setError("");
-                router.push("/jobs?success=true");
+                router.push(`/jobs?success=true&successId=${props.job.id}`);
               } else {
                 res.json().then((data) => {
                   setError(

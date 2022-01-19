@@ -17,6 +17,7 @@ const JobsPage = (props: JobProps) => {
   const user = useUser();
   const email = user.primaryEmailAddress?.emailAddress;
 
+  const routerEmail = router.query.email as string;
   useEffect(() => {
     if (user && email !== undefined) {
       // if the user(auth user) exists check for user in db
@@ -36,7 +37,7 @@ const JobsPage = (props: JobProps) => {
   // redirect to job page if already applied
   useEffect(() => {
     if (props.emails.includes(email || "")) {
-      router.push(`/jobs/${props.job?.id}`);
+      router.push(`/job/${props.job?.id}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.emails]);
