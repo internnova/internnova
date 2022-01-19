@@ -28,7 +28,7 @@ const CreateApplication = (props: CreateCompanyProps) => {
         onSubmit={(e) => {
           if (description.split(" ").filter((x) => x !== " ").length < 100) {
             e.preventDefault();
-            setError("Fill in at least 100 characters");
+            setError("Fill in at least 100 words");
             return;
           }
           try {
