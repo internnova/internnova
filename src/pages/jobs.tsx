@@ -11,7 +11,15 @@ const Index = (props: JobPageProps) => {
   const router = useRouter();
 
   const success = router.query.success ? true : false;
-  return <InternHomepage success={success} jobs={props.jobs} />;
+  const successId = router.query.successId;
+  console.log(successId);
+  return (
+    <InternHomepage
+      success={success}
+      successId={successId as string}
+      jobs={props.jobs}
+    />
+  );
 };
 
 export const getStaticProps = async () => {

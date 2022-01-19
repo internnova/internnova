@@ -17,6 +17,7 @@ const JobsPage = (props: JobProps) => {
   const user = useUser();
   const email = user.primaryEmailAddress?.emailAddress;
 
+  const routerEmail = router.query.email as string;
   useEffect(() => {
     if (user && email !== undefined) {
       // if the user(auth user) exists check for user in db

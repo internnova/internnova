@@ -8,6 +8,7 @@ import NavbarUnauthorized from "../HomePage/Unauthorized/Navbar";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Loading from "../Loading";
 import { useRouter } from "next/router";
+import toast, { Toaster } from "react-hot-toast";
 
 type JobPageProps = {
   job: (Job & { company: Company }) | null;
@@ -16,9 +17,18 @@ type JobPageProps = {
   appliedForCurrentJob: boolean | null | undefined;
 };
 
+const notify = () =>
+  toast.error("You have already applied to this job", {
+    style: {
+      borderRadius: "10px",
+    },
+    duration: 3000,
+  });
+
 const ApplyPart = (props: {
   appliedForCurrentJob: boolean | null | undefined;
   jobId: number;
+  responsive?: boolean;
   setLoading: (loading: boolean) => void;
 }) => {
   const router = useRouter();
@@ -31,29 +41,29 @@ const ApplyPart = (props: {
       </p>
     );
   }
-  return (
-    <>
-      {props.appliedForCurrentJob ? (
-        <>
-          <article className="mb-6 space-y-4">
-            <p className="text-red-500 text-xl">
-              You have already applied for this job.
-            </p>
-          </article>
-        </>
-      ) : (
-        <>
-          <SmallButton
-            content="Apply for the job"
-            onClick={() => {
-              props.setLoading(true);
-              router.push(`/apply/${props.jobId}`);
-            }}
-          />
-        </>
-      )}
-    </>
-  );
+  if (props.appliedForCurrentJob) {
+    if (props?.responsive) {
+      notify();
+    }
+
+    return (
+      <article className="mb-6 space-y-4">
+        <p className="text-red-500 text-xl">
+          You have already applied for this job.
+        </p>
+      </article>
+    );
+  } else {
+    return (
+      <SmallButton
+        content="Apply for the job"
+        onClick={() => {
+          props.setLoading(true);
+          router.push(`/apply/${props.jobId}`);
+        }}
+      />
+    );
+  }
 };
 
 const NavbarChooser = () => {
@@ -88,6 +98,7 @@ const JobPage = (props: JobPageProps) => {
 
   return (
     <>
+      <Toaster />
       {props.responsive && <NavbarChooser />}
       <section
         className={`py-12 flex-1 rounded-md max-auto ${
@@ -178,6 +189,7 @@ const JobPage = (props: JobPageProps) => {
           <ApplyPart
             appliedForCurrentJob={props.appliedForCurrentJob}
             jobId={props.job.id}
+            responsive={props.responsive}
             setLoading={setLoading}
           />
         </div>

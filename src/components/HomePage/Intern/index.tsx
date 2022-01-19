@@ -12,14 +12,13 @@ const notify = () =>
     icon: "👏",
     style: {
       borderRadius: "10px",
-      background: "#9db5f3",
-      color: "#000",
     },
     duration: 4000,
   });
 
 type InternHomepageProps = {
-  success?: boolean;
+  success: boolean;
+  successId: string;
   jobs: (Job & { company: Company })[] | null;
 };
 
@@ -40,7 +39,14 @@ const InternHomepage = (props: InternHomepageProps) => {
         if (userDbRes === null) {
           router.push("/onboarding");
         } else if (props.success) {
-          notify();
+          const successCheck = userDbRes.jobApplications.find((application) => {
+            return String(application.jobId) === props.successId;
+          });
+          if (successCheck) {
+            notify();
+          } else {
+            history.pushState({}, null, "/jobs");
+          }
         }
         setUserDb(userDbRes);
       })();
