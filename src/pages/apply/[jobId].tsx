@@ -36,7 +36,7 @@ const JobsPage = (props: JobProps) => {
   // redirect to job page if already applied
   useEffect(() => {
     if (props.emails.includes(email || "")) {
-      router.push(`/jobs/${props.job?.id}`);
+      router.push(`/job/${props.job?.id}`);
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.emails]);
