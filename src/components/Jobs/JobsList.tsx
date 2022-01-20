@@ -1,42 +1,22 @@
 import { Company, Job } from "@prisma/client";
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Loading from "components/Loading";
 import JobComponent from "components/Jobs/JobComponent";
 import JobPage from "components/Jobs/JobPage";
-import { UserOnSteriods } from "lib/helpers/fetchUser";
 import JobsNotFound from "components/Jobs/JobsNotFound";
 import fetchJobs from "lib/helpers/fetchJobs";
+import InternHomepageContext from "contexts/InternHomepage";
+import searchJobs from "lib/helpers/searchJobs";
 
 type JobsListProps = {
-  userDb?: UserOnSteriods | null;
   search: string | null;
-  jobs: (Job & { company: Company })[] | null;
-};
-
-//eslint-disable-next-line
-const searchJobs = (arr: (Job & { company: Company })[], searchKey: string) => {
-  if (searchKey === "") {
-    return arr;
-  }
-  return arr.filter((job) => {
-    if (
-      (job.position.includes(searchKey) ||
-        job.location.includes(searchKey) ||
-        job.skillsRequired.join(" ").includes(searchKey) ||
-        job.description.includes(searchKey) ||
-        job.company.description.includes(searchKey) ||
-        job.companyName.includes(searchKey)) &&
-      !job.closed
-    ) {
-      return job;
-    }
-  });
 };
 
 const JobsList = (props: JobsListProps) => {
   const [jobs, setJobs] = useState<(Job & { company: Company })[]>([]);
   // job in focus
   const [job, setJob] = useState<(Job & { company: Company }) | null>(jobs[0]);
+  const context = useContext(InternHomepageContext);
 
   const [appliedForCurrentJob, setAppliedForCurrentJob] = useState<
     boolean | null
@@ -58,19 +38,19 @@ const JobsList = (props: JobsListProps) => {
 
       setLoading(true);
       if (!triggeredAtLeastOnce) {
-        if (!props.jobs) {
+        if (!context.jobs) {
           jobsRes = await fetchJobs();
         } else {
           // exlcude all closed jobs
-          jobsRes = props.jobs.filter((job) => !job.closed);
+          jobsRes = context.jobs.filter((job) => !job.closed);
         }
         setTriggeredAtLeastOnce(true);
       } else {
-        if (props.search !== "" || !props.jobs) {
+        if (props.search !== "" || !context.jobs) {
           jobsRes = await fetchJobs(props.search);
         } else {
-          jobsRes = props.jobs.filter((job) => !job.closed);
-          setJobs(searchJobs(props.jobs, props.search));
+          jobsRes = context.jobs.filter((job) => !job.closed);
+          setJobs(searchJobs(context.jobs, props.search));
         }
       }
 
@@ -81,15 +61,15 @@ const JobsList = (props: JobsListProps) => {
       setLoading(false);
     })();
     /*eslint-disable-next-line */
-  }, [props.search, props.jobs]);
+  }, [props.search, context.jobs]);
 
   useEffect(() => {
     // match applications and assign company
     setCompany(job ? job.company : null);
-    if (props.userDb?.jobApplications) {
+    if (context.userDb?.jobApplications) {
       // check if application exist
       if (job) {
-        const appliedForCurrentJob = props.userDb.jobApplications.find(
+        const appliedForCurrentJob = context.userDb.jobApplications.find(
           (application) => application.jobId === job.id
         );
         if (appliedForCurrentJob?.description) {
@@ -99,7 +79,7 @@ const JobsList = (props: JobsListProps) => {
         }
       }
     }
-  }, [job, props.userDb, appliedForCurrentJob]);
+  }, [job, context.userDb, appliedForCurrentJob]);
 
   if (loading) return <Loading />;
 
