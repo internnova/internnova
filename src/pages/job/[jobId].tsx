@@ -6,6 +6,7 @@ import fetchUser from "lib/helpers/fetchUser";
 import { prisma } from "lib/prisma";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
+import Loading from "components/Loading";
 
 type JobProps = {
   job: (Job & { company: Company }) | null;
@@ -57,32 +58,28 @@ const SignedInView = (props: JobProps) => {
 const JobsPage = (props: JobProps) => {
   const router = useRouter();
 
-  useEffect(() => {
-    if (props.job) {
-      window.document.title = `${props.job.position} - InternNova`;
-    } else {
-      router.push("/404");
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  // If the page is not yet generated, this will be displayed
+  // initially until getStaticProps() finishes running
+  if (router.isFallback) {
+    return <Loading />;
+  }
 
   if (props.job === undefined) {
     router.push("/404");
-    return <></>;
   }
 
   return (
     <>
       <NextSeo
-        title={`${props.job.position} - InternNova`}
-        description={props.job.description}
+        title={`${props.job?.position} - InternNova`}
+        description={props.job?.description}
         openGraph={{
           url: "https://www.internnova.co",
-          title: `${props.job.position} - InternNova`,
-          description: props.job.description,
+          title: `${props.job?.position} - InternNova`,
+          description: props.job?.description,
           images: [
             {
-              url: props.job.company.logo || "/assets/img/twitter.png",
+              url: props.job?.company.logo || "/assets/img/twitter.png",
               alt: "InternNova",
             },
           ],
@@ -135,11 +132,11 @@ export const getStaticPaths = async () => {
   };
 };
 
-export async function getStaticProps({
+export const getStaticProps = async ({
   params,
 }: {
   params: { jobId: string };
-}) {
+}) => {
   const id = params.jobId;
 
   if (!id || parseInt(id as string) === NaN) {
@@ -171,6 +168,6 @@ export async function getStaticProps({
       },
     };
   }
-}
+};
 
 export default JobsPage;
