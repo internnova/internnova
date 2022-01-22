@@ -66,7 +66,7 @@ const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
             gtag('config', '${process.env.NEXT_PUBLIC_GOOGLE_ANALYTICS}', {
               page_path: window.location.pathname,
             });
-                `}
+        `}
       </Script>
 
       <main className="light flex flex-col h-screen">
@@ -74,23 +74,21 @@ const App = ({ Component, pageProps: { ...pageProps } }: AppProps) => {
           <ClerkLoading>
             <Loading />
           </ClerkLoading>
-          <ClerkLoaded>
-            {isPublicPage ? (
-              <>
+          {isPublicPage ? (
+            <>
+              <Component {...pageProps} />
+            </>
+          ) : (
+            <>
+              <SignedIn>
                 <Component {...pageProps} />
-              </>
-            ) : (
-              <>
-                <SignedIn>
-                  <Component {...pageProps} />
-                </SignedIn>
+              </SignedIn>
 
-                <SignedOut>
-                  <RedirectToSignIn afterSignUpUrl="/onboarding" />
-                </SignedOut>
-              </>
-            )}
-          </ClerkLoaded>
+              <SignedOut>
+                <RedirectToSignIn afterSignUpUrl="/onboarding" />
+              </SignedOut>
+            </>
+          )}
         </ClerkProvider>
       </main>
     </>
