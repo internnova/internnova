@@ -66,6 +66,11 @@ const JobsPage = (props: JobProps) => {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
+  if (props.job === undefined) {
+    router.push("/404");
+    return <></>;
+  }
+
   return (
     <>
       <NextSeo
@@ -147,7 +152,8 @@ export async function getStaticProps({
     // include company will allow us to access job.company
     include: { company: true },
   });
-  if (job && !job?.closed) {
+
+  if (job && !job.closed) {
     // if the job is found, return it as props
     return {
       props: {
@@ -157,7 +163,13 @@ export async function getStaticProps({
     };
   } else {
     // if the job isn't found, redirect to 404
-    return { props: { job: null } };
+    return {
+      props: {},
+      redirect: {
+        permanent: false,
+        destination: "/404",
+      },
+    };
   }
 }
 
