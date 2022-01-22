@@ -1,5 +1,4 @@
 import {
-  ClerkLoaded,
   ClerkLoading,
   ClerkProvider,
   RedirectToSignIn,
@@ -7,7 +6,6 @@ import {
   SignedOut,
 } from "@clerk/nextjs";
 import "@fontsource/nunito-sans";
-import "@fontsource/plus-jakarta-sans";
 import Loading from "components/Loading";
 import { DefaultSeo } from "next-seo";
 import { AppProps } from "next/app";

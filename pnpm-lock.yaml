@@ -8,8 +8,8 @@ specifiers:
   '@commitlint/cli': ^15.0.0
   '@commitlint/config-conventional': ^15.0.0
   '@elastic/elasticsearch': ^7.16.0
+  '@fontsource/chivo': ^4.5.0
   '@fontsource/nunito-sans': ^4.5.1
-  '@fontsource/plus-jakarta-sans': ^4.5.0
   '@prisma/client': ^3.8.1
   '@types/react': ^17.0.38
   '@typescript-eslint/eslint-plugin': ^4.33.0
@@ -46,8 +46,8 @@ specifiers:
 dependencies:
   '@clerk/nextjs': 2.8.0_next@12.0.8+react@17.0.2
   '@elastic/elasticsearch': 7.16.0
+  '@fontsource/chivo': 4.5.0
   '@fontsource/nunito-sans': 4.5.1
-  '@fontsource/plus-jakarta-sans': 4.5.0
   '@prisma/client': 3.8.1_prisma@3.8.1
   babel-plugin-superjson-next: 0.4.2_next@12.0.8+superjson@1.8.0
   moment: 2.29.1
@@ -379,12 +379,12 @@ packages:
       - typescript
     dev: true
 
-  /@fontsource/nunito-sans/4.5.1:
-    resolution: {integrity: sha512-sOqaGHmT9dQ8sQ95uLjZecmhtw7ivZNOb7Nd6khT1x0pKcgHQa93kzzg+UI3/0HjO80Dn+/87kgwaU2IIZDZuA==}
+  /@fontsource/chivo/4.5.0:
+    resolution: {integrity: sha512-uLJYNaQJEetDUA+dRxInCv0yHDvpoGzXsrXjAhDFY3iKOfr0QUykmdaN51FwfddET2Z1lgL15hChTzIpZLpu9Q==}
     dev: false
 
-  /@fontsource/plus-jakarta-sans/4.5.0:
-    resolution: {integrity: sha512-PUVYjxqIXa8tf7VyQWnRP5FsGTwTlOlmHNrbF7UQ9UOd4c25X4VGkb2ZCZsJaPt6MECXIbJYwl49LLV6Kk6BHg==}
+  /@fontsource/nunito-sans/4.5.1:
+    resolution: {integrity: sha512-sOqaGHmT9dQ8sQ95uLjZecmhtw7ivZNOb7Nd6khT1x0pKcgHQa93kzzg+UI3/0HjO80Dn+/87kgwaU2IIZDZuA==}
     dev: false
 
   /@next/env/12.0.8:

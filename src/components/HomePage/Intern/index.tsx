@@ -48,9 +48,7 @@ const InternHomepage = () => {
       <Navbar />
       <div className="h-screen">
         <div className="mx-auto py-10 md:max-w-md">
-          <h1 className="text-4xl pb-2 m-auto text-center heading">
-            Search For Jobs
-          </h1>
+          <h1 className="text-4xl pb-2 m-auto text-center">Search For Jobs</h1>
           <div className="mt-10 mx-10 md:mx-0 flex items-center bg-white rounded-lg overflow-hidden px-2 py-2 justify-between border-2 border-gray-300">
             <input
               className="text-base text-gray-800 flex-grow outline-none px-2"
