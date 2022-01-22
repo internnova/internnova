@@ -1,11 +1,8 @@
-import { useRouter } from "next/router";
-import { useEffect, useState } from "react";
-import fetchUser, { UserOnSteriods } from "lib/helpers/fetchUser";
 import JobsList from "components/Jobs/JobsList";
 import Navbar from "components/Navbar";
-import { useUser } from "@clerk/nextjs";
+import InternHomepageContext from "contexts/InternHomepage";
+import { useContext, useEffect, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
-import { Company, Job } from "@prisma/client";
 
 const notify = () =>
   toast("Successfully applied to the job, you will get updates on your email", {
@@ -16,44 +13,28 @@ const notify = () =>
     duration: 4000,
   });
 
-type InternHomepageProps = {
-  success: boolean;
-  successId: string | null;
-  applicationId: string | null;
-  jobs: (Job & { company: Company })[] | null;
-};
-
-const InternHomepage = (props: InternHomepageProps) => {
-  const [userDb, setUserDb] = useState<UserOnSteriods | null>(null);
+const InternHomepage = () => {
+  const context = useContext(InternHomepageContext);
   const [search, setSearch] = useState<string>("");
   const [tempSearch, setTempSearch] = useState<string>("");
-  const user = useUser();
-  const router = useRouter();
 
   useEffect(() => {
-    if (user && user.primaryEmailAddress !== undefined) {
-      // if the user(auth  user) exists, check for the user in db
-      (async () => {
-        const userDbRes = await fetchUser(
-          user.primaryEmailAddress?.emailAddress || ""
-        );
-        if (userDbRes === null) {
-          router.push("/onboarding");
-        } else if (props.success) {
-          const successCheck = userDbRes.jobApplications.find((application) => {
-            return String(application.jobId) === props.successId;
-          });
-          if (successCheck && !successCheck.shownNotification) {
-            notify();
-            await fetch(
-              `/api/db/createNotificationApplication/${props.applicationId}`
-            );
-          } else {
-            history.pushState({}, null, "/jobs");
-          }
+    if (context.success) {
+      const successCheck = context.userDb.jobApplications.find(
+        (application) => {
+          return String(application.jobId) === context.successId;
         }
-        setUserDb(userDbRes);
-      })();
+      );
+      if (successCheck && !successCheck.shownNotification) {
+        notify();
+        (async () => {
+          await fetch(
+            `/api/db/createNotificationApplication/${context.applicationId}`
+          );
+        })();
+      } else {
+        history.pushState({}, null, "/jobs");
+      }
     }
     /*eslint-disable-next-line */
   }, []);
@@ -90,7 +71,7 @@ const InternHomepage = (props: InternHomepageProps) => {
         </div>
         <div>
           <Toaster />
-          <JobsList userDb={userDb} search={search} jobs={props.jobs} />
+          <JobsList search={search} />
         </div>
       </div>
     </div>
