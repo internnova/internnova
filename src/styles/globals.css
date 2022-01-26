@@ -8,6 +8,10 @@
   }
 }
 
+body {
+  white-space: pre-line;
+}
+
 .gradient {
   background: radial-gradient(
     at right center,

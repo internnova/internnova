@@ -1,9 +1,9 @@
-import { User, JobApplication, Job } from "@prisma/client";
+import { User, JobApplication, Job, Company } from "@prisma/client";
 
 export interface UserOnSteriods extends User {
   internId?: number;
   companyId?: number;
-  jobApplications?: JobApplication[];
+  jobApplications?: (Job & { company: Company })[];
 }
 
 // wrapper for fetching applications from db
@@ -30,9 +30,9 @@ const fetchUser = async (email: string) => {
         }
       );
 
-      const applications: (JobApplication & { job: Job })[] = (
-        await resTheSecond.json()
-      ).applications;
+      const applications: (JobApplication & {
+        job: Job & { company: Company };
+      })[] = (await resTheSecond.json()).applications;
 
       return applications;
     } else {
