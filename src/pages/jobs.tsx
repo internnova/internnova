@@ -36,19 +36,23 @@ const Index = (props: JobPageProps) => {
     /*eslint-disable-next-line */
   }, []);
 
-  return (
-    <InternHomepageContext.Provider
-      value={{
-        success: success as boolean,
-        successId: successId as string,
-        applicationId: applicationId as string,
-        jobs: props.jobs,
-        userDb: userDb,
-      }}
-    >
-      <InternHomepage />
-    </InternHomepageContext.Provider>
-  );
+  if (userDb) {
+    return (
+      <InternHomepageContext.Provider
+        value={{
+          success: success as boolean,
+          successId: successId as string,
+          applicationId: applicationId as string,
+          jobs: props.jobs,
+          userDb: userDb,
+        }}
+      >
+        <InternHomepage />
+      </InternHomepageContext.Provider>
+    );
+  } else {
+    return <></>;
+  }
 };
 
 export const getStaticProps = async () => {
