@@ -15,7 +15,22 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       },
     });
 
-    res.status(200).json({ applications: jobApplications || [] });
+    const updatedJobApplications = await Promise.all(
+      jobApplications.map(async (jobApplication) => {
+        const company = await prisma.company.findFirst({
+          where: { id: jobApplication.job.companyId },
+        });
+        return {
+          ...jobApplication,
+          job: {
+            ...jobApplication.job,
+            company: company,
+          },
+        };
+      })
+    );
+
+    res.status(200).json({ applications: updatedJobApplications || [] });
     return;
   }
 };

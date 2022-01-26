@@ -20,7 +20,9 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
       res.status(400).json({ error: "missing parameters in request body" });
       return;
     }
-    const application = await prisma.jobApplication.findFirst({
+
+    //eslint-disable-next-line
+    let application: any = await prisma.jobApplication.findFirst({
       where: {
         internId: parseInt(internId as string),
         jobId: parseInt(jobId as string),
@@ -36,7 +38,7 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
     }
 
     // return application if found
-    res.status(200).json({ application: application });
+    res.status(200).json({ application });
   } else {
     // edge case
     res.status(400).json({ error: "invalid request method" });

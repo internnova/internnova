@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { UserButton } from "@clerk/nextjs";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
+import Link from "next/link";
 
 type NavbarProps = { noOptions?: boolean };
 
@@ -44,18 +45,16 @@ const Navbar = (props: NavbarProps) => {
             >
               {!props.noOptions && (
                 <div className="md:flex-row md:mx-6 flex flex-col">
-                  <a
-                    className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
-                    href="#"
-                  >
-                    Jobs
-                  </a>
-                  <a
-                    className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700"
-                    href="#"
-                  >
-                    Applications
-                  </a>
+                  <Link href="/jobs">
+                    <a className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700">
+                      Jobs
+                    </a>
+                  </Link>
+                  <Link href="/applications">
+                    <a className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700">
+                      Applications
+                    </a>
+                  </Link>
                 </div>
               )}
               <div className={open ? "hidden" : ""}>
