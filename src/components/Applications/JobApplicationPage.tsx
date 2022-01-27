@@ -1,6 +1,5 @@
 import { Job, Company, JobApplication } from "@prisma/client";
 import Link from "next/link";
-import moment from "moment";
 
 type JobPageProps = {
   application: JobApplication | null;
@@ -8,8 +7,6 @@ type JobPageProps = {
 };
 
 const JobApplicationPage = (props: JobPageProps) => {
-  const postedAt = new Date(props.job.postedAt);
-
   return (
     <>
       <section className="py-12 flex-1 rounded-md max-auto hidden lg:block">
@@ -41,7 +38,7 @@ const JobApplicationPage = (props: JobPageProps) => {
             </div>
           </article>
           <p className="text-black pl-2 pb-4 text-md">
-            Posted {moment(postedAt).fromNow()}
+            Duration: {props.job.duration}
           </p>
           <div className="md:flex mb-9 items-center justify-between px-6 pt-4 bg-gray-100 rounded-md">
             <article className="pb-5">

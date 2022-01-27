@@ -2,7 +2,6 @@ import { Job, Company } from "@prisma/client";
 import { useState } from "react";
 import SmallButton from "components/SmallButton";
 import Link from "next/link";
-import moment from "moment";
 import Navbar from "components/Navbar";
 import NavbarUnauthorized from "../HomePage/Unauthorized/Navbar";
 import { SignedIn, SignedOut } from "@clerk/nextjs";
@@ -94,8 +93,6 @@ const JobPage = (props: JobPageProps) => {
     );
   if (!props.company || !props.job) return <></>;
 
-  const postedAt = new Date(props.job.postedAt);
-
   return (
     <>
       <Toaster />
@@ -133,7 +130,7 @@ const JobPage = (props: JobPageProps) => {
             </div>
           </article>
           <p className="text-black pl-2 pb-4 text-md">
-            Posted {moment(postedAt).fromNow()}
+            Duration: {props.job.duration}
           </p>
           <div className="md:flex mb-9 items-center justify-between px-6 pt-4 bg-gray-100 rounded-md">
             <article className="pb-5">
