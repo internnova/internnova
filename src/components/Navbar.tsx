@@ -3,9 +3,7 @@ import { UserButton } from "@clerk/nextjs";
 import { SignedIn, SignedOut, SignInButton } from "@clerk/nextjs";
 import Link from "next/link";
 
-type NavbarProps = { noOptions?: boolean };
-
-const Navbar = (props: NavbarProps) => {
+const Navbar = () => {
   const [open, setOpen] = useState(false);
   return (
     <div className="glassmorphism-50 w-full sticky top-0 z-50">
@@ -24,18 +22,48 @@ const Navbar = (props: NavbarProps) => {
               </div>
               <button
                 type="button"
-                className="hover:text-gray-600 focus:outline-none focus:text-gray-600 text-gray-500"
+                className="hover:text-gray-600 focus:outline-none focus:text-gray-600 text-gray-500 mb-1"
                 aria-label="toggle menu"
                 onClick={() => {
                   setOpen(!open);
                 }}
               >
-                <svg viewBox="0 0 24 24" className="w-6 h-6 fill-current">
-                  <path
-                    fillRule="evenodd"
-                    d="M4 5h16a1 1 0 0 1 0 2H4a1 1 0 1 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2zm0 6h16a1 1 0 0 1 0 2H4a1 1 0 0 1 0-2z"
-                  />
-                </svg>
+                <span className="sr-only">Open main menu</span>
+
+                {!open ? (
+                  <>
+                    <svg
+                      className="block h-6 w-6"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      aria-hidden="true"
+                    >
+                      <path
+                        strokeLinecap="round"
+                        strokeLinejoin="round"
+                        strokeWidth="2"
+                        d="M4 6h16M4 12h16M4 18h16"
+                      />
+                    </svg>
+                  </>
+                ) : (
+                  <>
+                    <svg
+                      className="block h-4 w-4"
+                      xmlns="http://www.w3.org/2000/svg"
+                      fill="none"
+                      viewBox="0 0 24 24"
+                      stroke="currentColor"
+                      strokeWidth="2"
+                      strokeLinecap="round"
+                    >
+                      <line x2="24" y2="24" />
+                      <line x1="24" y2="24" />
+                    </svg>
+                  </>
+                )}
               </button>
             </div>
           </div>
@@ -43,21 +71,19 @@ const Navbar = (props: NavbarProps) => {
             <div
               className={`md:flex items-center ${!open && "hidden md:block"}`}
             >
-              {!props.noOptions && (
-                <div className="md:flex-row md:mx-6 flex flex-col">
-                  <Link href="/jobs">
-                    <a className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700">
-                      Jobs
-                    </a>
-                  </Link>
-                  <Link href="/applications">
-                    <a className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700">
-                      Applications
-                    </a>
-                  </Link>
-                </div>
-              )}
-              <div className={open ? "hidden" : ""}>
+              <div className="md:flex-row md:mx-6 flex flex-col">
+                <Link href="/jobs">
+                  <a className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700">
+                    Jobs
+                  </a>
+                </Link>
+                <Link href="/applications">
+                  <a className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700">
+                    Applications
+                  </a>
+                </Link>
+              </div>
+              <div className="hidden md:block pt-1">
                 <UserButton />
               </div>
             </div>

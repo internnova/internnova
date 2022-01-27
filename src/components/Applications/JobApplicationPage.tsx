@@ -12,7 +12,7 @@ const JobApplicationPage = (props: JobPageProps) => {
 
   return (
     <>
-      <section className="py-12 flex-1 rounded-md max-auto">
+      <section className="py-12 flex-1 rounded-md max-auto hidden lg:block">
         <div className="md:pr-2">
           <article className="item-center mb-9 flex justify-between">
             <div className="flex gap-4 mb-6">
