@@ -4,7 +4,7 @@ import { useRouter } from "next/router";
 
 const Redirect = () => {
   const router = useRouter();
-  router.push("/jobs");
+  router.push("/intern/jobs");
   return <></>;
 };
 

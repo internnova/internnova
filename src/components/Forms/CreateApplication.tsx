@@ -58,9 +58,9 @@ const CreateApplication = (props: CreateCompanyProps) => {
               if (res.status === 200) {
                 setError("");
                 router.push(
-                  `/jobs?success=true&successId=${props.job.id}&applicationId=${
-                    (await res.json()).id
-                  }`
+                  `/intern/jobs?success=true&successId=${
+                    props.job.id
+                  }&applicationId=${(await res.json()).id}`
                 );
               } else {
                 res.json().then((data) => {

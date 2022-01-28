@@ -22,12 +22,11 @@ jobs:
         with:
           node-version: 14
 
-      - name: Install dependencies
-        uses: actions/setup-node@v2
-        with:
-          node-version: 14
-          cache: yarn
-      - run: yarn install
+      - name: Install pnpm 
+        run: npm i -g pnpm
+
+      - name: Install dependencies 🔧
+        run: pnpm install
 
       - name: Run linters
         uses: wearerequired/lint-action@v1
