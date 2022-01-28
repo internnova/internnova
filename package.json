@@ -18,7 +18,7 @@
     "@clerk/nextjs": "^2.8.0",
     "@elastic/elasticsearch": "^7.16.0",
     "@fontsource/chivo": "^4.5.0",
-    "@fontsource/nunito-sans": "^4.5.1",
+    "@fontsource/montserrat": "^4.5.3",
     "@prisma/client": "^3.8.1",
     "babel-plugin-superjson-next": "^0.4.2",
     "moment": "^2.29.1",

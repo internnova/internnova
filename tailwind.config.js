@@ -36,7 +36,7 @@ module.exports = {
       light: "#FFFFFF",
     },
     fontFamily: {
-      sans: ["Nunito Sans"],
+      sans: ["Montserrat"],
     },
   },
   variants: {
