@@ -33,7 +33,7 @@ const InternHomepage = () => {
           );
         })();
       } else {
-        history.pushState({}, null, "/jobs");
+        history.pushState({}, null, "/intern/jobs");
       }
     }
     /*eslint-disable-next-line */

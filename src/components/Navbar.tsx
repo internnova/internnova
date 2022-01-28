@@ -72,12 +72,12 @@ const Navbar = () => {
               className={`md:flex items-center ${!open && "hidden md:block"}`}
             >
               <div className="md:flex-row md:mx-6 flex flex-col">
-                <Link href="/jobs">
+                <Link href="/intern/jobs">
                   <a className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700">
                     Jobs
                   </a>
                 </Link>
-                <Link href="/applications">
+                <Link href="/intern/applications">
                   <a className="hover:text-blue-500 md:mx-4 md:my-0 my-1 text-gray-700">
                     Applications
                   </a>

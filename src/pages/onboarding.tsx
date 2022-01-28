@@ -16,7 +16,7 @@ const OnboardingPage = () => {
         const userDbRes = await fetchUser(email || "");
         if (userDbRes) {
           // if user exists in db redirect to dashboard
-          router.push("/jobs");
+          router.push("/intern/jobs");
         }
       })();
     }

@@ -58,7 +58,7 @@ const ApplyPart = (props: {
         content="Apply for the job"
         onClick={() => {
           props.setLoading(true);
-          router.push(`/apply/${props.jobId}`);
+          router.push(`/intern/apply/${props.jobId}`);
         }}
       />
     );
