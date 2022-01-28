@@ -36,7 +36,11 @@ const OnboardingPage = () => {
           setApplications([]);
         } else {
           // if user exists and there are applications
-          setApplications(applications);
+          setApplications(
+            applications.filter(
+              (application) => application.job.closed != false
+            )
+          );
           setApplication(applications[0]);
         }
       })();
