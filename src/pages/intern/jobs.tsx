@@ -6,9 +6,16 @@ import InternHomepageContext from "contexts/InternHomepage";
 import { useEffect, useState } from "react";
 import fetchUser, { UserOnSteriods } from "lib/helpers/fetchUser";
 import { useUser } from "@clerk/nextjs";
+import { serialize } from "next-mdx-remote/serialize";
 
 type JobPageProps = {
   jobs: (Job & { company: Company })[] | null;
+  descriptions: {
+    compiledSource: string;
+    renderedOutput: string;
+    //eslint-disable-next-line
+    scope?: { [key: string | number | symbol]: any };
+  }[];
 };
 
 const Index = (props: JobPageProps) => {
@@ -43,7 +50,7 @@ const Index = (props: JobPageProps) => {
           success: success as boolean,
           successId: successId as string,
           applicationId: applicationId as string,
-          jobs: props.jobs,
+          ...props,
           userDb: userDb,
         }}
       >
@@ -61,9 +68,16 @@ export const getStaticProps = async () => {
     where: { closed: false },
   });
 
+  const descriptions = await Promise.all(
+    jobs.map(async (job) => {
+      return await serialize(job.description);
+    })
+  );
+
   return {
     props: {
       jobs,
+      descriptions,
     },
     revalidate: 15, // In seconds
   };

@@ -103,6 +103,10 @@ const JobsList = (props: JobsListProps) => {
             </section>
             {/* Job Description */}
             <JobPage
+              // what is the job iter position
+              description={
+                context.descriptions[[].concat(jobs).reverse().indexOf(job)]
+              }
               job={job}
               company={company}
               appliedForCurrentJob={appliedForCurrentJob}

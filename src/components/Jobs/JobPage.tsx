@@ -8,12 +8,18 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Loading from "../Loading";
 import { useRouter } from "next/router";
 import toast, { Toaster } from "react-hot-toast";
+import { MDXRemote } from "next-mdx-remote";
 
 type JobPageProps = {
   job: (Job & { company: Company }) | null;
   company: Company | null;
   responsive?: boolean;
   appliedForCurrentJob: boolean | null | undefined;
+  description: {
+    compiledSource: string;
+    renderedOutput: string;
+    scope?: { [key: string | number | symbol]: any };
+  };
 };
 
 const notify = () =>
@@ -166,26 +172,28 @@ const JobPage = (props: JobPageProps) => {
           )}
           <article className="mb-6 space-y-4">
             <h3 className="font-bold text-blue-700">Job Overview</h3>
-            <p className="text-muted list-decimal">{props.job?.description}</p>
+            <p className="text-muted list-decimal prose max-w-none">
+              <MDXRemote {...props.description} components={{}} />
+            </p>
           </article>
           <article className="mb-6 space-y-4">
             <h3 className="font-bold text-blue-700">Job Requirements</h3>
-            {props.job?.skillsRequired?.map(
-              (skill, x) =>
-                skill !== "" && (
-                  <div className="text-muted flex gap-3" key={x}>
-                    <img
-                      src="/assets/img/verified-checkmark.svg"
-                      alt="Checkmark"
-                    />
-                    <p>{skill}</p>
-                  </div>
-                )
-            )}
+            <div className="prose max-w-none">
+              <ul>
+                {props.job?.skillsRequired?.map(
+                  (skill, x) =>
+                    skill !== "" && (
+                      <div className="text-muted flex gap-3" key={x}>
+                        <li>{skill}</li>
+                      </div>
+                    )
+                )}
+              </ul>
+            </div>
           </article>
           <article className="mb-6 space-y-4">
             <h3 className="font-bold text-blue-700">Company Overview</h3>
-            <p className="text-muted list-decimal">
+            <p className="text-muted list-decimal prose max-w-none">
               {props.company?.description || ""}
             </p>
           </article>
