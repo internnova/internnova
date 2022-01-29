@@ -54,8 +54,10 @@ const JobsList = (props: JobsListProps) => {
         }
       }
 
-      setJobs(jobsRes);
-      if (jobsRes && jobsRes.length > 0) setJob(jobsRes[0]);
+      const finalJobs = [].concat(jobsRes).reverse();
+
+      setJobs(finalJobs);
+      if (finalJobs && finalJobs.length > 0) setJob(finalJobs[0]);
 
       // stop spinner
       setLoading(false);
