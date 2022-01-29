@@ -148,7 +148,9 @@ const JobPage = (props: JobPageProps) => {
             <article className="pb-5">
               <h2 className="font-bold">Salary</h2>
               <p className="text-muted">
-                {props.job?.salary ? props.job?.salary : "Unpaid Internship"}
+                {props.job?.salary
+                  ? "₹ " + props.job?.salary
+                  : "Unpaid Internship"}
               </p>
             </article>
           </div>
