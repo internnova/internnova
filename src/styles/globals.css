@@ -12,6 +12,15 @@ body {
   white-space: pre-line;
 }
 
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Montserrat", serif;
+}
+
 .gradient {
   background: radial-gradient(
     at right center,

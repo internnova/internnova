@@ -117,9 +117,11 @@ const JobPage = (props: JobPageProps) => {
                   </a>
                 </Link>
 
-                <h3 className="mb-1 text-xl font-bold text-blue-500 underline">
-                  Company: {props.company?.name}
-                </h3>
+                <a href={props.company.website} target="blank" rel="noreferrer">
+                  <h3 className="mb-1 text-xl font-bold text-blue-500 underline">
+                    Company: {props.company?.name}
+                  </h3>
+                </a>
                 <p className="text-muted flex items-center gap-1">
                   <span>
                     <img src="/assets/img/location.svg" alt="Location Icon" />

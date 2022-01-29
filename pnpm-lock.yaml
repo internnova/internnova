@@ -28,6 +28,7 @@ specifiers:
   '@elastic/elasticsearch': ^7.16.0
   '@fontsource/chivo': ^4.5.0
   '@fontsource/montserrat': ^4.5.3
+  '@fontsource/nunito-sans': ^4.5.2
   '@prisma/client': ^3.8.1
   '@types/react': ^17.0.38
   '@typescript-eslint/eslint-plugin': ^4.33.0
@@ -67,6 +68,7 @@ dependencies:
   '@elastic/elasticsearch': 7.16.0
   '@fontsource/chivo': 4.5.1
   '@fontsource/montserrat': 4.5.3
+  '@fontsource/nunito-sans': 4.5.2
   '@prisma/client': 3.8.1_prisma@3.8.1
   babel-plugin-superjson-next: 0.4.2_next@12.0.9+superjson@1.8.0
   moment: 2.29.1
@@ -2732,6 +2734,10 @@ packages:
 
   /@fontsource/montserrat/4.5.3:
     resolution: {integrity: sha512-VT+wPK/PHWwqm7r6UbTjI+oj31obzj9+V9HSUl8tcuKtv4deYuH+OAbMf5RG62uVDT8wiZ8QyCbr5gmfHQ3ykg==}
+    dev: false
+
+  /@fontsource/nunito-sans/4.5.2:
+    resolution: {integrity: sha512-B2y5P7GoPL4isR4MucayFPDPpABO7GbR7DIyQS0Egv0xwY+IRHsU9ANaWRSQ20Bw+5wWzC8dOPfirb+4auz3eg==}
     dev: false
 
   /@hapi/address/2.1.4:
