@@ -8,7 +8,6 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Loading from "../Loading";
 import { useRouter } from "next/router";
 import toast, { Toaster } from "react-hot-toast";
-import ReactMarkdown from "react-markdown";
 
 type JobPageProps = {
   job: (Job & { company: Company }) | null;
@@ -165,9 +164,7 @@ const JobPage = (props: JobPageProps) => {
           )}
           <article className="mb-6 space-y-4">
             <h3 className="font-bold text-blue-700">Job Overview</h3>
-            <p className="text-muted">
-              <ReactMarkdown>{props.job?.description}</ReactMarkdown>
-            </p>
+            <p className="text-muted list-decimal">{props.job?.description}</p>
           </article>
           <article className="mb-6 space-y-4">
             <h3 className="font-bold text-blue-700">Job Requirements</h3>
@@ -186,8 +183,8 @@ const JobPage = (props: JobPageProps) => {
           </article>
           <article className="mb-6 space-y-4">
             <h3 className="font-bold text-blue-700">Company Overview</h3>
-            <p className="text-muted">
-              <ReactMarkdown>{props.company?.description || ""}</ReactMarkdown>
+            <p className="text-muted list-decimal">
+              {props.company?.description || ""}
             </p>
           </article>
           <ApplyPart
