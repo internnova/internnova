@@ -54,7 +54,7 @@ const JobsList = (props: JobsListProps) => {
         }
       }
 
-      setJobs(jobsRes.reverse());
+      setJobs(jobsRes);
       if (jobsRes && jobsRes.length > 0) setJob(jobsRes[0]);
 
       // stop spinner
