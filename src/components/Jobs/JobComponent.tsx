@@ -25,7 +25,7 @@ const JobComponent = (props: JobComponentProps) => {
         "lg:bg-gradient-to-r lg:from-green-400 lg:via-blue-300 lg:to-blue-700"
       }`}
     >
-      <article className="bg-card-bg p-6 shadow-lg bg-white">
+      <article className="bg-card-bg p-6 shadow-lg bg-white rounded-md">
         <div className="flex gap-4 mb-6">
           <img
             src={props.job.company?.logo || ""}

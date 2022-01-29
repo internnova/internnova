@@ -6,9 +6,12 @@ const handler = async (req: NextApiRequest, res: NextApiResponse) => {
   const jobs = await prisma.job.findMany({
     include: { company: true },
     where: { closed: false },
-    orderBy: [{ postedAt: "desc" }],
+    orderBy: { id: "desc" },
   });
-  res.status(200).json({ jobs: jobs });
+
+  res.status(200).json({
+    jobs: jobs,
+  });
   return;
 };
 

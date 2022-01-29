@@ -7,6 +7,7 @@ import { useEffect, useState } from "react";
 import fetchUser, { UserOnSteriods } from "lib/helpers/fetchUser";
 import { useUser } from "@clerk/nextjs";
 import { serialize } from "next-mdx-remote/serialize";
+import Loading from "components/Loading";
 
 type JobPageProps = {
   jobs: (Job & { company: Company })[] | null;
@@ -58,7 +59,7 @@ const Index = (props: JobPageProps) => {
       </InternHomepageContext.Provider>
     );
   } else {
-    return <></>;
+    return <Loading />;
   }
 };
 
@@ -66,6 +67,7 @@ export const getStaticProps = async () => {
   const jobs = await prisma.job.findMany({
     include: { company: true },
     where: { closed: false },
+    orderBy: { postedAt: "desc" },
   });
 
   const descriptions = await Promise.all(

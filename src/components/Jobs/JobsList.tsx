@@ -54,7 +54,7 @@ const JobsList = (props: JobsListProps) => {
         }
       }
 
-      const finalJobs = [].concat(jobsRes).reverse();
+      const finalJobs = jobsRes;
 
       setJobs(finalJobs);
       if (finalJobs && finalJobs.length > 0) setJob(finalJobs[0]);
@@ -104,16 +104,14 @@ const JobsList = (props: JobsListProps) => {
             {/* Job Description */}
             <JobPage
               // what is the job iter position
-              description={
-                context.descriptions[[].concat(jobs).reverse().indexOf(job)]
-              }
+              description={context.descriptions[jobs.indexOf(job)]}
               job={job}
               company={company}
               appliedForCurrentJob={appliedForCurrentJob}
             />
           </main>
         </div>
-      )}{" "}
+      )}
     </div>
   );
 };
