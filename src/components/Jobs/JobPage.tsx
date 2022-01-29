@@ -8,6 +8,7 @@ import { SignedIn, SignedOut } from "@clerk/nextjs";
 import Loading from "../Loading";
 import { useRouter } from "next/router";
 import toast, { Toaster } from "react-hot-toast";
+import ReactMarkdown from "react-markdown";
 
 type JobPageProps = {
   job: (Job & { company: Company }) | null;
@@ -117,9 +118,11 @@ const JobPage = (props: JobPageProps) => {
                   </a>
                 </Link>
 
-                <h3 className="mb-1 text-xl font-bold text-blue-500 underline">
-                  Company: {props.company?.name}
-                </h3>
+                <a href={props.company.website} target="blank" rel="noreferrer">
+                  <h3 className="mb-1 text-xl font-bold text-blue-500 underline">
+                    Company: {props.company?.name}
+                  </h3>
+                </a>
                 <p className="text-muted flex items-center gap-1">
                   <span>
                     <img src="/assets/img/location.svg" alt="Location Icon" />
@@ -162,7 +165,9 @@ const JobPage = (props: JobPageProps) => {
           )}
           <article className="mb-6 space-y-4">
             <h3 className="font-bold text-blue-700">Job Overview</h3>
-            <p className="text-muted">{props.job?.description}</p>
+            <p className="text-muted">
+              <ReactMarkdown>{props.job?.description}</ReactMarkdown>
+            </p>
           </article>
           <article className="mb-6 space-y-4">
             <h3 className="font-bold text-blue-700">Job Requirements</h3>
@@ -181,7 +186,9 @@ const JobPage = (props: JobPageProps) => {
           </article>
           <article className="mb-6 space-y-4">
             <h3 className="font-bold text-blue-700">Company Overview</h3>
-            <p className="text-muted">{props.company?.description || ""}</p>
+            <p className="text-muted">
+              <ReactMarkdown>{props.company?.description || ""}</ReactMarkdown>
+            </p>
           </article>
           <ApplyPart
             appliedForCurrentJob={props.appliedForCurrentJob}

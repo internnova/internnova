@@ -6,6 +6,7 @@ import {
   SignedOut,
 } from "@clerk/nextjs";
 import "@fontsource/nunito-sans";
+import "@fontsource/montserrat";
 import Loading from "components/Loading";
 import { DefaultSeo } from "next-seo";
 import { AppProps } from "next/app";
