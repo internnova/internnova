@@ -36,3 +36,22 @@ h6 {
   filter: invert(100%) sepia(0%) saturate(0%) hue-rotate(148deg)
     brightness(107%) contrast(101%);
 }
+
+.reactMarkDown {
+  display: block;
+  white-space: pre-wrap;
+}
+
+.reactMarkDown ul {
+  margin-top: 1em;
+  margin-bottom: 1em;
+  list-style: disc outside none;
+  @apply list-decimal;
+}
+
+.reactMarkDown ul li {
+  margin-left: 2em;
+  display: list-item;
+  text-align: -webkit-match-parent;
+  @apply list-decimal;
+}
