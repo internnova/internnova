@@ -8,6 +8,11 @@ type InternHomepageContextType = {
   applicationId: string | null;
   jobs: (Job & { company: Company })[] | null;
   userDb: UserOnSteriods | null;
+  descriptions: {
+    compiledSource: string;
+    renderedOutput: string;
+    scope?: { [key: string | number | symbol]: any };
+  }[];
 };
 
 const InternHomepageContext = createContext<InternHomepageContextType>({
@@ -16,6 +21,7 @@ const InternHomepageContext = createContext<InternHomepageContextType>({
   applicationId: null,
   jobs: null,
   userDb: null,
+  descriptions: [],
 });
 
 export default InternHomepageContext;

@@ -7,9 +7,16 @@ import { prisma } from "lib/prisma";
 import { useRouter } from "next/router";
 import React, { useEffect, useState } from "react";
 import Loading from "components/Loading";
+import { serialize } from "next-mdx-remote/serialize";
 
 type JobProps = {
   job: (Job & { company: Company }) | null;
+  description: {
+    compiledSource: string;
+    renderedOutput: string;
+    //eslint-disable-next-line
+    scope?: { [key: string | number | symbol]: any };
+  };
 };
 
 const SignedInView = (props: JobProps) => {
@@ -46,9 +53,10 @@ const SignedInView = (props: JobProps) => {
   return (
     <>
       <JobPage
-        job={props.job}
-        company={props.job?.company || null}
         responsive
+        job={props.job}
+        description={props.description}
+        company={props.job?.company || null}
         appliedForCurrentJob={appliedForCurrentJob}
       />
     </>
@@ -93,12 +101,13 @@ const JobsPage = (props: JobProps) => {
       />
 
       <SignedIn>
-        <SignedInView job={props.job} />
+        <SignedInView {...props} />
       </SignedIn>
       <SignedOut>
         <JobPage
           responsive
           job={props.job}
+          description={props.description}
           company={props.job.company}
           appliedForCurrentJob={undefined}
         />
@@ -152,9 +161,12 @@ export const getStaticProps = async ({
 
   if (job && !job.closed) {
     // if the job is found, return it as props
+    const description = await serialize(job.description);
+
     return {
       props: {
         job,
+        description,
       },
       revalidate: 30,
     };

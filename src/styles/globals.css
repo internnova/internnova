@@ -40,18 +40,16 @@ h6 {
 .reactMarkDown {
   display: block;
   white-space: pre-wrap;
+  @apply leading-4;
 }
 
 .reactMarkDown ul {
   margin-top: 1em;
   margin-bottom: 1em;
   list-style: disc outside none;
-  @apply list-decimal;
 }
 
 .reactMarkDown ul li {
-  margin-left: 2em;
   display: list-item;
   text-align: -webkit-match-parent;
-  @apply list-decimal;
 }

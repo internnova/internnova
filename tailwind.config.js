@@ -44,6 +44,6 @@ module.exports = {
   },
   plugins: [
     require("tailwind-glassmorphism"),
-    require("tailwindcss-border-gradient-radius"),
+    require("@tailwindcss/typography"),
   ],
 };
