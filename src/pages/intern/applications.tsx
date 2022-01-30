@@ -33,21 +33,26 @@ const OnboardingPage = () => {
           router.push("/onboarding");
         } else if (applications === null) {
           // if user exists but there are no applications
-          setApplications([]);
+          console.log("thing 1", applications);
+          setApplications(applications || null);
         } else {
           // if user exists and there are applications
+          console.log("thing 2", applications);
           setApplications(
-            applications.filter(
-              (application) => application.job.closed != false
-            )
+            applications.map((application) => {
+              if (!application.job.closed) {
+                return application;
+              }
+            })
           );
           setApplication(applications[0]);
         }
       })();
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [applications]);
 
+  console.log("thing 3", applications);
   if (applications === null) return <Loading />;
   return (
     <>
