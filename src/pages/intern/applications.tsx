@@ -33,13 +33,15 @@ const OnboardingPage = () => {
           router.push("/onboarding");
         } else if (applications === null) {
           // if user exists but there are no applications
-          setApplications([]);
+          setApplications(applications || null);
         } else {
           // if user exists and there are applications
           setApplications(
-            applications.filter(
-              (application) => application.job.closed != false
-            )
+            applications.map((application) => {
+              if (!application.job.closed) {
+                return application;
+              }
+            })
           );
           setApplication(applications[0]);
         }
