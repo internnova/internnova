@@ -1,54 +1,56 @@
-# See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
-
 # dependencies
-node_modules/**
-**/node_modules/**
-**/**/node_modules/.**
-/.pnp
-.pnp.js
+node_modules
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*
+.npm
+web_modules/
 
-# testing
-/coverage
-
-# next.js
+# blitz
+/.blitz/
 /.next/
-/out/
-
-# production
-/build
+*.sqlite
+*.sqlite-journal
+.now
+.blitz**
+blitz-log.log
 
 # misc
-**/.DS_Store
-*.pem
-
-# debug
-npm-debug.log*
-yarn-debug.log*
-yarn-error.log*
+.DS_Store
 
 # local env files
-**/.env
-**/.env.local
-**/.env.development.local
-**/.env.production.local
+.env.local
+.env.*.local
+.envrc
 
+# Logs
+logs
+*.log
 
-# vercel
-.vercel
+# Runtime data
+pids
+*.pid
+*.seed
+*.pid.lock
 
+# Testing
+.coverage
+*.lcov
+.nyc_output
+lib-cov
 
-# PWA files
-**/public/sw.js
-**/public/workbox-*.js
-**/public/worker-*.js
-**/public/sw.js.map
-**/public/workbox-*.js.map
-**/public/worker-*.js.map
+# Caches
+*.tsbuildinfo
+.eslintcache
+.node_repl_history
+.yarn-integrity
 
-tsconfig.tsbuildinfo
+# Serverless directories
+.serverless/
 
-.turbo
-
-**/build/**
-**/dist/**
-**/.next/**
+# Stores VSCode versions used for testing VSCode extensions
+.vscode-test

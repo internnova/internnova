@@ -1,67 +1,173 @@
-<p align="center"><img src="https://internnova.co/assets/img/logo.png"></p>
+[![Blitz.js](https://raw.githubusercontent.com/blitz-js/art/master/github-cover-photo.png)](https://blitzjs.com)
 
-<h1 align="center">InternNova</h1>
+This is a [Blitz.js](https://github.com/blitz-js/blitz) app.
 
-<h4 align="center">Helping high schoolers find internships</h4>
+# **internnova**
 
-<p align="center">
-  <img src="https://img.shields.io/badge/version-1.0.0--beta-green">
-  <img src="https://img.shields.io/github/license/internnovahq/internnova">
-  <img src="https://img.shields.io/tokei/lines/github/internnovahq/internnova?label=lines%20of%20code">
-  <img src="https://img.shields.io/github/languages/top/internnovahq/internnova">
-  <img src="https://img.shields.io/github/repo-size/internnovahq/internnova">
-</p>
+## Getting Started
 
-InternNova makes finding internships easy and accessible to high-school students all over the world!
-
-**Note**: Bugs may be highly likely, project is in pre-alpha stage.
-
-# :zap: Installation
-
-Any steps you need to run before installation or important notes.
-
-## Installation
-
-Prerequisites: **Git**, **Language Dependencies**
-
-1. Clone the github repository using the Git CLI.
-
-```sh
-git clone https://github.com/internnovahq/internnova internnova
-```
-
-2. Change to the project directory.
-
-```sh
-cd internnova
-```
-
-3. Installation dependencies
-
-```sh
-yarn
-```
-
-4. Run the server.
+Run your app in the development mode.
 
 ```
-yarn run dev
+blitz dev
 ```
 
-## :clap: Supporters
+Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
 
-[![Stargazers repo roster for https://github.com/internnovahq/internnova](https://reporoster.com/stars/internnovahq/internnova)](https://github.com/internnovahq/internnova/stargazers)
+## Environment Variables
 
-## Authors
+Ensure the `.env.local` file has required environment variables:
 
-[Samrath Chadha](https://github.com/yosamrath) - Lead contributor and maintainer
+```
+DATABASE_URL=postgresql://<YOUR_DB_USERNAME>@localhost:5432/internnova
+```
 
-See also the list of [contributors](https://github.com/internnovahq/internnova/contributors) who contributed to this.
+Ensure the `.env.test.local` file has required environment variables:
 
-## InternNova is supported by and hosted on vercel!
+```
+DATABASE_URL=postgresql://<YOUR_DB_USERNAME>@localhost:5432/internnova_test
+```
 
-<a href="https://vercel.com/?utm_source=internnova&utm_campaign=oss" target="blank" rel="noreferrer"> <img src="https://internnova.co/assets/img/powered-by-vercel.svg" alt="powered by vercel" /> </a>
+## Tests
 
-## License
+Runs your tests using Jest.
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+```
+yarn test
+```
+
+Blitz comes with a test setup using [Jest](https://jestjs.io/) and [react-testing-library](https://testing-library.com/).
+
+## Commands
+
+Blitz comes with a powerful CLI that is designed to make development easy and fast. You can install it with `npm i -g blitz`
+
+```
+  blitz [COMMAND]
+
+  dev       Start a development server
+  build     Create a production build
+  start     Start a production server
+  export    Export your Blitz app as a static application
+  prisma    Run prisma commands
+  generate  Generate new files for your Blitz project
+  console   Run the Blitz console REPL
+  install   Install a recipe
+  help      Display help for blitz
+  test      Run project tests
+```
+
+You can read more about it on the [CLI Overview](https://blitzjs.com/docs/cli-overview) documentation.
+
+## What's included?
+
+Here is the starting structure of your app.
+
+```
+internnova
+├── app/
+│   ├── api/
+│   ├── auth/
+│   │   ├── components/
+│   │   │   ├── LoginForm.tsx
+│   │   │   └── SignupForm.tsx
+│   │   ├── mutations/
+│   │   │   ├── changePassword.ts
+│   │   │   ├── forgotPassword.test.ts
+│   │   │   ├── forgotPassword.ts
+│   │   │   ├── login.ts
+│   │   │   ├── logout.ts
+│   │   │   ├── resetPassword.test.ts
+│   │   │   ├── resetPassword.ts
+│   │   │   └── signup.ts
+│   │   ├── pages/
+│   │   │   ├── forgot-password.tsx
+│   │   │   ├── login.tsx
+│   │   │   ├── reset-password.tsx
+│   │   │   └── signup.tsx
+│   │   └── validations.ts
+│   ├── core/
+│   │   ├── components/
+│   │   │   ├── Form.tsx
+│   │   │   └── LabeledTextField.tsx
+│   │   ├── hooks/
+│   │   │   └── useCurrentUser.ts
+│   │   └── layouts/
+│   │       └── Layout.tsx
+│   ├── pages/
+│   │   ├── _app.tsx
+│   │   ├── _document.tsx
+│   │   ├── 404.tsx
+│   │   ├── index.test.tsx
+│   │   └── index.tsx
+│   └── users/
+│       └── queries/
+│           └── getCurrentUser.ts
+├── db/
+│   ├── migrations/
+│   ├── index.ts
+│   ├── schema.prisma
+│   └── seeds.ts
+├── integrations/
+├── mailers/
+│   └── forgotPasswordMailer.ts
+├── public/
+│   ├── favicon.ico
+│   └── logo.png
+├── test/
+│   ├── setup.ts
+│   └── utils.tsx
+├── .eslintrc.js
+├── babel.config.js
+├── blitz.config.ts
+├── jest.config.ts
+├── package.json
+├── README.md
+├── tsconfig.json
+└── types.ts
+```
+
+These files are:
+
+- The `app/` folder is a container for most of your project. This is where you’ll put any pages or API routes.
+
+- `db/` is where your database configuration goes. If you’re writing models or checking migrations, this is where to go.
+
+- `public/` is a folder where you will put any static assets. If you have images, files, or videos which you want to use in your app, this is where to put them.
+
+- `integrations/` is a folder to put all third-party integrations like with Stripe, Sentry, etc.
+
+- `test/` is a folder where you can put test utilities and integration tests.
+
+- `package.json` contains information about your dependencies and devDependencies. If you’re using a tool like `npm` or `yarn`, you won’t have to worry about this much.
+
+- `tsconfig.json` is our recommended setup for TypeScript.
+
+- `.babel.config.js`, `.eslintrc.js`, `.env`, etc. ("dotfiles") are configuration files for various bits of JavaScript tooling.
+
+- `blitz.config.ts` is for advanced custom configuration of Blitz. [Here you can learn how to use it](https://blitzjs.com/docs/blitz-config).
+
+- `jest.config.js` contains config for Jest tests. You can [customize it if needed](https://jestjs.io/docs/en/configuration).
+
+You can read more about it in the [File Structure](https://blitzjs.com/docs/file-structure) section of the documentation.
+
+### Tools included
+
+Blitz comes with a set of tools that corrects and formats your code, facilitating its future maintenance. You can modify their options and even uninstall them.
+
+- **ESLint**: It lints your code: searches for bad practices and tell you about it. You can customize it via the `.eslintrc.js`, and you can install (or even write) plugins to have it the way you like it. It already comes with the [`blitz`](https://github.com/blitz-js/blitz/tree/canary/packages/eslint-config) config, but you can remove it safely. [Learn More](https://blitzjs.com/docs/eslint-config).
+- **Husky**: It adds [githooks](https://git-scm.com/docs/githooks), little pieces of code that get executed when certain Git events are triggerd. For example, `pre-commit` is triggered just before a commit is created. You can see the current hooks inside `.husky/`. If are having problems commiting and pushing, check out ther [troubleshooting](https://typicode.github.io/husky/#/?id=troubleshoot) guide. [Learn More](https://blitzjs.com/docs/husky-config).
+- **Prettier**: It formats your code to look the same everywhere. You can configure it via the `.prettierrc` file. The `.prettierignore` contains the files that should be ignored by Prettier; useful when you have large files or when you want to keep a custom formatting. [Learn More](https://blitzjs.com/docs/prettier-config).
+
+## Learn more
+
+Read the [Blitz.js Documentation](https://blitzjs.com/docs/getting-started) to learn more.
+
+The Blitz community is warm, safe, diverse, inclusive, and fun! Feel free to reach out to us in any of our communication channels.
+
+- [Website](https://blitzjs.com)
+- [Discord](https://blitzjs.com/discord)
+- [Report an issue](https://github.com/blitz-js/blitz/issues/new/choose)
+- [Forum discussions](https://github.com/blitz-js/blitz/discussions)
+- [How to Contribute](https://blitzjs.com/docs/contributing)
+- [Sponsor or donate](https://github.com/blitz-js/blitz#sponsors-and-donations)

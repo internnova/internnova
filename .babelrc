@@ -1,9 +1,0 @@
-{
-  "presets": ["next/babel"],
-  "plugins": ["superjson-next"],
-  "env": {
-    "development": {
-      "plugins": [["@codesee/instrument", { "hosted": true }]]
-    }
-  }
-}

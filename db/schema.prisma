@@ -1,0 +1,149 @@
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+model Company {
+  id          Int      @id @default(autoincrement())
+  userId      Int      @unique
+  name        String   @unique
+  description String
+  logo        String?
+  website     String?
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+  user        User     @relation(fields: [userId], references: [id])
+  jobs        Job[]
+
+  @@index([id])
+}
+
+model Intern {
+  id              Int              @id @default(autoincrement())
+  userId          Int              @unique
+  bio             String
+  interests       String[]
+  createdAt       DateTime         @default(now())
+  updatedAt       DateTime         @updatedAt
+  oneliner        String
+  user            User             @relation(fields: [userId], references: [id])
+  jobApplications JobApplication[]
+
+  @@index([id])
+}
+
+model User {
+  id             Int       @id @default(autoincrement())
+  createdAt      DateTime  @default(now())
+  updatedAt      DateTime  @updatedAt
+  name           String?
+  email          String    @unique
+  hashedPassword String?
+  role           Role      @default(INTERN)
+  company        Company?
+  intern         Intern?
+  sessions       Session[]
+  tokens         Token[]
+  @@index([id, email, role])
+}
+
+model Session {
+  id                 Int       @id @default(autoincrement())
+  createdAt          DateTime  @default(now())
+  updatedAt          DateTime  @updatedAt
+  expiresAt          DateTime?
+  handle             String    @unique
+  hashedSessionToken String?
+  antiCSRFToken      String?
+  publicData         String?
+  privateData        String?
+  userId             Int?
+  user               User?     @relation(fields: [userId], references: [id])
+  @@index([id, hashedSessionToken, antiCSRFToken])
+}
+
+model Token {
+  id          Int       @id @default(autoincrement())
+  createdAt   DateTime  @default(now())
+  updatedAt   DateTime  @updatedAt
+  hashedToken String  
+  type        TokenType
+  expiresAt   DateTime
+  sentTo      String
+  userId      Int
+  user        User      @relation(fields: [userId], references: [id])
+
+  @@unique([hashedToken, type])
+  @@index([id, userId])
+}
+
+model JobApplication {
+  id                Int      @id @default(autoincrement())
+  description       String
+  status            Status
+  internId          Int
+  jobId             Int
+  createdAt         DateTime @default(now())
+  shownNotification Boolean  @default(false)
+  updatedAt         DateTime @updatedAt
+  intern            Intern   @relation(fields: [internId], references: [id])
+  job               Job      @relation(fields: [jobId], references: [id])
+  @@index([id, internId, jobId])
+}
+
+model Job {
+  id             Int              @id @default(autoincrement())
+  position       String
+  description    String
+  jobType        JobType
+  skillsRequired String[]
+  numOfOpenings  Int              @default(1)
+  duration       String
+  postedAt       DateTime         @default(now())
+  location       String           @default("Remote")
+  salary         String?
+  industry       Tag
+  closed         Boolean          @default(false)
+  companyId      Int
+  companyName    String
+  updatedAt      DateTime         @updatedAt
+  company        Company          @relation(fields: [companyId], references: [id])
+  applications   JobApplication[]
+
+  @@index([id, companyId, industry, description, companyName, position, postedAt, closed])
+}
+
+enum Role {
+  INTERN
+  COMPANY
+  SUPERUSER
+}
+
+enum TokenType {
+  RESET_PASSWORD
+}
+
+enum JobType {
+  PART_TIME
+  SUMMER_INTERNSHIP
+}
+
+enum Tag {
+  Marketing
+  Graphic_Design
+  Education
+  Programming
+  Communication
+  Charity
+}
+
+enum Status {
+  APPLIED
+  REJECTED
+  HIRED
+}
