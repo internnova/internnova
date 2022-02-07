@@ -7,7 +7,6 @@ import { JobForm, FORM_ERROR } from "app/jobs/components/JobForm"
 const NewJobPage: BlitzPage = () => {
   const router = useRouter()
   const [createJobMutation] = useMutation(createJob)
-  const clientSkills = z.object({ skillsRequired: z.string() })
 
   return (
     <div>
