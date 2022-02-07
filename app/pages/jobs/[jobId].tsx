@@ -1,8 +1,8 @@
-import { Suspense } from "react"
-import { Head, Link, useRouter, useQuery, useParam, BlitzPage, useMutation, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import getJob from "app/jobs/queries/getJob"
+import { Head, Link, useRouter, useQuery, useParam, BlitzPage, useMutation, Routes } from "blitz"
+import { Suspense } from "react"
 import deleteJob from "app/jobs/mutations/deleteJob"
+import getJob from "app/jobs/queries/getJob"
 
 export const Job = () => {
   const router = useRouter()

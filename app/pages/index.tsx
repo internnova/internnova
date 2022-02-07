@@ -1,9 +1,9 @@
-import { Suspense } from "react"
-import Layout from "app/core/layouts/Layout"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
-import { Link, usePaginatedQuery, useRouter, BlitzPage, Routes, useMutation } from "blitz"
 import getJobs from "app/jobs/queries/getJobs"
+import { Link, usePaginatedQuery, useRouter, BlitzPage, Routes, useMutation } from "blitz"
+import { Suspense } from "react"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import Layout from "app/core/layouts/Layout"
 
 const ITEMS_PER_PAGE = 3
 

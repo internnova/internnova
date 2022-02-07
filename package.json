@@ -1,5 +1,5 @@
 {
-  "name": "internnova",
+  "name": "@internnova/company-dashboard",
   "version": "1.0.0",
   "scripts": {
     "dev": "blitz dev",
