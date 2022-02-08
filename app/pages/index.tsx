@@ -79,8 +79,6 @@ const Home: BlitzPage = () => {
       <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
         <Suspense fallback="Loading...">
           <UserInfo />
-        </Suspense>
-        <Suspense fallback="Loading...">
           <JobsList />
         </Suspense>
       </div>

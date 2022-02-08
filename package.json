@@ -25,6 +25,7 @@
   },
   "dependencies": {
     "@prisma/client": "3.9.1",
+    "@sendgrid/mail": "^7.6.0",
     "autoprefixer": "10.x",
     "blitz": "0.45.2",
     "final-form": "4.20.6",
