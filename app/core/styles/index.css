@@ -1,6 +1,15 @@
+@import url("https://fonts.googleapis.com/css2?family=Poppins:wght@200;400;500;600;700&display=swap");
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+  font-family: "Poppins", sans-serif;
+}
 
 @layer components {
   .hero {
@@ -16,4 +25,26 @@
 .title,
 .description {
   @apply text-center;
+}
+
+.animated-text {
+  background: url("https://media4.giphy.com/media/3o6vXRpbptjHM70EzS/200w.webp?cid=ecf05e47gp3eeo3fq7tq0bncrq030e6meca71ezv002bizbk&ct=g&rid=200w.webp");
+  background-clip: text;
+  background-size: cover;
+  background-position: 100%;
+  -webkit-text-fill-color: transparent;
+}
+
+.login-image {
+  @apply hidden;
+}
+
+img {
+  pointer-events: none;
+}
+
+button {
+  outline: none;
+  border: none;
+  cursor: pointer;
 }

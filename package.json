@@ -25,14 +25,16 @@
   },
   "dependencies": {
     "@prisma/client": "3.9.1",
+    "@tailwindcss/forms": "latest",
     "autoprefixer": "10.x",
     "blitz": "0.45.2",
     "final-form": "4.20.6",
+    "next-seo": "^5.1.0",
     "postcss": "8.x",
     "react": "18.0.0-beta-149b420f6-20211119",
     "react-dom": "18.0.0-alpha-5ca4b0433-20211020",
     "react-final-form": "6.5.8",
-    "tailwindcss": "3.x",
+    "tailwindcss": "latest",
     "zod": "3.11.6"
   },
   "devDependencies": {

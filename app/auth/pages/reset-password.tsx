@@ -10,8 +10,8 @@ const ResetPasswordPage: BlitzPage = () => {
   const [resetPasswordMutation, { isSuccess }] = useMutation(resetPassword)
 
   return (
-    <div>
-      <h1>Set a New Password</h1>
+    <div className="h-screen w-full flex flex-col items-center justify-center select-none overflow-hidden">
+      <h1 className="px-8">Set a New Password</h1>
 
       {isSuccess ? (
         <div>
@@ -41,10 +41,10 @@ const ResetPasswordPage: BlitzPage = () => {
             }
           }}
         >
-          <LabeledTextField name="password" label="New Password" type="password" />
+          <LabeledTextField name="password" placeholder="New Password" type="password" />
           <LabeledTextField
             name="passwordConfirmation"
-            label="Confirm New Password"
+            placeholder="Confirm New Password"
             type="password"
           />
         </Form>
