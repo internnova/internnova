@@ -1719,7 +1719,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@tailwindcss/forms@npm:latest":
+"@tailwindcss/forms@npm:^0.4.0":
   version: 0.4.0
   resolution: "@tailwindcss/forms@npm:0.4.0"
   dependencies:
@@ -6651,7 +6651,7 @@ __metadata:
   resolution: "internnova@workspace:."
   dependencies:
     "@prisma/client": 3.9.1
-    "@tailwindcss/forms": latest
+    "@tailwindcss/forms": ^0.4.0
     "@types/preview-email": 2.0.1
     "@types/react": 17.0.39
     autoprefixer: 10.x

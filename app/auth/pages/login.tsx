@@ -12,7 +12,7 @@ const LoginPage: BlitzPage = () => {
       <Meta />
       <div className="h-screen overflow-hidden select-none">
         <h1 className="text-center h-0 tracking-4 pt-8">
-          Welcome back <span className="animated-text">Intern!</span>
+          Welcome back to <span className="animated-text">InternNova</span>!
         </h1>
         <div className="h-screen w-full flex items-center justify-center select-none gap-8">
           <div className="hidden lg:block">

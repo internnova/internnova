@@ -25,7 +25,6 @@
   },
   "dependencies": {
     "@prisma/client": "3.9.1",
-    "@tailwindcss/forms": "latest",
     "autoprefixer": "10.x",
     "blitz": "0.45.2",
     "final-form": "4.20.6",
@@ -38,6 +37,7 @@
     "zod": "3.11.6"
   },
   "devDependencies": {
+    "@tailwindcss/forms": "^0.4.0",
     "@types/preview-email": "2.0.1",
     "@types/react": "17.0.39",
     "eslint": "7.32.0",

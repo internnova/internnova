@@ -19,7 +19,7 @@ const ForgotPasswordPage: BlitzPage = () => {
             <h1>Forgot your password?</h1>
             <p>
               Enter the email you used to login to InternNova. You may need to check your spam
-              folder or unblock hi@internnova.co.
+              folder or unblock auth@internnova.co.
             </p>
           </div>
 
