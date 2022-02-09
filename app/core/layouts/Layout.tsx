@@ -31,8 +31,7 @@ const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
   return (
     <>
       <Head>
-        <title>{title || "internnova"}</title>
-        <link rel="icon" href="/favicon.ico" />
+        <title>{`${title} | InternNova` || "InternNova"}</title>
       </Head>
 
       {children}

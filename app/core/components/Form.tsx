@@ -22,6 +22,7 @@ export function Form<S extends z.ZodType<any, any>>({
   schema,
   initialValues,
   onSubmit,
+  title,
   ...props
 }: FormProps<S>) {
   return (
@@ -30,28 +31,39 @@ export function Form<S extends z.ZodType<any, any>>({
       validate={validateZodSchema(schema)}
       onSubmit={onSubmit}
       render={({ handleSubmit, submitting, submitError }) => (
-        <form onSubmit={handleSubmit} className="form" {...props}>
-          {/* Form fields supplied as children are rendered here */}
-          {children}
+        <div className="px-8 py-10 mb-4">
+          <h1 className="mb-4 font-semibold">{title}</h1>
+          <form
+            className="flex flex-col gap-4 w-[80vw] sm:w-[50vw] lg:w-[28vw]"
+            onSubmit={handleSubmit}
+            {...props}
+          >
+            {/* Form fields supplied as children are rendered here */}
+            {children}
 
-          {submitError && (
-            <div role="alert" style={{ color: "red" }}>
-              {submitError}
-            </div>
-          )}
+            {submitError && (
+              <div role="alert">
+                <p className="text-red-500 text-sm italic">{submitError}</p>
+              </div>
+            )}
 
-          {submitText && (
-            <button type="submit" disabled={submitting}>
-              {submitText}
-            </button>
-          )}
+            {submitText && (
+              <button
+                type="submit"
+                disabled={submitting}
+                className="mt-[.5rem] py-2 text-[16px] rounded-md bg-[#5c6cff] text-white"
+              >
+                {submitText}
+              </button>
+            )}
 
-          <style global jsx>{`
-            .form > * + * {
-              margin-top: 1rem;
-            }
-          `}</style>
-        </form>
+            <style global jsx>{`
+              .form > * + * {
+                margin-top: 1rem;
+              }
+            `}</style>
+          </form>
+        </div>
       )}
     />
   )

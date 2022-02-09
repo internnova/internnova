@@ -13,10 +13,9 @@ export const LoginForm = (props: LoginFormProps) => {
   const router = useRouter()
 
   return (
-    <div>
-      <h1>Login</h1>
-
+    <div className="flex flex-col items-center">
       <Form
+        title="Login"
         submitText="Login"
         schema={Login}
         initialValues={{ email: "", password: "" }}
@@ -39,17 +38,20 @@ export const LoginForm = (props: LoginFormProps) => {
           }
         }}
       >
-        <LabeledTextField name="email" label="Email" placeholder="Email" />
-        <LabeledTextField name="password" label="Password" placeholder="Password" type="password" />
+        <LabeledTextField name="email" placeholder="Email" />
+        <LabeledTextField name="password" placeholder="Password" type="password" />
         <div>
           <Link href={Routes.ForgotPasswordPage()}>
-            <a>Forgot your password?</a>
+            <a className="text-[#5c6cff] text-sm">Forgot password?</a>
           </Link>
         </div>
       </Form>
 
-      <div style={{ marginTop: "1rem" }}>
-        Or <Link href={Routes.SignupPage()}>Sign Up</Link>
+      <div>
+        New to Internnova?{" "}
+        <Link href={Routes.SignupPage()}>
+          <a className="text-[#5c6cff] text-md">Sign Up</a>
+        </Link>
       </div>
     </div>
   )
