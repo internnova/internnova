@@ -1,5 +1,3 @@
-import { useRouter, BlitzPage } from "blitz"
-import Layout from "app/core/layouts/Layout"
 import { LoginForm } from "app/auth/components/LoginForm"
 import { Meta } from "app/core/partials/Meta"
 import Image from "next/image"
@@ -36,6 +34,10 @@ const LoginPage: BlitzPage = () => {
 }
 
 LoginPage.redirectAuthenticatedTo = "/"
-LoginPage.getLayout = (page) => <Layout title="Log In">{page}</Layout>
+LoginPage.getLayout = (page) => (
+  <Layout title="Log In" noVerification>
+    {page}
+  </Layout>
+)
 
 export default LoginPage

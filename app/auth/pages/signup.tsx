@@ -1,8 +1,7 @@
-import { useRouter, BlitzPage, Routes } from "blitz"
-import Layout from "app/core/layouts/Layout"
 import { SignupForm } from "app/auth/components/SignupForm"
 import { Meta } from "app/core/partials/Meta"
 import Image from "next/image"
+import Layout from "app/core/layouts/Layout"
 
 const SignupPage: BlitzPage = () => {
   const router = useRouter()
@@ -31,6 +30,10 @@ const SignupPage: BlitzPage = () => {
 }
 
 SignupPage.redirectAuthenticatedTo = "/"
-SignupPage.getLayout = (page) => <Layout title="Sign Up">{page}</Layout>
+SignupPage.getLayout = (page) => (
+  <Layout title="Sign Up" noVerification>
+    {page}
+  </Layout>
+)
 
 export default SignupPage

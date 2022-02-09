@@ -1,9 +1,8 @@
-import { Suspense } from "react"
-import Layout from "app/core/layouts/Layout"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import { Link, usePaginatedQuery, useRouter, BlitzPage, Routes, useMutation, Router } from "blitz"
-import getJobs from "app/jobs/queries/getJobs"
+import { Suspense } from "react"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import Layout from "app/core/layouts/Layout"
 
 const ITEMS_PER_PAGE = 3
 
@@ -75,18 +74,18 @@ const UserInfo = () => {
   }
 }
 
-const Home: BlitzPage = () => (
-  <main>
-    <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-      <Suspense fallback="Loading...">
-        <UserInfo />
-      </Suspense>
-      <Suspense fallback="Loading...">
-        <JobsList />
-      </Suspense>
-    </div>
-  </main>
-)
+const Home: BlitzPage = () => {
+  return (
+    <main>
+      <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
+        <Suspense fallback="Loading...">
+          <UserInfo />
+          <JobsList />
+        </Suspense>
+      </div>
+    </main>
+  )
+}
 
 Home.suppressFirstRenderFlicker = true
 Home.getLayout = (page) => <Layout title="Home">{page}</Layout>

@@ -8,7 +8,7 @@ import {
   useQueryErrorResetBoundary,
   Router,
 } from "blitz"
-
+import LoginForm from "app/auth/components/LoginForm"
 import "app/core/styles/index.css"
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -19,7 +19,7 @@ export default function App({ Component, pageProps }: AppProps) {
       FallbackComponent={RootErrorFallback}
       onReset={useQueryErrorResetBoundary().reset}
     >
-      {getLayout(<Component {...pageProps} />)}
+        {getLayout(<Component {...pageProps} />)}
     </ErrorBoundary>
   )
 }

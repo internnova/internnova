@@ -1,6 +1,6 @@
+import { Signup } from "app/auth/validations"
 import { AuthenticationError, resolver, SecurePassword } from "blitz"
 import db from "db"
-import { Signup } from "app/auth/validations"
 import { Role } from "db"
 
 export default resolver.pipe(
