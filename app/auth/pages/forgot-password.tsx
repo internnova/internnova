@@ -3,6 +3,7 @@ import { Form, FORM_ERROR } from "app/core/components/Form"
 import { LabeledTextField } from "app/core/components/LabeledTextField"
 import Layout from "app/core/layouts/Layout"
 import forgotPassword from "app/auth/mutations/forgotPassword"
+import { ForgotPassword } from "app/auth/validations"
 import Image from "next/image"
 import { Meta } from "app/core/partials/Meta"
 
