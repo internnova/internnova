@@ -6,7 +6,6 @@ const Layout: BlitzLayout<{ title?: string }> = ({ title, children }) => {
       <Head>
         <title>{`${title} | InternNova` || "InternNova"}</title>
       </Head>
-
       {children}
     </>
   )

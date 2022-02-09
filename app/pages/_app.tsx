@@ -10,6 +10,7 @@ import {
 } from "blitz"
 
 import "app/core/styles/index.css"
+import { Spinner } from "app/core/components/Spinner"
 
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
@@ -26,12 +27,8 @@ export default function App({ Component, pageProps }: AppProps) {
 
 function RootErrorFallback({ error, resetErrorBoundary }: ErrorFallbackProps) {
   if (error instanceof AuthenticationError) {
-    Router.push("/login")
-    return (
-      <div>
-        <div>Redirecting...</div>
-      </div>
-    )
+    Router.push("/signup")
+    return <Spinner />
   } else if (error instanceof AuthorizationError) {
     return (
       <ErrorComponent

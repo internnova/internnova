@@ -4,6 +4,7 @@ import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
 import { Link, usePaginatedQuery, useRouter, BlitzPage, Routes, useMutation, Router } from "blitz"
 import getJobs from "app/jobs/queries/getJobs"
+import { Spinner } from "app/core/components/Spinner"
 
 const ITEMS_PER_PAGE = 3
 
@@ -78,10 +79,10 @@ const UserInfo = () => {
 const Home: BlitzPage = () => (
   <main>
     <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-      <Suspense fallback="Loading...">
+      <Suspense fallback={<Spinner />}>
         <UserInfo />
       </Suspense>
-      <Suspense fallback="Loading...">
+      <Suspense fallback={<Spinner />}>
         <JobsList />
       </Suspense>
     </div>
