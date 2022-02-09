@@ -899,7 +899,7 @@ __metadata:
   version: 0.0.0-use.local
   resolution: "@internnova/company-dashboard@workspace:."
   dependencies:
-    "@prisma/client": 3.9.1
+    "@prisma/client": latest
     "@sendgrid/mail": ^7.6.0
     "@types/preview-email": 2.0.1
     "@types/react": 17.0.39
@@ -914,7 +914,7 @@ __metadata:
     prettier-plugin-prisma: 3.9.0
     pretty-quick: 3.1.3
     preview-email: 3.0.5
-    prisma: 3.9.1
+    prisma: latest
     react: 18.0.0-beta-149b420f6-20211119
     react-dom: 18.0.0-alpha-5ca4b0433-20211020
     react-final-form: 6.5.8
@@ -1526,7 +1526,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/client@npm:3.9.1":
+"@prisma/client@npm:latest":
   version: 3.9.1
   resolution: "@prisma/client@npm:3.9.1"
   dependencies:
@@ -10253,7 +10253,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prisma@npm:3.9.1":
+"prisma@npm:latest":
   version: 3.9.1
   resolution: "prisma@npm:3.9.1"
   dependencies:
