@@ -1194,12 +1194,12 @@ __metadata:
   linkType: hard
 
 "@jridgewell/trace-mapping@npm:^0.3.0":
-  version: 0.3.2
-  resolution: "@jridgewell/trace-mapping@npm:0.3.2"
+  version: 0.3.3
+  resolution: "@jridgewell/trace-mapping@npm:0.3.3"
   dependencies:
     "@jridgewell/resolve-uri": ^3.0.3
     "@jridgewell/sourcemap-codec": ^1.4.10
-  checksum: b58be6b4133cbcb20bfd28c9ca843b8db9efa0bf1d7e0e9e26b2228dace94ad53161c996ab1d762d7c3955dfc398a7734e7b84a2493ae36b451f232234fbb257
+  checksum: 42993e022e54540ad640466f98aa0cd100b9d0ad05dc3a3020599ffc3fdab6009a90bac3c1e70dee67c7e8e1e9d7b454c82ff2b945ee41efb3196ca7b322cf43
   languageName: node
   linkType: hard
 
@@ -1534,7 +1534,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@prisma/client@npm:latest":
+"@prisma/client@latest":
   version: 3.9.1
   resolution: "@prisma/client@npm:3.9.1"
   dependencies:
@@ -10292,7 +10292,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"prisma@npm:latest":
+prisma@latest:
   version: 3.9.1
   resolution: "prisma@npm:3.9.1"
   dependencies:
@@ -12195,7 +12195,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:latest":
+tailwindcss@latest:
   version: 3.0.19
   resolution: "tailwindcss@npm:3.0.19"
   dependencies:
