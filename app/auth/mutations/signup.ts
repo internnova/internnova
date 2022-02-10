@@ -45,7 +45,7 @@ export default resolver.pipe(
         return user
       }
     } else {
-      const createdUser = await db.user.create({
+      const { id, role } = await db.user.create({
         data: {
           email: email.toLowerCase().trim(),
           hashedPassword,
@@ -55,11 +55,11 @@ export default resolver.pipe(
 
       // we don't need data from the company since the user and company id are the same
       await db.company.create({
-        data: { id: createdUser.id, name, description, logo, website, userId: createdUser.id },
+        data: { id: id, name, description, logo, website, userId: id },
         select: { id: true, name: true },
       })
 
-      await ctx.session.$create({ userId: createdUser.id, role: createdUser.role as Role })
+      await ctx.session.$create({ userId: id, role: role as Role })
       return user
     }
   }

@@ -56,5 +56,3 @@ export const LoginForm = (props: LoginFormProps) => {
     </div>
   )
 }
-
-export default LoginForm

@@ -4,6 +4,7 @@ import Layout from "app/core/layouts/Layout"
 import getJobs from "app/jobs/queries/getJobs"
 import { BlitzPage, Link, Routes, useMutation, usePaginatedQuery, useRouter } from "blitz"
 import { Suspense } from "react"
+import { Spinner } from "app/core/components/Spinner"
 
 const ITEMS_PER_PAGE = 3
 
@@ -72,18 +73,16 @@ const UserInfo = () => {
   }
 }
 
-const Home: BlitzPage = () => {
-  return (
-    <main>
-      <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-        <Suspense fallback="Loading...">
-          <UserInfo />
-          <JobsList />
-        </Suspense>
-      </div>
-    </main>
-  )
-}
+const Home: BlitzPage = () => (
+  <main>
+    <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
+      <Suspense fallback={<Spinner />}>
+        <UserInfo />
+        <JobsList />
+      </Suspense>
+    </div>
+  </main>
+)
 
 Home.suppressFirstRenderFlicker = true
 Home.getLayout = (page) => <Layout title="Home">{page}</Layout>
