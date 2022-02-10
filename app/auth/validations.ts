@@ -41,6 +41,14 @@ export const ForgotPassword = z.object({
   email,
 })
 
+export const SendConfirmationEmail = z.object({
+  email,
+})
+
+export const ConfirmEmail = z.object({
+  token: z.string(),
+})
+
 export const ResetPassword = z
   .object({
     password: password,

@@ -1,5 +1,5 @@
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { render } from "test/utils"
-
 import Home from "./index"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { Role } from "@prisma/client"
@@ -17,7 +17,7 @@ test.skip("renders blitz documentation link", () => {
     id: 1,
     name: "User",
     email: "user@email.com",
-    role: "user" as Role,
+    role: "COMPANY",
   })
 
   const { getByText } = render(<Home />)

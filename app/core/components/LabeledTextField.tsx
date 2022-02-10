@@ -4,6 +4,7 @@ import { useField } from "react-final-form"
 export interface LabeledTextFieldProps extends PropsWithoutRef<JSX.IntrinsicElements["input"]> {
   /** Field name. */
   name: string
+  label?: string
   /** Field type. Doesn't include radio buttons and checkboxes */
   type?: "text" | "password" | "email" | "number"
   outerProps?: PropsWithoutRef<JSX.IntrinsicElements["div"]>
@@ -20,6 +21,7 @@ export const LabeledTextField = React.forwardRef<HTMLInputElement, LabeledTextFi
 
     return (
       <div {...outerProps}>
+        <p> {props?.label} </p>
         <input
           {...input}
           disabled={submitting}

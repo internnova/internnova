@@ -1,8 +1,8 @@
-import { useRouter, BlitzPage } from "blitz"
-import Layout from "app/core/layouts/Layout"
 import { LoginForm } from "app/auth/components/LoginForm"
 import { Meta } from "app/core/partials/Meta"
 import Image from "next/image"
+import Layout from "app/core/layouts/Layout"
+import { BlitzPage, useRouter } from "blitz"
 
 const LoginPage: BlitzPage = () => {
   const router = useRouter()
@@ -12,7 +12,7 @@ const LoginPage: BlitzPage = () => {
       <Meta />
       <div className="h-screen overflow-hidden select-none">
         <h1 className="text-center h-0 tracking-4 pt-8">
-          Welcome back <span className="animated-text">Intern!</span>
+          Welcome back to <span className="animated-text">InternNova</span>!
         </h1>
         <div className="h-screen w-full flex items-center justify-center select-none gap-8">
           <div className="hidden lg:block">
@@ -36,6 +36,10 @@ const LoginPage: BlitzPage = () => {
 }
 
 LoginPage.redirectAuthenticatedTo = "/"
-LoginPage.getLayout = (page) => <Layout title="Log In">{page}</Layout>
+LoginPage.getLayout = (page) => (
+  <Layout title="Log In" noVerification>
+    {page}
+  </Layout>
+)
 
 export default LoginPage

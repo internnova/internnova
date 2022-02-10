@@ -1,9 +1,9 @@
-import { Suspense } from "react"
-import Layout from "app/core/layouts/Layout"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import logout from "app/auth/mutations/logout"
-import { Link, usePaginatedQuery, useRouter, BlitzPage, Routes, useMutation, Router } from "blitz"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import Layout from "app/core/layouts/Layout"
 import getJobs from "app/jobs/queries/getJobs"
+import { BlitzPage, Link, Routes, useMutation, usePaginatedQuery, useRouter } from "blitz"
+import { Suspense } from "react"
 import { Spinner } from "app/core/components/Spinner"
 
 const ITEMS_PER_PAGE = 3
@@ -16,9 +16,6 @@ export const JobsList = () => {
     skip: ITEMS_PER_PAGE * page,
     take: ITEMS_PER_PAGE,
   })
-
-  const goToPreviousPage = () => router.push({ query: { page: page - 1 } })
-  const goToNextPage = () => router.push({ query: { page: page + 1 } })
 
   return (
     <div>
@@ -81,8 +78,6 @@ const Home: BlitzPage = () => (
     <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
       <Suspense fallback={<Spinner />}>
         <UserInfo />
-      </Suspense>
-      <Suspense fallback={<Spinner />}>
         <JobsList />
       </Suspense>
     </div>
