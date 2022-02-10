@@ -25,7 +25,7 @@ export default function App({ Component, pageProps }: AppProps) {
   )
 }
 
-function RootErrorFallback({ error, resetErrorBoundary }: ErrorFallbackProps) {
+function RootErrorFallback({ error }: ErrorFallbackProps) {
   if (error instanceof AuthenticationError) {
     Router.push("/signup")
     return <Spinner />

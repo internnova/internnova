@@ -1,4 +1,4 @@
-import { useRouter, BlitzPage, Routes } from "blitz"
+import { BlitzPage } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import { SignupForm, SignUpValues } from "app/auth/components/SignupForm"
 import { Meta } from "app/core/partials/Meta"
@@ -18,7 +18,7 @@ const SignupPage: BlitzPage = () => {
         }`}
       >
         <h1 className="text-center h-0 tracking-4">
-          It&apos;s time to become a <span className="animated-text">revolutionary</span>
+          It&apos;s time to become an <span className="animated-text">revolutionary</span>
         </h1>
         <div className="h-full w-full flex items-center justify-center gap-8">
           <div className="hidden lg:block select-none">
