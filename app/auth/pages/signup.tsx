@@ -18,7 +18,7 @@ const SignupPage: BlitzPage = () => {
         }`}
       >
         <h1 className="text-center h-0 tracking-4">
-          It&apos;s time to become a <span className="animated-text">revolutionary</span>
+          It&apos;s time to become an <span className="animated-text">InternNova</span>
         </h1>
         <div className="h-full w-full flex items-center justify-center gap-8">
           <div className="hidden lg:block select-none">

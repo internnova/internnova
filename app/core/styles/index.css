@@ -70,4 +70,13 @@ button {
   background: rgba(255, 255, 255, 0.8);
 }
 
+.changeAvatar {
+  opacity: 0;
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.imageUploader:hover .changeAvatar {
+  opacity: 1;
+}
+
 @tailwind utilities;

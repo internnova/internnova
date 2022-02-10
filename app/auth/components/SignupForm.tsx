@@ -1,9 +1,9 @@
-import {LabeledTextField} from "app/core/components/LabeledTextField"
-import {Form} from "app/core/components/Form"
-import {SignupFront} from "app/auth/validations"
-import {FORM_ERROR} from "final-form"
+import { LabeledTextField } from "app/core/components/LabeledTextField"
+import { Form } from "app/core/components/Form"
+import { SignupFront } from "app/auth/validations"
+import { FORM_ERROR } from "final-form"
 import React from "react"
-import {useMutation} from "blitz"
+import { useMutation } from "blitz"
 import signupCheckEmail from "../mutations/signupCheckEmail"
 
 export type SignUpValues = {
@@ -16,17 +16,17 @@ type SignupFormProps = {
   onSuccess: (values: SignUpValues) => void
 }
 
-export const SignupForm = ({onSuccess}: SignupFormProps) => {
+export const SignupForm = ({ onSuccess }: SignupFormProps) => {
   const [checkEmailMutation] = useMutation(signupCheckEmail)
   return (
     <Form
       title="Sign Up"
       submitText="Create Account"
       schema={SignupFront}
-      initialValues={{email: "", password: ""}}
+      initialValues={{ email: "", password: "" }}
       onSubmit={async (values: SignUpValues) => {
         try {
-          await checkEmailMutation({email: values.email})
+          await checkEmailMutation({ email: values.email })
           onSuccess(values)
         } catch (error) {
           if (error.name === "USER_IS_INTERN") {
@@ -39,7 +39,7 @@ export const SignupForm = ({onSuccess}: SignupFormProps) => {
               email: "A company is already signed up with this email, try logging in",
             }
           } else {
-            return {[FORM_ERROR]: error.toString()}
+            return { [FORM_ERROR]: error.toString() }
           }
         }
       }}
