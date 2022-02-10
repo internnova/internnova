@@ -33,7 +33,6 @@ const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
       <Head>
         <title>{`${title} | InternNova` || "InternNova"}</title>
       </Head>
-
       {children}
     </>
   )

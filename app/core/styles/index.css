@@ -2,7 +2,6 @@
 
 @tailwind base;
 @tailwind components;
-@tailwind utilities;
 
 * {
   box-sizing: border-box;
@@ -48,3 +47,27 @@ button {
   border: none;
   cursor: pointer;
 }
+
+.loader {
+  border: 3px solid #f3f3f3;
+  border-top-color: #5c6cff;
+  border-radius: 50%;
+  width: 38px;
+  height: 38px;
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.popup {
+  background: rgba(255, 255, 255, 0.8);
+}
+
+@tailwind utilities;

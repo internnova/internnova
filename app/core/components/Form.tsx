@@ -11,6 +11,8 @@ export interface FormProps<S extends z.ZodType<any, any>>
   children?: ReactNode
   /** Text to display in the submit button */
   submitText?: string
+  /** An optional field for additional properties of the popup */
+  options?: string
   schema?: S
   onSubmit: FinalFormProps<z.infer<S>>["onSubmit"]
   initialValues?: FinalFormProps<z.infer<S>>["initialValues"]
@@ -22,7 +24,8 @@ export function Form<S extends z.ZodType<any, any>>({
   schema,
   initialValues,
   onSubmit,
-  title,
+  title = "",
+  options = "",
   ...props
 }: FormProps<S>) {
   return (
@@ -31,10 +34,11 @@ export function Form<S extends z.ZodType<any, any>>({
       validate={validateZodSchema(schema)}
       onSubmit={onSubmit}
       render={({ handleSubmit, submitting, submitError }) => (
-        <div className="px-8 py-10 mb-4">
-          <h1 className="mb-4 font-semibold">{title}</h1>
+        <div className={`px-8 py-10 mb-4 ${options}`}>
+          {title && <h1 className="font-semibold">{title}</h1>}
           <form
-            className="flex flex-col gap-4 w-[80vw] sm:w-[50vw] lg:w-[28vw]"
+            autoComplete="off"
+            className="flex pt-4 flex-col gap-5 w-[80vw] sm:w-[50vw] lg:w-[28vw]"
             onSubmit={handleSubmit}
             {...props}
           >
@@ -51,7 +55,7 @@ export function Form<S extends z.ZodType<any, any>>({
               <button
                 type="submit"
                 disabled={submitting}
-                className="mt-[.5rem] py-2 text-[16px] rounded-md bg-[#5c6cff] text-white"
+                className="py-2 text-[16px] rounded-md bg-[#5c6cff] text-white"
               >
                 {submitText}
               </button>
