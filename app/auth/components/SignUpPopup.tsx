@@ -1,19 +1,19 @@
 import Form from "../../core/components/Form"
-import { SignupPopup } from "../validations"
-import { SignUpValues } from "./SignupForm"
+import {SignupPopup} from "../validations"
+import {SignUpValues} from "./SignupForm"
 import signUp from "../mutations/signup"
-import { FORM_ERROR } from "final-form"
-import { Image, Router, useMutation } from "blitz"
-import { LabeledTextField } from "../../core/components/LabeledTextField"
+import {FORM_ERROR} from "final-form"
+import {Image, Router, useMutation} from "blitz"
+import {LabeledTextField} from "../../core/components/LabeledTextField"
 import React from "react"
 import LabeledTextArea from "../../core/components/LabeledTextArea"
-import { LabeledFileField } from "../../core/components/LabeledFileField"
+import {LabeledFileField} from "../../core/components/LabeledFileField"
 
 interface SignUpPopupProps {
   signUpValues: SignUpValues
 }
 
-export const SignUpPopup = ({ signUpValues }: SignUpPopupProps) => {
+export const SignUpPopup = ({signUpValues}: SignUpPopupProps) => {
   const [signUpMutation] = useMutation(signUp)
 
   return (
@@ -23,21 +23,21 @@ export const SignUpPopup = ({ signUpValues }: SignUpPopupProps) => {
           schema={SignupPopup}
           options=""
           submitText="Done"
-          initialValues={{ description: "", website: "" }}
+          initialValues={{description: "", website: ""}}
           onSubmit={async (values) => {
             try {
-              console.log({ ...signUpValues, ...values })
+              console.log({...signUpValues, ...values})
             } catch (error: any) {
               if (error.code === "P2002" && error.meta?.target?.includes("email")) {
                 // This error comes from Prisma
-                return { email: "This email is already being used" }
+                return {email: "This email is already being used"}
               } else if (error.name === "USER_IS_INTERN") {
                 return {
                   email:
                     "An intern is already signed up with this email, please visit intern.internnova.co to access the intern dashboard",
                 }
               } else {
-                return { [FORM_ERROR]: error.toString() }
+                return {[FORM_ERROR]: error.toString()}
               }
             }
           }}
@@ -46,14 +46,14 @@ export const SignUpPopup = ({ signUpValues }: SignUpPopupProps) => {
             <UploadImage src="/favicons/favicon-32.png" />
           </div>
           <LabeledTextArea name="description" placeholder="Description" />
-          <LabeledTextField name="website" placeholder="website" />
+          <LabeledTextField name="website" placeholder="Website" />
         </Form>
       </div>
     </div>
   )
 }
 
-const UploadImage = ({ src }) => (
+const UploadImage = ({src}) => (
   <label
     htmlFor="photo-upload"
     className="rounded-full w-[64px] h-[64px] border border-neutral-100"
@@ -61,6 +61,6 @@ const UploadImage = ({ src }) => (
     <div>
       <Image src={src} alt="profile" width={64} height={64} />
     </div>
-    <LabeledFileField name="logo" options="hidden" {...{ accept: "image/*", id: "photo-upload" }} />
+    <LabeledFileField name="logo" options="hidden" {...{accept: "image/*", id: "photo-upload"}} />
   </label>
 )
