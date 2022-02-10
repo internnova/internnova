@@ -14,7 +14,7 @@ export const LabeledTextField = React.forwardRef<HTMLTextAreaElement, LabeledTex
       input,
       meta: { touched, error, submitError, submitting },
     } = useField(name)
-    console.log(input)
+
     const normalizedError = Array.isArray(error) ? error.join(", ") : error || submitError
 
     return (

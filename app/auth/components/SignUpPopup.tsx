@@ -2,7 +2,7 @@ import Form from "../../core/components/Form"
 import { SignupPopup } from "../validations"
 import { SignUpValues } from "./SignupForm"
 import signUp from "../mutations/signup"
-import { FORM_ERROR } from "final-form"
+import { FORM_ERROR } from "final-form";
 import { BsUpload } from "react-icons/bs"
 import { Router, useMutation } from "blitz"
 import { LabeledTextField } from "../../core/components/LabeledTextField"

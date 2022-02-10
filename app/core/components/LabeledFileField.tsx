@@ -22,7 +22,6 @@ export const LabeledFileField = React.forwardRef<HTMLInputElement, LabeledFileFi
           {...props}
           type="file"
           ref={ref}
-          required={true}
           className={`shadow appearance-none border rounded text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${options}`}
         />
 

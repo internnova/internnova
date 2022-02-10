@@ -28,7 +28,6 @@ export const SignupFront = z.object({
 
 export const SignupPopup = z.object({
   description: z.string().min(100, { message: "Must be at least 100 characters" }),
-  logo: z.string().url(),
   website: z.string().url(),
 })
 

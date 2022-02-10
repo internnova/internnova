@@ -1,7 +1,6 @@
-import { Signup } from "app/auth/validations"
 import { AuthenticationError, resolver, SecurePassword } from "blitz"
 import db from "db"
-import { Role } from "db"
+import { Signup } from "app/auth/validations"
 
 export default resolver.pipe(
   resolver.zod(Signup),
@@ -59,7 +58,7 @@ export default resolver.pipe(
         select: { id: true, name: true },
       })
 
-      await ctx.session.$create({ userId: id, role: role as Role })
+      await ctx.session.$create({ userId: id, role: role })
       return user
     }
   }
