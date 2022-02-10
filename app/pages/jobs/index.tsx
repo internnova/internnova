@@ -1,7 +1,7 @@
+import { Suspense } from "react"
+import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getJobs from "app/jobs/queries/getJobs"
-import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes } from "blitz"
-import { Suspense } from "react"
 
 const ITEMS_PER_PAGE = 100
 

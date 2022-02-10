@@ -44,7 +44,6 @@ model User {
   name           String?
   email          String    @unique
   hashedPassword String?
-  verified     Boolean   @default(false)
   role           Role      @default(INTERN)
   company        Company?
   intern         Intern?
@@ -127,7 +126,6 @@ enum Role {
 
 enum TokenType {
   RESET_PASSWORD
-  CONFIRM_EMAIL
 }
 
 enum JobType {

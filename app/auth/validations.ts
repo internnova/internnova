@@ -20,18 +20,6 @@ export const Signup = z.object({
   website: z.string().url(),
 })
 
-export const SignupFront = z.object({
-  email: z.string().email(),
-  password: z.string().min(10).max(100),
-  name: z.string(),
-})
-
-export const SignupPopup = z.object({
-  description: z.string().min(100, { message: "Must be at least 100 characters" }),
-  logo: z.string().url(),
-  website: z.string().url(),
-})
-
 export const Login = z.object({
   email,
   password: z.string(),
@@ -39,14 +27,6 @@ export const Login = z.object({
 
 export const ForgotPassword = z.object({
   email,
-})
-
-export const SendConfirmationEmail = z.object({
-  email,
-})
-
-export const ConfirmEmail = z.object({
-  token: z.string(),
 })
 
 export const ResetPassword = z

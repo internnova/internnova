@@ -1,9 +1,9 @@
-import Layout from "app/core/layouts/Layout"
-import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
 import { Suspense } from "react"
-import { CompanyForm, FORM_ERROR } from "app/companies/components/CompanyForm"
-import updateCompany, { UpdateCompany } from "app/companies/mutations/updateCompany"
+import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
+import Layout from "app/core/layouts/Layout"
 import getCompany from "app/companies/queries/getCompany"
+import updateCompany, { UpdateCompany } from "app/companies/mutations/updateCompany"
+import { CompanyForm, FORM_ERROR } from "app/companies/components/CompanyForm"
 
 export const EditCompany = () => {
   const router = useRouter()

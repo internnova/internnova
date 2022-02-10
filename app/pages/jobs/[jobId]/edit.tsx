@@ -1,10 +1,10 @@
-import Layout from "app/core/layouts/Layout"
-import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
 import { Suspense } from "react"
-import { z } from "zod"
-import { JobForm, FORM_ERROR } from "app/jobs/components/JobForm"
-import updateJob, { UpdateJobClient } from "app/jobs/mutations/updateJob"
+import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
+import Layout from "app/core/layouts/Layout"
 import getJob from "app/jobs/queries/getJob"
+import { z } from "zod"
+import updateJob, { UpdateJobClient } from "app/jobs/mutations/updateJob"
+import { JobForm, FORM_ERROR } from "app/jobs/components/JobForm"
 
 export const EditJob = () => {
   const router = useRouter()

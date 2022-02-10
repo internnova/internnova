@@ -1,10 +1,9 @@
-import logout from "app/auth/mutations/logout"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
-import Layout from "app/core/layouts/Layout"
-import getJobs from "app/jobs/queries/getJobs"
-import { BlitzPage, Link, Routes, useMutation, usePaginatedQuery, useRouter } from "blitz"
 import { Suspense } from "react"
-import { Spinner } from "app/core/components/Spinner"
+import Layout from "app/core/layouts/Layout"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import logout from "app/auth/mutations/logout"
+import { Link, usePaginatedQuery, useRouter, BlitzPage, Routes, useMutation } from "blitz"
+import getJobs from "app/jobs/queries/getJobs"
 
 const ITEMS_PER_PAGE = 3
 
@@ -16,6 +15,9 @@ export const JobsList = () => {
     skip: ITEMS_PER_PAGE * page,
     take: ITEMS_PER_PAGE,
   })
+
+  const goToPreviousPage = () => router.push({ query: { page: page - 1 } })
+  const goToNextPage = () => router.push({ query: { page: page + 1 } })
 
   return (
     <div>
@@ -35,8 +37,6 @@ export const JobsList = () => {
 const UserInfo = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
-
-  console.log(currentUser)
 
   if (currentUser) {
     return (
@@ -73,16 +73,20 @@ const UserInfo = () => {
   }
 }
 
-const Home: BlitzPage = () => (
-  <main>
-    <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
-      <Suspense fallback={<Spinner />}>
-        <UserInfo />
-        <JobsList />
-      </Suspense>
-    </div>
-  </main>
-)
+const Home: BlitzPage = () => {
+  return (
+    <main>
+      <div className="buttons" style={{ marginTop: "1rem", marginBottom: "1rem" }}>
+        <Suspense fallback="Loading...">
+          <UserInfo />
+        </Suspense>
+        <Suspense fallback="Loading...">
+          <JobsList />
+        </Suspense>
+      </div>
+    </main>
+  )
+}
 
 Home.suppressFirstRenderFlicker = true
 Home.getLayout = (page) => <Layout title="Home">{page}</Layout>

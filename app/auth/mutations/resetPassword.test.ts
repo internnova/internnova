@@ -1,5 +1,5 @@
-import db from "db"
 import resetPassword from "./resetPassword"
+import db from "db"
 import { hash256, SecurePassword } from "blitz"
 
 beforeEach(async () => {

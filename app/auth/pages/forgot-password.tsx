@@ -1,73 +1,48 @@
 import { BlitzPage, useMutation } from "blitz"
-import { Form, FORM_ERROR } from "app/core/components/Form"
-import { LabeledTextField } from "app/core/components/LabeledTextField"
 import Layout from "app/core/layouts/Layout"
-import forgotPassword from "app/auth/mutations/forgotPassword"
+import { LabeledTextField } from "app/core/components/LabeledTextField"
+import { Form, FORM_ERROR } from "app/core/components/Form"
 import { ForgotPassword } from "app/auth/validations"
-import Image from "next/image"
-import { Meta } from "app/core/partials/Meta"
+import forgotPassword from "app/auth/mutations/forgotPassword"
 
 const ForgotPasswordPage: BlitzPage = () => {
   const [forgotPasswordMutation, { isSuccess }] = useMutation(forgotPassword)
 
   return (
-    <>
-      <Meta />
-      <div className="h-screen w-full flex items-center justify-center select-none !overflow-hidden">
-        <div className="grid place-items-start pl-4 lg:w-1/2">
-          <div className="px-8 flex flex-col gap-2 justify-center">
-            <h1>Forgot your password?</h1>
-            <p>
-              Enter the email you used to login to InternNova. You may need to check your spam
-              folder or unblock auth@internnova.co.
-            </p>
-          </div>
+    <div>
+      <h1>Forgot your password?</h1>
 
-          {isSuccess ? (
-            <div className="px-8 mt-8 flex flex-col gap-2 justify-centers">
-              <h2>Request Submitted</h2>
-              <p>
-                If your email is in our system, you will receive instructions to reset your password
-                shortly.
-              </p>
-            </div>
-          ) : (
-            <Form
-              submitText="Send Reset Password Instructions"
-              schema={ForgotPassword}
-              initialValues={{ email: "" }}
-              onSubmit={async (values) => {
-                try {
-                  await forgotPasswordMutation(values)
-                } catch (error: any) {
-                  return {
-                    [FORM_ERROR]: "Sorry, we had an unexpected error. Please try again.",
-                  }
-                }
-              }}
-            >
-              <LabeledTextField name="email" placeholder="Email" />
-            </Form>
-          )}
+      {isSuccess ? (
+        <div>
+          <h2>Request Submitted</h2>
+          <p>
+            If your email is in our system, you will receive instructions to reset your password
+            shortly.
+          </p>
         </div>
-        <div className="hidden lg:block select-none">
-          <Image
-            src="/images/forgot-illustration.svg"
-            alt="forgot-password-illustration"
-            width={580}
-            height={580}
-          />
-        </div>
-      </div>
-    </>
+      ) : (
+        <Form
+          submitText="Send Reset Password Instructions"
+          schema={ForgotPassword}
+          initialValues={{ email: "" }}
+          onSubmit={async (values) => {
+            try {
+              await forgotPasswordMutation(values)
+            } catch (error: any) {
+              return {
+                [FORM_ERROR]: "Sorry, we had an unexpected error. Please try again.",
+              }
+            }
+          }}
+        >
+          <LabeledTextField name="email" label="Email" placeholder="Email" />
+        </Form>
+      )}
+    </div>
   )
 }
 
 ForgotPasswordPage.redirectAuthenticatedTo = "/"
-ForgotPasswordPage.getLayout = (page) => (
-  <Layout title="Forgot Your Password?" noVerification>
-    {page}
-  </Layout>
-)
+ForgotPasswordPage.getLayout = (page) => <Layout title="Forgot Your Password?">{page}</Layout>
 
 export default ForgotPasswordPage

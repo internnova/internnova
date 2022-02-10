@@ -1,10 +1,13 @@
+import { Suspense } from "react"
+import { Head, Link, useRouter, useQuery, useParam, BlitzPage, useMutation, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getIntern from "app/interns/queries/getIntern"
-import { Head, useQuery, useParam, BlitzPage } from "blitz"
-import { Suspense } from "react"
+import deleteIntern from "app/interns/mutations/deleteIntern"
 
 export const Intern = () => {
+  const router = useRouter()
   const internId = useParam("internId", "number")
+  const [deleteInternMutation] = useMutation(deleteIntern)
   const [intern] = useQuery(getIntern, { id: internId })
 
   return (

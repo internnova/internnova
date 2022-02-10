@@ -1,52 +1,52 @@
-import { LabeledTextField } from "app/core/components/LabeledTextField"
-import { Form } from "app/core/components/Form"
-import { SignupFront } from "app/auth/validations"
-import { FORM_ERROR } from "final-form"
-import React from "react"
 import { useMutation } from "blitz"
-import signupCheckEmail from "../mutations/signupCheckEmail"
-
-export type SignUpValues = {
-  name: string
-  email: string
-  password: string
-}
+import { LabeledTextField } from "app/core/components/LabeledTextField"
+import { Form, FORM_ERROR } from "app/core/components/Form"
+import signup from "app/auth/mutations/signup"
+import { Signup } from "app/auth/validations"
 
 type SignupFormProps = {
-  onSuccess: (values: SignUpValues) => void
+  onSuccess?: () => void
 }
 
-export const SignupForm = ({ onSuccess }: SignupFormProps) => {
-  const [checkEmailMutation] = useMutation(signupCheckEmail)
+export const SignupForm = (props: SignupFormProps) => {
+  const [signupMutation] = useMutation(signup)
+
   return (
-    <Form
-      title="Sign Up"
-      submitText="Create Account"
-      schema={SignupFront}
-      initialValues={{ email: "", password: "" }}
-      onSubmit={async (values: SignUpValues) => {
-        try {
-          await checkEmailMutation({ email: values.email })
-          onSuccess(values)
-        } catch (error) {
-          if (error.name === "USER_IS_INTERN") {
-            return {
-              email:
-                "An intern is already signed up with this email, please visit intern.internnova.co to access the intern dashboard",
+    <div>
+      <h1>Create an Account</h1>
+
+      <Form
+        submitText="Create Account"
+        schema={Signup}
+        initialValues={{ email: "", password: "" }}
+        onSubmit={async (values) => {
+          try {
+            await signupMutation(values)
+            props.onSuccess?.()
+          } catch (error: any) {
+            if (error.code === "P2002" && error.meta?.target?.includes("email")) {
+              // This error comes from Prisma
+              return { email: "This email is already being used" }
+            } else if (error.name === "USER_IS_INTERN") {
+              return {
+                email:
+                  "An intern is already signed up with this email, please visit intern.internnova.co to access the intern dashboard",
+              }
+            } else {
+              return { [FORM_ERROR]: error.toString() }
             }
-          } else if (error.name === "COMPANY_EXISTS") {
-            return {
-              email: "A company is already signed up with this email, try logging in",
-            }
-          } else {
-            return { [FORM_ERROR]: error.toString() }
           }
-        }
-      }}
-    >
-      <LabeledTextField name="name" placeholder="Name" />
-      <LabeledTextField name="email" placeholder="Email" />
-      <LabeledTextField name="password" placeholder="Password" type="password" />
-    </Form>
+        }}
+      >
+        <LabeledTextField name="email" label="Email" placeholder="Email" />
+        <LabeledTextField name="password" label="Password" placeholder="Password" type="password" />
+        <LabeledTextField name="name" label="Name" placeholder="Name" />
+        <LabeledTextField name="description" label="Description" placeholder="Description" />
+        <LabeledTextField name="logo" label="logo" placeholder="logo" />
+        <LabeledTextField name="website" label="website" placeholder="website" />
+      </Form>
+    </div>
   )
 }
+
+export default SignupForm

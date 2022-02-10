@@ -4,11 +4,11 @@ on:
   push:
     branches:
       - main
-      - dev
+      - canary
   pull_request:
     branches:
       - main
-      - dev
+      - canary
 
 jobs:
   lint:
