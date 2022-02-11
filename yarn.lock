@@ -919,6 +919,7 @@ __metadata:
     react: 18.0.0-rc.0-next-fe905f152-20220107
     react-dom: 18.0.0-rc.0-next-fe905f152-20220107
     react-final-form: 6.5.8
+    react-icons: ^4.3.1
     tailwindcss: ^3.0.19
     typescript: ~4.5.5
     zod: 3.11.6
@@ -10720,6 +10721,15 @@ __metadata:
     final-form: ^4.20.4
     react: ^16.8.0 || ^17.0.0
   checksum: ea73cbd941e5f338429753cfde8bdfd849571d00eeea1fe90e39463c2da02d5ebe5551e8d30234800174ef96d853edd7db776a2bab17ab71ca3ecc9a24a5fc28
+  languageName: node
+  linkType: hard
+
+"react-icons@npm:^4.3.1":
+  version: 4.3.1
+  resolution: "react-icons@npm:4.3.1"
+  peerDependencies:
+    react: "*"
+  checksum: 2cc608acdd3e906aa3aaee290b8398220639677c949382d86e554020e5dab6a9f1ed7484418aa5272cb5c5c018e1fc9a323d433d901697a76530029f9ecb1263
   languageName: node
   linkType: hard
 
