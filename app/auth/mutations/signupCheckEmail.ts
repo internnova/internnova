@@ -1,11 +1,11 @@
-import {ForgotPassword} from "app/auth/validations"
-import {AuthenticationError, resolver} from "blitz"
+import { ForgotPassword } from "app/auth/validations"
+import { AuthenticationError, resolver } from "blitz"
 import db from "db"
 
-export default resolver.pipe(resolver.zod(ForgotPassword), async ({email}) => {
+export default resolver.pipe(resolver.zod(ForgotPassword), async ({ email }) => {
   const user = await db.user.findFirst({
-    where: {email: email.toLowerCase().trim()},
-    select: {id: true, name: true, email: true, role: true},
+    where: { email: email.toLowerCase().trim() },
+    select: { id: true, name: true, email: true, role: true },
   })
 
   if (user) {
@@ -13,14 +13,14 @@ export default resolver.pipe(resolver.zod(ForgotPassword), async ({email}) => {
       where: {
         userId: user.id,
       },
-      select: {id: true},
+      select: { id: true },
     })
 
     const intern = await db.intern.findFirst({
       where: {
         userId: user.id,
       },
-      select: {id: true},
+      select: { id: true },
     })
 
     if (company) {
