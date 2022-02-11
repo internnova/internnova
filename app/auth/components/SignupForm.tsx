@@ -5,11 +5,13 @@ import { FORM_ERROR } from "final-form"
 import React from "react"
 import { useMutation } from "blitz"
 import signupCheckEmail from "../mutations/signupCheckEmail"
+import LabeledOptionField from "app/core/components/LabeledOptionField"
 
 export type SignUpValues = {
   name: string
   email: string
   password: string
+  role: string
 }
 
 type SignupFormProps = {
@@ -44,6 +46,8 @@ export const SignupForm = ({ onSuccess }: SignupFormProps) => {
         }
       }}
     >
+      <h2 className="font-medium">I&apos;m a</h2>
+      <LabeledOptionField name="role" values={["Student", "Company"]} />
       <LabeledTextField name="name" placeholder="Name" />
       <LabeledTextField name="email" placeholder="Email" />
       <LabeledTextField name="password" placeholder="Password" type="password" />

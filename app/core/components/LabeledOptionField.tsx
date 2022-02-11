@@ -5,7 +5,7 @@ export interface LabeledOptionFieldProps extends PropsWithoutRef<JSX.IntrinsicEl
   /** Field name. */
   name: string
   /** Field label. */
-  label: string
+  label?: string
   values: string[]
   outerProps?: PropsWithoutRef<JSX.IntrinsicElements["div"]>
   labelProps?: ComponentPropsWithoutRef<"label">
@@ -32,8 +32,16 @@ export const LabeledOptionField = forwardRef<HTMLInputElement, LabeledOptionFiel
       <div {...outerProps}>
         <label {...labelProps}>
           {label}
-          <Field {...input} disabled={submitting} {...props} ref={ref} component="select">
-            <option />
+          <Field
+            {...input}
+            disabled={submitting}
+            {...props}
+            ref={ref}
+            required={true}
+            component="select"
+            defaultValue={values[0]}
+            className="rounded text-gray-700 focus:outline-none focus:shadow-outline"
+          >
             {values.map((value) => (
               <option key={value} value={value}>
                 {value}

@@ -3,11 +3,14 @@ import Layout from "app/core/layouts/Layout"
 import { SignupForm, SignUpValues } from "app/auth/components/SignupForm"
 import { Meta } from "app/core/partials/Meta"
 import Image from "next/image"
-import { SignUpPopup } from "../components/SignUpPopup"
+import { CompanyPopup } from "../components/CompanyPopup"
 import { useState } from "react"
+import { VerifyEmail } from "../components/VerifyEmail"
+import { InternPopup } from "../components/InternPopup"
 
 const SignupPage: BlitzPage = () => {
   const [values, setValues] = useState<SignUpValues | undefined>()
+  const [index, setIndex] = useState<number>(1)
 
   return (
     <>
@@ -18,7 +21,7 @@ const SignupPage: BlitzPage = () => {
         }`}
       >
         <h1 className="text-center h-0 tracking-4">
-          It&apos;s time to become an <span className="animated-text">revolutionary</span>
+          It&apos;s time to become a <span className="animated-text">revolutionary</span>
         </h1>
         <div className="h-full w-full flex items-center justify-center gap-8">
           <div className="hidden lg:block select-none">
@@ -32,7 +35,14 @@ const SignupPage: BlitzPage = () => {
           <SignupForm onSuccess={(values: SignUpValues) => setValues(values)} />
         </div>
       </div>
-      {values && <SignUpPopup signUpValues={values} />}
+      {values &&
+        index === 1 &&
+        (values.role === "Company" ? (
+          <CompanyPopup signUpValues={values} onSuccess={() => setIndex(2)} />
+        ) : (
+          <InternPopup signUpValues={values} onSuccess={() => setIndex(2)} />
+        ))}
+      {index === 2 && <VerifyEmail />}
     </>
   )
 }
