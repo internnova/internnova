@@ -1,4 +1,4 @@
-import { Head, BlitzLayout, useMutation, useRouter } from "blitz"
+import { Head, BlitzLayout, useMutation } from "blitz"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import sendConfirmationEmail from "app/auth/mutations/sendConfirmationEmail"
 
@@ -23,7 +23,7 @@ const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
         >
           Click here
         </button>{" "}
-        to resend the email
+        to resend the email. If you have already verified your email, please reload this page
       </div>
     )
   }

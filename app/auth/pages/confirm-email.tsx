@@ -18,7 +18,7 @@ const ConfirmPassswordPage: BlitzPage = () => {
 
   return (
     <div>
-      <h1>Confirm your email</h1>
+      {!isSuccess && <h1>To confirm your email click on the button below</h1>}
       {error && !isSuccess && <p>{error}</p>}
       {isSuccess ? (
         <div>
@@ -41,7 +41,7 @@ const ConfirmPassswordPage: BlitzPage = () => {
             }
           }}
         >
-          Confirm Email
+          Click Here
         </button>
       )}
     </div>
