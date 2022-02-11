@@ -1,4 +1,4 @@
-import { forwardRef, ComponentPropsWithoutRef, PropsWithoutRef } from "react"
+import React, { forwardRef, ComponentPropsWithoutRef, PropsWithoutRef, FormEvent } from "react"
 import { useField, UseFieldConfig, Field } from "react-final-form"
 
 export interface LabeledOptionFieldProps extends PropsWithoutRef<JSX.IntrinsicElements["input"]> {
@@ -7,13 +7,14 @@ export interface LabeledOptionFieldProps extends PropsWithoutRef<JSX.IntrinsicEl
   /** Field label. */
   label?: string
   values: string[]
+  onSelect?: (e) => void
   outerProps?: PropsWithoutRef<JSX.IntrinsicElements["div"]>
   labelProps?: ComponentPropsWithoutRef<"label">
   fieldProps?: UseFieldConfig<string>
 }
 
 export const LabeledOptionField = forwardRef<HTMLInputElement, LabeledOptionFieldProps>(
-  ({ name, label, outerProps, fieldProps, labelProps, values, ...props }, ref) => {
+  ({ name, label, onSelect, outerProps, fieldProps, labelProps, values, ...props }, ref) => {
     const {
       input,
       meta: { touched, error, submitError, submitting },
@@ -40,6 +41,7 @@ export const LabeledOptionField = forwardRef<HTMLInputElement, LabeledOptionFiel
             required={true}
             component="select"
             defaultValue={values[0]}
+            onChange={(e) => onSelect!(e)}
             className="rounded text-gray-700 focus:outline-none focus:shadow-outline"
           >
             {values.map((value) => (

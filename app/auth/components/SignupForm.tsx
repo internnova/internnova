@@ -1,6 +1,6 @@
 import { LabeledTextField } from "app/core/components/LabeledTextField"
 import { Form } from "app/core/components/Form"
-import { SignupFront } from "app/auth/validations"
+import { Signup } from "app/auth/validations"
 import { FORM_ERROR } from "final-form"
 import React from "react"
 import { useMutation } from "blitz"
@@ -24,7 +24,7 @@ export const SignupForm = ({ onSuccess }: SignupFormProps) => {
     <Form
       title="Sign Up"
       submitText="Create Account"
-      schema={SignupFront}
+      schema={Signup}
       initialValues={{ email: "", password: "" }}
       onSubmit={async (values: SignUpValues) => {
         try {

@@ -1,7 +1,7 @@
 import Form from "../../core/components/Form"
-import { SignupPopup } from "../validations"
+import { Company } from "../validations"
 import { SignUpValues } from "./SignupForm"
-import signUp from "../mutations/signup"
+import signUp from "../mutations/company-signup"
 import { useMutation } from "blitz"
 import { LabeledTextField } from "../../core/components/LabeledTextField"
 import React from "react"
@@ -21,7 +21,7 @@ export const CompanyPopup = ({ signUpValues, onSuccess }: PopupProps) => {
   return (
     <Popup title="Create account" step={1} total={2}>
       <Form
-        schema={SignupPopup}
+        schema={Company}
         options=""
         submitText="Next"
         initialValues={{ description: "", website: "" }}
