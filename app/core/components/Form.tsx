@@ -38,7 +38,7 @@ export function Form<S extends z.ZodType<any, any>>({
           {title && <h1 className="font-semibold">{title}</h1>}
           <form
             autoComplete="off"
-            className="flex pt-4 flex-col gap-5 w-[80vw] sm:w-[50vw] lg:w-[28vw]"
+            className="flex pt-4 flex-col gap-5 w-[80vw] sm:w-[50vw] lg:w-[35vw] xl:w-[28vw]"
             onSubmit={handleSubmit}
             {...props}
           >

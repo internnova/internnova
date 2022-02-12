@@ -10,9 +10,8 @@ export const LabeledFileField = React.forwardRef<HTMLInputElement, LabeledFileFi
   ({ name, options, ...props }, ref) => {
     const {
       input,
-      meta: { error, submitError, submitting, touched },
+      meta: { submitting },
     } = useField(name)
-    const normalizedError = Array.isArray(error) ? error.join(", ") : error || submitError
 
     return (
       <div>
@@ -24,12 +23,6 @@ export const LabeledFileField = React.forwardRef<HTMLInputElement, LabeledFileFi
           ref={ref}
           className={`shadow appearance-none border rounded text-gray-700 leading-tight focus:outline-none focus:shadow-outline ${options}`}
         />
-
-        {touched && normalizedError && (
-          <div role="alert" className="mt-2">
-            <p className="text-red-500 text-sm italic">{normalizedError}</p>
-          </div>
-        )}
       </div>
     )
   }

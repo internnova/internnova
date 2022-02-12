@@ -22,11 +22,11 @@ const logo = z.string().url()
 
 const website = z.string().url()
 
-const interests = z.string()
+const interests = z.array(z.string())
 
 const bio = z.string().min(20, { message: "Must be at least 20 characters" })
 
-const oneliner = z.string().max(20, { message: "Must be at most 20 characters" })
+const oneliner = z.string().max(40, { message: "Must be at most 40 characters" })
 
 const role = z.string()
 
@@ -41,11 +41,11 @@ export const CompanySignup = z.object({
 })
 
 export const InternSignup = z.object({
+  name,
   email,
   password,
-  name,
+  logo,
   bio,
-  avatar: logo,
   interests,
   oneliner,
   role,
@@ -65,7 +65,7 @@ export const Company = z.object({
 })
 
 export const Intern = z.object({
-  avatar: logo,
+  logo,
   bio,
   interests,
   oneliner,

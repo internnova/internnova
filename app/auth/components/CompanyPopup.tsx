@@ -4,10 +4,10 @@ import { SignUpValues } from "./SignupForm"
 import signUp from "../mutations/company-signup"
 import { useMutation } from "blitz"
 import { LabeledTextField } from "../../core/components/LabeledTextField"
-import React from "react"
+import React, { useState } from "react"
 import LabeledTextArea from "../../core/components/LabeledTextArea"
 import { Popup } from "../../core/components/Popup"
-import { UploadAvatar } from "app/core/components/UploadAvatar"
+import { defaultSrc, UploadAvatar } from "app/core/components/UploadAvatar"
 
 export interface PopupProps {
   signUpValues: SignUpValues
@@ -16,7 +16,6 @@ export interface PopupProps {
 
 export const CompanyPopup = ({ signUpValues, onSuccess }: PopupProps) => {
   const [signUpMutation] = useMutation(signUp)
-  let source = ""
 
   return (
     <Popup title="Create account" step={1} total={2}>
@@ -25,16 +24,13 @@ export const CompanyPopup = ({ signUpValues, onSuccess }: PopupProps) => {
         options=""
         submitText="Next"
         initialValues={{ description: "", website: "" }}
-        onSubmit={async (values) => {
-          if (source === "") {
-            return { logo: "Please upload a logo" }
-          }
-          await signUpMutation({ ...signUpValues, ...values, logo: source })
+        onSubmit={async (values: any) => {
+          console.log({ ...signUpValues, ...values, logo: values.files[0] })
           onSuccess()
         }}
       >
         <div className="grid place-items-center w-full pb-4">
-          <UploadAvatar source={source} />
+          <UploadAvatar />
         </div>
         <LabeledTextArea name="description" placeholder="Description" />
         <LabeledTextField name="website" placeholder="Website" />

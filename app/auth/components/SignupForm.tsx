@@ -47,7 +47,11 @@ export const SignupForm = ({ onSuccess }: SignupFormProps) => {
       }}
     >
       <h2 className="font-medium">I&apos;m a</h2>
-      <LabeledOptionField name="role" values={["Student", "Company"]} />
+      <LabeledOptionField
+        name="role"
+        values={["Student", "Company"]}
+        {...{ defaultValue: "Student" }}
+      />
       <LabeledTextField name="name" placeholder="Name" />
       <LabeledTextField name="email" placeholder="Email" />
       <LabeledTextField name="password" placeholder="Password" type="password" />

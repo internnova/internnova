@@ -1,24 +1,21 @@
-import { useState } from "react"
+import { ChangeEvent, useState } from "react"
 import { BsUpload } from "react-icons/bs"
 import { LabeledFileField } from "./LabeledFileField"
 
-const defaultSource =
-  "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"
+export const UploadAvatar = () => {
+  const [src, setSrc] = useState<string>("/images/default_profile.png")
 
-export const UploadAvatar = ({ source }: { source: string }) => {
-  const [src, setSrc] = useState<string>(defaultSource)
-
-  const onAvatarChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const onAvatarChange = (e: ChangeEvent<HTMLInputElement>) => {
     e.preventDefault()
     const file = e.target.files![0]
     const reader = new FileReader()
+    reader.readAsDataURL(file as Blob)
+
     if (file && reader) {
       reader.onloadend = () => {
         setSrc(reader.result as string)
-        source = reader.result as string
       }
     }
-    reader.readAsDataURL(file as Blob)
   }
 
   return (
@@ -37,8 +34,7 @@ export const UploadAvatar = ({ source }: { source: string }) => {
         <LabeledFileField
           name="logo"
           options="hidden"
-          {...{ accept: "image/*", id: "avatar" }}
-          onChange={onAvatarChange}
+          {...{ accept: "image/*", id: "avatar", onChange: (e) => onAvatarChange(e) }}
         />
       </div>
     </label>
