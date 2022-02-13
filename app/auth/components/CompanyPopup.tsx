@@ -7,7 +7,7 @@ import { LabeledTextField } from "../../core/components/LabeledTextField"
 import React, { useState } from "react"
 import LabeledTextArea from "../../core/components/LabeledTextArea"
 import { Popup } from "../../core/components/Popup"
-import { defaultSrc, UploadAvatar } from "app/core/components/UploadAvatar"
+import { UploadAvatar } from "app/core/components/UploadAvatar"
 
 export interface PopupProps {
   signUpValues: SignUpValues
@@ -24,8 +24,8 @@ export const CompanyPopup = ({ signUpValues, onSuccess }: PopupProps) => {
         options=""
         submitText="Next"
         initialValues={{ description: "", website: "" }}
-        onSubmit={async (values: any) => {
-          console.log({ ...signUpValues, ...values, logo: values.files[0] })
+        onSubmit={async (values) => {
+          await signUpMutation({ ...signUpValues, ...values })
           onSuccess()
         }}
       >

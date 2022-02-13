@@ -84,6 +84,7 @@ select[multiple] option {
   border: solid 1px #71aa29;
   padding: 5px;
   margin: 5px;
+  pointer-events: all;
   transition: 0.2s ease;
   cursor: pointer;
   @apply text-[10px] sm:text-[14px] md:text-sm;
@@ -91,6 +92,7 @@ select[multiple] option {
 
 select[multiple] {
   border: none;
+  pointer-events: none;
   outline: none;
   width: 100%;
   height: auto;

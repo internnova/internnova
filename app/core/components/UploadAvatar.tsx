@@ -34,7 +34,8 @@ export const UploadAvatar = () => {
         <LabeledFileField
           name="logo"
           options="hidden"
-          {...{ accept: "image/*", id: "avatar", onChange: (e) => onAvatarChange(e) }}
+          onAvatarChange={onAvatarChange}
+          {...{ accept: "image/*", id: "avatar" }}
         />
       </div>
     </label>

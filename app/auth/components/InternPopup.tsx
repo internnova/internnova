@@ -1,5 +1,5 @@
 import { Popup } from "app/core/components/Popup"
-import { defaultSrc, UploadAvatar } from "app/core/components/UploadAvatar"
+import { UploadAvatar } from "app/core/components/UploadAvatar"
 import Form from "../../core/components/Form"
 import internSignup from "../mutations/intern-signup"
 import { Intern } from "../validations"
@@ -8,6 +8,7 @@ import LabeledTextArea from "../../core/components/LabeledTextArea"
 import { LabeledTextField } from "app/core/components/LabeledTextField"
 import { useMutation } from "blitz"
 import LabeledOptionField from "../../core/components/LabeledOptionField"
+import { ChangeEvent } from "react"
 
 export const InternPopup = ({ signUpValues, onSuccess }: PopupProps) => {
   const [signUpMutation] = useMutation(internSignup)
@@ -18,10 +19,9 @@ export const InternPopup = ({ signUpValues, onSuccess }: PopupProps) => {
         schema={Intern}
         options=""
         submitText="Next"
-        initialValues={{ bio: "", interests: [""], oneliner: "" }}
-        onSubmit={(values: any) => {
-          // console.log(values.files[0])
-          // console.log({ ...values, ...signUpValues, logo: values.files[0] })
+        initialValues={{ bio: "", interests: [], oneliner: "" }}
+        onSubmit={async (values) => {
+          await signUpMutation({ ...values, ...signUpValues })
           onSuccess()
         }}
       >
@@ -33,6 +33,13 @@ export const InternPopup = ({ signUpValues, onSuccess }: PopupProps) => {
           name="interests"
           values={["Web dev", "AI/ML", "Systems", "Game dev", "Startups", "IoT", "Trading"]}
           {...{ multiple: true, type: "select" }}
+          onSelection={(e: ChangeEvent<HTMLInputElement>, value: Array<string>) => {
+            if (value.find((v) => v === e.target.value)) {
+              return value.filter((v) => v !== e.target.value)
+            } else {
+              return [...value, e.target.value]
+            }
+          }}
         />
         <LabeledTextField name="oneliner" placeholder="Describe yourself in a line" />
       </Form>

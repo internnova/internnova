@@ -1,4 +1,10 @@
-import React, { forwardRef, ComponentPropsWithoutRef, PropsWithoutRef, FormEvent } from "react"
+import React, {
+  forwardRef,
+  ComponentPropsWithoutRef,
+  PropsWithoutRef,
+  FormEvent,
+  ChangeEvent,
+} from "react"
 import { useField, UseFieldConfig, Field } from "react-final-form"
 
 export interface LabeledOptionFieldProps extends PropsWithoutRef<JSX.IntrinsicElements["input"]> {
@@ -7,15 +13,16 @@ export interface LabeledOptionFieldProps extends PropsWithoutRef<JSX.IntrinsicEl
   /** Field label. */
   label?: string
   values: string[]
+  onSelection: (e: ChangeEvent<HTMLInputElement>, value: Array<string>) => Array<string>
   outerProps?: PropsWithoutRef<JSX.IntrinsicElements["div"]>
   labelProps?: ComponentPropsWithoutRef<"label">
   fieldProps?: UseFieldConfig<string>
 }
 
 export const LabeledOptionField = forwardRef<HTMLInputElement, LabeledOptionFieldProps>(
-  ({ name, label, outerProps, fieldProps, labelProps, values, ...props }, ref) => {
+  ({ name, label, outerProps, fieldProps, onSelection, labelProps, values, ...props }, ref) => {
     const {
-      input,
+      input: { onChange, value, ...input },
       meta: { touched, error, submitError, submitting },
     } = useField(name, {
       parse:
@@ -37,11 +44,19 @@ export const LabeledOptionField = forwardRef<HTMLInputElement, LabeledOptionFiel
             disabled={submitting}
             {...props}
             ref={ref}
+            onChange={(e: ChangeEvent<HTMLInputElement>) => {
+              if (onSelection) {
+                const val = onSelection(e, value)
+                onChange(val)
+              } else {
+                return onChange(e.target.value)
+              }
+            }}
             required={true}
             component="select"
             className="rounded text-gray-700 focus:outline-none focus:shadow-outline"
           >
-            {values.map((value) => (
+            {values.map((value: string) => (
               <option key={value} value={value}>
                 {value}
               </option>
