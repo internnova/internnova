@@ -21,6 +21,7 @@ export default resolver.pipe(
       data: { id: id, name, description, logo, website, userId: id },
       select: { id: true, name: true },
     })
+
     await ctx.session.$create({ userId: id, role: role })
   }
 )

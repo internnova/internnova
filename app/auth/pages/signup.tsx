@@ -7,10 +7,12 @@ import { CompanyPopup } from "../components/CompanyPopup"
 import { useState } from "react"
 import { VerifyEmail } from "../components/VerifyEmail"
 import { InternPopup } from "../components/InternPopup"
+import { useCurrentUser } from "../../core/hooks/useCurrentUser"
 
 const SignupPage: BlitzPage = () => {
   const [values, setValues] = useState<SignUpValues | undefined>()
-  const [index, setIndex] = useState<number>(1)
+  const [index, setIndex] = useState<number>(0)
+  const user = useCurrentUser()
 
   return (
     <>
@@ -36,13 +38,13 @@ const SignupPage: BlitzPage = () => {
         </div>
       </div>
       {values &&
-        index === 1 &&
+        index === 0 &&
         (values.role === "Company" ? (
           <CompanyPopup signUpValues={values} onSuccess={() => setIndex(2)} />
         ) : (
           <InternPopup signUpValues={values} onSuccess={() => setIndex(2)} />
         ))}
-      {index === 2 && <VerifyEmail />}
+      {user && !user.verified && <VerifyEmail />}
     </>
   )
 }

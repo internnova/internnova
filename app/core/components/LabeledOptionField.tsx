@@ -13,7 +13,7 @@ export interface LabeledOptionFieldProps extends PropsWithoutRef<JSX.IntrinsicEl
   /** Field label. */
   label?: string
   values: string[]
-  onSelection: (e: ChangeEvent<HTMLInputElement>, value: Array<string>) => Array<string>
+  onSelection?: (e: ChangeEvent<HTMLInputElement>, value: Array<string>) => Array<string>
   outerProps?: PropsWithoutRef<JSX.IntrinsicElements["div"]>
   labelProps?: ComponentPropsWithoutRef<"label">
   fieldProps?: UseFieldConfig<string>

@@ -5,7 +5,7 @@ import { confirmEmailMailer } from "mailers/confirmEmailMailer"
 const CONFIRM_EMAIL_TOKEN_EXPIRATION_IN_HOURS = 24
 
 export default resolver.pipe(async ({ ...data }, ctx: Ctx) => {
-  ctx.session.$authorize("COMPANY")
+  ctx.session.$authorize(data.role)
 
   // 1. Get the user
   const user = await db.user.findFirst({ where: { id: ctx.session.userId } })
