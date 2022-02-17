@@ -2,6 +2,7 @@ import { validateZodSchema } from "blitz"
 import { ReactNode, PropsWithoutRef } from "react"
 import { Form as FinalForm, FormProps as FinalFormProps } from "react-final-form"
 import { z } from "zod"
+import { Button } from "./Button"
 
 export { FORM_ERROR } from "final-form"
 
@@ -52,13 +53,7 @@ export function Form<S extends z.ZodType<any, any>>({
             )}
 
             {submitText && (
-              <button
-                type="submit"
-                disabled={submitting}
-                className="py-2 text-[16px] rounded-md bg-[#5c6cff] text-white"
-              >
-                {submitText}
-              </button>
+              <Button {...{ type: "submit", disabled: submitting }}>{submitText}</Button>
             )}
 
             <style global jsx>{`

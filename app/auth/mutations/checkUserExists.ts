@@ -1,4 +1,4 @@
-import { AuthenticationError, SecurePassword } from "blitz"
+import { AuthenticationError } from "blitz"
 import db from "db"
 
 export const checkUserExists = async (email: string) => {

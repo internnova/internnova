@@ -8,11 +8,29 @@ import { useState } from "react"
 import { VerifyEmail } from "../components/VerifyEmail"
 import { InternPopup } from "../components/InternPopup"
 import { useCurrentUser } from "../../core/hooks/useCurrentUser"
+import { Interests } from "../components/Interests"
+
+interface InternValues {
+  bio?: string
+  oneliner?: string
+  logo?: string
+  interests?: string[]
+}
+
+export type values = InternValues & SignUpValues
 
 const SignupPage: BlitzPage = () => {
-  const [values, setValues] = useState<SignUpValues | undefined>()
-  const [index, setIndex] = useState<number>(0)
+  const ABOUT = "about"
+  const VERIFY = "verify"
+  const INTERESTS = "interests"
+  const [values, setValues] = useState<values | undefined>()
+  const [index, setIndex] = useState<string>(ABOUT)
   const user = useCurrentUser()
+
+  const handleSuccess = (values, index: string) => {
+    setValues(values)
+    setIndex(index)
+  }
 
   return (
     <>
@@ -38,18 +56,22 @@ const SignupPage: BlitzPage = () => {
         </div>
       </div>
       {values &&
-        index === 0 &&
+        index === ABOUT &&
         (values.role === "Company" ? (
-          <CompanyPopup signUpValues={values} onSuccess={() => setIndex(2)} />
+          <CompanyPopup onSuccess={(val) => handleSuccess({ ...values, ...val }, VERIFY)} />
         ) : (
-          <InternPopup signUpValues={values} onSuccess={() => setIndex(2)} />
+          <InternPopup
+            onSuccess={(val: InternValues) => handleSuccess({ ...values, ...val }, INTERESTS)}
+          />
         ))}
-      {user && !user.verified && <VerifyEmail />}
+      {values && index === INTERESTS && (
+        <Interests onSuccess={(interests) => handleSuccess(interests, VERIFY)} />
+      )}
+      {((user && !user.verified) || index === VERIFY) && <VerifyEmail values={values} />}
     </>
   )
 }
 
-SignupPage.redirectAuthenticatedTo = "/"
 SignupPage.getLayout = (page) => (
   <Layout title="Sign Up" noVerification>
     {page}

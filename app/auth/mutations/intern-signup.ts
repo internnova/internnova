@@ -22,5 +22,6 @@ export default resolver.pipe(
     })
 
     await ctx.session.$create({ userId: id, role: role })
+    return
   }
 )

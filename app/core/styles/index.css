@@ -79,34 +79,4 @@ button {
   opacity: 1;
 }
 
-select[multiple] option {
-  float: left;
-  border: solid 1px #71aa29;
-  padding: 5px;
-  margin: 5px;
-  pointer-events: all;
-  transition: 0.2s ease;
-  cursor: pointer;
-  @apply text-[10px] sm:text-[14px] md:text-sm;
-}
-
-select[multiple] {
-  border: none;
-  pointer-events: none;
-  outline: none;
-  width: 100%;
-  height: auto;
-}
-
-select[multiple]:focus {
-  outline: none;
-  border: none;
-}
-
-select[multiple] > option:checked,
-select[multiple] > option:hover {
-  background: #5eba7d linear-gradient(0deg, #5eba7d 0%, #5eba7d 100%);
-  color: #ffffff;
-}
-
 @tailwind utilities;

@@ -67,7 +67,6 @@ export const Company = z.object({
 export const Intern = z.object({
   logo,
   bio,
-  interests,
   oneliner,
 })
 

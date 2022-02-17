@@ -9,24 +9,16 @@ import LabeledTextArea from "../../core/components/LabeledTextArea"
 import { Popup } from "../../core/components/Popup"
 import { UploadAvatar } from "app/core/components/UploadAvatar"
 
-export interface PopupProps {
-  signUpValues: SignUpValues
-  onSuccess(): void
-}
-
-export const CompanyPopup = ({ signUpValues, onSuccess }: PopupProps) => {
-  const [signUpMutation] = useMutation(signUp)
-
+export const CompanyPopup = ({ onSuccess }: { onSuccess(values): void }) => {
   return (
-    <Popup title="Create account" step={1} total={2}>
+    <Popup title="Create account" step={1} scroll={false}>
       <Form
         schema={Company}
         options=""
         submitText="Next"
         initialValues={{ description: "", website: "" }}
-        onSubmit={async (values) => {
-          await signUpMutation({ ...signUpValues, ...values })
-          onSuccess()
+        onSubmit={(values) => {
+          onSuccess(values)
         }}
       >
         <div className="grid place-items-center w-full pb-4">

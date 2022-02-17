@@ -1,15 +1,19 @@
-import { Head, BlitzLayout, useMutation, Router } from "blitz"
+import { Head, BlitzLayout, useRouter, Routes } from "blitz"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
-const Layout: BlitzLayout<{ title?: string; noVerification: boolean }> = ({
+const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
   title,
   noVerification,
   children,
 }) => {
   const user = useCurrentUser()
+  const router = useRouter()
 
   if (user && !user.verified && !noVerification) {
-    Router.push("/signup")
+    if (router.pathname !== "signup") {
+      router.push(Routes.SignupPage())
+      return <></>
+    }
   }
 
   return (
