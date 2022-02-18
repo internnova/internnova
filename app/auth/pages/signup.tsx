@@ -10,22 +10,37 @@ import { InternPopup } from "../components/InternPopup"
 import { useCurrentUser } from "../../core/hooks/useCurrentUser"
 import { Interests } from "../components/Interests"
 
-interface InternValues {
-  bio?: string
-  oneliner?: string
-  logo?: string
-  interests?: string[]
+interface CompanyValues {
+  description: string
+  website: string
+  logo: string
 }
 
-export type values = InternValues & SignUpValues
+interface InternValues {
+  bio: string
+  oneliner: string
+  logo: string
+  interests: string[]
+}
+
+export type values = {
+  intern: InternValues
+  company: CompanyValues
+  general: SignUpValues
+}
 
 const SignupPage: BlitzPage = () => {
   const ABOUT = "about"
   const VERIFY = "verify"
   const INTERESTS = "interests"
-  const [values, setValues] = useState<values | undefined>()
+  const [values, setValues] = useState<values>({
+    general: { name: "", email: "", password: "", role: "" },
+    company: { description: "", website: "", logo: "" },
+    intern: { interests: [], bio: "", oneliner: "", logo: "" },
+  })
   const [index, setIndex] = useState<string>(ABOUT)
   const user = useCurrentUser()
+  const showPopup = (idx: string) => index === idx
 
   const handleSuccess = (values, index: string) => {
     setValues(values)
@@ -52,22 +67,30 @@ const SignupPage: BlitzPage = () => {
               height={580}
             />
           </div>
-          <SignupForm onSuccess={(values: SignUpValues) => setValues(values)} />
+          <SignupForm onSuccess={(val: SignUpValues) => setValues({ ...values, general: val })} />
         </div>
       </div>
-      {values &&
-        index === ABOUT &&
-        (values.role === "Company" ? (
-          <CompanyPopup onSuccess={(val) => handleSuccess({ ...values, ...val }, VERIFY)} />
+      {showPopup(ABOUT) &&
+        values.general.name &&
+        (values.general.role === "Company" ? (
+          <CompanyPopup onSuccess={(val) => handleSuccess({ ...values, company: val }, VERIFY)} />
         ) : (
           <InternPopup
-            onSuccess={(val: InternValues) => handleSuccess({ ...values, ...val }, INTERESTS)}
+            onSuccess={(val: InternValues) => handleSuccess({ ...values, intern: val }, INTERESTS)}
           />
         ))}
-      {values && index === INTERESTS && (
-        <Interests onSuccess={(interests) => handleSuccess(interests, VERIFY)} />
+      {showPopup(INTERESTS) && values.intern.bio.length && (
+        <Interests
+          interest={values.intern.interests}
+          onSuccess={(interests) => handleSuccess({ ...values, interests }, VERIFY)}
+        />
       )}
-      {((user && !user.verified) || index === VERIFY) && <VerifyEmail values={values} />}
+      {user &&
+        !user.verified &&
+        showPopup(VERIFY) &&
+        (values.intern.interests.length || values.company.website) && (
+          <VerifyEmail values={values} goBack={() => setIndex(INTERESTS)} />
+        )}
     </>
   )
 }

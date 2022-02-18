@@ -12,9 +12,15 @@ interface InternValues extends SignUpValues {
   logo: string
 }
 
-export const Interests = ({ onSuccess }: { onSuccess(interests: string[]): void }) => {
+export const Interests = ({
+  onSuccess,
+  interest,
+}: {
+  onSuccess(interests: string[]): void
+  interest: string[]
+}) => {
   const [signUpMutation] = useMutation(internSignup)
-  const [interests, setInterests] = useState<string[]>([])
+  const [interests, setInterests] = useState<string[]>(interest || [])
   const fields = [
     "Web development",
     "AI/ML",

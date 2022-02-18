@@ -6,24 +6,38 @@ import { values } from "../pages/signup"
 import internSignup from "../mutations/intern-signup"
 import companySignup from "../mutations/company-signup"
 
-export const VerifyEmail = ({ values }: { values: values | undefined }) => {
+export const VerifyEmail = ({ values, goBack }: { values: values; goBack(): void }) => {
   const [sendConfirmationEmailMutation, { isSuccess }] = useMutation(sendConfirmationEmail)
-  let signUp = values.role === "COMPANY" ? companySignup : internSignup
-  const signUpMutation = useMutation(signUp)
+  let signUp
+  if (values.general.role === "COMPANY") {
+    signUp = companySignup
+  } else signUp = internSignup
+  const [signUpMutation] = useMutation(companySignup)
 
   return (
     <Popup title="Create account" step={2} scroll={false}>
       <div className="flex flex-col gap-5 px-8 py-10 mb-4">
-        <p>You need to verify your email.</p>
+        <p>
+          You need to verify your email. Be sure to check <br />
+          your spam folder or unblock auth@internnova.co
+        </p>
         <div className="flex pt-4 flex-col gap-5 w-[80vw] sm:w-[50vw] lg:w-[35vw] xl:w-[28vw]">
-          <Button
-            onClick={async () => {
-              await signUpMutation(values)
-              await sendConfirmationEmailMutation()
-            }}
-          >
-            Resend email
-          </Button>{" "}
+          <div className="flex gap-4">
+            <Button
+              options="w-1/2"
+              onClick={async () => {
+                if (values.general.role === "COMPANY") {
+                  await signUpMutation({ ...values.general, ...values.company })
+                }
+                await sendConfirmationEmailMutation()
+              }}
+            >
+              Resend email
+            </Button>
+            <Button options="w-1/2" onClick={goBack}>
+              Back
+            </Button>
+          </div>
         </div>
       </div>
     </Popup>
