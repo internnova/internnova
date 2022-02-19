@@ -8,12 +8,7 @@ const GetCompany = z.object({
 })
 
 export default resolver.pipe(resolver.zod(GetCompany), async ({ id }, ctx: Ctx) => {
-  ctx.session.$authorize("COMPANY")
-  if (ctx.session.userId !== id) {
-    throw new AuthorizationError()
-  } else {
-    const company = await db.company.findFirst({ where: { id }, include: { jobs: true } })
-    if (!company) throw new NotFoundError()
-    return company
-  }
+  const company = await db.company.findFirst({ where: { id }, include: { jobs: true } })
+  if (!company) throw new NotFoundError()
+  return company
 })

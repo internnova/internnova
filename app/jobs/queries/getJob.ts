@@ -7,19 +7,12 @@ const GetJob = z.object({
   id: z.number().optional().refine(Boolean, "Required"),
 })
 
-export default resolver.pipe(
-  resolver.zod(GetJob),
-  resolver.authorize(),
-  async ({ id }, ctx: Ctx) => {
-    // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-    ctx.session.$authorize("COMPANY")
-    const job = await db.job.findFirst({
-      where: { id, companyId: ctx.session.userId },
-      include: { applications: true, company: true },
-    })
+export default resolver.pipe(resolver.zod(GetJob), async ({ id }, ctx: Ctx) => {
+  // TODO: in multi-tenant app, you must add validation to ensure correct tenant
+  const job = await db.job.findFirst({
+    where: { id },
+    include: { applications: ctx.session.userId ? true : false, company: true },
+  })
 
-    if (!job || job.companyId !== ctx.session.userId) throw new NotFoundError()
-
-    return job
-  }
-)
+  return job
+})

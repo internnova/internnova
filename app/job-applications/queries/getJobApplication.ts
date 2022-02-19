@@ -8,7 +8,7 @@ const GetJobApplication = z.object({
 })
 
 export default resolver.pipe(resolver.zod(GetJobApplication), async ({ id }, ctx: Ctx) => {
-  ctx.session.$authorize("COMPANY")
+  ctx.session.$authorize()
 
   const jobApplication = await db.jobApplication.findFirst({
     where: { id },

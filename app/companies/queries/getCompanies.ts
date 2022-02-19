@@ -6,7 +6,7 @@ interface GetCompaniesInput
 
 export default resolver.pipe(
   async ({ where, orderBy, skip = 0, take = 100 }: GetCompaniesInput, ctx: Ctx) => {
-    ctx.session.$authorize("COMPANY")
+    ctx.session.$authorize()
     const {
       items: companies,
       hasMore,
@@ -19,7 +19,6 @@ export default resolver.pipe(
       query: (paginateArgs) =>
         db.company.findMany({
           ...paginateArgs,
-          where: { ...where, id: ctx.session.userId || NaN },
           orderBy,
         }),
     })
