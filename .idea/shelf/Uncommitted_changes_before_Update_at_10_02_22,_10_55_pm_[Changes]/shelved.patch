@@ -1,0 +1,27 @@
+Index: app/auth/mutations/signup.ts
+IDEA additional info:
+Subsystem: com.intellij.openapi.diff.impl.patch.BaseRevisionTextPatchEP
+<+>import { AuthenticationError, resolver, SecurePassword } from \"blitz\"\nimport db from \"db\"\nimport { Signup } from \"app/auth/validations\"\nimport { Role } from \"db\"\n\nexport default resolver.pipe(\n  resolver.zod(Signup),\n  async ({ email, password, name, description, logo, website }, ctx) => {\n    const hashedPassword = await SecurePassword.hash(password.trim())\n    const user = await db.user.findFirst({\n      where: { email: email.toLowerCase().trim() },\n      select: { id: true, name: true, email: true, role: true },\n    })\n\n    if (user) {\n      const company = await db.company.findFirst({\n        where: {\n          userId: user.id,\n        },\n        select: { id: true },\n      })\n\n      const intern = await db.intern.findFirst({\n        where: {\n          userId: user.id,\n        },\n        select: { id: true },\n      })\n\n      if (company) {\n        const companyError = new AuthenticationError(\"Company already exists\")\n        companyError.name = \"COMPANY_EXISTS\"\n\n        throw companyError\n      } else if (intern) {\n        const internError = new AuthenticationError(\"Intern already exists\")\n        internError.name = \"USER_IS_INTERN\"\n\n        throw internError\n      } else {\n        await db.company.create({\n          data: { id: user.id, name, description, logo, website, userId: user.id },\n          select: { id: true, name: true },\n        })\n        return user\n      }\n    } else {\n      const { id, role } = await db.user.create({\n        data: {\n          email: email.toLowerCase().trim(),\n          hashedPassword,\n          role: \"COMPANY\",\n        },\n      })\n\n      // we don't need data from the company since the user and company id are the same\n      await db.company.create({\n        data: { id: id, name, description, logo, website, userId: id },\n        select: { id: true, name: true },\n      })\n\n      await ctx.session.$create({ userId: id, role: role as Role })\n      return user\n    }\n  }\n)\n
+Subsystem: com.intellij.openapi.diff.impl.patch.CharsetEP
+<+>UTF-8
+===================================================================
+diff --git a/app/auth/mutations/signup.ts b/app/auth/mutations/signup.ts
+--- a/app/auth/mutations/signup.ts	(revision 17f51ad1fb8577c49661979d9076ae0b3d4edac6)
++++ b/app/auth/mutations/signup.ts	(date 1644513694767)
+@@ -1,7 +1,6 @@
+ import { AuthenticationError, resolver, SecurePassword } from "blitz"
+ import db from "db"
+ import { Signup } from "app/auth/validations"
+-import { Role } from "db"
+ 
+ export default resolver.pipe(
+   resolver.zod(Signup),
+@@ -59,7 +58,7 @@
+         select: { id: true, name: true },
+       })
+ 
+-      await ctx.session.$create({ userId: id, role: role as Role })
++      await ctx.session.$create({ userId: id, role: role })
+       return user
+     }
+   }
