@@ -17,7 +17,7 @@ export const Popup = ({ title, children, step, scroll, ...props }: PopupProps) =
     >
       <div className="flex justify-between items-center px-8 pt-4">
         <h2 className="font-medium">{title}</h2>
-        {step && <p>Step {step} of 3</p>}
+        {step && <p>Step {step} of 2</p>}
       </div>
 
       {children}
