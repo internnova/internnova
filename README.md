@@ -51,7 +51,7 @@ yarn run dev
 
 [Samrath Chadha](https://github.com/0xsamrath) - Lead dev/maintainer
 
-See also the list of [contributors](https://github.com/internnova/company-dashboard/contributors) who contributed to this.
+See also the list of [contributors](https://github.com/company-dashboard/contributors) who contributed to this.
 
 ## Built With
 

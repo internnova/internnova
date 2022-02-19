@@ -23,6 +23,7 @@ blitz-log.log
 .DS_Store
 
 # local env files
+.env
 .env.local
 .env.*.local
 .envrc
@@ -54,3 +55,4 @@ lib-cov
 
 # Stores VSCode versions used for testing VSCode extensions
 .vscode-test
+.idea

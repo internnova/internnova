@@ -1,17 +1,16 @@
 import { BlitzPage, useRouterQuery, Link, useMutation, Routes } from "blitz"
-import Layout from "app/core/layouts/Layout"
-import { LabeledTextField } from "app/core/components/LabeledTextField"
 import { Form, FORM_ERROR } from "app/core/components/Form"
-import { ResetPassword } from "app/auth/validations"
+import { LabeledTextField } from "app/core/components/LabeledTextField"
+import Layout from "app/core/layouts/Layout"
 import resetPassword from "app/auth/mutations/resetPassword"
+import { ResetPassword } from "app/auth/validations"
 
 const ResetPasswordPage: BlitzPage = () => {
   const query = useRouterQuery()
   const [resetPasswordMutation, { isSuccess }] = useMutation(resetPassword)
-
   return (
-    <div>
-      <h1>Set a New Password</h1>
+    <div className="h-screen w-full flex flex-col items-center justify-center select-none overflow-hidden">
+      <h1 className="px-8">Set a New Password</h1>
 
       {isSuccess ? (
         <div>
@@ -27,9 +26,10 @@ const ResetPasswordPage: BlitzPage = () => {
           initialValues={{ password: "", passwordConfirmation: "", token: query.token as string }}
           onSubmit={async (values) => {
             try {
-              await resetPasswordMutation(values)
+              await resetPasswordMutation({ ...values, token: query.token as string })
             } catch (error: any) {
               if (error.name === "ResetPasswordError") {
+                console.log(error)
                 return {
                   [FORM_ERROR]: error.message,
                 }
@@ -41,10 +41,10 @@ const ResetPasswordPage: BlitzPage = () => {
             }
           }}
         >
-          <LabeledTextField name="password" label="New Password" type="password" />
+          <LabeledTextField name="password" placeholder="New Password" type="password" />
           <LabeledTextField
             name="passwordConfirmation"
-            label="Confirm New Password"
+            placeholder="Confirm New Password"
             type="password"
           />
         </Form>
@@ -54,6 +54,10 @@ const ResetPasswordPage: BlitzPage = () => {
 }
 
 ResetPasswordPage.redirectAuthenticatedTo = "/"
-ResetPasswordPage.getLayout = (page) => <Layout title="Reset Your Password">{page}</Layout>
+ResetPasswordPage.getLayout = (page) => (
+  <Layout title="Reset Your Password" noVerification>
+    {page}
+  </Layout>
+)
 
 export default ResetPasswordPage

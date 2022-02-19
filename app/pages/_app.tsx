@@ -6,10 +6,14 @@ import {
   AuthorizationError,
   ErrorFallbackProps,
   useQueryErrorResetBoundary,
+  useRouter,
+  Routes,
+  useMutation,
 } from "blitz"
-import LoginForm from "app/auth/components/LoginForm"
-
 import "app/core/styles/index.css"
+import { Suspense } from "react"
+import { Spinner } from "app/core/components/Spinner"
+import logout from "../auth/mutations/logout"
 
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
@@ -19,14 +23,18 @@ export default function App({ Component, pageProps }: AppProps) {
       FallbackComponent={RootErrorFallback}
       onReset={useQueryErrorResetBoundary().reset}
     >
-      {getLayout(<Component {...pageProps} />)}
+      <Suspense fallback={<Spinner />}>{getLayout(<Component {...pageProps} />)}</Suspense>
     </ErrorBoundary>
   )
 }
 
-function RootErrorFallback({ error, resetErrorBoundary }: ErrorFallbackProps) {
+function RootErrorFallback({ error }: ErrorFallbackProps) {
+  const router = useRouter()
   if (error instanceof AuthenticationError) {
-    return <LoginForm onSuccess={resetErrorBoundary} />
+    if (router.pathname !== "/login") {
+      router.push(Routes.LoginPage())
+    }
+    return <Spinner />
   } else if (error instanceof AuthorizationError) {
     return (
       <ErrorComponent

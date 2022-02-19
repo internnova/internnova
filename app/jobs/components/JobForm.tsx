@@ -1,8 +1,9 @@
-import { Form, FormProps } from "app/core/components/Form"
-import { LabeledTextField } from "app/core/components/LabeledTextField"
-import { LabeledOptionField } from "app/core/components/LabeledOptionField"
 import { JobType, Tag } from "db"
 import { z } from "zod"
+import { Form, FormProps } from "app/core/components/Form"
+import { LabeledOptionField } from "app/core/components/LabeledOptionField"
+import { LabeledTextField } from "app/core/components/LabeledTextField"
+
 export { FORM_ERROR } from "app/core/components/Form"
 
 export function JobForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {

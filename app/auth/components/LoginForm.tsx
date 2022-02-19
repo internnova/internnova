@@ -1,6 +1,6 @@
 import { AuthenticationError, Link, useMutation, Routes, PromiseReturnType, useRouter } from "blitz"
-import { LabeledTextField } from "app/core/components/LabeledTextField"
 import { Form, FORM_ERROR } from "app/core/components/Form"
+import { LabeledTextField } from "app/core/components/LabeledTextField"
 import login from "app/auth/mutations/login"
 import { Login } from "app/auth/validations"
 
@@ -13,10 +13,9 @@ export const LoginForm = (props: LoginFormProps) => {
   const router = useRouter()
 
   return (
-    <div>
-      <h1>Login</h1>
-
+    <div className="flex flex-col items-center">
       <Form
+        title="Login"
         submitText="Login"
         schema={Login}
         initialValues={{ email: "", password: "" }}
@@ -26,9 +25,6 @@ export const LoginForm = (props: LoginFormProps) => {
             props.onSuccess?.(user)
           } catch (error: any) {
             if (error instanceof AuthenticationError) {
-              if (error.name === "USER_IS_INTERN") {
-                router.push("https://intern.internnova.co/")
-              }
               return { [FORM_ERROR]: "Sorry, those credentials are invalid" }
             } else {
               return {
@@ -39,20 +35,21 @@ export const LoginForm = (props: LoginFormProps) => {
           }
         }}
       >
-        <LabeledTextField name="email" label="Email" placeholder="Email" />
-        <LabeledTextField name="password" label="Password" placeholder="Password" type="password" />
+        <LabeledTextField name="email" placeholder="Email" />
+        <LabeledTextField name="password" placeholder="Password" type="password" />
         <div>
           <Link href={Routes.ForgotPasswordPage()}>
-            <a>Forgot your password?</a>
+            <a className="text-[#5c6cff] text-sm">Forgot password?</a>
           </Link>
         </div>
       </Form>
 
-      <div style={{ marginTop: "1rem" }}>
-        Or <Link href={Routes.SignupPage()}>Sign Up</Link>
+      <div>
+        New to Internnova?{" "}
+        <Link href={Routes.SignupPage()}>
+          <a className="text-[#5c6cff] text-md">Sign Up</a>
+        </Link>
       </div>
     </div>
   )
 }
-
-export default LoginForm

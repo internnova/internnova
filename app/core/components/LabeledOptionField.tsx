@@ -1,19 +1,28 @@
-import { forwardRef, ComponentPropsWithoutRef, PropsWithoutRef } from "react"
+import React, {
+  forwardRef,
+  ComponentPropsWithoutRef,
+  PropsWithoutRef,
+  FormEvent,
+  ChangeEvent,
+  useState,
+} from "react"
 import { useField, UseFieldConfig, Field } from "react-final-form"
+import { ErrorLabel } from "./ErrorLabel"
 
 export interface LabeledOptionFieldProps extends PropsWithoutRef<JSX.IntrinsicElements["input"]> {
   /** Field name. */
   name: string
   /** Field label. */
-  label: string
+  label?: string
   values: string[]
+  onSelection?: (e: ChangeEvent<HTMLInputElement>, value: Array<string>) => Array<string>
   outerProps?: PropsWithoutRef<JSX.IntrinsicElements["div"]>
   labelProps?: ComponentPropsWithoutRef<"label">
   fieldProps?: UseFieldConfig<string>
 }
 
 export const LabeledOptionField = forwardRef<HTMLInputElement, LabeledOptionFieldProps>(
-  ({ name, label, outerProps, fieldProps, labelProps, values, ...props }, ref) => {
+  ({ name, label, outerProps, fieldProps, onSelection, labelProps, values, ...props }, ref) => {
     const {
       input,
       meta: { touched, error, submitError, submitting },
@@ -32,9 +41,16 @@ export const LabeledOptionField = forwardRef<HTMLInputElement, LabeledOptionFiel
       <div {...outerProps}>
         <label {...labelProps}>
           {label}
-          <Field {...input} disabled={submitting} {...props} ref={ref} component="select">
-            <option />
-            {values.map((value) => (
+          <Field
+            {...input}
+            disabled={submitting}
+            {...props}
+            ref={ref}
+            required={true}
+            component="select"
+            className="rounded text-gray-700 focus:outline-none focus:shadow-outline"
+          >
+            {values.map((value: string) => (
               <option key={value} value={value}>
                 {value}
               </option>
@@ -42,11 +58,7 @@ export const LabeledOptionField = forwardRef<HTMLInputElement, LabeledOptionFiel
           </Field>
         </label>
 
-        {touched && normalizedError && (
-          <div role="alert" style={{ color: "red" }}>
-            {normalizedError}
-          </div>
-        )}
+        {touched && normalizedError && <ErrorLabel error={normalizedError} />}
       </div>
     )
   }

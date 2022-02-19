@@ -1,13 +1,12 @@
 import { resolver, SecurePassword, AuthenticationError } from "blitz"
 import db from "db"
-import { Login } from "../validations"
 import { Role } from "db"
+import { Login } from "../validations"
 
 export const authenticateUser = async (rawEmail: string, rawPassword: string) => {
   const { email, password } = Login.parse({ email: rawEmail, password: rawPassword })
   const user = await db.user.findFirst({ where: { email } })
   if (!user) throw new AuthenticationError()
-  if (user.role === Role.INTERN) throw new AuthenticationError("USER_IS_INTERN")
 
   const result = await SecurePassword.verify(user.hashedPassword, password)
 

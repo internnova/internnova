@@ -1,10 +1,5 @@
-/* TODO - You need to add a mailer integration in `integrations/` and import here.
- *
- * The integration file can be very simple. Instantiate the email client
- * and then export it. That way you can import here and anywhere else
- * and use it straight away.
- */
 import previewEmail from "preview-email"
+import mailer from "integrations/mailer"
 
 type ResetPasswordMailer = {
   to: string
@@ -17,28 +12,26 @@ export function forgotPasswordMailer({ to, token }: ResetPasswordMailer) {
   const resetUrl = `${origin}/reset-password?token=${token}`
 
   const msg = {
-    from: "TODO@example.com",
+    from: "auth@internnova.co",
     to,
     subject: "Your Password Reset Instructions",
     html: `
-      <h1>Reset Your Password</h1>
-      <h3>NOTE: You must set up a production email integration in mailers/forgotPasswordMailer.ts</h3>
-
-      <a href="${resetUrl}">
-        Click here to set a new password
-      </a>
+    <p align="center"><img src="https://www.internnova.co/logo/Logo.png" width=100/></p>
+    <h1 align="center">Reset Your Password</h1>
+    <p align="center"><strong></strong>You can reset your password using this link:</strong></p>
+    <p align="center"><a href="${resetUrl}">${resetUrl}</a></p>
+    <br>
+    <br>
+    <p> If you haven't asked for a password reset, you can safely ignore this email.</p>
     `,
   }
 
   return {
     async send() {
-      if (process.env.NODE_ENV === "production") {
-        // TODO - send the production email, like this:
-        // await postmark.sendEmail(msg)
-        throw new Error("No production email implementation in mailers/forgotPasswordMailer")
+      if (process.env.NODE_ENV === "development") {
+        previewEmail(msg)
       } else {
-        // Preview email in the browser
-        await previewEmail(msg)
+        mailer.send(msg)
       }
     },
   }
