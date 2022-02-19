@@ -4,24 +4,24 @@ import { LabeledTextField } from "../../core/components/LabeledTextField"
 import LabeledTextArea from "../../core/components/LabeledTextArea"
 import { Popup } from "../../core/components/Popup"
 import { UploadAvatar } from "app/core/components/UploadAvatar"
-import { CompanyValues } from "../pages/signup"
+import { useMutation } from "blitz"
+import companySignup from "../mutations/company-signup"
+import { SignUpValues } from "./SignupForm"
+import sendConfirmationEmail from "../mutations/sendConfirmationEmail"
 
-export const CompanyPopup = ({
-  onSuccess,
-  initials: { description, website },
-}: {
-  onSuccess(values): void
-  initials: CompanyValues
-}) => {
+export const CompanyPopup = ({ general }: { general: SignUpValues }) => {
+  const [companyMutation] = useMutation(companySignup)
+  const [sendConfirmationMutation] = useMutation(sendConfirmationEmail)
   return (
-    <Popup title="Create account" step={1} scroll={false}>
+    <Popup title="Create account" scroll={false}>
       <Form
         schema={Company}
         options=""
         submitText="Next"
-        initialValues={{ description, website }}
-        onSubmit={(values) => {
-          onSuccess(values)
+        initialValues={{ description: "", website: "" }}
+        onSubmit={async (values) => {
+          await companyMutation({ ...general, ...values })
+          await sendConfirmationMutation(general.role)
         }}
       >
         <div className="grid place-items-center w-full pb-4">
