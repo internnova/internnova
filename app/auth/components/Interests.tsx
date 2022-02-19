@@ -2,17 +2,23 @@ import { useState } from "react"
 import { Popup } from "../../core/components/Popup"
 import { BsFillCheckCircleFill } from "react-icons/bs"
 import { Button } from "../../core/components/Button"
-import { SignUpValues } from "./SignupForm"
 import { ErrorLabel } from "../../core/components/ErrorLabel"
+import { useMutation } from "blitz"
+import internSignup from "../mutations/intern-signup"
+import { SignUpValues } from "./SignupForm"
+import { InternValues } from "../pages/signup"
+import sendConfirmationEmail from "../mutations/sendConfirmationEmail"
 
-interface InterestsProps {
-  onSuccess(interests: string[]): void
-  interest: string[]
+export const Interests = ({
+  goBack,
+  internValues,
+}: {
   goBack(): void
-}
-
-export const Interests = ({ onSuccess, interest, goBack }: InterestsProps) => {
-  const [interests, setInterests] = useState<string[]>(interest ?? [])
+  internValues: SignUpValues & InternValues
+}) => {
+  const [interests, setInterests] = useState<string[]>([])
+  const [internMutation] = useMutation(internSignup)
+  const [sendConfirmationMutation] = useMutation(sendConfirmationEmail)
   const fields = [
     "Web development",
     "AI/ML",
@@ -61,7 +67,10 @@ export const Interests = ({ onSuccess, interest, goBack }: InterestsProps) => {
         <div className="flex w-full items-center gap-4">
           <Button
             options="w-1/2"
-            onClick={() => onSuccess(interests)}
+            onClick={async () => {
+              await internMutation({ ...internValues, interests })
+              await sendConfirmationMutation(internValues.role)
+            }}
             {...{ disabled: interests.length === 0 }}
           >
             Next

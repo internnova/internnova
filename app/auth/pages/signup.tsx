@@ -9,36 +9,25 @@ import { InternPopup } from "../components/InternPopup"
 import { useCurrentUser } from "../../core/hooks/useCurrentUser"
 import { Interests } from "../components/Interests"
 
-export interface CompanyValues {
-  description: string
-  website: string
-  logo: string
-}
-
 export interface InternValues {
   bio: string
   oneliner: string
   logo: string
-  interests: string[]
 }
 
 export type values = {
-  intern: InternValues
-  company: CompanyValues
   general: SignUpValues
+  intern: InternValues
 }
 
 const SignupPage: BlitzPage = () => {
   const ABOUT = "about"
-  const VERIFY = "verify"
   const INTERESTS = "interests"
   const [values, setValues] = useState<values>({
     general: { name: "", email: "", password: "", role: "" },
-    company: { description: "", website: "", logo: "" },
-    intern: { interests: [], bio: "", oneliner: "", logo: "" },
+    intern: { bio: "", oneliner: "", logo: "" },
   })
   const [index, setIndex] = useState<string>(ABOUT)
-  const user = useCurrentUser()
   const showPopup = (idx: string) => index === idx
   const handleSuccess = (values, index: string) => {
     setValues(values)
@@ -70,10 +59,7 @@ const SignupPage: BlitzPage = () => {
       {showPopup(ABOUT) &&
         values.general.name &&
         (values.general.role === "Company" ? (
-          <CompanyPopup
-            initials={values.company}
-            onSuccess={(val) => handleSuccess({ ...values, company: val }, VERIFY)}
-          />
+          <CompanyPopup general={values.general} />
         ) : (
           <InternPopup
             onSuccess={(val: InternValues) => handleSuccess({ ...values, intern: val }, INTERESTS)}
@@ -82,18 +68,10 @@ const SignupPage: BlitzPage = () => {
         ))}
       {showPopup(INTERESTS) && values.intern.bio.length && (
         <Interests
-          interest={values.intern.interests}
-          onSuccess={(interests) => {
-            if (interests)
-              handleSuccess({ ...values, intern: { ...values.intern, interests } }, VERIFY)
-          }}
           goBack={() => setIndex(ABOUT)}
+          internValues={{ ...values.general, ...values.intern }}
         />
       )}
-      ver
-      {showPopup(VERIFY) && values.general.role ? (
-        <VerifyEmail values={values} goBack={() => setIndex(INTERESTS)} />
-      ) : null}
     </>
   )
 }
