@@ -41,11 +41,11 @@ const SignupPage: BlitzPage = () => {
           values.general.name && "pointer-events-none"
         }`}
       >
-        <h1 className="text-center h-0 tracking-4">
+        <h1 className="h-0 text-center tracking-4">
           It&apos;s time to become a <span className="animated-text">revolutionary</span>
         </h1>
-        <div className="h-full w-full flex items-center justify-center gap-8">
-          <div className="hidden lg:block select-none">
+        <div className="flex gap-8 justify-center items-center w-full h-full">
+          <div className="hidden select-none lg:block">
             <Image
               src="/images/signup-illustration.svg"
               alt="signup-illustration"

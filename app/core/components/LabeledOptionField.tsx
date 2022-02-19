@@ -48,7 +48,7 @@ export const LabeledOptionField = forwardRef<HTMLInputElement, LabeledOptionFiel
             ref={ref}
             required={true}
             component="select"
-            className="rounded text-gray-700 focus:outline-none focus:shadow-outline"
+            className="text-gray-700 rounded focus:outline-none focus:shadow-outline"
           >
             {values.map((value: string) => (
               <option key={value} value={value}>

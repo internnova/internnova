@@ -7,11 +7,11 @@ const LoginPage: BlitzPage = () => {
   const router = useRouter()
 
   return (
-    <div className="h-screen overflow-hidden select-none">
-      <h1 className="text-center h-0 tracking-4 pt-8">
+    <div className="overflow-hidden h-screen select-none">
+      <h1 className="pt-8 h-0 text-center tracking-4">
         Welcome back to <span className="animated-text">InternNova</span>!
       </h1>
-      <div className="h-screen w-full flex items-center justify-center select-none gap-8">
+      <div className="flex gap-8 justify-center items-center w-full h-screen select-none">
         <div className="hidden lg:block">
           <Image
             src="/images/login-illustration.svg"

@@ -16,7 +16,7 @@ export const VerifyEmail = ({ values, goBack }: { values: values; goBack(): void
 
   return (
     <Popup title="Create account" step={3} scroll={false}>
-      <div className="flex flex-col gap-5 px-8 py-10 mb-4">
+      <div className="flex flex-col gap-5 py-10 px-8 mb-4">
         <p>
           You need to verify your email. Be sure to check <br />
           your spam folder or unblock auth@internnova.co

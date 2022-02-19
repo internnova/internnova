@@ -13,7 +13,7 @@ const ForgotPasswordPage: BlitzPage = () => {
   return (
     <div className="h-screen w-full flex items-center justify-center select-none !overflow-hidden">
       <div className="grid place-items-start pl-4 lg:w-1/2">
-        <div className="px-8 flex flex-col gap-2 justify-center">
+        <div className="flex flex-col gap-2 justify-center px-8">
           <h1>Forgot your password?</h1>
           <p>
             Enter the email you used to login to InternNova. You may need to check your spam folder
@@ -22,7 +22,7 @@ const ForgotPasswordPage: BlitzPage = () => {
         </div>
 
         {isSuccess ? (
-          <div className="px-8 mt-8 flex flex-col gap-2 justify-centers">
+          <div className="flex flex-col gap-2 px-8 mt-8 justify-centers">
             <h2>Request Submitted</h2>
             <p>
               If your email is in our system, you will receive instructions to reset your password
@@ -48,7 +48,7 @@ const ForgotPasswordPage: BlitzPage = () => {
           </Form>
         )}
       </div>
-      <div className="hidden lg:block select-none">
+      <div className="hidden select-none lg:block">
         <Image
           src="/images/forgot-illustration.svg"
           alt="forgot-password-illustration"

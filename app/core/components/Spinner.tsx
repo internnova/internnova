@@ -1,5 +1,5 @@
 export const Spinner = () => (
-  <div className="h-screen w-full overflow-hidden grid place-items-center">
+  <div className="grid overflow-hidden place-items-center w-full h-screen">
     <div className="loader" />
   </div>
 )

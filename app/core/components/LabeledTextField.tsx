@@ -29,7 +29,7 @@ export const LabeledTextField = React.forwardRef<HTMLInputElement, LabeledTextFi
           {...props}
           ref={ref}
           required={true}
-          className="shadow appearance-none border rounded text-[16px] w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="py-4 px-3 w-full leading-tight text-gray-700 rounded border shadow appearance-none focus:outline-none text-[16px] focus:shadow-outline"
         />
 
         {touched && normalizedError && <ErrorLabel error={normalizedError} />}

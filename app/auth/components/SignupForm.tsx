@@ -46,7 +46,7 @@ export const SignupForm = ({ onSuccess }: SignupFormProps) => {
       }}
     >
       <div className="flex">
-        <h2 className="font-medium pr-5">I&apos;m a</h2>
+        <h2 className="pr-5 font-medium">I&apos;m a</h2>
         <LabeledOptionField
           name="role"
           values={["Student", "Company"]}

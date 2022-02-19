@@ -21,7 +21,7 @@ const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
       {children}
       {user && !user.verified && !noVerification && (
         <Popup title="Verify Email" scroll={false} {...{ style: { height: "30ch" } }}>
-          <div className="px-8 py-10 mb-4 flex flex-col gap-6">
+          <div className="flex flex-col gap-6 py-10 px-8 mb-4">
             <div className="">
               You&apos;re almost there! Just verify your email to continue. Be sure to check <br />
               your spam folder or unblock auth@internnova.co

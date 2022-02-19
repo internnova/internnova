@@ -21,14 +21,14 @@ export const UploadAvatar = () => {
   return (
     <label htmlFor="avatar" className="cursor-pointer">
       <div
-        className="imageUploader relative bg-cover bg-no-repeat rounded-full h-[100px] w-[100px] grid place-items-center box-content"
+        className="box-content grid relative place-items-center bg-no-repeat bg-cover rounded-full imageUploader h-[100px] w-[100px]"
         style={{ backgroundImage: `url(${src})`, backgroundPosition: "50%" }}
       >
-        <div className="changeAvatar h-full w-full rounded-full grid place-items-center absolute text-[12px] font-bold uppercase text-white leading-[12px] whitespace-pre pointer-events-none text-center">
+        <div className="grid absolute place-items-center w-full h-full font-bold text-center text-white uppercase whitespace-pre rounded-full pointer-events-none changeAvatar text-[12px] leading-[12px]">
           Change <br />
           Avatar
         </div>
-        <div className="absolute rounded-full top-0 right-0 bg-white z-10 w-[28px] h-[28px] grid place-items-center">
+        <div className="grid absolute top-0 right-0 z-10 place-items-center bg-white rounded-full w-[28px] h-[28px]">
           <BsUpload width={28} height={28} color="black" />
         </div>
         <LabeledFileField

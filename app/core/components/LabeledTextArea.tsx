@@ -26,7 +26,7 @@ export const LabeledTextField = React.forwardRef<HTMLTextAreaElement, LabeledTex
           {...props}
           ref={ref}
           required={true}
-          className="h-[100px] resize-none shadow appearance-none border rounded text-[16px] w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+          className="py-2 px-3 w-full leading-tight text-gray-700 rounded border shadow appearance-none resize-none focus:outline-none h-[100px] text-[16px] focus:shadow-outline"
         />
 
         {touched && normalizedError && <ErrorLabel error={normalizedError} />}

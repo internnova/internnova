@@ -28,7 +28,7 @@ const ConfirmPassswordPage: BlitzPage = () => {
       <>
         {error && !isSuccess && <p>{error}</p>}
         <Popup title="Confirm your email" scroll={false} {...{ style: { height: "30ch" } }}>
-          <div className="flex flex-col gap-6 px-8 py-10 mb-4">
+          <div className="flex flex-col gap-6 py-10 px-8 mb-4">
             <p>Please confirm your email address by clicking the button below.</p>
             <Button
               options="w-full"

@@ -24,7 +24,7 @@ export const InternPopup = ({
           onSuccess(values)
         }}
       >
-        <div className="grid place-items-center w-full pb-4">
+        <div className="grid place-items-center pb-4 w-full">
           <UploadAvatar />
         </div>
         <LabeledTextArea name="bio" placeholder="Bio" />
