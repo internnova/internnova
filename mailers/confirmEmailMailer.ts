@@ -29,7 +29,7 @@ export function confirmEmailMailer({ to, token }: ResetPasswordMailer) {
   return {
     async send() {
       if (process.env.NODE_ENV === "development") {
-        previewEmail(msg)
+        await previewEmail(msg)
       } else {
         mailer.send(msg)
       }

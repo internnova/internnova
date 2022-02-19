@@ -1,11 +1,11 @@
-import { resolver, SecurePassword } from "blitz"
+import { Ctx, resolver, SecurePassword } from "blitz"
 import db from "db"
 import { CompanySignup } from "app/auth/validations"
 import { checkUserExists } from "./checkUserExists"
 
 export default resolver.pipe(
   resolver.zod(CompanySignup),
-  async ({ email, password, name, description, logo, website }, ctx) => {
+  async ({ email, password, name, description, logo, website }, ctx: Ctx) => {
     const hashedPassword = await SecurePassword.hash(password.trim())
     await checkUserExists(email)
     const { id, role } = await db.user.create({

@@ -54,20 +54,7 @@ const UserInfo = () => {
       </>
     )
   } else {
-    return (
-      <>
-        <Link href={Routes.SignupPage()}>
-          <a>
-            <strong>Sign Up</strong>
-          </a>
-        </Link>
-        <Link href={Routes.LoginPage()}>
-          <a>
-            <strong>Login</strong>
-          </a>
-        </Link>
-      </>
-    )
+    return <></>
   }
 }
 

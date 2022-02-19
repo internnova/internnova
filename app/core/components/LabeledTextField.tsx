@@ -1,5 +1,6 @@
 import React, { PropsWithoutRef } from "react"
 import { useField } from "react-final-form"
+import { ErrorLabel } from "./ErrorLabel"
 
 export interface LabeledTextFieldProps extends PropsWithoutRef<JSX.IntrinsicElements["input"]> {
   /** Field name. */
@@ -17,7 +18,7 @@ export const LabeledTextField = React.forwardRef<HTMLInputElement, LabeledTextFi
       meta: { touched, error, submitError, submitting },
     } = useField(name)
 
-    const normalizedError = Array.isArray(error) ? error.join(", ") : error || submitError
+    const normalizedError: string = Array.isArray(error) ? error.join(", ") : error || submitError
 
     return (
       <div {...outerProps}>
@@ -31,11 +32,7 @@ export const LabeledTextField = React.forwardRef<HTMLInputElement, LabeledTextFi
           className="shadow appearance-none border rounded text-[16px] w-full py-4 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
         />
 
-        {touched && normalizedError && (
-          <div role="alert" className="mt-2">
-            <p className="text-red-500 text-sm italic">{normalizedError}</p>
-          </div>
-        )}
+        {touched && normalizedError && <ErrorLabel error={normalizedError} />}
       </div>
     )
   }

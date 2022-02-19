@@ -920,6 +920,7 @@ __metadata:
     react-dom: 18.0.0-rc.0-next-fe905f152-20220107
     react-final-form: 6.5.8
     react-icons: ^4.3.1
+    sweetalert: ^2.1.2
     tailwindcss: ^3.0.19
     typescript: ~4.5.5
     zod: 3.11.6
@@ -10378,6 +10379,13 @@ __metadata:
   languageName: node
   linkType: hard
 
+"promise-polyfill@npm:^6.0.2":
+  version: 6.1.0
+  resolution: "promise-polyfill@npm:6.1.0"
+  checksum: 6f1899cca37e48f67a424842282acd525d8d99d3536f2d97e37a117cfc4a0006683330ceaf5a15fbc09b4450f319a680292f9970a5f8e9cf90acbce0bdb0f751
+  languageName: node
+  linkType: hard
+
 "promise-retry@npm:^2.0.1":
   version: 2.0.1
   resolution: "promise-retry@npm:2.0.1"
@@ -12237,6 +12245,16 @@ __metadata:
   version: 1.0.0
   resolution: "supports-preserve-symlinks-flag@npm:1.0.0"
   checksum: 53b1e247e68e05db7b3808b99b892bd36fb096e6fba213a06da7fab22045e97597db425c724f2bbd6c99a3c295e1e73f3e4de78592289f38431049e1277ca0ae
+  languageName: node
+  linkType: hard
+
+"sweetalert@npm:^2.1.2":
+  version: 2.1.2
+  resolution: "sweetalert@npm:2.1.2"
+  dependencies:
+    es6-object-assign: ^1.1.0
+    promise-polyfill: ^6.0.2
+  checksum: 6f15adc82643c1374b70390ca56eca62f07365ca933c6b3722e2f651a19fff810120c2d7547e76de17a2b5da36e31f14d1a12358e69e0548c91b74e5af887bd3
   languageName: node
   linkType: hard
 

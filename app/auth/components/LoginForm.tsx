@@ -25,9 +25,6 @@ export const LoginForm = (props: LoginFormProps) => {
             props.onSuccess?.(user)
           } catch (error: any) {
             if (error instanceof AuthenticationError) {
-              if (error.name === "USER_IS_INTERN") {
-                router.push("https://intern.internnova.co/")
-              }
               return { [FORM_ERROR]: "Sorry, those credentials are invalid" }
             } else {
               return {

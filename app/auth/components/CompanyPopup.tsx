@@ -1,22 +1,25 @@
 import Form from "../../core/components/Form"
 import { Company } from "../validations"
-import { SignUpValues } from "./SignupForm"
-import signUp from "../mutations/company-signup"
-import { useMutation } from "blitz"
 import { LabeledTextField } from "../../core/components/LabeledTextField"
-import React, { useState } from "react"
 import LabeledTextArea from "../../core/components/LabeledTextArea"
 import { Popup } from "../../core/components/Popup"
 import { UploadAvatar } from "app/core/components/UploadAvatar"
+import { CompanyValues } from "../pages/signup"
 
-export const CompanyPopup = ({ onSuccess }: { onSuccess(values): void }) => {
+export const CompanyPopup = ({
+  onSuccess,
+  initials: { description, website },
+}: {
+  onSuccess(values): void
+  initials: CompanyValues
+}) => {
   return (
     <Popup title="Create account" step={1} scroll={false}>
       <Form
         schema={Company}
         options=""
         submitText="Next"
-        initialValues={{ description: "", website: "" }}
+        initialValues={{ description, website }}
         onSubmit={(values) => {
           onSuccess(values)
         }}

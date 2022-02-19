@@ -3,6 +3,7 @@ import { ReactNode, PropsWithoutRef } from "react"
 import { Form as FinalForm, FormProps as FinalFormProps } from "react-final-form"
 import { z } from "zod"
 import { Button } from "./Button"
+import { ErrorLabel } from "./ErrorLabel"
 
 export { FORM_ERROR } from "final-form"
 
@@ -46,11 +47,7 @@ export function Form<S extends z.ZodType<any, any>>({
             {/* Form fields supplied as children are rendered here */}
             {children}
 
-            {submitError && (
-              <div role="alert">
-                <p className="text-red-500 text-sm italic">{submitError}</p>
-              </div>
-            )}
+            {submitError && <ErrorLabel error={submitError} />}
 
             {submitText && (
               <Button {...{ type: "submit", disabled: submitting }}>{submitText}</Button>

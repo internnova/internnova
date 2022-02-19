@@ -6,11 +6,14 @@ import {
   AuthorizationError,
   ErrorFallbackProps,
   useQueryErrorResetBoundary,
-  Router,
+  useRouter,
+  Routes,
+  useMutation,
 } from "blitz"
 import "app/core/styles/index.css"
 import { Suspense } from "react"
 import { Spinner } from "app/core/components/Spinner"
+import logout from "../auth/mutations/logout"
 
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
@@ -26,8 +29,11 @@ export default function App({ Component, pageProps }: AppProps) {
 }
 
 function RootErrorFallback({ error }: ErrorFallbackProps) {
+  const router = useRouter()
   if (error instanceof AuthenticationError) {
-    Router.push("/signup")
+    if (router.pathname !== "/login") {
+      router.push(Routes.LoginPage())
+    }
     return <Spinner />
   } else if (error instanceof AuthorizationError) {
     return (

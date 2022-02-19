@@ -4,15 +4,22 @@ import Form from "../../core/components/Form"
 import { Intern } from "../validations"
 import LabeledTextArea from "../../core/components/LabeledTextArea"
 import { LabeledTextField } from "app/core/components/LabeledTextField"
+import { InternValues } from "../pages/signup"
 
-export const InternPopup = ({ onSuccess }: { onSuccess(values): void }) => {
+export const InternPopup = ({
+  onSuccess,
+  initials: { bio, oneliner },
+}: {
+  onSuccess(values): void
+  initials: InternValues
+}) => {
   return (
     <Popup title="Create account" step={1} scroll={false}>
       <Form
         schema={Intern}
         options=""
         submitText="Next"
-        initialValues={{ bio: "", oneliner: "", logo: "" }}
+        initialValues={{ bio, oneliner }}
         onSubmit={(values) => {
           onSuccess(values)
         }}

@@ -45,12 +45,12 @@ model User {
   name           String?
   email          String    @unique
   hashedPassword String?
-  verified       Boolean   @default(false)
   role           Role      @default(INTERN)
   company        Company?
   intern         Intern?
   sessions       Session[]
   tokens         Token[]
+  verified       Boolean   @default(false)
 
   @@index([id, email, role])
 }

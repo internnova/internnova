@@ -1,6 +1,5 @@
-import { resolver, SecurePassword, hash256 } from "blitz"
+import { resolver, hash256 } from "blitz"
 import db from "db"
-import login from "./login"
 
 import { ConfirmEmail } from "../validations"
 

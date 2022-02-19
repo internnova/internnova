@@ -1,5 +1,7 @@
-import { Head, BlitzLayout, useRouter, Routes } from "blitz"
+import { Head, BlitzLayout, useRouter, Routes, useMutation } from "blitz"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import { Meta } from "../partials/Meta"
+import { Popup } from "../components/Popup"
 
 const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
   title,
@@ -7,21 +9,20 @@ const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
   children,
 }) => {
   const user = useCurrentUser()
-  const router = useRouter()
-
-  if (user && !user.verified && !noVerification) {
-    if (router.pathname !== "signup") {
-      router.push(Routes.SignupPage())
-      return <></>
-    }
-  }
-
   return (
     <>
       <Head>
         <title>{`${title} | InternNova` || "InternNova"}</title>
+        <Meta title={`${title} | InternNova` || "InternNova"} />
       </Head>
       {children}
+      {user && !user.verified && !noVerification && (
+        <Popup title="Verify Email" scroll={false} {...{ style: { height: "30ch" } }}>
+          <div className="px-8 py-10 mb-4">
+            You&apos;re almost there! Just verify your email to continue
+          </div>
+        </Popup>
+      )}
     </>
   )
 }

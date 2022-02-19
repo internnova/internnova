@@ -1,26 +1,18 @@
 import { useState } from "react"
-import { useMutation } from "blitz"
-import internSignup from "../mutations/intern-signup"
 import { Popup } from "../../core/components/Popup"
 import { BsFillCheckCircleFill } from "react-icons/bs"
 import { Button } from "../../core/components/Button"
 import { SignUpValues } from "./SignupForm"
+import { ErrorLabel } from "../../core/components/ErrorLabel"
 
-interface InternValues extends SignUpValues {
-  bio: string
-  oneliner: string
-  logo: string
-}
-
-export const Interests = ({
-  onSuccess,
-  interest,
-}: {
+interface InterestsProps {
   onSuccess(interests: string[]): void
   interest: string[]
-}) => {
-  const [signUpMutation] = useMutation(internSignup)
-  const [interests, setInterests] = useState<string[]>(interest || [])
+  goBack(): void
+}
+
+export const Interests = ({ onSuccess, interest, goBack }: InterestsProps) => {
+  const [interests, setInterests] = useState<string[]>(interest ?? [])
   const fields = [
     "Web development",
     "AI/ML",
@@ -43,10 +35,6 @@ export const Interests = ({
     }
   }
 
-  const onSubmit = async () => {
-    onSuccess(interests)
-  }
-
   return (
     <Popup title="Your interests" step={2} scroll={true}>
       <div className="flex flex-col gap-5 px-8 py-10 mb-4">
@@ -58,7 +46,7 @@ export const Interests = ({
             const selected = isSelected(field)
             return (
               <div
-                className="flex items-center justify-between rounded-lg p-5 bg-white"
+                className="flex items-center justify-between w-full rounded-lg p-5 bg-white"
                 style={{ border: `1px solid ${selected ? "#5c6cff" : "#e6e6e6"}` }}
                 key={field}
                 onClick={() => handleInterestSelect(field)}
@@ -69,14 +57,19 @@ export const Interests = ({
             )
           })}
         </div>
-        {interests.length === 0 && (
-          <span className="text-red-500 text-sm italic">
-            Select at least one interest to continue
-          </span>
-        )}
-        <Button options="w-full" {...{ disabled: interests.length === 0, onClick: onSubmit }}>
-          Next
-        </Button>
+        {interests.length === 0 && <ErrorLabel error="Select at least one interest to continue" />}
+        <div className="flex w-full items-center gap-4">
+          <Button
+            options="w-1/2"
+            onClick={() => onSuccess(interests)}
+            {...{ disabled: interests.length === 0 }}
+          >
+            Next
+          </Button>
+          <Button options="w-1/2" onClick={goBack}>
+            Back
+          </Button>
+        </div>
       </div>
     </Popup>
   )

@@ -7,6 +7,7 @@ import React, {
   useState,
 } from "react"
 import { useField, UseFieldConfig, Field } from "react-final-form"
+import { ErrorLabel } from "./ErrorLabel"
 
 export interface LabeledOptionFieldProps extends PropsWithoutRef<JSX.IntrinsicElements["input"]> {
   /** Field name. */
@@ -57,11 +58,7 @@ export const LabeledOptionField = forwardRef<HTMLInputElement, LabeledOptionFiel
           </Field>
         </label>
 
-        {touched && normalizedError && (
-          <div role="alert" style={{ color: "red" }}>
-            {normalizedError}
-          </div>
-        )}
+        {touched && normalizedError && <ErrorLabel error={normalizedError} />}
       </div>
     )
   }
