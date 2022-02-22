@@ -1,10 +1,10 @@
-import { AuthenticationError } from "blitz"
+import {AuthenticationError} from "blitz"
 import db from "db"
 
 export const checkUserExists = async (email: string) => {
   const user = await db.user.findFirst({
-    where: { email: email.toLowerCase().trim() },
-    select: { id: true, name: true, email: true, role: true },
+    where: {email: email.toLowerCase().trim()},
+    select: {id: true, name: true, email: true, role: true},
   })
 
   if (user) {
@@ -12,26 +12,23 @@ export const checkUserExists = async (email: string) => {
       where: {
         userId: user.id,
       },
-      select: { id: true },
+      select: {id: true},
     })
 
     const intern = await db.intern.findFirst({
       where: {
         userId: user.id,
       },
-      select: { id: true },
+      select: {id: true},
     })
 
-    if (company) {
-      const companyError = new AuthenticationError("Company already exists")
-      companyError.name = "COMPANY_EXISTS"
+    if (company || intern) {
+      const userError = new AuthenticationError("User already exists")
+      userError.name = "USER_IS_INTERN"
 
-      throw companyError
-    } else if (intern) {
-      const internError = new AuthenticationError("Intern already exists")
-      internError.name = "USER_IS_INTERN"
-
-      throw internError
+      throw userError
+    } else {
+      return true
     }
   }
 }

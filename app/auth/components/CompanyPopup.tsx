@@ -24,7 +24,7 @@ export const CompanyPopup = ({ general }: { general: SignUpValues }) => {
           await sendConfirmationMutation(general.role)
         }}
       >
-        <div className="grid place-items-center pb-4 w-full">
+        <div className="grid w-full pb-4 place-items-center">
           <UploadAvatar />
         </div>
         <LabeledTextArea name="description" placeholder="Description" />
