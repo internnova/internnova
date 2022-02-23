@@ -1,4 +1,4 @@
-import {SpinningOrbitLoader} from "react-loaders-kit"
+import { SpinningOrbitLoader } from "react-loaders-kit"
 export const Spinner = () => {
   // very simple spinner
   return (

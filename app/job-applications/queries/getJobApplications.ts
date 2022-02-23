@@ -1,11 +1,11 @@
-import {paginate, resolver, Ctx} from "blitz"
-import db, {Prisma} from "db"
+import { paginate, resolver, Ctx } from "blitz"
+import db, { Prisma } from "db"
 
 interface GetJobApplicationsInput
   extends Pick<Prisma.JobApplicationFindManyArgs, "where" | "orderBy" | "skip" | "take"> {}
 
 export default resolver.pipe(
-  async ({where, orderBy, skip = 0, take = 100}: GetJobApplicationsInput, ctx: Ctx) => {
+  async ({ where, orderBy, skip = 0, take = 100 }: GetJobApplicationsInput, ctx: Ctx) => {
     ctx.session.$authorize()
     if (!where) {
       if (ctx.session.role === "INTERN") {
@@ -28,7 +28,7 @@ export default resolver.pipe(
     } = await paginate({
       skip,
       take,
-      count: () => db.jobApplication.count({where}),
+      count: () => db.jobApplication.count({ where }),
       query: (paginateArgs) =>
         db.jobApplication.findMany({
           ...paginateArgs,
