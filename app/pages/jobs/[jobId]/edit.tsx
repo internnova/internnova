@@ -1,67 +1,72 @@
 import Layout from "app/core/layouts/Layout"
-import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
-import { Suspense } from "react"
-import { z } from "zod"
-import { JobForm, FORM_ERROR } from "app/jobs/components/JobForm"
-import updateJob, { UpdateJobClient } from "app/jobs/mutations/updateJob"
+import {Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes} from "blitz"
+import {Suspense} from "react"
+import {z} from "zod"
+import {JobForm, FORM_ERROR} from "app/jobs/components/JobForm"
+import updateJob, {UpdateJobClient} from "app/jobs/mutations/updateJob"
 import getJob from "app/jobs/queries/getJob"
 
 export const EditJob = () => {
   const router = useRouter()
   const jobId = useParam("jobId", "number")
-  const [job, { setQueryData }] = useQuery(
+  const [job, {setQueryData}] = useQuery(
     getJob,
-    { id: jobId },
+    {id: jobId},
     {
       // This ensures the query never refreshes and overwrites the form data while the user is editing.
       staleTime: Infinity,
     }
   )
   const [updateJobMutation] = useMutation(updateJob)
-  const clientSkills = z.object({ skillsRequired: z.optional(z.string()) })
+  const clientSkills = z.object({skillsRequired: z.optional(z.string())})
 
-  return (
-    <>
-      <Head>
-        <title>Edit Job {job.id}</title>
-      </Head>
+  if (!job) {
+    router.push("/jobs")
+    return <></>
+  } else {
+    return (
+      <>
+        <Head>
+          <title>Edit Job {job?.id}</title>
+        </Head>
 
-      <div>
-        <h1>Edit Job {job.id}</h1>
-        <pre>{JSON.stringify(job, null, 2)}</pre>
+        <div>
+          <h1>Edit Job {job.id}</h1>
+          <pre>{JSON.stringify(job, null, 2)}</pre>
 
-        <JobForm
-          submitText="Update Job"
-          schema={UpdateJobClient}
-          initialValues={{
-            ...job,
-            salary: job.salary || undefined,
-            skillsRequired: job.skillsRequired.join(", "),
-          }}
-          onSubmit={async (values) => {
-            try {
-              const updated = await updateJobMutation({
-                ...values,
-                id: job.id,
-                skillsRequired: values.skillsRequired?.split(", ") || undefined,
-              })
-              await setQueryData({
-                ...updated,
-                company: job.company,
-                applications: job.applications,
-              })
-              router.push(Routes.ShowJobPage({ jobId: updated.id }))
-            } catch (error: any) {
-              console.error(error)
-              return {
-                [FORM_ERROR]: error.toString(),
+          <JobForm
+            submitText="Update Job"
+            schema={UpdateJobClient}
+            initialValues={{
+              ...job,
+              salary: job.salary || undefined,
+              skillsRequired: job.skillsRequired.join(", "),
+            }}
+            onSubmit={async (values) => {
+              try {
+                const updated = await updateJobMutation({
+                  ...values,
+                  id: job.id,
+                  skillsRequired: values.skillsRequired?.split(", ") || undefined,
+                })
+                await setQueryData({
+                  ...updated,
+                  company: job.company,
+                  applications: job.applications,
+                })
+                router.push(Routes.ShowJobPage({jobId: updated.id}))
+              } catch (error: any) {
+                console.error(error)
+                return {
+                  [FORM_ERROR]: error.toString(),
+                }
               }
-            }
-          }}
-        />
-      </div>
-    </>
-  )
+            }}
+          />
+        </div>
+      </>
+    )
+  }
 }
 
 const EditJobPage: BlitzPage = () => {
