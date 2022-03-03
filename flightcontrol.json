@@ -1,0 +1,46 @@
+{
+  "environments": [
+    {
+      "id": "production",
+      "name": "Production",
+      "region": "us-west-2",
+      "source": {
+        "branch": "main"
+      },
+      "services": [
+        {
+          "id": "my-blitz",
+          "name": "My Blitz",
+          "type": "fargate",
+          "cpu": 0.25,
+          "memory": 0.5,
+          "domain": "www.internnova.co",
+          "minInstances": 1,
+          "maxInstances": 1,
+          "buildCommand": "blitz build && blitz prisma migrate deploy",
+          "startCommand": "blitz start",
+          "envVariables": {
+            "APP_ENV": "production",
+            "SESSION_SECRET_KEY": "88bcc4ad1aafd7a914e0ae6f6acd9075",
+            "DATABASE_URL": {
+              "fromService": {
+                "id": "db",
+                "value": "dbConnectionString"
+              }
+            }
+          }
+        },
+        {
+          "id": "db",
+          "name": "Database",
+          "type": "rds",
+          "engine": "postgres",
+          "engineVersion": "12",
+          "instanceSize": "db.t2.micro",
+          "storage": 20,
+          "private": false
+        }
+      ]
+    }
+  ]
+}
