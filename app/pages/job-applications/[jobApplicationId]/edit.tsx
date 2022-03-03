@@ -1,18 +1,18 @@
-import {Suspense} from "react"
-import {Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes} from "blitz"
+import { Suspense } from "react"
+import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getJobApplication from "app/job-applications/queries/getJobApplication"
 import updateJobApplication, {
   UpdateJobApplication,
 } from "app/job-applications/mutations/updateJobApplication"
-import {JobApplicationForm, FORM_ERROR} from "app/job-applications/components/JobApplicationForm"
+import { JobApplicationForm, FORM_ERROR } from "app/job-applications/components/JobApplicationForm"
 
 export const EditJobApplication = () => {
   const router = useRouter()
   const jobApplicationId = useParam("jobApplicationId", "number")
-  const [jobApplication, {setQueryData}] = useQuery(
+  const [jobApplication, { setQueryData }] = useQuery(
     getJobApplication,
-    {id: jobApplicationId},
+    { id: jobApplicationId },
     {
       // This ensures the query never refreshes and overwrites the form data while the user is editing.
       staleTime: Infinity,
@@ -44,7 +44,7 @@ export const EditJobApplication = () => {
                   id: jobApplication.id,
                 })
                 await setQueryData(updated)
-                router.push(Routes.ShowJobApplicationPage({jobApplicationId: updated.id}))
+                router.push(Routes.ShowJobApplicationPage({ jobApplicationId: updated.id }))
               } catch (error: any) {
                 console.error(error)
                 return {

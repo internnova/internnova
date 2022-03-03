@@ -1,24 +1,24 @@
 import Layout from "app/core/layouts/Layout"
-import {Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes} from "blitz"
-import {Suspense} from "react"
-import {z} from "zod"
-import {JobForm, FORM_ERROR} from "app/jobs/components/JobForm"
-import updateJob, {UpdateJobClient} from "app/jobs/mutations/updateJob"
+import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
+import { Suspense } from "react"
+import { z } from "zod"
+import { JobForm, FORM_ERROR } from "app/jobs/components/JobForm"
+import updateJob, { UpdateJobClient } from "app/jobs/mutations/updateJob"
 import getJob from "app/jobs/queries/getJob"
 
 export const EditJob = () => {
   const router = useRouter()
   const jobId = useParam("jobId", "number")
-  const [job, {setQueryData}] = useQuery(
+  const [job, { setQueryData }] = useQuery(
     getJob,
-    {id: jobId},
+    { id: jobId },
     {
       // This ensures the query never refreshes and overwrites the form data while the user is editing.
       staleTime: Infinity,
     }
   )
   const [updateJobMutation] = useMutation(updateJob)
-  const clientSkills = z.object({skillsRequired: z.optional(z.string())})
+  const clientSkills = z.object({ skillsRequired: z.optional(z.string()) })
 
   if (!job) {
     router.push("/jobs")
@@ -54,7 +54,7 @@ export const EditJob = () => {
                   company: job.company,
                   applications: job.applications,
                 })
-                router.push(Routes.ShowJobPage({jobId: updated.id}))
+                router.push(Routes.ShowJobPage({ jobId: updated.id }))
               } catch (error: any) {
                 console.error(error)
                 return {

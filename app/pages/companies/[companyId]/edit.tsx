@@ -1,16 +1,16 @@
 import Layout from "app/core/layouts/Layout"
-import {Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes} from "blitz"
-import {Suspense} from "react"
-import {CompanyForm, FORM_ERROR} from "app/companies/components/CompanyForm"
-import updateCompany, {UpdateCompany} from "app/companies/mutations/updateCompany"
+import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
+import { Suspense } from "react"
+import { CompanyForm, FORM_ERROR } from "app/companies/components/CompanyForm"
+import updateCompany, { UpdateCompany } from "app/companies/mutations/updateCompany"
 import getCompany from "app/companies/queries/getCompany"
 
 export const EditCompany = () => {
   const router = useRouter()
   const companyId = useParam("companyId", "number")
-  const [company, {setQueryData}] = useQuery(
+  const [company, { setQueryData }] = useQuery(
     getCompany,
-    {id: companyId},
+    { id: companyId },
     {
       // This ensures the query never refreshes and overwrites the form data while the user is editing.
       staleTime: Infinity,
@@ -47,8 +47,8 @@ export const EditCompany = () => {
                   ...values,
                   id: company.id,
                 })
-                await setQueryData({...updated, jobs: company.jobs})
-                router.push(Routes.ShowCompanyPage({companyId: updated.id}))
+                await setQueryData({ ...updated, jobs: company.jobs })
+                router.push(Routes.ShowCompanyPage({ companyId: updated.id }))
               } catch (error: any) {
                 console.error(error)
                 return {

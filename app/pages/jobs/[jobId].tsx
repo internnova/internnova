@@ -10,7 +10,7 @@ import {
   useMutation,
   Routes,
 } from "blitz"
-import {Suspense} from "react"
+import { Suspense } from "react"
 import deleteJob from "app/jobs/mutations/deleteJob"
 import getJob from "app/jobs/queries/getJob"
 
@@ -18,7 +18,7 @@ export const Job = () => {
   const router = useRouter()
   const jobId = useParam("jobId", "number")
   const [deleteJobMutation] = useMutation(deleteJob)
-  const [job] = useQuery(getJob, {id: jobId})
+  const [job] = useQuery(getJob, { id: jobId })
   const session = useSession()
 
   if (job) {
@@ -32,7 +32,7 @@ export const Job = () => {
           <h1>Job {job.id}</h1>
           <pre>{JSON.stringify(job, null, 2)}</pre>
 
-          <Link href={Routes.EditJobPage({jobId: job.id})}>
+          <Link href={Routes.EditJobPage({ jobId: job.id })}>
             <a>Edit</a>
           </Link>
 
@@ -41,11 +41,11 @@ export const Job = () => {
               type="button"
               onClick={async () => {
                 if (window.confirm("This will be deleted")) {
-                  await deleteJobMutation({id: job.id})
+                  await deleteJobMutation({ id: job.id })
                   router.push(Routes.JobsPage())
                 }
               }}
-              style={{marginLeft: "0.5rem"}}
+              style={{ marginLeft: "0.5rem" }}
             >
               Delete
             </button>
@@ -55,7 +55,7 @@ export const Job = () => {
             !job.applications
               .map((application) => application.internId)
               .includes(session?.userId || NaN) && (
-              <Link href={Routes.NewJobApplicationPage({jobId: job.id})}>
+              <Link href={Routes.NewJobApplicationPage({ jobId: job.id })}>
                 <a>Apply</a>
               </Link>
             )}

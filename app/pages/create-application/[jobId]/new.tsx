@@ -1,5 +1,5 @@
 import Layout from "app/core/layouts/Layout"
-import {FORM_ERROR, JobApplicationForm} from "app/job-applications/components/JobApplicationForm"
+import { FORM_ERROR, JobApplicationForm } from "app/job-applications/components/JobApplicationForm"
 import createJobApplication, {
   CreateJobApplication,
 } from "app/job-applications/mutations/createJobApplication"
@@ -21,7 +21,7 @@ const NewJobApplicationPage: BlitzPage = () => {
   const session = useSession()
   const [job] = useQuery(
     getJob,
-    {id: jobId},
+    { id: jobId },
     {
       // This ensures the query never refreshes and overwrites the form data while the user is editing.
       staleTime: Infinity,
@@ -50,7 +50,9 @@ const NewJobApplicationPage: BlitzPage = () => {
                   jobId: job.id,
                 })
                 if (jobApplication) {
-                  router.push(Routes.ShowJobApplicationPage({jobApplicationId: jobApplication.id}))
+                  router.push(
+                    Routes.ShowJobApplicationPage({ jobApplicationId: jobApplication.id })
+                  )
                 } else {
                   throw new Error("Application creation failed")
                 }
