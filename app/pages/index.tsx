@@ -35,23 +35,13 @@ export const JobsList = () => {
 const UserInfo = () => {
   const currentUser = useCurrentUser()
   const [logoutMutation] = useMutation(logout)
-
+  let avatar = '/images/default_profile_36.png'
+  console.log(avatar)
   if (currentUser) {
     return (
-      <>
-        <button
-          onClick={async () => {
-            await logoutMutation()
-          }}
-        >
-          Logout
-        </button>
-        <div>
-          User id: <code>{currentUser.id}</code>
-          <br />
-          User role: <code>{currentUser.role}</code>
-        </div>
-      </>
+      <div className="">
+        <div className="h-[36px] w-[36px] rounded-full" style={{backgroundImage: `url(${avatar})`, backgroundPosition: "50%"}}/>
+      </div>
     )
   } else {
     return <></>
@@ -68,6 +58,8 @@ const Home: BlitzPage = () => (
     </div>
   </main>
 )
+
+
 
 Home.suppressFirstRenderFlicker = true
 Home.getLayout = (page) => <Layout title="Home">{page}</Layout>

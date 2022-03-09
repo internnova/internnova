@@ -10,9 +10,7 @@ datasource db {
 model Company {
   id          Int      @id @default(autoincrement())
   userId      Int      @unique
-  name        String   @unique
   description String
-  logo        String?
   website     String?
   createdAt   DateTime @default(now())
   updatedAt   DateTime @updatedAt
@@ -25,8 +23,6 @@ model Company {
 model Intern {
   id              Int              @id @default(autoincrement())
   userId          Int              @unique
-  name            String
-  avatar          String?
   bio             String
   interests       String[]
   createdAt       DateTime         @default(now())
@@ -42,8 +38,9 @@ model User {
   id             Int       @id @default(autoincrement())
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
-  name           String?
+  name           String
   email          String    @unique
+  avatar         String?
   hashedPassword String?
   role           Role      @default(INTERN)
   company        Company?
