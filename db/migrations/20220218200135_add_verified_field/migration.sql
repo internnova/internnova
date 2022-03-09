@@ -9,5 +9,3 @@
 ALTER TABLE "Intern" ADD COLUMN     "avatar" TEXT,
 ADD COLUMN     "name" TEXT NOT NULL;
 
--- AlterTable
-ALTER TABLE "User" DROP COLUMN "logo";

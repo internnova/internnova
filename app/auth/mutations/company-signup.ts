@@ -10,6 +10,8 @@ export default resolver.pipe(
     await checkUserExists(email)
     const { id, role } = await db.user.create({
       data: {
+        name,
+        avatar: logo,
         email: email.toLowerCase().trim(),
         hashedPassword,
         role: "COMPANY",
@@ -18,7 +20,7 @@ export default resolver.pipe(
 
     // we don't need data from the company since the user and company id are the same
     await db.company.create({
-      data: { id: id, name, description, logo, website, userId: id },
+      data: { id: id, description, website, userId: id },
       select: { id: true, name: true },
     })
 
