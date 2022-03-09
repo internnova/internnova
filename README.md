@@ -6,8 +6,8 @@
 Revolutionizing highschool internships</h1>
 <br>
 <p align="center">
-<img src="https://img.shields.io/github/license/internnova/company-dashboard">  <img src="https://img.shields.io/github/languages/top/internnova/company-dashboard">
-  <img src="https://img.shields.io/github/repo-size/internnova/company-dashboard">
+<img src="https://img.shields.io/github/license/internnova/internnova">  <img src="https://img.shields.io/github/languages/top/internnova/internnova">
+  <img src="https://img.shields.io/github/repo-size/internnova/internnova">
 </p>
 <br>
 
@@ -18,13 +18,13 @@ Prerequisites: **Git**, **Node**, **Yarn**
 1. Clone the github repository using the Github CLI.
 
 ```sh
-git clone https://github.com/internnova/company-dashboard
+git clone https://github.com/internnova/internnova
 ```
 
 2. Change to the project directory.
 
 ```sh
-cd company-dashboard
+cd internnova
 ```
 
 3. Installation commands
@@ -43,7 +43,7 @@ yarn run dev
 
 ## :clap: Supporters
 
-[![Stargazers repo roster for https://github.com/internnova/company-dashboard](https://reporoster.com/stars/internnova/company-dashboard)](https://github.com/https://github.com/internnova/company-dashboard/stargazers)
+[![Stargazers repo roster for https://github.com/internnova/company-dashboard](https://reporoster.com/stars/internnova/internnova)](https://github.com/https://github.com/internnova/internnova/stargazers)
 
 <br>
 
@@ -51,7 +51,7 @@ yarn run dev
 
 [Samrath Chadha](https://github.com/0xsamrath) - Lead dev/maintainer
 
-See also the list of [contributors](https://github.com/company-dashboard/contributors) who contributed to this.
+See also the list of [contributors](https://github.com/internnova/contributors) who contributed to this.
 
 ## Built With
 
