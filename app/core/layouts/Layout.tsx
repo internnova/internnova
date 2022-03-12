@@ -4,6 +4,7 @@ import { Meta } from "../partials/Meta"
 import { Popup } from "../components/Popup"
 import { Button } from "../components/Button"
 import sendConfirmationEmail from "../../auth/mutations/sendConfirmationEmail"
+import { Nav } from "../components/Nav"
 
 const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
   title,
@@ -18,6 +19,7 @@ const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
         <title>{`${title} | InternNova` || "InternNova"}</title>
         <Meta title={`${title} | InternNova` || "InternNova"} />
       </Head>
+      <Nav />
       {children}
       {user && !user.verified && !noVerification && (
         <Popup title="Verify Email" scroll={false} {...{ style: { height: "30ch" } }}>

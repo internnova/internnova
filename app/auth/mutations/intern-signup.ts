@@ -20,7 +20,7 @@ export default resolver.pipe(
 
     // we don't need data from the user since the user and intern id are the same
     await db.intern.create({
-      data: { id, name, bio, interests, oneliner, userId: id },
+      data: { id, bio, interests, oneliner, userId: id },
     })
 
     await ctx.session.$create({ userId: id, role })

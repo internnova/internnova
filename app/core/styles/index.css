@@ -48,6 +48,11 @@ button {
   cursor: pointer;
 }
 
+a {
+  text-decoration: none;
+  color: black;
+}
+
 .loader {
   border: 3px solid #f3f3f3;
   border-top-color: #5c6cff;
@@ -77,6 +82,32 @@ button {
 
 .imageUploader:hover .changeAvatar {
   opacity: 1;
+}
+
+.header {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 2px 0px, rgba(0, 0, 0, 0.1) 0px 0px 2px 0px;
+}
+
+.dropdown a, .dropdown .dd-div {
+  @apply py-2 w-[24ch] pl-8 hover:bg-gray-200 flex items-center gap-2;
+}
+
+.search {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid transparent;
+  border-radius: 0.6rem 0px 0px 0.6rem;
+  outline: none;
+}
+
+.search:focus {
+  background: white;
+  border: 1px solid rgb(79 70 229);
+  @apply shadow;
+}
+
+.icon {
+  border-radius: 0 0.6rem 0.6rem 0;
+
 }
 
 @tailwind utilities;

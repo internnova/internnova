@@ -2232,14 +2232,15 @@ __metadata:
     "@tailwindcss/forms": ^0.4.0
     "@types/preview-email": 2.0.1
     "@types/react": 17.0.39
-    autoprefixer: ^10.4.2
+    autoprefixer: latest
     blitz: ^0.45.3
+    cloudinary-react: ^1.7.1
     eslint: ^8.10.0
     final-form: 4.20.6
     husky: 7.0.4
     lint-staged: 12.3.3
     next-seo: ^5.1.0
-    postcss: ^8.4.6
+    postcss: latest
     prettier: 2.5.1
     prettier-plugin-prisma: 3.9.0
     pretty-quick: 3.1.3
@@ -2251,7 +2252,7 @@ __metadata:
     react-icons: ^4.3.1
     react-loaders-kit: ^0.1.3
     sweetalert: ^2.1.2
-    tailwindcss: ^3.0.19
+    tailwindcss: latest
     typescript: ~4.5.5
     zod: 3.11.6
   languageName: unknown
@@ -5470,24 +5471,6 @@ __metadata:
   languageName: node
   linkType: hard
 
-"autoprefixer@npm:^10.4.2":
-  version: 10.4.2
-  resolution: "autoprefixer@npm:10.4.2"
-  dependencies:
-    browserslist: ^4.19.1
-    caniuse-lite: ^1.0.30001297
-    fraction.js: ^4.1.2
-    normalize-range: ^0.1.2
-    picocolors: ^1.0.0
-    postcss-value-parser: ^4.2.0
-  peerDependencies:
-    postcss: ^8.1.0
-  bin:
-    autoprefixer: bin/autoprefixer
-  checksum: dbd13e641eaa7d7e3121769c22cc439222f1a9d0371a583d12300849de7287ece1e793767ff9902842dbfd56c4b7c19ed9fe1947c9f343ba2f4f3519dbddfdef
-  languageName: node
-  linkType: hard
-
 "autoprefixer@npm:^9.6.1":
   version: 9.8.8
   resolution: "autoprefixer@npm:9.8.8"
@@ -5502,6 +5485,24 @@ __metadata:
   bin:
     autoprefixer: bin/autoprefixer
   checksum: 8f017672fbac248db0cf4e86aa707d8b148d9abadb842b5cf4c6be306d80fa6a654fadefd17e46213234c1f0947612acce2864f93e903f3e736b183fc1aedc45
+  languageName: node
+  linkType: hard
+
+"autoprefixer@npm:latest":
+  version: 10.4.2
+  resolution: "autoprefixer@npm:10.4.2"
+  dependencies:
+    browserslist: ^4.19.1
+    caniuse-lite: ^1.0.30001297
+    fraction.js: ^4.1.2
+    normalize-range: ^0.1.2
+    picocolors: ^1.0.0
+    postcss-value-parser: ^4.2.0
+  peerDependencies:
+    postcss: ^8.1.0
+  bin:
+    autoprefixer: bin/autoprefixer
+  checksum: dbd13e641eaa7d7e3121769c22cc439222f1a9d0371a583d12300849de7287ece1e793767ff9902842dbfd56c4b7c19ed9fe1947c9f343ba2f4f3519dbddfdef
   languageName: node
   linkType: hard
 
@@ -7238,6 +7239,27 @@ __metadata:
     process-nextick-args: ^2.0.0
     readable-stream: ^2.3.5
   checksum: 23b3741225a80c1760dff58aafb6a45383d5ee2d42de7124e4e674387cfad2404493d685b35ebfca9098f99c296e5c5719e748c9750c13838a2016ea2d2bb83a
+  languageName: node
+  linkType: hard
+
+"cloudinary-core@npm:^2.11.3":
+  version: 2.12.3
+  resolution: "cloudinary-core@npm:2.12.3"
+  peerDependencies:
+    lodash: ">=4.0"
+  checksum: b736e85ece0cf2ea036092dc1f8b23c2b5e94e90be3c7073178732d4e4c48b3ab6c7716115b6988f10d040ff4223fd5928939fd9f290fb5e33a7e80124534cc2
+  languageName: node
+  linkType: hard
+
+"cloudinary-react@npm:^1.7.1":
+  version: 1.7.1
+  resolution: "cloudinary-react@npm:1.7.1"
+  dependencies:
+    cloudinary-core: ^2.11.3
+    prop-types: ^15.6.2
+  peerDependencies:
+    react: ^16.3.3 || ^17.0.0
+  checksum: 50361761637140c2573ac1e7de1365700d33ca94ec686d278a2be548732db1b04da7a8ea3792ab096ceace891451618bf92efb0e3020af6b44b924bbc8f6faea
   languageName: node
   linkType: hard
 
@@ -18489,6 +18511,17 @@ __metadata:
   languageName: node
   linkType: hard
 
+"postcss@npm:latest":
+  version: 8.4.8
+  resolution: "postcss@npm:8.4.8"
+  dependencies:
+    nanoid: ^3.3.1
+    picocolors: ^1.0.0
+    source-map-js: ^1.0.2
+  checksum: 8e42def1ea98a4ac800d2b8937b19c83c6722da6c39ded72b1877eb743922f51b6e93be3667284b685ac18e8b583f21d97f24e0a73161c70fe8dc6901e614b87
+  languageName: node
+  linkType: hard
+
 "prelude-ls@npm:^1.2.1":
   version: 1.2.1
   resolution: "prelude-ls@npm:1.2.1"
@@ -21768,7 +21801,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"tailwindcss@npm:^3.0.19":
+"tailwindcss@npm:latest":
   version: 3.0.23
   resolution: "tailwindcss@npm:3.0.23"
   dependencies:
