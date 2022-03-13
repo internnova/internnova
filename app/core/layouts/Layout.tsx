@@ -1,4 +1,4 @@
-import { Head, BlitzLayout, useRouter, Routes, useMutation } from "blitz"
+import { Head, BlitzLayout, useRouter, Routes, useMutation, useSession } from "blitz"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { Meta } from "../partials/Meta"
 import { Popup } from "../components/Popup"
@@ -19,6 +19,7 @@ const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
         <title>{`${title} | InternNova` || "InternNova"}</title>
         <Meta title={`${title} | InternNova` || "InternNova"} />
       </Head>
+
       {user !== null && <Nav />}
       <main className="container m-auto">{children}</main>
       {user && !user.verified && !noVerification && (

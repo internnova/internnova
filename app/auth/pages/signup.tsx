@@ -46,7 +46,7 @@ const SignupPage: BlitzPage = () => {
   return (
     <>
       <div
-        className={`h-screen w-full grid place-items-center overflow-hidden select-none ${
+        className={`h-screen w-full grid place-items-center select-none ${
           values.general.name && "pointer-events-none"
         }`}
       >
