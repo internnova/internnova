@@ -24,7 +24,7 @@ export const Nav = () => {
   }, [])
 
   return (
-    <nav className="fixed top-0 left-0 w-full flex items-center justify-between px-16 2xl:px-[10ch] bg-gray-50 h-[60px] header">
+    <nav className="w-full flex items-center justify-between px-16 2xl:px-[10ch] bg-gray-50 h-[60px] header">
       <div className="flex items-center gap-10">
         <Link href="/">
           <a>
@@ -36,15 +36,15 @@ export const Nav = () => {
         </Link>
         <div className="flex items-center">
           <input
-            className="appearance-none px-3 py-2 text-[14px] search"
-            placeholder="Search for an internship"
+            className="appearance-none px-5 md:w-60 py-2 text-[14px] search"
+            placeholder="Search for internships"
           />
           <div className="bg-[rgba(0,0,0,0.05)] p-[1.2ch] grid place-center icon cursor-pointer">
             <BsSearch />
           </div>
         </div>
         <div className="flex items-center gap-6 text-[12px] lg:text-[14px] 2xl:text-[16px]">
-          {currentUser!.role === "INTERN" ? (
+          {currentUser && currentUser.role === "INTERN" ? (
             <Link href="/jobs">
               <a className="hover:text-indigo-600">Find Internships</a>
             </Link>
@@ -76,7 +76,7 @@ export const Nav = () => {
             }`}
           >
             <div className="flex flex-col cursor-pointer text-[15px] dropdown">
-              <Link href={`/interns/${currentUser!.id}`}>
+              <Link href={`/interns/${currentUser?.id}`}>
                 <a>
                   <BsPersonCircle />
                   <p>Profile</p>

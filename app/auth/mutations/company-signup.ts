@@ -21,7 +21,7 @@ export default resolver.pipe(
     // we don't need data from the company since the user and company id are the same
     await db.company.create({
       data: { id: id, description, website, userId: id },
-      select: { id: true, name: true },
+      select: { id: true },
     })
 
     await ctx.session.$create({ userId: id, role: role })

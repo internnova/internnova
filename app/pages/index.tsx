@@ -2,7 +2,16 @@ import logout from "app/auth/mutations/logout"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import Layout from "app/core/layouts/Layout"
 import getJobs from "app/jobs/queries/getJobs"
-import { BlitzPage, Image, Link, Routes, useMutation, usePaginatedQuery, useRouter } from "blitz"
+import {
+  BlitzPage,
+  Image,
+  Link,
+  Routes,
+  useMutation,
+  usePaginatedQuery,
+  useRouter,
+  useSession,
+} from "blitz"
 import { Suspense } from "react"
 import { Spinner } from "app/core/components/Spinner"
 import { useState } from "react"
@@ -36,21 +45,10 @@ export const JobsList = () => {
   )
 }
 
-const UserInfo = () => {
-  const currentUser = useCurrentUser()
-
-  if (currentUser) {
-    return <Nav />
-  } else {
-    return <></>
-  }
-}
-
 const Home: BlitzPage = () => (
   <main>
     <div className="buttons pt-4">
       <Suspense fallback={<Spinner />}>
-        <UserInfo />
         <JobsList />
       </Suspense>
     </div>
