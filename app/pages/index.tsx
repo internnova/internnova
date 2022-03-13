@@ -9,6 +9,7 @@ import { useState } from "react"
 import { BsPerson, BsFillMoonFill, BsSearch, BsBookmark } from "react-icons/bs"
 import { IoSettingsOutline } from "react-icons/io5"
 import { Nav } from "../core/components/Nav"
+import { useIntern } from "../core/hooks/useIntern"
 
 const ITEMS_PER_PAGE = 3
 
@@ -23,6 +24,7 @@ export const JobsList = () => {
 
   return (
     <div>
+      Recommended for you:
       <ul>
         {jobs.map((job) => (
           <li key={job.id}>
@@ -36,21 +38,16 @@ export const JobsList = () => {
   )
 }
 
-const UserInfo = () => {
-  const currentUser = useCurrentUser()
-
-  if (currentUser) {
-    return <Nav />
-  } else {
-    return <></>
-  }
+const Applications = () => {
+  const intern = useIntern()
+  return <div>Your applications: {intern?.userId}</div>
 }
 
 const Home: BlitzPage = () => (
   <main>
     <div className="buttons pt-4">
       <Suspense fallback={<Spinner />}>
-        <UserInfo />
+        <Applications />
         <JobsList />
       </Suspense>
     </div>
