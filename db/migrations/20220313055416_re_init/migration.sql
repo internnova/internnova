@@ -2,10 +2,10 @@
 CREATE TYPE "Role" AS ENUM ('INTERN', 'COMPANY', 'SUPERUSER');
 
 -- CreateEnum
-CREATE TYPE "TokenType" AS ENUM ('RESET_PASSWORD');
+CREATE TYPE "TokenType" AS ENUM ('RESET_PASSWORD', 'CONFIRM_EMAIL');
 
 -- CreateEnum
-CREATE TYPE "JobType" AS ENUM ('PART_TIME', 'FULL_TIME');
+CREATE TYPE "JobType" AS ENUM ('PART_TIME', 'SUMMER_INTERNSHIP');
 
 -- CreateEnum
 CREATE TYPE "Tag" AS ENUM ('Marketing', 'Graphic_Design', 'Education', 'Programming', 'Communication', 'Charity');
@@ -17,9 +17,7 @@ CREATE TYPE "Status" AS ENUM ('APPLIED', 'REJECTED', 'HIRED');
 CREATE TABLE "Company" (
     "id" SERIAL NOT NULL,
     "userId" INTEGER NOT NULL,
-    "name" TEXT NOT NULL,
     "description" TEXT NOT NULL,
-    "logo" TEXT,
     "website" TEXT,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
@@ -45,10 +43,12 @@ CREATE TABLE "User" (
     "id" SERIAL NOT NULL,
     "createdAt" TIMESTAMP(3) NOT NULL DEFAULT CURRENT_TIMESTAMP,
     "updatedAt" TIMESTAMP(3) NOT NULL,
-    "name" TEXT,
+    "name" TEXT NOT NULL,
     "email" TEXT NOT NULL,
+    "avatar" TEXT,
     "hashedPassword" TEXT,
     "role" "Role" NOT NULL DEFAULT E'INTERN',
+    "verified" BOOLEAN NOT NULL DEFAULT false,
 
     CONSTRAINT "User_pkey" PRIMARY KEY ("id")
 );
@@ -122,19 +122,37 @@ CREATE TABLE "Job" (
 CREATE UNIQUE INDEX "Company_userId_key" ON "Company"("userId");
 
 -- CreateIndex
-CREATE UNIQUE INDEX "Company_name_key" ON "Company"("name");
+CREATE INDEX "Company_id_idx" ON "Company"("id");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Intern_userId_key" ON "Intern"("userId");
 
 -- CreateIndex
+CREATE INDEX "Intern_id_idx" ON "Intern"("id");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "User_email_key" ON "User"("email");
+
+-- CreateIndex
+CREATE INDEX "User_id_email_role_idx" ON "User"("id", "email", "role");
 
 -- CreateIndex
 CREATE UNIQUE INDEX "Session_handle_key" ON "Session"("handle");
 
 -- CreateIndex
+CREATE INDEX "Session_id_hashedSessionToken_antiCSRFToken_idx" ON "Session"("id", "hashedSessionToken", "antiCSRFToken");
+
+-- CreateIndex
+CREATE INDEX "Token_id_userId_idx" ON "Token"("id", "userId");
+
+-- CreateIndex
 CREATE UNIQUE INDEX "Token_hashedToken_type_key" ON "Token"("hashedToken", "type");
+
+-- CreateIndex
+CREATE INDEX "JobApplication_id_internId_jobId_idx" ON "JobApplication"("id", "internId", "jobId");
+
+-- CreateIndex
+CREATE INDEX "Job_id_companyId_industry_description_companyName_position__idx" ON "Job"("id", "companyId", "industry", "description", "companyName", "position", "postedAt", "closed");
 
 -- AddForeignKey
 ALTER TABLE "Company" ADD CONSTRAINT "Company_userId_fkey" FOREIGN KEY ("userId") REFERENCES "User"("id") ON DELETE RESTRICT ON UPDATE CASCADE;
