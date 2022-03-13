@@ -19,8 +19,9 @@ const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
         <title>{`${title} | InternNova` || "InternNova"}</title>
         <Meta title={`${title} | InternNova` || "InternNova"} />
       </Head>
-      {user && <Nav />}
-      {children}
+
+      {user !== null && <Nav />}
+      <main className="container m-auto">{children}</main>
       {user && !user.verified && !noVerification && (
         <Popup title="Verify Email" scroll={false} {...{ style: { height: "30ch" } }}>
           <div className="flex flex-col gap-6 py-10 px-8 mb-4">

@@ -24,7 +24,8 @@ export const Nav = () => {
   }, [])
 
   return (
-    <nav className="w-full flex items-center justify-between px-16 2xl:px-[10ch] bg-gray-50 h-[60px] header">
+
+    <nav className="sticky top-0 left-0 w-full flex items-center justify-between px-16 2xl:px-[10ch] bg-gray-50 h-[60px] header">
       <div className="flex items-center gap-10">
         <Link href="/">
           <a>
