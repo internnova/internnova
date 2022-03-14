@@ -1,5 +1,3 @@
-import logout from "app/auth/mutations/logout"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import Layout from "app/core/layouts/Layout"
 import getJobs from "app/jobs/queries/getJobs"
 import {
@@ -14,10 +12,6 @@ import {
 } from "blitz"
 import { Suspense } from "react"
 import { Spinner } from "app/core/components/Spinner"
-import { useState } from "react"
-import { BsPerson, BsFillMoonFill, BsSearch, BsBookmark } from "react-icons/bs"
-import { IoSettingsOutline } from "react-icons/io5"
-import { Nav } from "../core/components/Nav"
 import { useIntern } from "../core/hooks/useIntern"
 
 const ITEMS_PER_PAGE = 3
@@ -32,8 +26,8 @@ export const JobsList = () => {
   })
 
   return (
-    <div>
-      Recommended for you:
+    <div className="mt-10">
+      <h1>Recommended for you:</h1>
       <ul>
         {jobs.map((job) => (
           <li key={job.id}>
@@ -48,8 +42,36 @@ export const JobsList = () => {
 }
 
 const Applications = () => {
-  const intern = useIntern()
-  return <div>Your applications: {intern?.userId}</div>
+  const { jobApplications } = useIntern()
+  return (
+    <div>
+      {jobApplications.length === 0 ? (
+        <div className="grid justify-center place-center mt-10 gap-6 select-none">
+          <div
+            style={{
+              backgroundImage: "url(/images/no-applications.svg)",
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
+            }}
+            className="h-[300px] w-[300px]"
+          />
+          <div>
+            <h2 className="text-center">No applications yet</h2>
+          </div>
+        </div>
+      ) : (
+        <div>
+          <h2>Your applications:</h2>
+          {jobApplications.map((jobApplication) => (
+            <div key={jobApplication.id}>
+              {/*<h2>{jobApplication.title}</h2>*/}
+              <p>{jobApplication.description}</p>
+            </div>
+          ))}
+        </div>
+      )}
+    </div>
+  )
 }
 
 const Home: BlitzPage = () => (

@@ -9,7 +9,17 @@ const GetIntern = z.object({
 
 export default resolver.pipe(resolver.zod(GetIntern), resolver.authorize(), async ({ id }) => {
   // TODO: in multi-tenant app, you must add validation to ensure correct tenant
-  const intern = await db.intern.findFirst({ where: { id } })
+  const intern = await db.intern.findFirst({
+    where: { id },
+    select: {
+      interests: true,
+      jobApplications: true,
+      user: true,
+      id: true,
+      bio: true,
+      oneliner: true,
+    },
+  })
 
   if (!intern) throw new NotFoundError()
 
