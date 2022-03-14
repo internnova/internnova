@@ -4,10 +4,12 @@ import { Suspense } from "react"
 import { CompanyForm, FORM_ERROR } from "app/companies/components/CompanyForm"
 import updateCompany, { UpdateCompany } from "app/companies/mutations/updateCompany"
 import getCompany from "app/companies/queries/getCompany"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 export const EditCompany = () => {
   const router = useRouter()
   const companyId = useParam("companyId", "number")
+  const user = useCurrentUser()
   const [company, { setQueryData }] = useQuery(
     getCompany,
     { id: companyId },
@@ -18,7 +20,7 @@ export const EditCompany = () => {
   )
   const [updateCompanyMutation] = useMutation(updateCompany)
 
-  if (!company) {
+  if (!company || !user) {
     router.push("/companies")
     return <></>
   } else {
@@ -36,9 +38,9 @@ export const EditCompany = () => {
             submitText="Update Company"
             schema={UpdateCompany}
             initialValues={{
-              name: company.name,
+              name: user.name,
               description: company.description,
-              logo: company.logo || undefined,
+              logo: user.avatar || undefined,
               website: company.website || undefined,
             }}
             onSubmit={async (values) => {
@@ -79,6 +81,6 @@ const EditCompanyPage: BlitzPage = () => {
   )
 }
 
-EditCompanyPage.getLayout = (page) => <Layout>{page}</Layout>
+EditCompanyPage.getLayout = (page) => <Layout company>{page}</Layout>
 
 export default EditCompanyPage

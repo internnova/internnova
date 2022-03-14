@@ -76,6 +76,6 @@ const EditJobApplicationPage: BlitzPage = () => {
 }
 
 EditJobApplicationPage.authenticate = true
-EditJobApplicationPage.getLayout = (page) => <Layout>{page}</Layout>
+EditJobApplicationPage.getLayout = (page) => <Layout intern>{page}</Layout>
 
 export default EditJobApplicationPage

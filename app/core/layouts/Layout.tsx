@@ -5,14 +5,25 @@ import { Popup } from "../components/Popup"
 import { Button } from "../components/Button"
 import sendConfirmationEmail from "../../auth/mutations/sendConfirmationEmail"
 import { Nav } from "../components/Nav"
+import Error from "next/error"
 
-const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
-  title,
-  noVerification,
-  children,
-}) => {
+const Layout: BlitzLayout<{
+  title?: string
+  noVerification?: boolean
+  intern?: boolean
+  company?: boolean
+}> = ({ title, noVerification, children, intern, company }) => {
   const [sendConfirmationMutation] = useMutation(sendConfirmationEmail)
   const user = useCurrentUser()
+
+  if (intern && user?.role === "INTERN") {
+    return <Error statusCode={403} />
+  }
+
+  if (company && user?.role === "COMPANY") {
+    return <Error statusCode={403} />
+  }
+
   return (
     <>
       <Head>

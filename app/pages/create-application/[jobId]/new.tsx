@@ -94,7 +94,9 @@ const NewJobApplicationPage: BlitzPage = () => {
 
 NewJobApplicationPage.authenticate = true
 NewJobApplicationPage.getLayout = (page) => (
-  <Layout title={"Create New JobApplication"}>{page}</Layout>
+  <Layout title={"Create New JobApplication"} intern>
+    {page}
+  </Layout>
 )
 
 export default NewJobApplicationPage
