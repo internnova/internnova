@@ -1,4 +1,4 @@
-import { Link, useMutation } from "blitz"
+import { Link, useMutation, Image } from "blitz"
 import { BsBookmark, BsFillMoonFill, BsPersonCircle, BsSearch } from "react-icons/bs"
 import { RiSettingsLine } from "react-icons/ri"
 import logout from "../../auth/mutations/logout"
@@ -15,7 +15,7 @@ export const Nav = () => {
 
   useEffect(() => {
     const handleClick = (e) => {
-      if (e.target.contains(profileRef.current)) {
+      if (e.target !== profileRef.current) {
         setProfileDD(false)
       }
     }
@@ -24,14 +24,16 @@ export const Nav = () => {
   }, [])
 
   return (
-
     <nav className="sticky top-0 left-0 w-full flex items-center justify-between px-16 2xl:px-[10ch] bg-gray-50 h-[60px] header">
       <div className="flex items-center gap-10">
         <Link href="/">
-          <a>
-            <div
-              style={{ backgroundImage: "url(/favicons/logo.png)", backgroundPosition: "50%" }}
-              className="h-[34px] w-[34px] object-cover"
+          <a className="grid place-center">
+            <Image
+              src="/favicons/logo.png"
+              alt="logo"
+              height={40}
+              width={40}
+              className="object-cover"
             />
           </a>
         </Link>
@@ -62,17 +64,18 @@ export const Nav = () => {
             <BsBookmark className="mt-2 h-[21px] w-[21px] hover:text-indigo-600" />
           </a>
         </Link>
-        <div className="relative" ref={profileRef}>
+        <div className="relative">
           <div
             className="h-[34px] w-[34px] rounded-full cursor-pointer hover:opacity-75"
             style={{
               backgroundImage: `url(${avatar})`,
               backgroundPosition: "50%",
             }}
+            ref={profileRef}
             onClick={() => setProfileDD((prev) => !prev)}
           />
           <div
-            className={`bg-white rounded-xl mt-2 shadow-md absolute top-8 right-0 truncate ${
+            className={`bg-white rounded-md mt-2 shadow-md absolute top-8 right-0 truncate dd ${
               profileDD ? "" : "hidden"
             }`}
           >

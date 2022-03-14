@@ -2,6 +2,7 @@ import Layout from "app/core/layouts/Layout"
 import getJobs from "app/jobs/queries/getJobs"
 import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes } from "blitz"
 import { Suspense } from "react"
+import { useCurrentUser } from "../../core/hooks/useCurrentUser"
 
 const ITEMS_PER_PAGE = 100
 
@@ -40,23 +41,30 @@ export const JobsList = () => {
 }
 
 const JobsPage: BlitzPage = () => {
+  const user = useCurrentUser()
+
   return (
     <>
       <Head>
         <title>Jobs</title>
       </Head>
-
-      <div>
-        <p>
-          <Link href={Routes.NewJobPage()}>
-            <a>Create Job</a>
-          </Link>
-        </p>
+      <main>
+        {user && user.role === "COMPANY" ? (
+          <div>
+            <p>
+              <Link href={Routes.NewJobPage()}>
+                <a>Create Job</a>
+              </Link>
+            </p>
+          </div>
+        ) : (
+          <></>
+        )}
 
         <Suspense fallback={<div>Loading...</div>}>
           <JobsList />
         </Suspense>
-      </div>
+      </main>
     </>
   )
 }
