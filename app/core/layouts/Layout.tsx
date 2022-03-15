@@ -1,10 +1,10 @@
-import {Head, BlitzLayout, useRouter, Routes, useMutation, useSession} from "blitz"
-import {useCurrentUser} from "app/core/hooks/useCurrentUser"
-import {Meta} from "../partials/Meta"
-import {Popup} from "../components/Popup"
-import {Button} from "../components/Button"
+import { Head, BlitzLayout, useRouter, Routes, useMutation, useSession } from "blitz"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import { Meta } from "../partials/Meta"
+import { Popup } from "../components/Popup"
+import { Button } from "../components/Button"
 import sendConfirmationEmail from "../../auth/mutations/sendConfirmationEmail"
-import {Nav} from "../components/Nav"
+import { Nav } from "../components/Nav"
 import Error from "next/error"
 
 const Layout: BlitzLayout<{
@@ -12,7 +12,7 @@ const Layout: BlitzLayout<{
   noVerification?: boolean
   intern?: boolean
   company?: boolean
-}> = ({title, noVerification, children, intern, company}) => {
+}> = ({ title, noVerification, children, intern, company }) => {
   const [sendConfirmationMutation] = useMutation(sendConfirmationEmail)
   const user = useCurrentUser()
 
@@ -34,7 +34,7 @@ const Layout: BlitzLayout<{
       {user !== null && <Nav />}
       <main className="container m-auto">{children}</main>
       {user && !user.verified && !noVerification && (
-        <Popup title="Verify Email" scroll={false} {...{style: {height: "30ch"}}}>
+        <Popup title="Verify Email" scroll={false} {...{ style: { height: "30ch" } }}>
           <div className="flex flex-col gap-6 py-10 px-8 mb-4">
             <div className="">
               You&apos;re almost there! Just verify your email to continue. Be sure to check <br />
