@@ -14,7 +14,7 @@ class MyDocument extends Document {
           <meta name="msapplication-TileColor" content="#da532c" />
           <meta name="theme-color" content="#ffffff" />
         </DocumentHead>
-        <body className="overflow-x-hidden w-screen h-screen bg-slate-200">
+        <body className="overflow-x-hidden w-screen h-screen bg-gray-100">
           <Main />
           <BlitzScript />
         </body>

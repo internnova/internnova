@@ -2,6 +2,8 @@ import { Suspense } from "react"
 import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getJobApplications from "app/job-applications/queries/getJobApplications"
+import { Spinner } from "../../core/components/Spinner"
+import { useIntern } from "../../core/hooks/useIntern"
 
 const ITEMS_PER_PAGE = 100
 
@@ -17,9 +19,30 @@ export const JobApplicationsList = () => {
   const goToPreviousPage = () => router.push({ query: { page: page - 1 } })
   const goToNextPage = () => router.push({ query: { page: page + 1 } })
 
+  if (jobApplications.length === 0) {
+    return (
+      <div>
+        <div className="grid justify-center place-center mt-10 gap-6 select-none">
+          <div
+            style={{
+              backgroundImage: "url(/images/no-applications.svg)",
+              backgroundSize: "contain",
+              backgroundRepeat: "no-repeat",
+            }}
+            className="h-[300px] w-[300px]"
+          />
+          <div>
+            <h2 className="text-center">No applications yet</h2>
+          </div>
+        </div>
+      </div>
+    )
+  }
+
   return (
     <div>
-      <ul>
+      <h2>Your applications:</h2>
+      <div>
         {jobApplications.map((jobApplication) => (
           <li key={jobApplication.id}>
             <Link href={Routes.ShowJobApplicationPage({ jobApplicationId: jobApplication.id })}>
@@ -27,7 +50,7 @@ export const JobApplicationsList = () => {
             </Link>
           </li>
         ))}
-      </ul>
+      </div>
 
       <button disabled={page === 0} onClick={goToPreviousPage}>
         Previous
@@ -41,21 +64,13 @@ export const JobApplicationsList = () => {
 
 const JobApplicationsPage: BlitzPage = () => {
   return (
-    <>
-      <Head>
-        <title>JobApplications</title>
-      </Head>
-
-      <div>
-        <Suspense fallback={<div>Loading...</div>}>
-          <JobApplicationsList />
-        </Suspense>
-      </div>
-    </>
+    <Suspense fallback={<Spinner />}>
+      <JobApplicationsList />
+    </Suspense>
   )
 }
 
 JobApplicationsPage.authenticate = true
-JobApplicationsPage.getLayout = (page) => <Layout>{page}</Layout>
+JobApplicationsPage.getLayout = (page) => <Layout title="Job Applications">{page}</Layout>
 
 export default JobApplicationsPage

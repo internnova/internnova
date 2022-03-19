@@ -19,7 +19,7 @@ export default resolver.pipe(
       query: (paginateArgs) =>
         db.job.findMany({
           ...paginateArgs,
-          where: { ...where, companyId: ctx.session.userId || NaN },
+          where: { ...where },
           orderBy,
         }),
     })

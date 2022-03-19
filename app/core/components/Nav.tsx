@@ -1,6 +1,7 @@
 import { Link, useMutation, Image } from "blitz"
 import { BsBookmark, BsFillMoonFill, BsPersonCircle, BsSearch } from "react-icons/bs"
 import { RiSettingsLine } from "react-icons/ri"
+import { HiLogout } from "react-icons/hi"
 import logout from "../../auth/mutations/logout"
 import { useState } from "react"
 import { useCurrentUser } from "../hooks/useCurrentUser"
@@ -24,7 +25,7 @@ export const Nav = () => {
   }, [])
 
   return (
-    <nav className="sticky top-0 left-0 w-full flex items-center justify-between px-16 2xl:px-[10ch] bg-gray-50 h-[60px] header">
+    <nav className="sticky top-0 left-0 w-full md:hidden w-screen flex items-center justify-between px-16 2xl:px-[10ch] bg-gray-50 h-[60px] header">
       <div className="flex items-center gap-10">
         <Link href="/">
           <a className="grid place-center">
@@ -47,21 +48,22 @@ export const Nav = () => {
           </div>
         </div>
         <div className="flex items-center gap-6 text-[12px] lg:text-[14px] 2xl:text-[16px]">
-          {currentUser && currentUser.role === "INTERN" ? (
-            <Link href="/jobs">
-              <a className="hover:text-indigo-600">Find Internships</a>
-            </Link>
-          ) : (
-            <Link href="/jobs/new">
-              <a className="hover:text-indigo-600">Create Job</a>
+          <Link href="/jobs">
+            <a className="text-gray-500 hover:text-black">
+              {currentUser && currentUser.role === "COMPANY" ? "All jobs" : "Find internships"}
+            </a>
+          </Link>
+          {currentUser && currentUser.role === "COMPANY" && (
+            <Link href="/jobs/create">
+              <a className="text-gray-500 hover:text-black">Create Job</a>
             </Link>
           )}
         </div>
       </div>
-      <div className="flex items-center gap-[4ch]">
+      <div className="flex items-center gap-[2ch]">
         <Link href="/bookmark">
           <a className="cursor-pointer">
-            <BsBookmark className="mt-2 h-[21px] w-[21px] hover:text-indigo-600" />
+            <BsBookmark className="mt-2 h-[21px] w-[21px] text-gray-500 hover:text-black" />
           </a>
         </Link>
         <div className="relative">
@@ -75,20 +77,25 @@ export const Nav = () => {
             onClick={() => setProfileDD((prev) => !prev)}
           />
           <div
-            className={`bg-white rounded-md mt-2 shadow-md absolute top-8 right-0 truncate dd ${
+            className={`bg-white mt-2 absolute top-8 right-0 truncate dd rounded-sm ${
               profileDD ? "" : "hidden"
             }`}
+            style={{ border: "1px solid #e6e6e6" }}
           >
             <div className="flex flex-col cursor-pointer text-[15px] dropdown">
-              <Link href={`/interns/${currentUser?.id}`}>
+              <Link
+                href={`/${currentUser?.role === "INTERN" ? "interns" : "companies"}/${
+                  currentUser?.username
+                }`}
+              >
                 <a>
-                  <BsPersonCircle />
+                  <BsPersonCircle className="h-[16px] w-[16px]" />
                   <p>Profile</p>
                 </a>
               </Link>
               <Link href="/settings">
                 <a>
-                  <RiSettingsLine />
+                  <RiSettingsLine className="h-[17px] w-[17px]" />
                   <p>Settings</p>
                 </a>
               </Link>
@@ -98,6 +105,7 @@ export const Nav = () => {
               </div>
               <div style={{ borderTop: "1px solid rgba(23,23,23, 0.2)" }} />
               <div className="dd-div" onClick={() => logoutMutation()}>
+                <HiLogout />
                 Log out
               </div>
             </div>

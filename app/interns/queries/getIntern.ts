@@ -4,13 +4,19 @@ import { z } from "zod"
 
 const GetIntern = z.object({
   // This accepts type of undefined, but is required at runtime
-  id: z.number().optional().refine(Boolean, "Required"),
+  where: z
+    .object({
+      id: z.number().optional(),
+      user: z.object({ username: z.string().optional() }).optional(),
+    })
+    .optional()
+    .refine(Boolean, "Required"),
 })
 
-export default resolver.pipe(resolver.zod(GetIntern), resolver.authorize(), async ({ id }) => {
+export default resolver.pipe(resolver.zod(GetIntern), resolver.authorize(), async ({ where }) => {
   // TODO: in multi-tenant app, you must add validation to ensure correct tenant
   const intern = await db.intern.findFirst({
-    where: { id },
+    where,
     select: {
       interests: true,
       jobApplications: true,
@@ -18,6 +24,7 @@ export default resolver.pipe(resolver.zod(GetIntern), resolver.authorize(), asyn
       id: true,
       bio: true,
       oneliner: true,
+      userId: true,
     },
   })
 

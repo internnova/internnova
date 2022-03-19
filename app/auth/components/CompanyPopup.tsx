@@ -18,7 +18,7 @@ export const CompanyPopup = ({ general }: { general: SignUpValues }) => {
         schema={Company}
         options=""
         submitText="Next"
-        initialValues={{ description: "", website: "" }}
+        initialValues={{ description: "", website: "", username: "" }}
         onSubmit={async (values) => {
           await companyMutation({ ...general, ...values })
           await sendConfirmationMutation(general.role)
@@ -27,6 +27,7 @@ export const CompanyPopup = ({ general }: { general: SignUpValues }) => {
         <div className="grid place-items-center pb-4 w-full">
           <UploadAvatar />
         </div>
+        <LabeledTextField name="username" placeholder="Unique username for your company" />
         <LabeledTextArea name="description" placeholder="Description" />
         <LabeledTextField name="website" placeholder="Website" />
       </Form>

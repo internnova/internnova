@@ -8,10 +8,11 @@ import getJob from "app/jobs/queries/getJob"
 
 export const EditJob = () => {
   const router = useRouter()
-  const jobId = useParam("jobId", "number")
+  const slug = useParam("slug", "string")
+  const companyName = useParam("companyName", "string")
   const [job, { setQueryData }] = useQuery(
     getJob,
-    { id: jobId },
+    { slug, companyName },
     {
       // This ensures the query never refreshes and overwrites the form data while the user is editing.
       staleTime: Infinity,
@@ -54,7 +55,9 @@ export const EditJob = () => {
                   company: job.company,
                   applications: job.applications,
                 })
-                router.push(Routes.ShowJobPage({ jobId: updated.id }))
+                router.push(
+                  Routes.ShowJobPage({ slug: updated.slug, companyName: updated.companyName })
+                )
               } catch (error: any) {
                 console.error(error)
                 return {

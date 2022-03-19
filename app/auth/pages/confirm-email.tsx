@@ -3,7 +3,6 @@ import Layout from "app/core/layouts/Layout"
 import confirmEmail from "app/auth/mutations/confirmEmail"
 import { useState } from "react"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
-import swal from "sweetalert"
 import { Popup } from "../../core/components/Popup"
 import { Button } from "../../core/components/Button"
 
@@ -20,7 +19,6 @@ const ConfirmPassswordPage: BlitzPage = () => {
   }
 
   if (isSuccess) {
-    swal("Success", "Your email has been verified", "success")
     router.push("/")
     return <></>
   } else {

@@ -3,32 +3,35 @@ import { z } from "zod"
 import { Form, FormProps } from "app/core/components/Form"
 import { LabeledOptionField } from "app/core/components/LabeledOptionField"
 import { LabeledTextField } from "app/core/components/LabeledTextField"
+import LabeledTextArea from "../../core/components/LabeledTextArea"
 
 export { FORM_ERROR } from "app/core/components/Form"
+
+export const convertValues = (values: string[]) =>
+  values.map((value) => value.toLowerCase().replace(/_/g, " "))
 
 export function JobForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
   return (
     <Form<S> {...props}>
-      <LabeledTextField name="position" label="Position" placeholder="Position" />
-      <LabeledTextField name="description" label="Description" placeholder="Description" />
+      <LabeledTextField name="position" placeholder="Position" />
+      <LabeledTextArea name="description" placeholder="Description" />
       <LabeledOptionField
         name="industry"
-        label="Job Industry"
         placeholder="Job Industry"
+        fields={convertValues(Object.values(Tag))}
         values={Object.values(Tag)}
       />
-      <LabeledTextField name="location" label="location" placeholder="Location" />
-      <LabeledTextField name="salary" label="salary" placeholder="salary" />
-      <LabeledTextField name="duration" label="duration" placeholder="Duration" />
+      <LabeledTextField name="location" placeholder="Location" />
+      <LabeledTextField name="salary" placeholder="Salary (in dollars)" type="number" min={0} />
+      <LabeledTextField name="duration" placeholder="Duration (months)" type="number" min={1} />
       <LabeledTextField
         name="skillsRequired"
-        label="skillsRequired"
-        placeholder="Skills Required"
+        placeholder="Skills Required (separated by a comma)"
       />
       <LabeledOptionField
         name="jobType"
-        label="Job Type"
         placeholder="Job Type"
+        fields={convertValues(Object.values(JobType))}
         values={Object.values(JobType)}
       />
     </Form>

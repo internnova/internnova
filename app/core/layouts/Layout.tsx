@@ -5,6 +5,7 @@ import { Popup } from "../components/Popup"
 import { Button } from "../components/Button"
 import sendConfirmationEmail from "../../auth/mutations/sendConfirmationEmail"
 import { Nav } from "../components/Nav"
+import { Sidebar } from "../components/Sidebar"
 
 const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
   title,
@@ -19,9 +20,21 @@ const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
         <title>{`${title} | InternNova` || "InternNova"}</title>
         <Meta title={`${title} | InternNova` || "InternNova"} />
       </Head>
-
-      {user !== null && <Nav />}
-      <main className="container m-auto">{children}</main>
+      <div className="flex overflow-hidden h-screen">
+        {user !== null && (
+          <>
+            <div className="hidden md:flex lg:flex-shrink-0">
+              <Sidebar />
+            </div>
+          </>
+        )}
+        <main className="grow">
+          <Nav />
+          <div className="container max-w-[935px] mx-auto" style={{ width: "calc(100% - 40px)" }}>
+            {children}
+          </div>
+        </main>
+      </div>
       {user && !user.verified && !noVerification && (
         <Popup title="Verify Email" scroll={false} {...{ style: { height: "30ch" } }}>
           <div className="flex flex-col gap-6 py-10 px-8 mb-4">

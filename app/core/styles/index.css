@@ -46,6 +46,7 @@ button {
   outline: none;
   border: none;
   cursor: pointer;
+  background: transparent;
 }
 
 a {
@@ -86,15 +87,12 @@ a {
 
 .header {
   box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 2px 0px, rgba(0, 0, 0, 0.1) 0px 0px 2px 0px;
+  z-index: 100;
 }
 
 .dropdown a,
 .dropdown .dd-div {
-  @apply py-2 w-[24ch] pl-8 hover:bg-gray-200 flex items-center gap-2;
-}
-
-.dd {
-  pointer-events: all;
+  @apply py-2 w-[22ch] pl-6 hover:bg-gray-200 flex items-center gap-2 text-gray-600;
 }
 
 .search {
@@ -106,8 +104,7 @@ a {
 
 .search:focus {
   background: white;
-  border: 1px solid rgb(79 70 229);
-  @apply shadow;
+  @apply shadow border-[1px] border-gray-600;
 }
 
 .icon {
@@ -119,5 +116,14 @@ a {
   margin: 0 auto 30px;
   max-width: 935px;
 }
+
+.about-me:hover + div, div:hover {
+  opacity: 1;
+}
+
+.desc-input:focus + button {
+  @apply opacity-100;
+}
+
 
 @tailwind utilities;

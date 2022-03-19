@@ -8,7 +8,7 @@ import { InternValues } from "../pages/signup"
 
 export const InternPopup = ({
   onSuccess,
-  initials: { bio, oneliner },
+  initials: { bio, oneliner, username },
 }: {
   onSuccess(values): void
   initials: InternValues
@@ -17,9 +17,8 @@ export const InternPopup = ({
     <Popup title="Create account" step={1} scroll={false}>
       <Form
         schema={Intern}
-        options=""
         submitText="Next"
-        initialValues={{ bio, oneliner }}
+        initialValues={{ bio, oneliner, username }}
         onSubmit={(values) => {
           onSuccess(values)
         }}
@@ -27,6 +26,7 @@ export const InternPopup = ({
         <div className="grid place-items-center pb-4 w-full">
           <UploadAvatar />
         </div>
+        <LabeledTextField name="username" placeholder="Enter a unique username" />
         <LabeledTextArea name="bio" placeholder="Bio" />
         <LabeledTextField name="oneliner" placeholder="Describe yourself in a line" />
       </Form>

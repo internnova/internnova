@@ -5,12 +5,13 @@ import { checkUserExists } from "./checkUserExists"
 
 export default resolver.pipe(
   resolver.zod(InternSignup),
-  async ({ email, password, name, logo, bio, oneliner, interests }, ctx: Ctx) => {
+  async ({ email, password, name, username, logo, bio, oneliner, interests }, ctx: Ctx) => {
     const hashedPassword = await SecurePassword.hash(password.trim())
-    await checkUserExists(email)
+    await checkUserExists(email, username)
     const { id, role } = await db.user.create({
       data: {
         name,
+        username,
         avatar: logo,
         email: email.toLowerCase().trim(),
         hashedPassword,

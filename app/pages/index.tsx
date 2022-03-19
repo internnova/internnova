@@ -1,18 +1,11 @@
 import Layout from "app/core/layouts/Layout"
 import getJobs from "app/jobs/queries/getJobs"
-import {
-  BlitzPage,
-  Image,
-  Link,
-  Routes,
-  useMutation,
-  usePaginatedQuery,
-  useRouter,
-  useSession,
-} from "blitz"
+import { BlitzPage, Router, usePaginatedQuery, useRouter } from "blitz"
 import { Suspense } from "react"
 import { Spinner } from "app/core/components/Spinner"
 import { useIntern } from "../core/hooks/useIntern"
+import { useCurrentUser } from "../core/hooks/useCurrentUser"
+import { Job } from "../core/components/Job"
 
 const ITEMS_PER_PAGE = 3
 
@@ -26,64 +19,22 @@ export const JobsList = () => {
   })
 
   return (
-    <div className="mt-10">
+    <div className="mt-10 flex flex-col gap-4">
       <h1>Recommended for you:</h1>
-      <ul>
+      <div>
         {jobs.map((job) => (
-          <li key={job.id}>
-            <Link href={Routes.ShowJobPage({ jobId: job.id })}>
-              <a>{job.position}</a>
-            </Link>
-          </li>
+          <Job job={job} key={`${job.id}`} />
         ))}
-      </ul>
+      </div>
     </div>
   )
 }
 
-const Applications = () => {
-  const { jobApplications } = useIntern()
-  return (
-    <div>
-      {jobApplications.length === 0 ? (
-        <div className="grid justify-center place-center mt-10 gap-6 select-none">
-          <div
-            style={{
-              backgroundImage: "url(/images/no-applications.svg)",
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-            }}
-            className="h-[300px] w-[300px]"
-          />
-          <div>
-            <h2 className="text-center">No applications yet</h2>
-          </div>
-        </div>
-      ) : (
-        <div>
-          <h2>Your applications:</h2>
-          {jobApplications.map((jobApplication) => (
-            <div key={jobApplication.id}>
-              {/*<h2>{jobApplication.title}</h2>*/}
-              <p>{jobApplication.description}</p>
-            </div>
-          ))}
-        </div>
-      )}
-    </div>
-  )
+const Home: BlitzPage = () => {
+  const router = useRouter()
+  router.push("/job-applications")
+  return <Suspense fallback={<Spinner />} />
 }
-
-const Home: BlitzPage = () => (
-  <main>
-    <div className="buttons pt-4">
-      <Suspense fallback={<Spinner />}>
-        <Applications />
-        <JobsList />
-      </Suspense>
-    </div>
-  </main>
-)
 
 Home.suppressFirstRenderFlicker = true
 Home.getLayout = (page) => <Layout title="Home">{page}</Layout>

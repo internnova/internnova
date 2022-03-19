@@ -4,6 +4,6 @@ import { useCurrentUser } from "./useCurrentUser"
 
 export const useIntern = () => {
   const user = useCurrentUser()
-  const [intern] = useQuery(getIntern, { id: user!.id })
+  const [intern] = useQuery(getIntern, { where: { id: user?.id } })
   return intern
 }
