@@ -1,7 +1,8 @@
 import { Link } from "blitz"
 import { BsCodeSlash, BsGeoAlt, BsBriefcase, BsCurrencyDollar } from "react-icons/bs"
 
-interface Job {
+export interface JobType {
+  id: number
   position: string
   companyName: string
   description: string
@@ -14,7 +15,7 @@ interface Job {
 
 interface JobProps {
   at?: boolean
-  job: Job
+  job: JobType
 }
 
 export const Job = ({
@@ -31,27 +32,27 @@ export const Job = ({
           <div className="flex items-center justify-between">
             <p className="truncate text-sm font-medium text-black">{position}</p>
           </div>
-          <p className="pt-1 pb-2 text-sm text-gray-500">{description.slice(0, 60)}...</p>
+          <p className="pt-1 pb-2 text-sm">{description.slice(0, 60)}...</p>
           <div className="mt-2">
             <div className="sm:flex sm:gap-4">
-              <p className="flex items-center text-sm gap-1 text-gray-500">
+              <p className="flex items-center text-sm gap-1">
                 <BsCodeSlash className="h-[16px] w-[16px]" />
                 {industry}
               </p>
-              <p className="flex items-center text-sm gap-1 text-gray-500">
+              <p className="flex items-center text-sm gap-1">
                 <BsGeoAlt className="h-[16px] w-[16px]" />
                 {location}
               </p>
-              <p className="flex items-center text-sm gap-2 text-gray-500">
+              <p className="flex items-center text-sm gap-2">
                 <BsBriefcase className="h-[16px] w-[16px]" />
                 {jobType.toLowerCase().replace(/_/g, " ")}
               </p>
-              <p className="flex items-center text-sm text-gray-500">
+              <p className="flex items-center text-sm">
                 <BsCurrencyDollar className="h-[16px] w-[16px]" />
                 {salary}
               </p>
               {at && (
-                <p className="flex items-center text-sm gap-1 text-gray-500">
+                <p className="flex items-center text-sm gap-1">
                   <p>@</p>
                   {companyName}
                 </p>

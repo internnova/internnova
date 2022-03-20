@@ -1,7 +1,7 @@
 import { resolver, Ctx, AuthorizationError } from "blitz"
 import db from "db"
 import { CreateJobServer } from "../../auth/validations"
-import { slugify } from "../../pages/interns/[internName]"
+import { slugify } from "../../pages/[userName]"
 
 export default resolver.pipe(
   resolver.zod(CreateJobServer),
