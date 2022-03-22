@@ -5,15 +5,16 @@ interface PopupProps {
   title: string
   step?: number
   scroll: boolean
+  options?: string
   children: ReactElement
   close?: () => void
 }
 
-export const Popup = ({ title, children, step, scroll, close, ...props }: PopupProps) => (
+export const Popup = ({ title, children, step, scroll, close, options, ...props }: PopupProps) => (
   <div className="grid fixed top-0 left-0 place-items-center w-screen h-screen select-none popup">
     <div
       {...props}
-      className={`relative rounded-xl bg-slate-100 shadow-[#8a8a8a] shadow-sm h-[85%] ${
+      className={`relative rounded-xl bg-slate-100 shadow-[#8a8a8a] shadow-sm h-[85%] ${options} ${
         scroll ? " overflow-y-scroll overflow-x-hidden" : "overflow-hidden"
       }`}
     >

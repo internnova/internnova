@@ -5,8 +5,11 @@ export { FORM_ERROR } from "app/core/components/Form"
 
 export function JobApplicationForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
   return (
-    <Form<S> {...props}>
-      <LabeledTextarea name="description" placeholder="Description" />
+    <Form<S> {...props} options="false">
+      <LabeledTextarea
+        name="description"
+        placeholder="Why are you fit for this job? Leave links to your Linkedin/Github profiles"
+      />
     </Form>
   )
 }

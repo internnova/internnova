@@ -1,9 +1,8 @@
 import { Suspense } from "react"
-import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes } from "blitz"
+import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes, Image } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getJobApplications from "app/job-applications/queries/getJobApplications"
 import { Spinner } from "../../core/components/Spinner"
-import { useIntern } from "../../core/hooks/useIntern"
 
 const ITEMS_PER_PAGE = 100
 
@@ -21,19 +20,15 @@ export const JobApplicationsList = () => {
 
   if (jobApplications.length === 0) {
     return (
-      <div>
-        <div className="grid justify-center place-center mt-10 gap-6 select-none">
-          <div
-            style={{
-              backgroundImage: "url(/images/no-applications.svg)",
-              backgroundSize: "contain",
-              backgroundRepeat: "no-repeat",
-            }}
-            className="h-[300px] w-[300px]"
-          />
-          <div>
-            <h2 className="text-center">No applications yet</h2>
-          </div>
+      <div className="h-screen grid justify-center place-center select-none">
+        <Image
+          src="/images/no-applications.svg"
+          alt="No Job Applications"
+          width={300}
+          height={300}
+        />
+        <div>
+          <h2 className="text-center">No applications yet</h2>
         </div>
       </div>
     )

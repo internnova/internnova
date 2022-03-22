@@ -37,7 +37,7 @@ const Company = ({ user: { name, username } }: CompProps) => {
             <div className="grow grid justify-center items-center w-[140px]">
               <Image
                 src={avatar}
-                alt="Profile Image"
+                alt="Index Image"
                 width={140}
                 height={140}
                 className="rounded-full"
@@ -96,7 +96,7 @@ const Intern = ({
           <div className="grow grid justify-center items-center w-[140px]">
             <Image
               src={avatar}
-              alt="Profile Image"
+              alt="Index Image"
               width={140}
               height={140}
               className="rounded-full"
@@ -153,7 +153,7 @@ const ProfilePage: BlitzPage = () => {
       <Head>
         <title>{user.name} | Profile</title>
       </Head>
-      <div>
+      <div className="pt-4">
         <Suspense fallback={<Spinner />}>
           {user.role === "COMPANY" ? <Company user={user} /> : <Intern user={user} />}
         </Suspense>

@@ -41,9 +41,15 @@ const ResetPasswordPage: BlitzPage = () => {
             }
           }}
         >
-          <LabeledTextField name="password" placeholder="New Password" type="password" />
+          <LabeledTextField
+            name="password"
+            label="Password"
+            placeholder="Make sure to note it down!"
+            type="password"
+          />
           <LabeledTextField
             name="passwordConfirmation"
+            label="Confirm Password"
             placeholder="Confirm New Password"
             type="password"
           />
@@ -53,7 +59,6 @@ const ResetPasswordPage: BlitzPage = () => {
   )
 }
 
-ResetPasswordPage.redirectAuthenticatedTo = "/"
 ResetPasswordPage.getLayout = (page) => (
   <Layout title="Reset Your Password" noVerification>
     {page}

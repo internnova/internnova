@@ -1,0 +1,137 @@
+import Form from "../../../core/components/Form"
+import { useCurrentUser } from "../../../core/hooks/useCurrentUser"
+import { LabeledTextField } from "../../../core/components/LabeledTextField"
+import { Image, Link, useMutation } from "blitz"
+import LabeledTextArea from "../../../core/components/LabeledTextArea"
+import updateIntern from "../../../interns/mutations/updateIntern"
+import { UpdateCompany, UpdateIntern } from "../../../auth/validations"
+import { UploadAvatar } from "../../../core/components/UploadAvatar"
+import { useState } from "react"
+import { Popup } from "../../../core/components/Popup"
+import updateCompany from "../../../companies/mutations/updateCompany"
+import { Button } from "../../../core/components/Button"
+
+const CommonFields = ({ changePass }: { changePass: () => void }) => {
+  const [uploadAvatar, setUploadAvatar] = useState<boolean>(false)
+
+  return (
+    <>
+      <div className="flex flex-col gap-8">
+        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
+          <div className="sm:w-1/2 flex flex-col">
+            <p className="text-neutral-600 text-[15px]">Username</p>
+            <div className="flex items-center">
+              <span
+                className="inline-flex items-center rounded-l-md bg-gray-50 px-2 py-3 mt-1 text-sm md:text-[15px] text-gray-500"
+                style={{ border: "2px solid rgb(225, 225, 225)" }}
+              >
+                internnova.co/
+              </span>
+              <LabeledTextField name="username" options="rounded-l-none" />
+            </div>
+          </div>
+          <div className="sm:w-1/2">
+            <LabeledTextField name="name" label="Name" />
+          </div>
+        </div>
+        <div className="sm:w-1/2">
+          <LabeledTextField name="email" label="Email" />
+        </div>
+
+        <div
+          className="text-neutral-600 text-sm hover:text-indigo-600 cursor-pointer"
+          onClick={changePass}
+        >
+          Change Password
+        </div>
+        <div className="flex items-center gap-4">
+          <Image
+            src="/images/default_profile.png"
+            alt="Profile"
+            height={40}
+            width={40}
+            className="rounded-full"
+          />
+          <div
+            className="cursor-pointer text-[12px] bg-gray-50 rounded-sm p-1 hover:bg-white"
+            onClick={() => setUploadAvatar(true)}
+          >
+            Change Avatar
+          </div>
+        </div>
+      </div>
+      {uploadAvatar && (
+        <Popup
+          title="Change Avatar"
+          scroll={false}
+          close={() => setUploadAvatar(false)}
+          options="h-[40%] w-[80vw] sm:w-[50vw] lg:w-[35vw] xl:w-[28vw]"
+        >
+          <div className="grid justify-center pt-8 gap-10">
+            <UploadAvatar />
+            <button
+              type="button"
+              className="p-2 bg-indigo-500 text-white rounded"
+              onClick={() => setUploadAvatar(false)}
+            >
+              Change
+            </button>
+          </div>
+        </Popup>
+      )}
+    </>
+  )
+}
+export const Profile = ({ changePass }: { changePass: () => void }) => {
+  const [internUpdateMutate, { isSuccess }] = useMutation(updateIntern)
+  const user = useCurrentUser()
+  const [updateCompanyMut] = useMutation(updateCompany)
+
+  if (!user) {
+    return <></>
+  }
+
+  const { id, username, name, email, intern, company } = user
+
+  return (
+    <main className="max-w-4xl py-4">
+      {user.role === "COMPANY" ? (
+        <Form
+          schema={UpdateCompany}
+          onSubmit={(values) => updateCompanyMut({ userId: id, ...values })}
+          options="w-full"
+          initialValues={{
+            name,
+            username,
+            email,
+            description: company?.description,
+            website: company?.website as string,
+          }}
+        >
+          <CommonFields changePass={changePass} />
+          <LabeledTextField name="website" label="Website" placeholder="Company's website" />
+          <LabeledTextArea name="description" placeholder="Describe your company" />
+          <Button options="w-12 p-2 ">Save</Button>
+        </Form>
+      ) : (
+        <Form
+          schema={UpdateIntern}
+          onSubmit={(values) => internUpdateMutate({ userId: id, ...values })}
+          initialValues={{ name, username, email, bio: intern?.bio, oneliner: intern?.oneliner }}
+          options="w-full"
+        >
+          <div className="flex flex-col gap-[4ch]">
+            <CommonFields changePass={changePass} />
+            <LabeledTextField
+              name="oneliner"
+              label="One liner"
+              placeholder="Describe yourself in a line"
+            />
+            <LabeledTextArea name="bio" placeholder="About you" />
+          </div>
+          <Button options="w-12 p-2 ">Save</Button>
+        </Form>
+      )}
+    </main>
+  )
+}

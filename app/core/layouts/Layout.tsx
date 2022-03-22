@@ -6,6 +6,7 @@ import { Button } from "../components/Button"
 import sendConfirmationEmail from "../../auth/mutations/sendConfirmationEmail"
 import { Nav } from "../components/Nav"
 import { Sidebar } from "../components/Sidebar"
+import { BookmarkProvider } from "../contexts/BookmarkProvider"
 
 const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
   title,
@@ -22,17 +23,15 @@ const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
       </Head>
       <div className="flex overflow-hidden h-screen">
         {user !== null && (
-          <>
-            <div className="hidden md:flex lg:flex-shrink-0">
-              <Sidebar />
-            </div>
-          </>
-        )}
-        <main className="grow">
-          <Nav />
-          <div className="container max-w-[935px] mx-auto" style={{ width: "calc(100% - 40px)" }}>
-            {children}
+          <div className="hidden md:flex lg:flex-shrink-0">
+            <Sidebar />
           </div>
+        )}
+        <main className="grow overflow-x-hidden">
+          <Nav />
+          <BookmarkProvider>
+            <div className="container mx-auto">{children}</div>
+          </BookmarkProvider>
         </main>
       </div>
       {user && !user.verified && !noVerification && (

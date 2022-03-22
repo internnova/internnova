@@ -14,7 +14,7 @@ export const InternPopup = ({
   initials: InternValues
 }) => {
   return (
-    <Popup title="Create account" step={1} scroll={false}>
+    <Popup title="Create account" step={1} scroll={true}>
       <Form
         schema={Intern}
         submitText="Next"
@@ -26,9 +26,13 @@ export const InternPopup = ({
         <div className="grid place-items-center pb-4 w-full">
           <UploadAvatar />
         </div>
-        <LabeledTextField name="username" placeholder="Enter a unique username" />
-        <LabeledTextArea name="bio" placeholder="Bio" />
-        <LabeledTextField name="oneliner" placeholder="Describe yourself in a line" />
+        <LabeledTextField name="username" label="Username" placeholder="Enter a unique username" />
+        <LabeledTextArea name="bio" placeholder="A little about yourself/your background" />
+        <LabeledTextField
+          name="oneliner"
+          label="One liner"
+          placeholder="Describe yourself in a line"
+        />
       </Form>
     </Popup>
   )

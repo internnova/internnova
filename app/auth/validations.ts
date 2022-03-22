@@ -75,11 +75,15 @@ export const UpdateIntern = z.object({
   name,
   username,
   oneliner,
+  bio,
+  email,
 })
 
 export const UpdateCompany = z.object({
   name,
   username,
+  description,
+  email,
   website,
 })
 

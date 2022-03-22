@@ -25,6 +25,7 @@ export default resolver.pipe(resolver.zod(GetIntern), resolver.authorize(), asyn
       bio: true,
       oneliner: true,
       userId: true,
+      bookmarks: true,
     },
   })
 

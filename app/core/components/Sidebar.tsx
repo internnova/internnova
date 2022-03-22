@@ -1,24 +1,44 @@
-import { Link, Image } from "blitz"
-import { BsBriefcase, BsSearch, BsGear } from "react-icons/bs"
+import { Link, Image, useRouter, Router } from "blitz"
+import { BsBriefcase, BsSearch, BsGear, BsBookmark, BsPlusLg } from "react-icons/bs"
 import { useCurrentUser } from "../hooks/useCurrentUser"
+import { useEffect, useRef, useState } from "react"
+import { Profile } from "./Profile"
 
 export const Sidebar = () => {
   const user = useCurrentUser()
+  const [profile, setProfile] = useState(false)
+  const profileRef = useRef<HTMLDivElement>(null)
+  const router = Router.router?.route
+
+  useEffect(() => {
+    const handleClick = (e) => {
+      if (!profileRef.current?.contains(e.target)) {
+        setProfile(false)
+      }
+    }
+    document.addEventListener("click", handleClick)
+    return () => document.removeEventListener("click", handleClick)
+  }, [])
+
   return (
     <div className="flex w-14 flex-col lg:w-56">
-      <div className="flex h-0 flex-1 flex-col border-r border-gray-200 bg-white">
+      <div className="flex h-0 flex-1 flex-col bg-white">
         <div className="flex flex-1 flex-col overflow-y-auto pt-3 pb-4 lg:pt-5">
           <Link href="/job-applications">
             <a className="px-4">
               <div className="lg:hidden block">
                 <Image src="/favicons/logo.png" alt="logo" height={24} width={24} />
               </div>
-              <p className="md:hidden lg:inline text-lg">internnova.co</p>
+              <p className="md:hidden lg:inline text-lg">internnova</p>
             </a>
           </Link>
-          <nav className="mt-2 flex-1 space-y-1 bg-white px-2 lg:mt-5">
+          <nav className="mt-2 flex-1 space-y-2 bg-white px-2 lg:mt-5">
             <Link href="/community">
-              <a className="text-neutral-500 hover:bg-gray-50 hover:text-neutral-900 group flex items-center gap-2 rounded-sm p-2 text-sm font-medium">
+              <a
+                className={`hover:bg-neutral-600 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                  router === "/community" && "bg-neutral-500 text-white"
+                }`}
+              >
                 <svg
                   xmlns="http://www.w3.org/2000/svg"
                   width="16"
@@ -32,26 +52,66 @@ export const Sidebar = () => {
                 <span className="hidden lg:inline">Community</span>
               </a>
             </Link>
-            <Link href="job-applications">
-              <a className="text-neutral-500 hover:bg-gray-50 hover:text-neutral-900 group flex items-center gap-2 rounded-sm p-2 text-sm font-medium">
+            <Link href="/job-applications">
+              <a
+                className={`hover:bg-neutral-600 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                  router === "/job-applications" && "bg-neutral-500 text-white"
+                }`}
+              >
                 <BsBriefcase className="h-[18px] w-[18px]" />
                 <span className="hidden lg:inline">Job Applications</span>
               </a>
             </Link>
             <Link href="/jobs">
-              <a className="text-neutral-500 hover:bg-gray-50 hover:text-neutral-900 group flex items-center gap-2 rounded-sm p-2 text-sm font-medium">
+              <a
+                className={`hover:bg-neutral-600 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                  router === "/jobs" && "bg-neutral-500 text-white"
+                }`}
+              >
                 <BsSearch className="h-[18px] w-[18px]" />
                 <span className="hidden lg:inline">Find internships</span>
               </a>
             </Link>
+            {user?.role === "INTERN" ? (
+              <Link href="/bookmark">
+                <a
+                  className={`hover:bg-neutral-600 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                    router === "/bookmark" && "bg-neutral-500 text-white"
+                  }`}
+                >
+                  <BsBookmark className="h-[18px] w-[18px]" />
+                  <span className="hidden lg:inline">Bookmarks</span>
+                </a>
+              </Link>
+            ) : (
+              <Link href="/jobs/create">
+                <a
+                  className={`hover:bg-neutral-600 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                    router === "/jobs/create" && "bg-neutral-500 text-white"
+                  }`}
+                >
+                  <BsPlusLg className="h-[18px] w-[18px]" />
+                  <span className="hidden lg:inline">Create a job</span>
+                </a>
+              </Link>
+            )}
             <Link href="/settings">
-              <a className="text-neutral-500 hover:bg-gray-50 hover:text-neutral-900 group flex items-center gap-2 rounded-sm p-2 text-sm font-medium">
+              <a
+                className={`hover:bg-neutral-600 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                  router === "/settings" && "bg-neutral-500 text-white"
+                }`}
+              >
                 <BsGear className="h-[18px] w-[18px]" />
                 <span className="hidden lg:inline">Settings</span>
               </a>
             </Link>
           </nav>
-          <div className="flex rounded-sm pt-2 pb-2 pl-3 pr-2 hover:bg-gray-100 lg:mx-2 lg:pl-2 cursor-pointer">
+          <div
+            className="relative flex rounded-sm pt-2 pb-2 pl-3 pr-2 hover:bg-gray-100 lg:mx-2 lg:pl-2 cursor-pointer"
+            ref={profileRef}
+            onClick={() => setProfile((prev) => !prev)}
+          >
+            {profile && <Profile header={false} />}
             <div className="lg:flex lg:gap-2">
               <div className="rounded-full block">
                 <Image

@@ -3,9 +3,9 @@ import { Head, Link, useRouter, useQuery, useParam, BlitzPage, useMutation, Rout
 import { Suspense } from "react"
 import updateJobApplication from "app/job-applications/mutations/updateJobApplication"
 import getJobApplication from "app/job-applications/queries/getJobApplication"
+import { Spinner } from "../../../core/components/Spinner"
 
 export const JobApplication = () => {
-  const router = useRouter()
   const jobApplicationId = useParam("jobApplicationId", "number")
   const [updateJobApplicationMutation] = useMutation(updateJobApplication)
   const [jobApplication] = useQuery(getJobApplication, { id: jobApplicationId })
@@ -47,17 +47,9 @@ export const JobApplication = () => {
 
 const ShowJobApplicationPage: BlitzPage = () => {
   return (
-    <div>
-      <p>
-        <Link href={Routes.Home()}>
-          <a>JobApplications</a>
-        </Link>
-      </p>
-
-      <Suspense fallback={<div>Loading...</div>}>
-        <JobApplication />
-      </Suspense>
-    </div>
+    <Suspense fallback={<Spinner />}>
+      <JobApplication />
+    </Suspense>
   )
 }
 

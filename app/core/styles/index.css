@@ -104,11 +104,7 @@ a {
 
 .search:focus {
   background: white;
-  @apply shadow border-[1px] border-gray-600;
-}
-
-.icon {
-  border-radius: 0 0.6rem 0.6rem 0;
+  @apply shadow border-[1px] border-indigo-600;
 }
 
 .profile {
@@ -125,5 +121,17 @@ a {
   @apply opacity-100;
 }
 
+.navigation {
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400;
+}
+
+.navigation:hover {
+  border-bottom: 2px solid #737373;
+}
 
 @tailwind utilities;

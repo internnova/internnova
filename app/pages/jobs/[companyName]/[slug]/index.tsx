@@ -14,7 +14,7 @@ import { Suspense } from "react"
 import deleteJob from "app/jobs/mutations/deleteJob"
 import getJob from "app/jobs/queries/getJob"
 import { Spinner } from "../../../../core/components/Spinner"
-import { convertValues } from "../../../../jobs/components/JobForm"
+import { Button } from "../../../../core/components/Button"
 
 export const Job = () => {
   const router = useRouter()
@@ -52,8 +52,8 @@ export const Job = () => {
                 </span>
                 <span className="font-cal block text-2xl text-gray-900 sm:text-3xl">
                   {position}{" "}
-                  <Link href={`/companies/${companyName}`}>
-                    <a>@{companyName}</a>
+                  <Link href={`/${companyName}`}>
+                    <a className="text-indigo-500">@{companyName}</a>
                   </Link>
                 </span>
               </h1>
@@ -103,12 +103,10 @@ export const Job = () => {
                 !job.applications
                   .map((application) => application.internId)
                   .includes(session?.userId || NaN) && (
-                  <Link href={Routes.NewJobApplicationPage({ jobId: job.id })}>
+                  <Link href={Routes.NewJobApplicationPage({ jobSlug: job.slug })}>
                     <a className="flex gap-2 items-center">
                       <p className="text-lg">Looks good?</p>
-                      <button className="text-[1.6ch] p-[0.6ch] bg-[rgb(36,32,32)] text-white rounded-md">
-                        Apply now!
-                      </button>
+                      <Button options="px-2">Apply Now!</Button>
                     </a>
                   </Link>
                 )}

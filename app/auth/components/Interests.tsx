@@ -43,11 +43,11 @@ export const Interests = ({
 
   return (
     <Popup title="Your interests" step={2} scroll={true}>
-      <div className="flex flex-col gap-5 py-10 px-8 mb-4">
-        <span className="text-neutral-800">
+      <div className="py-10 px-8 mb-4">
+        <span className="mb-5 text-neutral-800">
           Which field do you specialize in? Which field interests you?
         </span>
-        <div className="flex flex-col gap-5 pt-4 cursor-pointer w-[80vw] sm:w-[50vw] lg:w-[35vw] xl:w-[28vw]">
+        <div className="flex flex-col gap-5 pt-4 cursor-pointer w-[80vw] sm:w-[50vw] lg:w-[35vw] xl:w-[28vw] mb-6">
           {fields.map((field) => {
             const selected = isSelected(field)
             return (

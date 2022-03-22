@@ -13,10 +13,9 @@ export const CompanyPopup = ({ general }: { general: SignUpValues }) => {
   const [companyMutation] = useMutation(companySignup)
   const [sendConfirmationMutation] = useMutation(sendConfirmationEmail)
   return (
-    <Popup title="Create account" scroll={false}>
+    <Popup title="Create account" scroll={true}>
       <Form
         schema={Company}
-        options=""
         submitText="Next"
         initialValues={{ description: "", website: "", username: "" }}
         onSubmit={async (values) => {
@@ -27,9 +26,17 @@ export const CompanyPopup = ({ general }: { general: SignUpValues }) => {
         <div className="grid place-items-center pb-4 w-full">
           <UploadAvatar />
         </div>
-        <LabeledTextField name="username" placeholder="Unique username for your company" />
-        <LabeledTextArea name="description" placeholder="Description" />
-        <LabeledTextField name="website" placeholder="Website" />
+        <LabeledTextField
+          name="username"
+          label="Username"
+          placeholder="Unique username for your company"
+        />
+        <LabeledTextArea name="description" placeholder="A little about your company" />
+        <LabeledTextField
+          name="website"
+          label="Website"
+          placeholder="Link to your company's website"
+        />
       </Form>
     </Popup>
   )

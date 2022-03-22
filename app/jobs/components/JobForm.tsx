@@ -13,20 +13,37 @@ export const convertValues = (values: string[]) =>
 export function JobForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
   return (
     <Form<S> {...props}>
-      <LabeledTextField name="position" placeholder="Position" />
-      <LabeledTextArea name="description" placeholder="Description" />
+      <LabeledTextField
+        name="position"
+        label="Position"
+        placeholder="Eg: Frontend dev/Fullstack dev"
+      />
+      <LabeledTextArea name="description" placeholder="Describe the job" />
       <LabeledOptionField
         name="industry"
         placeholder="Job Industry"
         fields={convertValues(Object.values(Tag))}
         values={Object.values(Tag)}
       />
-      <LabeledTextField name="location" placeholder="Location" />
-      <LabeledTextField name="salary" placeholder="Salary (in dollars)" type="number" min={0} />
-      <LabeledTextField name="duration" placeholder="Duration (months)" type="number" min={1} />
+      <LabeledTextField name="location" label="Location" placeholder="Eg: Remote/United States" />
+      <LabeledTextField
+        name="salary"
+        label="Salary"
+        placeholder="In dollars"
+        type="number"
+        min={0}
+      />
+      <LabeledTextField
+        name="duration"
+        label="Duration"
+        placeholder="Months"
+        type="number"
+        min={1}
+      />
       <LabeledTextField
         name="skillsRequired"
-        placeholder="Skills Required (separated by a comma)"
+        label="Skills Required"
+        placeholder="Separated by a comma"
       />
       <LabeledOptionField
         name="jobType"
