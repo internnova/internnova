@@ -6,7 +6,6 @@ import { Job } from "../../core/components/Job"
 import { Spinner } from "../../core/components/Spinner"
 import { BsCaretRight, BsCaretLeft, BsSearch } from "react-icons/bs"
 import { SearchJob } from "../../core/components/SearchJob"
-import { convertValues } from "../../jobs/components/JobForm"
 import { slugify } from "../[userName]"
 
 export const ITEMS_PER_PAGE = 100
@@ -15,7 +14,7 @@ export const JobsList = () => {
   const router = useRouter()
   const page = Number(router.query.page) || 0
   const [search, setSearch] = useState<string>("")
-  const [searching, setSearching] = useState<boolean>(!!search)
+  const [searching, setSearching] = useState<boolean>(search.trim().length > 0)
   const [{ jobs, hasMore }] = usePaginatedQuery(getJobs, {
     orderBy: { id: "asc" },
     skip: ITEMS_PER_PAGE * page,
@@ -24,6 +23,12 @@ export const JobsList = () => {
 
   const goToPreviousPage = () => router.push({ query: { page: page - 1 } })
   const goToNextPage = () => router.push({ query: { page: page + 1 } })
+
+  const redirectToSearch = () => {
+    if (searching) {
+      router.push(Routes.SearchJobPage({ jobInterest: slugify(search).trim() }))
+    }
+  }
 
   if (jobs.length === 0) {
     return (
@@ -43,12 +48,12 @@ export const JobsList = () => {
   }
 
   return (
-    <div className="mx-4 sm:mx-6 md:mx-8">
+    <main className="px-4 sm:px-6 md:px-8">
       <div className="pt-8 pb-6">
         <h2>Available Jobs: </h2>
       </div>
-      <div className="relative flex flex-col w-full sm:w-1/2 md:w-[40%]">
-        <div className="flex items-center mb-6 overflow-hidden h-[3.8ch] sm:h-[4ch]">
+      <div className="relative flex flex-col w-full sm:w-full lg:w-[60%] xl:w-[40%]">
+        <div className="flex items-center mb-6">
           <input
             className={`appearance-none px-5 py-2 md:text-[15px] search w-full ${
               searching && "rounded-b-none"
@@ -57,21 +62,22 @@ export const JobsList = () => {
             value={search}
             onKeyDown={(e) => {
               if (e.key === "Enter") {
-                router.push(Routes.SearchJobPage({ jobInterest: slugify(search) }))
+                redirectToSearch()
               }
             }}
             onChange={(e) => {
               setSearch(e.target.value)
-              setSearching(!!e.target.value)
+              setSearching(e.target.value.trim().length > 0)
             }}
           />
           <div
-            className={`bg-[rgba(0,0,0,0.05)] p-3 grid place-center cursor-pointer rounded-r-md ${
+            className={`bg-[rgba(0,0,0,0.05)] border-[transparent] md:border-neutral-200 p-3 grid place-center cursor-pointer rounded-r-md ${
               searching && "rounded-b-none"
             }`}
-            style={{ border: "1px solid rgb(225, 225, 225)" }}
+            style={{ borderWidth: "1px", borderStyle: "solid" }}
+            onClick={redirectToSearch}
           >
-            <BsSearch className="text-sm md:text-[15px]" />
+            <BsSearch className="text-[14px] md:text-[15px]" />
           </div>
         </div>
         {searching && (
@@ -103,7 +109,7 @@ export const JobsList = () => {
           <BsCaretRight className="h-[24px] w-[24px]" />
         </button>
       </div>
-    </div>
+    </main>
   )
 }
 

@@ -1,4 +1,4 @@
-import { BlitzPage, usePaginatedQuery } from "blitz"
+import { BlitzPage, Image, usePaginatedQuery } from "blitz"
 import { Suspense } from "react"
 import { Spinner } from "../core/components/Spinner"
 import Layout from "../core/layouts/Layout"
@@ -20,6 +20,23 @@ export const Bookmark = ({ bookmarks }) => (
 
 const BookmarkPage: BlitzPage = () => {
   const { bookmarks } = useBookmark()
+
+  if (bookmarks.length === 0) {
+    return (
+      <div className="h-[90vh] grid place-center overflow-hidden">
+        <div className="flex flex-col justify-center items-center gap-6">
+          <Image
+            src="/images/no-bookmarks.svg"
+            alt="No jobs listed"
+            className="select-none"
+            height={400}
+            width={400}
+          />
+          <h2 className="font-light">Bookmark your favourite internships now!</h2>
+        </div>
+      </div>
+    )
+  }
 
   return (
     <Suspense fallback={<Spinner />}>

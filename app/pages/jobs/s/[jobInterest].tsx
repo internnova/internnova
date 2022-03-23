@@ -2,36 +2,47 @@ import { BlitzPage, usePaginatedQuery, useParam, useRouter, Head } from "blitz"
 import { Suspense } from "react"
 import getJobs from "../../../jobs/queries/getJobs"
 import Layout from "../../../core/layouts/Layout"
+import { Spinner } from "../../../core/components/Spinner"
+import { Job } from "../../../core/components/Job"
 
-const ITEMS_PER_PAGE = 100
+const ITEMS_PER_PAGE = 10
 
-export const Job = () => {
+const unslugify = (str: string) => {
+  return str.toLowerCase().replace("-", " ")
+}
+
+const searchJob = (query: string[], searchTerm: string) => {
+  return unslugify(query.join(" ")).includes(searchTerm)
+}
+
+export const SearchJobs = () => {
   const router = useRouter()
   const page = Number(router.query.page) || 0
-  const jobInterest = useParam("jobInterest", "string")
+  const term = useParam("jobInterest", "string")
   const [{ jobs, hasMore }] = usePaginatedQuery(getJobs, {
     orderBy: { id: "asc" },
     skip: ITEMS_PER_PAGE * page,
     take: ITEMS_PER_PAGE,
   })
 
+  if (!term) return <h2 className="pt-8">No term listed to be searched</h2>
+
+  const searchTerm = unslugify(term)
+
   return (
     <>
       <Head>
-        <title>{jobInterest} | Jobs</title>
+        <title>{searchTerm} | Jobs</title>
       </Head>
-      <div>
-        <h1>Job</h1>
-        {jobs.map((job) => {
-          return (
-            job.skillsRequired.includes(jobInterest as string) && (
-              <div>
-                {/*<h2>{job.title}</h2>*/}
-                <p>{job.description}</p>
-              </div>
-            )
-          )
-        })}
+      <div className="pt-8 pb-6">
+        <h2>Searching jobs which include &quot;{searchTerm}&quot;</h2>
+      </div>
+      <div className="flex flex-col gap-6">
+        {jobs
+          .filter((job) => searchJob(Object.values(job) as string[], searchTerm))
+          .map((job) => (
+            <Job key={`${job.id}`} job={job} />
+          ))}
       </div>
     </>
   )
@@ -39,11 +50,11 @@ export const Job = () => {
 
 const SearchJobPage: BlitzPage = () => {
   return (
-    <div>
-      <Suspense fallback={<div>Loading...</div>}>
-        <Job />
-      </Suspense>
-    </div>
+    <Suspense fallback={<Spinner />}>
+      <main className="px-4 sm:px-6 md:px-8">
+        <SearchJobs />
+      </main>
+    </Suspense>
   )
 }
 

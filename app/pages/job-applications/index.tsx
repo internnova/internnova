@@ -60,7 +60,9 @@ export const JobApplicationsList = () => {
 const JobApplicationsPage: BlitzPage = () => {
   return (
     <Suspense fallback={<Spinner />}>
-      <JobApplicationsList />
+      <main className="px-4 sm:px-6 md:px-8">
+        <JobApplicationsList />
+      </main>
     </Suspense>
   )
 }
