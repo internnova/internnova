@@ -11,7 +11,7 @@ const unslugify = (str: string) => {
   return str.toLowerCase().replace("-", " ")
 }
 
-const searchJob = (query: string[], searchTerm: string) => {
+export const searchJob = (query: string[], searchTerm: string) => {
   return unslugify(query.join(" ")).includes(searchTerm)
 }
 

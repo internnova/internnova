@@ -7,6 +7,7 @@ import { Spinner } from "../../core/components/Spinner"
 import { BsCaretRight, BsCaretLeft, BsSearch } from "react-icons/bs"
 import { SearchJob } from "../../core/components/SearchJob"
 import { slugify } from "../[userName]"
+import { searchJob } from "./s/[jobInterest]"
 
 export const ITEMS_PER_PAGE = 100
 
@@ -83,13 +84,7 @@ export const JobsList = () => {
         {searching && (
           <div className="absolute bg-white rounded-b-md w-full align-baseline top-[4ch] z-[100] shadow-md">
             {jobs
-              .filter(
-                (job) =>
-                  job.position.toLowerCase().includes(search.toLowerCase()) ||
-                  job.description.toLowerCase().includes(search.toLowerCase()) ||
-                  job.industry.toLowerCase().includes(search.toLowerCase()) ||
-                  job.location.toLowerCase().includes(search.toLowerCase())
-              )
+              .filter((job) => searchJob(Object.values(job) as string[], search))
               .map((job) => (
                 <SearchJob key={job.id} job={job} />
               ))}
