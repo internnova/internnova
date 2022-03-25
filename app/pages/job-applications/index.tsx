@@ -3,6 +3,7 @@ import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes, Image } fr
 import Layout from "app/core/layouts/Layout"
 import getJobApplications from "app/job-applications/queries/getJobApplications"
 import { Spinner } from "../../core/components/Spinner"
+import { JobApplication } from "app/core/components/JobApplication"
 
 const ITEMS_PER_PAGE = 100
 
@@ -35,15 +36,13 @@ export const JobApplicationsList = () => {
   }
 
   return (
-    <div>
-      <h2>Your applications:</h2>
-      <div>
+    <div className="pt-8">
+      <div className="pb-6">
+        <h2>Your applications:</h2>
+      </div>
+      <div className="flex flex-col gap-6 pb-6">
         {jobApplications.map((jobApplication) => (
-          <li key={jobApplication.id}>
-            <Link href={Routes.ShowJobApplicationPage({ jobApplicationId: jobApplication.id })}>
-              <a>{jobApplication.job.position}</a>
-            </Link>
-          </li>
+          <JobApplication jobApplication={jobApplication} key={`${jobApplication.id}`} />
         ))}
       </div>
 

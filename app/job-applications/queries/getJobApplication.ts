@@ -1,22 +1,26 @@
+import { name } from "./../../auth/validations"
 import { resolver, NotFoundError, Ctx } from "blitz"
 import db from "db"
 import { z } from "zod"
 
 const GetJobApplication = z.object({
   // This accepts type of undefined, but is required at runtime
-  id: z.number().optional().refine(Boolean, "Required"),
+  slug: z.string().optional(),
+  companyName: z.string().optional(),
 })
 
-export default resolver.pipe(resolver.zod(GetJobApplication), async ({ id }, ctx: Ctx) => {
-  ctx.session.$authorize()
+export default resolver.pipe(
+  resolver.zod(GetJobApplication),
+  async ({ slug, companyName }, ctx: Ctx) => {
+    ctx.session.$authorize()
 
-  const jobApplication = await db.jobApplication.findFirst({
-    where: { id },
-    include: { job: true },
-  })
+    const jobApplication = await db.jobApplication.findFirst({
+      where: { slug, job: { companyName } },
+      include: { job: true, intern: true },
+    })
 
-  if (!jobApplication || jobApplication.job.companyId !== ctx.session.userId)
-    throw new NotFoundError()
+    if (!jobApplication) throw new NotFoundError()
 
-  return jobApplication
-})
+    return jobApplication
+  }
+)

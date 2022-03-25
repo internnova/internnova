@@ -4,6 +4,7 @@ import createJobApplication, {
   CreateJobApplication,
 } from "app/job-applications/mutations/createJobApplication"
 import getJob from "app/jobs/queries/getJob"
+import { JobApplicationsList } from "app/pages/job-applications"
 import { BlitzPage, Routes, useMutation, useParam, useQuery, useRouter, useSession } from "blitz"
 
 const NewJobApplicationPage: BlitzPage = () => {
@@ -42,10 +43,16 @@ const NewJobApplicationPage: BlitzPage = () => {
                   const jobApplication = await createJobApplicationMutation({
                     ...values,
                     jobId: job.id,
+                    position: job.position,
+                    slug: job.slug,
                   })
                   if (jobApplication) {
+                    const { slug } = jobApplication
                     router.push(
-                      Routes.ShowJobApplicationPage({ jobApplicationId: jobApplication.id })
+                      Routes.ShowJobApplicationPage({
+                        slug: slug,
+                        companyName: job.companyName,
+                      })
                     )
                   } else {
                     throw new Error("Application creation failed")

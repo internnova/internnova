@@ -86,6 +86,8 @@ model Token {
 
 model JobApplication {
   id                Int      @id @default(autoincrement())
+  position          String
+  slug              String
   description       String
   status            Status
   internId          Int

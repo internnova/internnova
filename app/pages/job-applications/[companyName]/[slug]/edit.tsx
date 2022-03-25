@@ -9,10 +9,11 @@ import { JobApplicationForm, FORM_ERROR } from "app/job-applications/components/
 
 export const EditJobApplication = () => {
   const router = useRouter()
-  const jobApplicationId = useParam("jobApplicationId", "number")
+  const companyName = useParam("companyName", "string")
+  const slug = useParam("slug", "string")
   const [jobApplication, { setQueryData }] = useQuery(
     getJobApplication,
-    { id: jobApplicationId },
+    { slug, companyName },
     {
       // This ensures the query never refreshes and overwrites the form data while the user is editing.
       staleTime: Infinity,
@@ -26,15 +27,13 @@ export const EditJobApplication = () => {
     return (
       <>
         <Head>
-          <title>Edit JobApplication {jobApplication.id}</title>
+          <title>Edit JobApplication @{jobApplication.job.companyName}</title>
         </Head>
 
-        <div>
-          <h1>Edit JobApplication {jobApplication.id}</h1>
-          <pre>{JSON.stringify(jobApplication, null, 2)}</pre>
-
+        <div className="pt-8 pb-6">
+          <h1>Edit JobApplication @{jobApplication.job.companyName}</h1>
           <JobApplicationForm
-            submitText="Update JobApplication"
+            submitText="Update Application"
             schema={UpdateJobApplication}
             initialValues={jobApplication}
             onSubmit={async (values) => {
@@ -61,17 +60,11 @@ export const EditJobApplication = () => {
 
 const EditJobApplicationPage: BlitzPage = () => {
   return (
-    <div>
-      <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<div>Loading...</div>}>
+      <main className="px-4 sm:px-6 md:px-8">
         <EditJobApplication />
-      </Suspense>
-
-      <p>
-        <Link href={Routes.JobApplicationsPage()}>
-          <a>JobApplications</a>
-        </Link>
-      </p>
-    </div>
+      </main>
+    </Suspense>
   )
 }
 

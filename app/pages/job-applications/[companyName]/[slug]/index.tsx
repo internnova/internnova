@@ -3,17 +3,18 @@ import { Head, Link, useRouter, useQuery, useParam, BlitzPage, useMutation, Rout
 import { Suspense } from "react"
 import updateJobApplication from "app/job-applications/mutations/updateJobApplication"
 import getJobApplication from "app/job-applications/queries/getJobApplication"
-import { Spinner } from "../../../core/components/Spinner"
+import { Spinner } from "../../../../core/components/Spinner"
 
 export const JobApplication = () => {
-  const jobApplicationId = useParam("jobApplicationId", "number")
+  const companyName = useParam("companyName", "string")
+  const slug = useParam("slug", "string")
   const [updateJobApplicationMutation] = useMutation(updateJobApplication)
-  const [jobApplication] = useQuery(getJobApplication, { id: jobApplicationId })
+  const [jobApplication] = useQuery(getJobApplication, { slug, companyName })
 
   return (
     <>
       <Head>
-        <title>JobApplication {jobApplication.id}</title>
+        <title>Review Job Application</title>
       </Head>
 
       <div>

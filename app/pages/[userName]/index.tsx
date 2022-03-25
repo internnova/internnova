@@ -1,10 +1,10 @@
 import { Suspense } from "react"
 import { Head, Link, useQuery, useParam, BlitzPage, Image } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import { Spinner } from "../core/components/Spinner"
-import { Job } from "../core/components/Job"
-import getUser from "../users/queries/getUser"
-import getCompany from "../companies/queries/getCompany"
+import { Spinner } from "../../core/components/Spinner"
+import { Job } from "../../core/components/Job"
+import getUser from "../../users/queries/getUser"
+import getCompany from "../../companies/queries/getCompany"
 
 export const slugify = (str: string) => {
   return str.toLowerCase().replace(/[^a-zA-Z0-9]/g, "-")
