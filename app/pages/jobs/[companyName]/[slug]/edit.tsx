@@ -5,6 +5,7 @@ import { z } from "zod"
 import { JobForm, FORM_ERROR } from "app/jobs/components/JobForm"
 import updateJob, { UpdateJobClient } from "app/jobs/mutations/updateJob"
 import getJob from "app/jobs/queries/getJob"
+import { Spinner } from "app/core/components/Spinner"
 
 export const EditJob = () => {
   const router = useRouter()
@@ -28,44 +29,45 @@ export const EditJob = () => {
     return (
       <>
         <Head>
-          <title>Edit Job {job?.id}</title>
+          <title>Edit Job {job.position}</title>
         </Head>
-
-        <div>
-          <h1>Edit Job {job.id}</h1>
-          <pre>{JSON.stringify(job, null, 2)}</pre>
-
-          <JobForm
-            submitText="Update Job"
-            schema={UpdateJobClient}
-            initialValues={{
-              ...job,
-              salary: job.salary || undefined,
-              skillsRequired: job.skillsRequired.join(", "),
-            }}
-            onSubmit={async (values) => {
-              try {
-                const updated = await updateJobMutation({
-                  ...values,
-                  id: job.id,
-                  skillsRequired: values.skillsRequired?.split(", ") || undefined,
-                })
-                await setQueryData({
-                  ...updated,
-                  company: job.company,
-                  applications: job.applications,
-                })
-                router.push(
-                  Routes.ShowJobPage({ slug: updated.slug, companyName: updated.companyName })
-                )
-              } catch (error: any) {
-                console.error(error)
-                return {
-                  [FORM_ERROR]: error.toString(),
+        <div className="pt-8">
+          <div className="text-center">
+            <h1>Edit Job {job.position}</h1>
+          </div>
+          <div className="flex justify-center">
+            <JobForm
+              submitText="Update Job"
+              schema={UpdateJobClient}
+              initialValues={{
+                ...job,
+                salary: job.salary || undefined,
+                skillsRequired: job.skillsRequired.join(", "),
+              }}
+              onSubmit={async (values) => {
+                try {
+                  const updated = await updateJobMutation({
+                    ...values,
+                    id: job.id,
+                    skillsRequired: values.skillsRequired?.split(", ") || undefined,
+                  })
+                  await setQueryData({
+                    ...updated,
+                    company: job.company,
+                    applications: job.applications,
+                  })
+                  router.push(
+                    Routes.ShowJobPage({ slug: updated.slug, companyName: updated.companyName })
+                  )
+                } catch (error: any) {
+                  console.error(error)
+                  return {
+                    [FORM_ERROR]: error.toString(),
+                  }
                 }
-              }
-            }}
-          />
+              }}
+            />
+          </div>
         </div>
       </>
     )
@@ -74,17 +76,11 @@ export const EditJob = () => {
 
 const EditJobPage: BlitzPage = () => {
   return (
-    <div>
-      <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Spinner />}>
+      <main className="px-4 sm:px-6 md:px-8">
         <EditJob />
-      </Suspense>
-
-      <p>
-        <Link href={Routes.JobsPage()}>
-          <a>Jobs</a>
-        </Link>
-      </p>
-    </div>
+      </main>
+    </Suspense>
   )
 }
 

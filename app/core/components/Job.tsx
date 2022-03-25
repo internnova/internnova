@@ -6,6 +6,7 @@ import {
   BsCurrencyDollar,
   BsBookmarks,
   BsBookmarksFill,
+  BsPencilSquare,
 } from "react-icons/bs"
 import { Button } from "./Button"
 import { useCurrentUser } from "../hooks/useCurrentUser"
@@ -86,6 +87,13 @@ export const Job = ({
               </div>
             </div>
           </div>
+          {user?.username === companyName && (
+            <Link href={`/jobs/${companyName}/${slug}/edit`}>
+              <a className="absolute top-4 right-0 mr-4 cursor-pointer">
+                <BsPencilSquare className="h-[24px] w-[24px]" />
+              </a>
+            </Link>
+          )}
           <div className="p-4 self-end">
             <Button options="px-2">View Internship</Button>
           </div>
