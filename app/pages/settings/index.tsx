@@ -34,7 +34,7 @@ const SettingsPage: BlitzPage = () => {
 
   return (
     <Suspense fallback={<Spinner />}>
-      <div className="px-4 sm:px-6 md:px-8">
+      <main className="px-4 sm:px-6 md:px-8">
         <Heading {...navigation} />
         <div className="sm:mx-auto -mb-px flex space-x-2 space-x-5">
           <div
@@ -78,7 +78,7 @@ const SettingsPage: BlitzPage = () => {
             </div>
           </div>
         )}
-      </div>
+      </main>
     </Suspense>
   )
 }
