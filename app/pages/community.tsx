@@ -16,12 +16,19 @@ export const Community = () => {
     take: ITEMS_PER_PAGE,
   })
   return (
-    <div className="pt-8 pb-6">
-      <div className="pb-6">
+    <div className="pb-6">
+      <div className="py-8">
         <h2>Community</h2>
         <p>Discover other ambitious interns</p>
       </div>
-      <div className="flex flex-col gap-6">
+
+      <div
+        className="grid justify-items-center gap-6"
+        style={{
+          gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
+          gridTemplateRows: "repeat(auto-fill, minmax(220px, 1fr))",
+        }}
+      >
         {interns.map((intern) => (
           <Intern key={intern.id} intern={intern} />
         ))}

@@ -30,6 +30,7 @@ export const JobApplication = ({
                 Application @{companyName} as a {position}
               </p>
             </div>
+
             <div className="py-2">
               <p className="sm:text-sm">{description.slice(0, 60)}...</p>
             </div>
