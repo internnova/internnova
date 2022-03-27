@@ -7,6 +7,7 @@ import sendConfirmationEmail from "../../auth/mutations/sendConfirmationEmail"
 import { Nav } from "../components/Nav"
 import { Sidebar } from "../components/Sidebar"
 import { BookmarkProvider } from "../contexts/BookmarkProvider"
+import { HomeBar } from "../components/HomeBar"
 
 const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
   title,
@@ -32,6 +33,7 @@ const Layout: BlitzLayout<{ title?: string; noVerification?: boolean }> = ({
           <BookmarkProvider>
             <div className="container mx-auto">{children}</div>
           </BookmarkProvider>
+          <HomeBar />
         </main>
       </div>
       {user && !user.verified && !noVerification && (
