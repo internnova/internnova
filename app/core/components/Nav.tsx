@@ -1,15 +1,16 @@
 import { Link, Image } from "blitz"
-import { BsBookmark, BsSearch } from "react-icons/bs"
+import { BsBookmark, BsPlusLg, BsSearch } from "react-icons/bs"
 import { useCurrentUser } from "../hooks/useCurrentUser"
 import { Profile } from "./Profile"
 import { useEffect, useRef, useState } from "react"
+import { username } from "app/auth/validations"
 
 export const Nav = () => {
   const currentUser = useCurrentUser()
   const avatar = "/images/default_profile_36.png"
   const profileRef = useRef<HTMLDivElement>(null)
   const [profileDD, setProfileDD] = useState(false)
-
+  const isCompany = currentUser?.role === "COMPANY"
   useEffect(() => {
     const handleClick = (e) => {
       if (e.target !== profileRef.current) {
@@ -30,9 +31,13 @@ export const Nav = () => {
         </Link>
       </div>
       <div className="flex items-center gap-[2ch]">
-        <Link href="/bookmark">
+        <Link href={isCompany ? "/jobs/create" : "/bookmark"}>
           <a className="cursor-pointer">
-            <BsBookmark className="mt-2 h-[18px] w-[18px] text-gray-500 hover:text-black" />
+            {isCompany ? (
+              <BsPlusLg className="mt-2 h-[18px] w-[18px] text-gray-500 hover:text-black" />
+            ) : (
+              <BsBookmark className="mt-2 h-[18px] w-[18px] text-gray-500 hover:text-black" />
+            )}
           </a>
         </Link>
         <div className="relative">

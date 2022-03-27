@@ -9,6 +9,7 @@ export const Sidebar = () => {
   const [profile, setProfile] = useState(false)
   const profileRef = useRef<HTMLDivElement>(null)
   const router = Router.router?.route
+  const isCompany = user?.role === "COMPANY"
 
   useEffect(() => {
     const handleClick = (e) => {
@@ -72,29 +73,22 @@ export const Sidebar = () => {
                 <span className="hidden lg:inline">Find internships</span>
               </a>
             </Link>
-            {user?.role === "INTERN" ? (
-              <Link href="/bookmark">
-                <a
-                  className={`hover:bg-neutral-800 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
-                    router === "/bookmark" && "bg-neutral-700 text-white"
-                  }`}
-                >
-                  <BsBookmark className="h-[18px] w-[18px]" />
-                  <span className="hidden lg:inline">Bookmarks</span>
-                </a>
-              </Link>
-            ) : (
-              <Link href="/jobs/create">
-                <a
-                  className={`hover:bg-neutral-800 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
-                    router === "/jobs/create" && "bg-neutral-700 text-white"
-                  }`}
-                >
+
+            <Link href={isCompany ? "/jobs/create" : "/bookmark"}>
+              <a
+                className={`hover:bg-neutral-800 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                  router === ("/jobs/create" || "/bookmark") && "bg-neutral-700 text-white"
+                }`}
+              >
+                {isCompany ? (
                   <BsPlusLg className="h-[18px] w-[18px]" />
-                  <span className="hidden lg:inline">Create a job</span>
-                </a>
-              </Link>
-            )}
+                ) : (
+                  <BsBookmark className="h-[18px] w-[18px]" />
+                )}
+                <span className="hidden lg:inline">{isCompany ? "Create a job" : "Bookmarks"}</span>
+              </a>
+            </Link>
+
             <Link href="/settings">
               <a
                 className={`hover:bg-neutral-800 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${

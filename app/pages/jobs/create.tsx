@@ -12,9 +12,9 @@ const NewJobPage: BlitzPage = () => {
   const user = useCurrentUser()
 
   return (
-    <div className="h-screen select-none flex flex-col gap-8">
-      <h1 className="pt-8 h-0 text-center tracking-4">Create a new job</h1>
-      <div className="flex gap-10 justify-center items-center w-full h-screen select-none">
+    <div className="h-screen select-none">
+      <h1 className="pt-8 md:h-0 text-center tracking-4">Create a new job</h1>
+      <div className="flex gap-10 justify-center items-center w-full h-auto pb-4">
         <JobForm
           submitText="Create Job"
           schema={CreateJobClient}
