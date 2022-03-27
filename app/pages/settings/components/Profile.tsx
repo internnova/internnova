@@ -17,23 +17,19 @@ const CommonFields = ({ changePass }: { changePass: () => void }) => {
   return (
     <>
       <div className="flex flex-col gap-8">
-        <div className="flex flex-col sm:flex-row sm:items-center gap-4">
-          <div className="sm:w-1/2 flex flex-col">
-            <p className="text-neutral-600 text-[15px]">Username</p>
-            <div className="flex items-center">
-              <span
-                className="inline-flex items-center rounded-l-md bg-gray-50 px-2 py-3 mt-1 text-sm md:text-[15px] text-gray-500"
-                style={{ border: "2px solid rgb(225, 225, 225)" }}
-              >
-                internnova.co/
-              </span>
-              <LabeledTextField name="username" options="rounded-l-none" />
-            </div>
-          </div>
-          <div className="sm:w-1/2">
-            <LabeledTextField name="name" label="Name" />
+        <div className="sm:w-1/2">
+          <LabeledTextField name="name" label="Name" />
+        </div>
+        <div className="sm:w-1/2 flex flex-col">
+          <p className="text-neutral-600 text-[15px]">Username</p>
+          <div className="flex items-center overflow-hidden">
+            <span className="inline-flex items-center px-2 rounded-l-md  text-sm md:text-[15px] text-gray-500">
+              internnova.co/
+            </span>
+            <LabeledTextField name="username" options="rounded-l-none" />
           </div>
         </div>
+
         <div className="sm:w-1/2">
           <LabeledTextField name="email" label="Email" />
         </div>

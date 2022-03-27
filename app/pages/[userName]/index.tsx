@@ -92,11 +92,11 @@ const Intern = ({
   return (
     <div className="profile select-none">
       <div className="py-[30px]">
-        <div className="flex items-stretch">
-          <div className="grow grid justify-center items-center w-[140px]">
+        <div className="flex flex-col sm:flex-row gap-4 sm:gap-0 sm:items-stretch">
+          <div className="sm:grow grid justify-center items-center w-[100px] sm:w-[140px]">
             <Image
               src={avatar}
-              alt="Index Image"
+              alt="Profile Image"
               width={140}
               height={140}
               className="rounded-full"
@@ -114,10 +114,10 @@ const Intern = ({
             <h2 className="text-[20px] font-light">{oneliner}</h2>
             <div className="flex flex-col gap-2">
               <h3 className="font-light">Interested in:</h3>
-              <div className="flex lg:flex-row gap-2">
+              <div className="flex flex-col sm:flex-row gap-2">
                 {interests.map((interest) => (
                   <Link key={interest} href={`/jobs/s/${slugify(interest)}`}>
-                    <a className="text-sm font-light bg-[rgba(36,32,32,0.9)] text-white p-[0.7ch] rounded-md">
+                    <a className="text-sm font-light bg-[rgba(36,32,32,0.9)] text-white p-[0.7ch] rounded-md w-1/2 sm:w-auto">
                       {interest}
                     </a>
                   </Link>
