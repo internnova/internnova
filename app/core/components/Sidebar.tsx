@@ -35,8 +35,8 @@ export const Sidebar = () => {
           <nav className="mt-2 flex-1 space-y-2 bg-white px-2 lg:mt-5">
             <Link href="/community">
               <a
-                className={`hover:bg-neutral-600 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
-                  router === "/community" && "bg-neutral-500 text-white"
+                className={`hover:bg-neutral-800 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                  router === "/community" && "bg-neutral-700 text-white"
                 }`}
               >
                 <svg
@@ -54,8 +54,8 @@ export const Sidebar = () => {
             </Link>
             <Link href="/job-applications">
               <a
-                className={`hover:bg-neutral-600 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
-                  router === "/job-applications" && "bg-neutral-500 text-white"
+                className={`hover:bg-neutral-800 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                  router === "/job-applications" && "bg-neutral-700 text-white"
                 }`}
               >
                 <BsBriefcase className="h-[18px] w-[18px]" />
@@ -64,8 +64,8 @@ export const Sidebar = () => {
             </Link>
             <Link href="/jobs">
               <a
-                className={`hover:bg-neutral-600 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
-                  router === "/jobs" && "bg-neutral-500 text-white"
+                className={`hover:bg-neutral-800 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                  router === "/jobs" && "bg-neutral-700 text-white"
                 }`}
               >
                 <BsSearch className="h-[18px] w-[18px]" />
@@ -75,8 +75,8 @@ export const Sidebar = () => {
             {user?.role === "INTERN" ? (
               <Link href="/bookmark">
                 <a
-                  className={`hover:bg-neutral-600 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
-                    router === "/bookmark" && "bg-neutral-500 text-white"
+                  className={`hover:bg-neutral-800 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                    router === "/bookmark" && "bg-neutral-700 text-white"
                   }`}
                 >
                   <BsBookmark className="h-[18px] w-[18px]" />
@@ -86,8 +86,8 @@ export const Sidebar = () => {
             ) : (
               <Link href="/jobs/create">
                 <a
-                  className={`hover:bg-neutral-600 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
-                    router === "/jobs/create" && "bg-neutral-500 text-white"
+                  className={`hover:bg-neutral-800 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                    router === "/jobs/create" && "bg-neutral-700 text-white"
                   }`}
                 >
                   <BsPlusLg className="h-[18px] w-[18px]" />
@@ -97,8 +97,8 @@ export const Sidebar = () => {
             )}
             <Link href="/settings">
               <a
-                className={`hover:bg-neutral-600 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
-                  router === "/settings" && "bg-neutral-500 text-white"
+                className={`hover:bg-neutral-800 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                  router === "/settings" && "bg-neutral-700 text-white"
                 }`}
               >
                 <BsGear className="h-[18px] w-[18px]" />

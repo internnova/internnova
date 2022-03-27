@@ -43,7 +43,12 @@ export const EditJobApplication = () => {
                   id: jobApplication.id,
                 })
                 await setQueryData(updated)
-                router.push(Routes.ShowJobApplicationPage({ jobApplicationId: updated.id }))
+                router.push(
+                  Routes.ShowJobApplicationPage({
+                    slug: updated.slug,
+                    companyName: updated.job.companyName,
+                  })
+                )
               } catch (error: any) {
                 console.error(error)
                 return {

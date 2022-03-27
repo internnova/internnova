@@ -7,6 +7,7 @@ const GetUser = z.object({
   where: z
     .object({
       username: z.string().optional(),
+      id: z.number().optional(),
     })
     .optional()
     .refine(Boolean, "Required"),
@@ -22,6 +23,7 @@ export default resolver.pipe(resolver.zod(GetUser), resolver.authorize(), async 
       role: true,
       name: true,
       username: true,
+      email: true,
     },
   })
 

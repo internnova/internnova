@@ -4,7 +4,7 @@ import { usePaginatedQuery, useRouter, BlitzPage, Routes, Image } from "blitz"
 import { Suspense, useState } from "react"
 import { Job } from "../../core/components/Job"
 import { Spinner } from "../../core/components/Spinner"
-import { BsCaretRight, BsCaretLeft, BsSearch } from "react-icons/bs"
+import { BsSearch, BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs"
 import { SearchJob } from "../../core/components/SearchJob"
 import { slugify } from "../[userName]"
 import { searchJob } from "./s/[jobInterest]"
@@ -96,14 +96,16 @@ export const JobsList = () => {
           <Job key={`${job.id}`} job={job} />
         ))}
       </div>
-      <div className="flex justify-center items-center">
-        <button disabled={page === 0} onClick={goToPreviousPage}>
-          <BsCaretLeft className="h-[24px] w-[24px]" />
-        </button>
-        <button disabled={!hasMore} onClick={goToNextPage}>
-          <BsCaretRight className="h-[24px] w-[24px]" />
-        </button>
-      </div>
+      {page !== 0 || hasMore ? (
+        <div className="flex items-center justify-center gap-4">
+          <button disabled={page === 0} onClick={goToPreviousPage}>
+            <BsFillArrowLeftCircleFill className="h-[20px] w-[20px]" />
+          </button>
+          <button disabled={!hasMore} onClick={goToNextPage}>
+            <BsFillArrowRightCircleFill className="h-[20px] w-[20px]" />
+          </button>
+        </div>
+      ) : null}
     </main>
   )
 }

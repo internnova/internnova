@@ -25,8 +25,8 @@ export const Community = () => {
       <div
         className="grid justify-items-center gap-6"
         style={{
-          gridTemplateColumns: "repeat(auto-fill, minmax(220px, 1fr))",
-          gridTemplateRows: "repeat(auto-fill, minmax(220px, 1fr))",
+          gridTemplateColumns: "repeat(auto-fill, minmax(min-content, 600px))",
+          gridTemplateRows: "repeat(auto-fill, minmax(200px, 1fr))",
         }}
       >
         {interns.map((intern) => (

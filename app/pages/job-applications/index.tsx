@@ -4,6 +4,7 @@ import Layout from "app/core/layouts/Layout"
 import getJobApplications from "app/job-applications/queries/getJobApplications"
 import { Spinner } from "../../core/components/Spinner"
 import { JobApplication } from "app/core/components/JobApplication"
+import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs"
 
 const ITEMS_PER_PAGE = 100
 
@@ -45,13 +46,16 @@ export const JobApplicationsList = () => {
           <JobApplication jobApplication={jobApplication} key={`${jobApplication.id}`} />
         ))}
       </div>
-
-      <button disabled={page === 0} onClick={goToPreviousPage}>
-        Previous
-      </button>
-      <button disabled={!hasMore} onClick={goToNextPage}>
-        Next
-      </button>
+      {page !== 0 || hasMore ? (
+        <div className="flex items-center justify-center gap-4">
+          <button disabled={page === 0} onClick={goToPreviousPage}>
+            <BsFillArrowLeftCircleFill className="h-[20px] w-[20px]" />
+          </button>
+          <button disabled={!hasMore} onClick={goToNextPage}>
+            <BsFillArrowRightCircleFill className="h-[20px] w-[20px]" />
+          </button>
+        </div>
+      ) : null}
     </div>
   )
 }
