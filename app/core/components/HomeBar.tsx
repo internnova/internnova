@@ -7,7 +7,7 @@ export const HomeBar = () => {
     <nav className="fixed bottom-0 left-0 md:hidden w-screen flex items-center bg-gray-50 h-[60px] leading-[24px]">
       <div className="flex items-center justify-center w-full">
         <Link href="/community">
-          <a className="flex flex-col items-center text-gray-900 rounded-l-lg relative min-w-0 flex-1 overflow-hidden bg-white py-2 px-2 text-center text-xs font-medium hover:bg-gray-50 focus:z-10 sm:text-sm">
+          <a className="flex flex-col items-center text-gray-900 rounded-lg relative min-w-0 flex-1 overflow-hidden bg-white py-2 px-2 text-center text-xs font-medium hover:bg-neutral-800 hover:text-white sm:text-sm">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="16"
@@ -22,13 +22,13 @@ export const HomeBar = () => {
           </a>
         </Link>
         <Link href="/job-applications">
-          <a className="flex flex-col items-center text-gray-900 rounded-l-lg relative min-w-0 flex-1 overflow-hidden bg-white py-2 px-2 text-center text-xs font-medium hover:bg-gray-50 focus:z-10 sm:text-sm">
+          <a className="flex flex-col items-center text-gray-900 rounded-lg relative min-w-0 flex-1 overflow-hidden bg-white py-2 px-2 text-center text-xs font-medium hover:bg-neutral-800 hover:text-white sm:text-sm">
             <BsBriefcase className="h-[18px] w-[18px]" />
             <span>Job Apps</span>
           </a>
         </Link>
         <Link href="/jobs">
-          <a className="flex flex-col items-center text-gray-900 rounded-l-lg relative min-w-0 flex-1 overflow-hidden bg-white py-2 px-2 text-center text-xs font-medium hover:bg-gray-50 focus:z-10 sm:text-sm">
+          <a className="flex flex-col items-center text-gray-900 rounded-lg relative min-w-0 flex-1 overflow-hidden bg-white py-2 px-2 text-center text-xs font-medium hover:bg-neutral-800 hover:text-white sm:text-sm">
             <BsSearch className="h-[18px] w-[18px]" />
             <span>Find Jobs</span>
           </a>
