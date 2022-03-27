@@ -33,17 +33,17 @@ const Company = ({ user: { name, username } }: CompProps) => {
     <div className="select-none">
       <div className="profile">
         <div className="py-[30px]">
-          <div className="flex items-stretch">
-            <div className="grow grid justify-center items-center w-[140px]">
+          <div className="flex flex-col sm:flex-row items-stretch">
+            <div className="grow grid justify-center items-center w-[100px] sm:w-[140px]">
               <Image
                 src={avatar}
-                alt="Index Image"
+                alt="Profile Image"
                 width={140}
                 height={140}
                 className="rounded-full"
               />
             </div>
-            <section className="basis-[30px] grow-[2] flex flex-col gap-4 about-me">
+            <section className="basis-[30px] grow-[2] flex flex-col gap-4 pl-2 sm:pl-0 about-me">
               <div>
                 <h2 className="text-[28px] font-light">{name}</h2>
                 <Link href={`/companies/${username}`}>
@@ -102,7 +102,7 @@ const Intern = ({
               className="rounded-full"
             />
           </div>
-          <section className="basis-[30px] grow-[2] flex flex-col gap-4 about-me">
+          <section className="basis-[30px] grow-[2] flex flex-col pl-2 sm:pl-0 gap-4 about-me">
             <div>
               <h2 className="text-[28px] font-light">{name}</h2>
               <Link href={`/interns/${username}`}>
@@ -153,7 +153,7 @@ const ProfilePage: BlitzPage = () => {
       <Head>
         <title>{user.name} | Profile</title>
       </Head>
-      <div className="pt-4">
+      <div className="pt-4 pb-10 h-auto">
         <Suspense fallback={<Spinner />}>
           {user.role === "COMPANY" ? <Company user={user} /> : <Intern user={user} />}
         </Suspense>
