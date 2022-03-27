@@ -1,4 +1,5 @@
 import { BlitzPage, useRouterQuery, useMutation, useRouter } from "blitz"
+import { Spinner } from "app/core/components/Spinner"
 import Layout from "app/core/layouts/Layout"
 import confirmEmail from "app/auth/mutations/confirmEmail"
 import { useState } from "react"
@@ -15,7 +16,7 @@ const ConfirmPassswordPage: BlitzPage = () => {
 
   if (user && user.verified) {
     router.push("/")
-    return <>Loading...</>
+    return <Spinner />
   }
 
   if (isSuccess) {

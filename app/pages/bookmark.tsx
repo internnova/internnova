@@ -1,9 +1,9 @@
 import { BlitzPage, Image, usePaginatedQuery } from "blitz"
 import { Suspense } from "react"
-import { Spinner } from "../core/components/Spinner"
-import Layout from "../core/layouts/Layout"
-import { Job } from "../core/components/Job"
-import { useBookmark } from "../core/contexts/BookmarkProvider"
+import { Spinner } from "app/core/components/Spinner"
+import Layout from "app/core/layouts/Layout"
+import { Job } from "app/core/components/Job"
+import { useBookmark } from "app/core/contexts/BookmarkProvider"
 
 export const Bookmark = ({ bookmarks }) => (
   <div>

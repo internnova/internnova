@@ -1,4 +1,5 @@
 import { Suspense } from "react"
+import { Spinner } from "app/core/components/Spinner"
 import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getJobApplication from "app/job-applications/queries/getJobApplication"
@@ -65,7 +66,7 @@ export const EditJobApplication = () => {
 
 const EditJobApplicationPage: BlitzPage = () => {
   return (
-    <Suspense fallback={<div>Loading...</div>}>
+    <Suspense fallback={<Spinner />}>
       <main className="px-4 sm:px-6 md:px-8">
         <EditJobApplication />
       </main>

@@ -26,13 +26,7 @@ export function JobForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
         values={Object.values(Tag)}
       />
       <LabeledTextField name="location" label="Location" placeholder="Eg: Remote/United States" />
-      <LabeledTextField
-        name="salary"
-        label="Salary"
-        placeholder="In dollars"
-        type="number"
-        min={0}
-      />
+      <LabeledTextField name="salary" label="Salary" placeholder="In INR" type="number" min={0} />
       <LabeledTextField
         name="duration"
         label="Duration"

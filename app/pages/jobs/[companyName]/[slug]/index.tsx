@@ -90,7 +90,7 @@ export const Job = () => {
                 <ul className="px-6">
                   {salary && (
                     <li>
-                      <span className="text-lg">${salary} (monthly basis)</span>
+                      <span className="text-lg">₹{salary} (monthly basis)</span>
                     </li>
                   )}
                   <li>

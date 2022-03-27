@@ -113,7 +113,8 @@ a {
   max-width: 935px;
 }
 
-.about-me:hover + div, div:hover {
+.about-me:hover + div,
+div:hover {
   opacity: 1;
 }
 
