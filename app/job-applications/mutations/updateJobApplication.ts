@@ -18,6 +18,7 @@ export default resolver.pipe(
       data,
       include: {
         job: true,
+        intern: true,
       },
     })
 

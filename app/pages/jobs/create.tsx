@@ -35,6 +35,10 @@ const NewJobPage: BlitzPage = () => {
   )
 }
 
-NewJobPage.getLayout = (page) => <Layout title={"Create New Job"}>{page}</Layout>
+NewJobPage.getLayout = (page) => (
+  <Layout title={"Create New Job"} company>
+    {page}
+  </Layout>
+)
 
 export default NewJobPage

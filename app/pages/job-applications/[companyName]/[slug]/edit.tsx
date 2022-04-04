@@ -1,6 +1,6 @@
 import { Suspense } from "react"
 import { Spinner } from "app/core/components/Spinner"
-import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
+import { Head, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getJobApplication from "app/job-applications/queries/getJobApplication"
 import updateJobApplication, {
@@ -21,6 +21,7 @@ export const EditJobApplication = () => {
     }
   )
   const [updateJobApplicationMutation] = useMutation(updateJobApplication)
+
   if (!jobApplication) {
     router.push("/job-applications")
     return <></>

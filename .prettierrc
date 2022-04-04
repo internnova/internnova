@@ -1,0 +1,20 @@
+{
+  "trailingComma": "none",
+  "arrowParens": "avoid",
+  "printWidth": 80,
+  "useTabs": false,
+  "tabWidth": 2,
+  "semi": true,
+  "importOrder": [
+    "^(blitz/(.*)$)|^(blitz$)",
+    "^(next/(.*)$)|^(next$)",
+    "<THIRD_PARTY_MODULES>",
+    "next-seo.config",
+    "^app/core/(.*)$",
+    "^app/auth/(.*)$",
+    "^[./]",
+    "^@fontsource/(.*)$"
+  ],
+  "importOrderSeparation": true,
+  "importOrderSortSpecifiers": true
+}
