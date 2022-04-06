@@ -1,7 +1,7 @@
 <p align="center">
   <img src="https://www.internnova.co/logo/Logo.png" width="100"/>
 </p>
-<h1 align="center">company-dashboard</h1>
+<h1 align="center">internnova</h1>
 <h4 align="center">
 Revolutionizing highschool internships</h1>
 <br>
@@ -30,7 +30,7 @@ cd internnova
 3. Installation commands
 
 ```sh
-yarn
+yarn install
 ```
 
 5. Run
@@ -43,7 +43,7 @@ yarn run dev
 
 ## :clap: Supporters
 
-[![Stargazers repo roster for https://github.com/internnova/company-dashboard](https://reporoster.com/stars/internnova/internnova)](https://github.com/https://github.com/internnova/internnova/stargazers)
+[![Stargazers repo roster for https://github.com/internnova/company-dashboard](https://reporoster.com/stars/internnova/internnova)](https://github.com/internnova/internnova/stargazers)
 
 <br>
 
