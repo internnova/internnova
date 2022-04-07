@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="https://www.internnova.co/logo/Logo.png" width="100"/>
+  <img src="https://internnova.co/_next/image?url=https%3A%2F%2Fsuper-static-assets.s3.amazonaws.com%2F6118b97e-9606-4e94-b835-fccc0f6270b3%2Fuploads%2Flogo%2Fa50a2ece-d113-4354-a6c6-37735c4f7eae.png&w=2048&q=80" width="100"/>
 </p>
 <h1 align="center">internnova</h1>
 <h4 align="center">
