@@ -50,6 +50,7 @@ yarn run dev
 ## Authors
 
 [Samrath Chadha](https://github.com/0xsamrath) - Lead dev/maintainer
+[Suryansh Makharia](https://github.com/suryanshmak) - Dev/maintainer
 
 See also the list of [contributors](https://github.com/internnova/contributors) who contributed to this.
 
