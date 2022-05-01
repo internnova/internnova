@@ -1,10 +1,14 @@
 import { SpinningOrbitLoader } from "react-loaders-kit"
-export const Spinner = () => {
+
+interface SpinnerProps {
+  small?: boolean
+}
+export const Spinner = ({ small }: SpinnerProps) => {
   // very simple spinner
   return (
     <section className="flex h-screen">
       <div className="my-auto mx-auto">
-        <SpinningOrbitLoader size={150} loading />
+        <SpinningOrbitLoader size={small ? 100 : 150} loading />
       </div>
     </section>
   )

@@ -9,7 +9,7 @@ const ResetPasswordPage: BlitzPage = () => {
   const query = useRouterQuery()
   const [resetPasswordMutation, { isSuccess }] = useMutation(resetPassword)
   return (
-    <div className="flex overflow-hidden flex-col justify-center items-center w-full h-screen select-none">
+    <div className="flex flex-col justify-center items-center w-full h-screen select-none">
       <h1 className="px-8">Set a New Password</h1>
 
       {isSuccess ? (
@@ -41,9 +41,15 @@ const ResetPasswordPage: BlitzPage = () => {
             }
           }}
         >
-          <LabeledTextField name="password" placeholder="New Password" type="password" />
+          <LabeledTextField
+            name="password"
+            label="Password"
+            placeholder="Make sure to note it down!"
+            type="password"
+          />
           <LabeledTextField
             name="passwordConfirmation"
+            label="Confirm Password"
             placeholder="Confirm New Password"
             type="password"
           />
@@ -53,7 +59,6 @@ const ResetPasswordPage: BlitzPage = () => {
   )
 }
 
-ResetPasswordPage.redirectAuthenticatedTo = "/"
 ResetPasswordPage.getLayout = (page) => (
   <Layout title="Reset Your Password" noVerification>
     {page}

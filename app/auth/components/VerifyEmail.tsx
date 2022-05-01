@@ -1,14 +1,15 @@
-import { useMutation, useRouter } from "blitz"
-import sendConfirmationEmail from "../mutations/sendConfirmationEmail"
-import { Popup } from "../../core/components/Popup"
-import { Button } from "../../core/components/Button"
-import { values } from "../pages/signup"
-import internSignup from "../mutations/intern-signup"
-import companySignup from "../mutations/company-signup"
-import { MutationFunction } from "react-query"
+import { Spinner } from "app/core/components/Spinner"
+import { useMutation } from "blitz"
 import { useState } from "react"
+import { MutationFunction } from "react-query"
+import { Button } from "../../core/components/Button"
 import { ErrorLabel } from "../../core/components/ErrorLabel"
+import { Popup } from "../../core/components/Popup"
 import { useCurrentUser } from "../../core/hooks/useCurrentUser"
+import companySignup from "../mutations/company-signup"
+import internSignup from "../mutations/intern-signup"
+import sendConfirmationEmail from "../mutations/sendConfirmationEmail"
+import { values } from "../pages/signup"
 
 export const VerifyEmail = ({ values, goBack }: { values: values; goBack(): void }) => {
   const isCompany = values.general.role === "Company"
@@ -57,27 +58,33 @@ const Verify = ({
   values: any
 }) => {
   const [sendConfirmationEmailMutation, { isSuccess }] = useMutation(sendConfirmationEmail)
+  const [loading, setLoading] = useState(false)
   const [signUpMutation] = useMutation(mutation)
   const [error, setError] = useState<string | null>(null)
   const user = useCurrentUser()
 
   return (
     <div className="flex flex-col w-1/2">
-      <Button
-        {...props}
-        onClick={() => {
-          ;(async () => {
-            try {
-              if (values && values.name && !user) await signUpMutation(values)
-              await sendConfirmationEmailMutation(values.role)
-            } catch (error) {
-              setError(error.message)
-            }
-          })()
-        }}
-      >
-        {text}
-      </Button>
+      {!loading ? (
+        <Button
+          {...props}
+          onClick={() => {
+            setLoading(true)
+            ;(async () => {
+              try {
+                if (values && values.name && !user) await signUpMutation(values)
+                await sendConfirmationEmailMutation(values.role)
+              } catch (error) {
+                setError(error.message)
+              }
+            })()
+          }}
+        >
+          {text}
+        </Button>
+      ) : (
+        <Spinner small />
+      )}
       {error ? <ErrorLabel error={error} /> : null}
     </div>
   )

@@ -46,6 +46,12 @@ button {
   outline: none;
   border: none;
   cursor: pointer;
+  background: transparent;
+}
+
+a {
+  text-decoration: none;
+  color: black;
 }
 
 .loader {
@@ -77,6 +83,56 @@ button {
 
 .imageUploader:hover .changeAvatar {
   opacity: 1;
+}
+
+.header {
+  box-shadow: rgba(0, 0, 0, 0.15) 0px 1px 2px 0px, rgba(0, 0, 0, 0.1) 0px 0px 2px 0px;
+  z-index: 100;
+}
+
+.dropdown a,
+.dropdown .dd-div {
+  @apply py-2 w-[22ch] pl-6 hover:bg-gray-200 flex items-center gap-2 text-gray-600;
+}
+
+.search {
+  background-color: rgba(0, 0, 0, 0.1);
+  border: 1px solid transparent;
+  border-radius: 0.6rem 0px 0px 0.6rem;
+  outline: none;
+}
+
+.search:focus {
+  background: white;
+  @apply shadow border-[1px] border-indigo-600;
+}
+
+.profile {
+  width: calc(100% - 40px);
+  margin: 0 auto 30px;
+  max-width: 935px;
+}
+
+.about-me:hover + div,
+div:hover {
+  opacity: 1;
+}
+
+.desc-input:focus + button {
+  @apply opacity-100;
+}
+
+.navigation {
+  border-bottom: 2px solid transparent;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  font-weight: 400;
+}
+
+.navigation:hover {
+  border-bottom: 2px solid #737373;
 }
 
 @tailwind utilities;

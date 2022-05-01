@@ -8,12 +8,10 @@ import {
   useQueryErrorResetBoundary,
   useRouter,
   Routes,
-  useMutation,
 } from "blitz"
 import "app/core/styles/index.css"
 import { Suspense } from "react"
 import { Spinner } from "app/core/components/Spinner"
-import logout from "../auth/mutations/logout"
 
 export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)

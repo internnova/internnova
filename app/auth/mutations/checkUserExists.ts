@@ -1,9 +1,9 @@
 import { AuthenticationError } from "blitz"
 import db from "db"
 
-export const checkUserExists = async (email: string) => {
+export const checkUserExists = async (email: string, username: string) => {
   const user = await db.user.findFirst({
-    where: { email: email.toLowerCase().trim() },
+    where: { email: email.toLowerCase().trim(), username: username.toLowerCase().trim() },
     select: { id: true, name: true, email: true, role: true },
   })
 

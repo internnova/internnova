@@ -39,6 +39,7 @@ model User {
   createdAt      DateTime  @default(now())
   updatedAt      DateTime  @updatedAt
   name           String
+  username       String    @unique
   email          String    @unique
   avatar         String?
   hashedPassword String?
@@ -85,6 +86,8 @@ model Token {
 
 model JobApplication {
   id                Int      @id @default(autoincrement())
+  position          String
+  slug              String
   description       String
   status            Status
   internId          Int
@@ -101,6 +104,7 @@ model JobApplication {
 model Job {
   id             Int              @id @default(autoincrement())
   position       String
+  slug           String
   description    String
   jobType        JobType
   skillsRequired String[]
@@ -111,13 +115,14 @@ model Job {
   salary         String?
   industry       Tag
   closed         Boolean          @default(false)
-  companyId      Int
   companyName    String
+  companyId      Int
   updatedAt      DateTime         @updatedAt
   company        Company          @relation(fields: [companyId], references: [id])
   applications   JobApplication[]
 
-  @@index([id, companyId, industry, description, companyName, position, postedAt, closed])
+  @@unique([companyName, slug])
+  @@index([id, companyId, companyName, industry, description, position, postedAt, closed])
 }
 
 enum Role {

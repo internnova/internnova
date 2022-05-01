@@ -22,7 +22,7 @@ const ForgotPasswordPage: BlitzPage = () => {
         </div>
 
         {isSuccess ? (
-          <div className="flex flex-col gap-2 px-8 mt-8 justify-centers">
+          <div className="flex flex-col gap-2 px-8 pt-8 justify-centers">
             <h2>Request Submitted</h2>
             <p>
               If your email is in our system, you will receive instructions to reset your password
@@ -44,7 +44,7 @@ const ForgotPasswordPage: BlitzPage = () => {
               }
             }}
           >
-            <LabeledTextField name="email" placeholder="Email" />
+            <LabeledTextField name="email" label="Email" placeholder="Email you used to sign up" />
           </Form>
         )}
       </div>

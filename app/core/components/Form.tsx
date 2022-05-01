@@ -36,11 +36,13 @@ export function Form<S extends z.ZodType<any, any>>({
       validate={validateZodSchema(schema)}
       onSubmit={onSubmit}
       render={({ handleSubmit, submitting, submitError }) => (
-        <div className={`px-8 py-10 mb-4 ${options}`}>
+        <div className={`${!options && "px-8 py-10 mb-4 "}`}>
           {title && <h1 className="font-semibold">{title}</h1>}
           <form
             autoComplete="off"
-            className="flex flex-col gap-5 pt-4 w-[80vw] sm:w-[50vw] lg:w-[35vw] xl:w-[28vw]"
+            className={`flex flex-col gap-5 pt-4 ${
+              options ? options : "w-[80vw] sm:w-[50vw] lg:w-[35vw] xl:w-[28vw]"
+            }`}
             onSubmit={handleSubmit}
             {...props}
           >

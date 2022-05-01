@@ -6,13 +6,14 @@ export interface LabeledTextFieldProps extends PropsWithoutRef<JSX.IntrinsicElem
   /** Field name. */
   name: string
   label?: string
+  options?: string
   /** Field type. Doesn't include radio buttons and checkboxes */
   type?: "text" | "password" | "email" | "number"
   outerProps?: PropsWithoutRef<JSX.IntrinsicElements["div"]>
 }
 
 export const LabeledTextField = React.forwardRef<HTMLInputElement, LabeledTextFieldProps>(
-  ({ name, outerProps, ...props }, ref) => {
+  ({ name, outerProps, options, ...props }, ref) => {
     const {
       input,
       meta: { touched, error, submitError, submitting },
@@ -21,15 +22,16 @@ export const LabeledTextField = React.forwardRef<HTMLInputElement, LabeledTextFi
     const normalizedError: string = Array.isArray(error) ? error.join(", ") : error || submitError
 
     return (
-      <div {...outerProps}>
-        <p> {props?.label} </p>
+      <div {...outerProps} className="flex flex-col gap-1">
+        <p className="text-neutral-600 text-[15px]"> {props?.label} </p>
         <input
           {...input}
           disabled={submitting}
           {...props}
           ref={ref}
           required={true}
-          className="py-4 px-3 w-full leading-tight text-gray-700 rounded border shadow appearance-none focus:outline-none text-[16px] focus:shadow-outline"
+          className={`w-full rounded-md p-3 focus:border-indigo-600 focus:outline-none focus:ring-1 focus:ring-indigo-600 md:text-[15px] ${options}`}
+          style={{ border: "2px solid rgb(225, 225, 225)" }}
         />
 
         {touched && normalizedError && <ErrorLabel error={normalizedError} />}

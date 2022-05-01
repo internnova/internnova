@@ -40,17 +40,17 @@ export const SignupForm = ({ onSuccess }: SignupFormProps) => {
         }
       }}
     >
-      <div className="flex">
-        <h2 className="pr-5 font-medium">I&apos;m a</h2>
+      <div className="flex items-center">
+        <h2 className="pr-5 text-xl font-medium">I&apos;m a</h2>
         <LabeledOptionField
           name="role"
           values={["Student", "Company"]}
           {...{ defaultValue: "Student" }}
         />
       </div>
-      <LabeledTextField name="name" placeholder="Name" />
-      <LabeledTextField name="email" placeholder="Email" />
-      <LabeledTextField name="password" placeholder="Password" type="password" />
+      <LabeledTextField name="name" label="Name" />
+      <LabeledTextField name="email" label="Email" />
+      <LabeledTextField name="password" label="Password" type="password" />
     </Form>
   )
 }

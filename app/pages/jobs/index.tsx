@@ -1,13 +1,21 @@
 import Layout from "app/core/layouts/Layout"
 import getJobs from "app/jobs/queries/getJobs"
-import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes } from "blitz"
-import { Suspense } from "react"
+import { usePaginatedQuery, useRouter, BlitzPage, Routes, Image } from "blitz"
+import { Suspense, useState } from "react"
+import { Job } from "../../core/components/Job"
+import { Spinner } from "../../core/components/Spinner"
+import { BsSearch, BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs"
+import { SearchJob } from "../../core/components/SearchJob"
+import { slugify } from "../[userName]"
+import { searchJob } from "./s/[jobInterest]"
 
-const ITEMS_PER_PAGE = 100
+export const ITEMS_PER_PAGE = 100
 
 export const JobsList = () => {
   const router = useRouter()
   const page = Number(router.query.page) || 0
+  const [search, setSearch] = useState<string>("")
+  const [searching, setSearching] = useState<boolean>(search.trim().length > 0)
   const [{ jobs, hasMore }] = usePaginatedQuery(getJobs, {
     orderBy: { id: "asc" },
     skip: ITEMS_PER_PAGE * page,
@@ -17,50 +25,99 @@ export const JobsList = () => {
   const goToPreviousPage = () => router.push({ query: { page: page - 1 } })
   const goToNextPage = () => router.push({ query: { page: page + 1 } })
 
-  return (
-    <div>
-      <ul>
-        {jobs.map((job) => (
-          <li key={job.id}>
-            <Link href={Routes.ShowJobPage({ jobId: job.id })}>
-              <a>{job.position}</a>
-            </Link>
-          </li>
-        ))}
-      </ul>
+  const redirectToSearch = () => {
+    if (searching) {
+      router.push(Routes.SearchJobPage({ jobInterest: slugify(search).trim() }))
+    }
+  }
 
-      <button disabled={page === 0} onClick={goToPreviousPage}>
-        Previous
-      </button>
-      <button disabled={!hasMore} onClick={goToNextPage}>
-        Next
-      </button>
-    </div>
+  if (jobs.length === 0) {
+    return (
+      <div className="h-[90vh] grid place-center overflow-hidden">
+        <div className="flex flex-col justify-center items-center gap-6">
+          <Image
+            src="/images/jobs-not-found.svg"
+            alt="No jobs listed"
+            className="select-none"
+            height={400}
+            width={400}
+          />
+          <h2 className="font-light">No jobs currently listed. Visit again later!</h2>
+        </div>
+      </div>
+    )
+  }
+
+  return (
+    <main className="px-4 sm:px-6 md:px-8">
+      <div className="pt-8 pb-6">
+        <h2>Available Jobs: </h2>
+      </div>
+      <div className="relative flex flex-col w-full sm:w-full lg:w-[60%] xl:w-[40%]">
+        <div className="flex items-center mb-6">
+          <input
+            className={`appearance-none px-5 py-2 md:text-[15px] search w-full ${
+              searching && "rounded-b-none"
+            }`}
+            placeholder="Search for internships"
+            value={search}
+            onKeyDown={(e) => {
+              if (e.key === "Enter") {
+                redirectToSearch()
+              }
+            }}
+            onChange={(e) => {
+              setSearch(e.target.value)
+              setSearching(e.target.value.trim().length > 0)
+            }}
+          />
+          <div
+            className={`bg-[rgba(0,0,0,0.05)] border-[transparent] md:border-neutral-200 p-3 grid place-center cursor-pointer rounded-r-md ${
+              searching && "rounded-b-none"
+            }`}
+            style={{ borderWidth: "1px", borderStyle: "solid" }}
+            onClick={redirectToSearch}
+          >
+            <BsSearch className="text-[14px] md:text-[15px]" />
+          </div>
+        </div>
+        {searching && (
+          <div className="absolute bg-white rounded-b-md w-full align-baseline top-[4ch] z-[100] shadow-md">
+            {jobs
+              .filter((job) => searchJob(Object.values(job) as string[], search))
+              .map((job) => (
+                <SearchJob key={job.id} job={job} />
+              ))}
+          </div>
+        )}
+      </div>
+      <div className="mb-6 flex flex-col gap-6">
+        {jobs.map((job) => (
+          <Job key={`${job.id}`} job={job} />
+        ))}
+      </div>
+      {page !== 0 || hasMore ? (
+        <div className="flex items-center justify-center gap-4">
+          <button disabled={page === 0} onClick={goToPreviousPage}>
+            <BsFillArrowLeftCircleFill className="h-[20px] w-[20px]" />
+          </button>
+          <button disabled={!hasMore} onClick={goToNextPage}>
+            <BsFillArrowRightCircleFill className="h-[20px] w-[20px]" />
+          </button>
+        </div>
+      ) : null}
+    </main>
   )
 }
 
 const JobsPage: BlitzPage = () => {
   return (
-    <>
-      <Head>
-        <title>Jobs</title>
-      </Head>
-
-      <div>
-        <p>
-          <Link href={Routes.NewJobPage()}>
-            <a>Create Job</a>
-          </Link>
-        </p>
-
-        <Suspense fallback={<div>Loading...</div>}>
-          <JobsList />
-        </Suspense>
-      </div>
-    </>
+    <Suspense fallback={<Spinner />}>
+      <JobsList />
+    </Suspense>
   )
 }
 
-JobsPage.getLayout = (page) => <Layout>{page}</Layout>
+JobsPage.getLayout = (page) => <Layout title="Jobs">{page}</Layout>
 
 export default JobsPage

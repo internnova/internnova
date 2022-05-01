@@ -1,16 +1,18 @@
 import { resolver, NotFoundError, Ctx } from "blitz"
 import db from "db"
 import { z } from "zod"
+import { username } from "../../auth/validations"
 
 const GetJob = z.object({
   // This accepts type of undefined, but is required at runtime
-  id: z.number().optional().refine(Boolean, "Required"),
+  slug: z.string().optional(),
+  companyName: z.string().optional(),
 })
 
-export default resolver.pipe(resolver.zod(GetJob), async ({ id }, ctx: Ctx) => {
+export default resolver.pipe(resolver.zod(GetJob), async ({ companyName, slug }, ctx: Ctx) => {
   // TODO: in multi-tenant app, you must add validation to ensure correct tenant
   const job = await db.job.findFirst({
-    where: { id },
+    where: { slug, companyName },
     include: { applications: ctx.session.userId ? true : false, company: true },
   })
 

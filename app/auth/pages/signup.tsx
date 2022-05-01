@@ -4,19 +4,18 @@ import { SignupForm, SignUpValues } from "app/auth/components/SignupForm"
 import Image from "next/image"
 import { CompanyPopup } from "../components/CompanyPopup"
 import { useState } from "react"
-import { VerifyEmail } from "../components/VerifyEmail"
 import { InternPopup } from "../components/InternPopup"
-import { useCurrentUser } from "../../core/hooks/useCurrentUser"
 import { Interests } from "../components/Interests"
 
 export interface InternValues {
+  username: string
   bio: string
   oneliner: string
   logo: string
 }
 
 export interface CompanyValues {
-  name: string
+  username: string
   logo: string
   website: string
   description: string
@@ -33,8 +32,8 @@ const SignupPage: BlitzPage = () => {
   const INTERESTS = "interests"
   const [values, setValues] = useState<values>({
     general: { name: "", email: "", password: "", role: "" },
-    intern: { bio: "", oneliner: "", logo: "" },
-    company: { name: "", logo: "", website: "", description: "" },
+    intern: { bio: "", oneliner: "", logo: "", username: "" },
+    company: { logo: "", website: "", description: "", username: "" },
   })
   const [index, setIndex] = useState<string>(ABOUT)
   const showPopup = (idx: string) => index === idx
@@ -46,7 +45,7 @@ const SignupPage: BlitzPage = () => {
   return (
     <>
       <div
-        className={`h-screen w-full grid place-items-center overflow-hidden select-none ${
+        className={`h-screen w-full grid place-items-center select-none ${
           values.general.name && "pointer-events-none"
         }`}
       >

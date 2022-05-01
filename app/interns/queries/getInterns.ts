@@ -15,7 +15,8 @@ export default resolver.pipe(async ({ where, orderBy, skip = 0, take = 100 }: Ge
     skip,
     take,
     count: () => db.intern.count({ where }),
-    query: (paginateArgs) => db.intern.findMany({ ...paginateArgs, where, orderBy }),
+    query: (paginateArgs) =>
+      db.intern.findMany({ ...paginateArgs, where, orderBy, include: { user: true } }),
   })
 
   return {

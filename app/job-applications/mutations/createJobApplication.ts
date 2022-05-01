@@ -3,6 +3,8 @@ import db from "db"
 import { z } from "zod"
 
 export const CreateJobApplication = z.object({
+  position: z.string(),
+  slug: z.string(),
   jobId: z.number(),
   description: z.string().min(100),
 })
