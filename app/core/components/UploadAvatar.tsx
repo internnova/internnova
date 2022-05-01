@@ -1,6 +1,6 @@
-import {ChangeEvent, useState} from "react"
-import {BsUpload} from "react-icons/bs"
-import {LabeledFileField} from "app/core/components/LabeledFileField"
+import { ChangeEvent, useState } from "react"
+import { BsUpload } from "react-icons/bs"
+import { LabeledFileField } from "app/core/components/LabeledFileField"
 
 export const UploadAvatar = () => {
   const [src, setSrc] = useState<string>("/images/default_profile.png")
@@ -22,7 +22,7 @@ export const UploadAvatar = () => {
     <label htmlFor="avatar" className="cursor-pointer">
       <div
         className="box-content grid relative place-items-center bg-no-repeat bg-cover rounded-full imageUploader h-[100px] w-[100px]"
-        style={{backgroundImage: `url(${src})`, backgroundPosition: "50%"}}
+        style={{ backgroundImage: `url(${src})`, backgroundPosition: "50%" }}
       >
         <div className="grid absolute place-items-center w-full h-full font-bold text-center text-white uppercase whitespace-pre rounded-full pointer-events-none changeAvatar text-[12px] leading-[12px]">
           Change <br />
@@ -35,7 +35,7 @@ export const UploadAvatar = () => {
           name="logo"
           options="hidden"
           onAvatarChange={onAvatarChange}
-          {...{accept: "image/*", id: "avatar"}}
+          {...{ accept: "image/*", id: "avatar" }}
         />
       </div>
     </label>

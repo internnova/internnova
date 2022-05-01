@@ -1,18 +1,18 @@
-import {ReactElement, createContext, useContext, useState, useEffect} from "react"
-import {JobType} from "app/core/components/Job"
+import { ReactElement, createContext, useContext, useState, useEffect } from "react"
+import { JobType } from "app/core/components/Job"
 
 interface SignedInProviderProps {
   children: ReactElement
 }
 
-const BookmarkContext = createContext<{bookmarks: JobType[]; setBookmarks: any}>({
+const BookmarkContext = createContext<{ bookmarks: JobType[]; setBookmarks: any }>({
   bookmarks: [],
   setBookmarks: () => {},
 })
 
 export const useBookmark = () => useContext(BookmarkContext)
 
-export const BookmarkProvider = ({children}: SignedInProviderProps) => {
+export const BookmarkProvider = ({ children }: SignedInProviderProps) => {
   const [bookmarks, setBookmarks] = useState<JobType[]>([])
 
   useEffect(() => {
@@ -29,7 +29,7 @@ export const BookmarkProvider = ({children}: SignedInProviderProps) => {
   }, [])
 
   return (
-    <BookmarkContext.Provider value={{bookmarks, setBookmarks}}>
+    <BookmarkContext.Provider value={{ bookmarks, setBookmarks }}>
       {children}
     </BookmarkContext.Provider>
   )

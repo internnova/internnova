@@ -1,10 +1,10 @@
 import Layout from "app/core/layouts/Layout"
-import {useRouter, useMutation, BlitzPage, Routes} from "blitz"
-import {JobForm} from "app/jobs/components/JobForm"
+import { useRouter, useMutation, BlitzPage, Routes } from "blitz"
+import { JobForm } from "app/jobs/components/JobForm"
 import createJob from "app/jobs/mutations/createJob"
 import Image from "next/image"
-import {CreateJobClient} from "app/auth/validations"
-import {useCurrentUser} from "app/core/hooks/useCurrentUser"
+import { CreateJobClient } from "app/auth/validations"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 
 const NewJobPage: BlitzPage = () => {
   const router = useRouter()
@@ -19,12 +19,12 @@ const NewJobPage: BlitzPage = () => {
           submitText="Create Job"
           schema={CreateJobClient}
           onSubmit={async (values) => {
-            const {slug, companyName} = await createJobMutation({
+            const { slug, companyName } = await createJobMutation({
               ...values,
               skillsRequired: values.skillsRequired.split(", "),
               companyName: user!.username,
             })
-            router.push(Routes.ShowJobPage({slug, companyName}))
+            router.push(Routes.ShowJobPage({ slug, companyName }))
           }}
         />
         <div className="hidden lg:block">

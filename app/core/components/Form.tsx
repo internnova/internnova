@@ -1,11 +1,11 @@
-import {validateZodSchema} from "blitz"
-import {ReactNode, PropsWithoutRef} from "react"
-import {Form as FinalForm, FormProps as FinalFormProps} from "react-final-form"
-import {z} from "zod"
-import {Button} from "app/core/components/Button"
-import {ErrorLabel} from "app/core/components/ErrorLabel"
+import { validateZodSchema } from "blitz"
+import { ReactNode, PropsWithoutRef } from "react"
+import { Form as FinalForm, FormProps as FinalFormProps } from "react-final-form"
+import { z } from "zod"
+import { Button } from "app/core/components/Button"
+import { ErrorLabel } from "app/core/components/ErrorLabel"
 
-export {FORM_ERROR} from "final-form"
+export { FORM_ERROR } from "final-form"
 
 export interface FormProps<S extends z.ZodType<any, any>>
   extends Omit<PropsWithoutRef<JSX.IntrinsicElements["form"]>, "onSubmit"> {
@@ -35,7 +35,7 @@ export function Form<S extends z.ZodType<any, any>>({
       initialValues={initialValues}
       validate={validateZodSchema(schema)}
       onSubmit={onSubmit}
-      render={({handleSubmit, submitting, submitError}) => (
+      render={({ handleSubmit, submitting, submitError }) => (
         <div className={`${!options && "px-8 py-10 mb-4 "}`}>
           {title && <h1 className="font-semibold">{title}</h1>}
           <form
@@ -52,7 +52,7 @@ export function Form<S extends z.ZodType<any, any>>({
             {submitError && <ErrorLabel error={submitError} />}
 
             {submitText && (
-              <Button {...{type: "submit", disabled: submitting}}>{submitText}</Button>
+              <Button {...{ type: "submit", disabled: submitting }}>{submitText}</Button>
             )}
 
             <style global jsx>{`

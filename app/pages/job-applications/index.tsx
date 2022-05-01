@@ -1,24 +1,24 @@
-import {Suspense} from "react"
-import {Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes, Image} from "blitz"
+import { Suspense } from "react"
+import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes, Image } from "blitz"
 import Layout from "app/core/layouts/Layout"
 import getJobApplications from "app/job-applications/queries/getJobApplications"
-import {Spinner} from "app/core/components/Spinner"
-import {JobApplication} from "app/core/components/JobApplication"
-import {BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill} from "react-icons/bs"
+import { Spinner } from "app/core/components/Spinner"
+import { JobApplication } from "app/core/components/JobApplication"
+import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs"
 
 const ITEMS_PER_PAGE = 100
 
 export const JobApplicationsList = () => {
   const router = useRouter()
   const page = Number(router.query.page) || 0
-  const [{jobApplications, hasMore}] = usePaginatedQuery(getJobApplications, {
-    orderBy: {id: "asc"},
+  const [{ jobApplications, hasMore }] = usePaginatedQuery(getJobApplications, {
+    orderBy: { id: "asc" },
     skip: ITEMS_PER_PAGE * page,
     take: ITEMS_PER_PAGE,
   })
 
-  const goToPreviousPage = () => router.push({query: {page: page - 1}})
-  const goToNextPage = () => router.push({query: {page: page + 1}})
+  const goToPreviousPage = () => router.push({ query: { page: page - 1 } })
+  const goToNextPage = () => router.push({ query: { page: page + 1 } })
 
   if (jobApplications.length === 0) {
     return (

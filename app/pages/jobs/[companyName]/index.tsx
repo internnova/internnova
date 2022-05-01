@@ -1,15 +1,15 @@
 import Layout from "app/core/layouts/Layout"
-import {Head, Image, useParam, BlitzPage, usePaginatedQuery, Link} from "blitz"
-import {Suspense} from "react"
+import { Head, Image, useParam, BlitzPage, usePaginatedQuery, Link } from "blitz"
+import { Suspense } from "react"
 import getJobs from "app/jobs/queries/getJobs"
-import {Spinner} from "app/core/components/Spinner"
-import {Job as JobCard} from "app/core/components/Job"
+import { Spinner } from "app/core/components/Spinner"
+import { Job as JobCard } from "app/core/components/Job"
 
 export const Job = () => {
   const companyName = useParam("companyName", "string")
-  const [{jobs}] = usePaginatedQuery(getJobs, {
-    where: {companyName},
-    orderBy: {id: "asc"},
+  const [{ jobs }] = usePaginatedQuery(getJobs, {
+    where: { companyName },
+    orderBy: { id: "asc" },
   })
 
   if (jobs.length !== 0) {

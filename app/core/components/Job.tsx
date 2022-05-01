@@ -1,4 +1,4 @@
-import {Link, useMutation} from "blitz"
+import { Link, useMutation } from "blitz"
 import {
   BsCodeSlash,
   BsGeoAlt,
@@ -8,11 +8,11 @@ import {
   BsBookmarksFill,
   BsPencilSquare,
 } from "react-icons/bs"
-import {Button} from "app/core/components/Button"
-import {useCurrentUser} from "app/core/hooks/useCurrentUser"
-import {useState} from "react"
-import {useBookmark} from "app/core/contexts/BookmarkProvider"
-import {Job as JobTypePrisma} from "@prisma/client"
+import { Button } from "app/core/components/Button"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import { useState } from "react"
+import { useBookmark } from "app/core/contexts/BookmarkProvider"
+import { Job as JobTypePrisma } from "@prisma/client"
 
 export interface JobType extends JobTypePrisma {}
 
@@ -23,10 +23,10 @@ interface JobProps {
 
 export const Job = ({
   at,
-  job: {position, description, industry, location, jobType, salary, companyName, slug, ...job},
+  job: { position, description, industry, location, jobType, salary, companyName, slug, ...job },
 }: JobProps) => {
   const user = useCurrentUser()
-  const {bookmarks, setBookmarks} = useBookmark()
+  const { bookmarks, setBookmarks } = useBookmark()
   const hasBookmarked = bookmarks.find((bookmark) => bookmark.slug === slug)
   const [isBookmarked, setIsBookmarked] = useState<boolean>(!!hasBookmarked)
 

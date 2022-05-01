@@ -1,6 +1,6 @@
-import React, {forwardRef, ComponentPropsWithoutRef, PropsWithoutRef, ChangeEvent} from "react"
-import {useField, UseFieldConfig, Field} from "react-final-form"
-import {ErrorLabel} from "app/core/components/ErrorLabel"
+import React, { forwardRef, ComponentPropsWithoutRef, PropsWithoutRef, ChangeEvent } from "react"
+import { useField, UseFieldConfig, Field } from "react-final-form"
+import { ErrorLabel } from "app/core/components/ErrorLabel"
 
 export interface LabeledOptionFieldProps extends PropsWithoutRef<JSX.IntrinsicElements["input"]> {
   /** Field name. */
@@ -17,12 +17,12 @@ export interface LabeledOptionFieldProps extends PropsWithoutRef<JSX.IntrinsicEl
 
 export const LabeledOptionField = forwardRef<HTMLInputElement, LabeledOptionFieldProps>(
   (
-    {name, label, fields, outerProps, fieldProps, onSelection, labelProps, values, ...props},
+    { name, label, fields, outerProps, fieldProps, onSelection, labelProps, values, ...props },
     ref
   ) => {
     const {
       input,
-      meta: {touched, error, submitError, submitting},
+      meta: { touched, error, submitError, submitting },
     } = useField(name, {
       parse:
         props.type === "number"

@@ -1,8 +1,8 @@
-import {Suspense} from "react"
-import {Head, Link, useQuery, useParam, BlitzPage, Image} from "blitz"
+import { Suspense } from "react"
+import { Head, Link, useQuery, useParam, BlitzPage, Image } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import {Spinner} from "app/core/components/Spinner"
-import {Job} from "app/core/components/Job"
+import { Spinner } from "app/core/components/Spinner"
+import { Job } from "app/core/components/Job"
 import getUser from "app/users/queries/getUser"
 import getCompany from "app/companies/queries/getCompany"
 
@@ -19,10 +19,10 @@ interface CompProps {
 
 const avatar = "/images/default_profile.png"
 
-const Company = ({user: {name, username}}: CompProps) => {
-  const [{website, jobs, description}] = useQuery(
+const Company = ({ user: { name, username } }: CompProps) => {
+  const [{ website, jobs, description }] = useQuery(
     getCompany,
-    {where: {user: {username}}},
+    { where: { user: { username } } },
     {
       // This ensures the query never refreshes and overwrites the form data while the user is editing.
       staleTime: Infinity,
@@ -60,7 +60,7 @@ const Company = ({user: {name, username}}: CompProps) => {
             </section>
           </div>
         </div>
-        <div className="w-full" style={{borderTop: "1px solid rgba(23,23,23, 0.2)"}} />
+        <div className="w-full" style={{ borderTop: "1px solid rgba(23,23,23, 0.2)" }} />
         <div className="py-6 my-8 px-4 w-full bg-white">
           <div className="flex flex-col gap-2 about-me">
             <h3 className="font-normal">Description:</h3>
@@ -86,7 +86,7 @@ const Intern = ({
   user: {
     name,
     username,
-    intern: {oneliner, interests, bio},
+    intern: { oneliner, interests, bio },
   },
 }: any) => {
   return (
@@ -127,7 +127,7 @@ const Intern = ({
           </section>
         </div>
       </div>
-      <div className="w-full" style={{borderTop: "1px solid rgba(23,23,23, 0.2)"}} />
+      <div className="w-full" style={{ borderTop: "1px solid rgba(23,23,23, 0.2)" }} />
       <div className="py-6 my-8 px-4 w-full bg-white">
         <div className="flex flex-col gap-2 about-me">
           <h3 className="font-normal">About Me:</h3>
@@ -142,7 +142,7 @@ const Intern = ({
 
 const ProfilePage: BlitzPage = () => {
   const username = useParam("userName", "string")
-  const [user] = useQuery(getUser, {where: {username}})
+  const [user] = useQuery(getUser, { where: { username } })
 
   if (!user) {
     return <></>

@@ -1,8 +1,8 @@
-import {Profile} from "app/core/components/Profile"
-import {useCurrentUser} from "app/core/hooks/useCurrentUser"
-import {Image, Link} from "blitz"
-import {useEffect, useRef, useState} from "react"
-import {BsBookmark, BsPlusLg} from "react-icons/bs"
+import { Profile } from "app/core/components/Profile"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import { Image, Link } from "blitz"
+import { useEffect, useRef, useState } from "react"
+import { BsBookmark, BsPlusLg } from "react-icons/bs"
 
 export const Nav = () => {
   const currentUser = useCurrentUser()

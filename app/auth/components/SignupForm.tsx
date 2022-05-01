@@ -1,9 +1,9 @@
-import {LabeledTextField} from "app/core/components/LabeledTextField"
-import {Form} from "app/core/components/Form"
-import {Signup} from "app/auth/validations"
-import {FORM_ERROR} from "final-form"
+import { LabeledTextField } from "app/core/components/LabeledTextField"
+import { Form } from "app/core/components/Form"
+import { Signup } from "app/auth/validations"
+import { FORM_ERROR } from "final-form"
 import React from "react"
-import {useMutation} from "blitz"
+import { useMutation } from "blitz"
 import signupCheckEmail from "app/auth/mutations/signupCheckEmail"
 import LabeledOptionField from "app/core/components/LabeledOptionField"
 
@@ -18,16 +18,16 @@ type SignupFormProps = {
   onSuccess: (values: SignUpValues) => void
 }
 
-export const SignupForm = ({onSuccess}: SignupFormProps) => {
+export const SignupForm = ({ onSuccess }: SignupFormProps) => {
   const [checkEmailMutation] = useMutation(signupCheckEmail)
   return (
     <Form
       submitText="Create Account"
       schema={Signup}
-      initialValues={{email: "", password: ""}}
+      initialValues={{ email: "", password: "" }}
       onSubmit={async (values: SignUpValues) => {
         try {
-          await checkEmailMutation({email: values.email})
+          await checkEmailMutation({ email: values.email })
           onSuccess(values)
         } catch (error) {
           if (error.name === "USER_EXISTS") {
@@ -35,7 +35,7 @@ export const SignupForm = ({onSuccess}: SignupFormProps) => {
               email: "A user is already signed up with this email, try logging in",
             }
           } else {
-            return {[FORM_ERROR]: error.toString()}
+            return { [FORM_ERROR]: error.toString() }
           }
         }
       }}
@@ -45,7 +45,7 @@ export const SignupForm = ({onSuccess}: SignupFormProps) => {
         <LabeledOptionField
           name="role"
           values={["Student", "Company"]}
-          {...{defaultValue: "Student"}}
+          {...{ defaultValue: "Student" }}
         />
       </div>
       <LabeledTextField name="name" label="Name" />
