@@ -1,8 +1,8 @@
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
-import { Image, Link, Router } from "blitz"
-import { useEffect, useRef, useState } from "react"
-import { BsBookmark, BsBriefcase, BsGear, BsPlusLg, BsSearch } from "react-icons/bs"
-import { Profile } from "app/core/components/Profile"
+import {Profile} from "app/core/components/Profile"
+import {useCurrentUser} from "app/core/hooks/useCurrentUser"
+import {Image, Link, Router} from "blitz"
+import {useEffect, useRef, useState} from "react"
+import {BsBookmark, BsBriefcase, BsGear, BsPlusLg, BsSearch} from "react-icons/bs"
 
 export const Sidebar = () => {
   const user = useCurrentUser()
@@ -36,8 +36,8 @@ export const Sidebar = () => {
           <nav className="mt-2 flex-1 space-y-2 bg-white px-2 lg:mt-5">
             <Link href="/community">
               <a
-                className={`hover:bg-neutral-800 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
-                  router === "/community" && "bg-neutral-700 text-white"
+                className={`hover:bg-primary hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                  router === "/community" && "bg-primary text-white"
                 }`}
               >
                 <svg
@@ -55,8 +55,8 @@ export const Sidebar = () => {
             </Link>
             <Link href="/job-applications">
               <a
-                className={`hover:bg-neutral-800 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
-                  router === "/job-applications" && "bg-neutral-700 text-white"
+                className={`hover:bg-primary hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                  router === "/job-applications" && "bg-primary text-white"
                 }`}
               >
                 <BsBriefcase className="h-[18px] w-[18px]" />
@@ -65,8 +65,8 @@ export const Sidebar = () => {
             </Link>
             <Link href="/jobs">
               <a
-                className={`hover:bg-neutral-800 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
-                  router === "/jobs" && "bg-neutral-700 text-white"
+                className={`hover:bg-primary hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                  router === "/jobs" && "bg-primary text-white"
                 }`}
               >
                 <BsSearch className="h-[18px] w-[18px]" />
@@ -76,8 +76,8 @@ export const Sidebar = () => {
 
             <Link href={isCompany ? "/jobs/create" : "/bookmark"}>
               <a
-                className={`hover:bg-neutral-800 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
-                  router === ("/jobs/create" || "/bookmark") && "bg-neutral-700 text-white"
+                className={`hover:bg-primary hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                  router === ("/jobs/create" || "/bookmark") && "bg-primary text-white"
                 }`}
               >
                 {isCompany ? (
@@ -91,8 +91,8 @@ export const Sidebar = () => {
 
             <Link href="/settings">
               <a
-                className={`hover:bg-neutral-800 hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
-                  router === "/settings" && "bg-neutral-700 text-white"
+                className={`hover:bg-primary hover:text-white flex justify-center lg:justify-start items-center gap-2 rounded-md p-2 text-sm font-medium ${
+                  router === "/settings" && "bg-primary text-white"
                 }`}
               >
                 <BsGear className="h-[18px] w-[18px]" />
@@ -118,10 +118,10 @@ export const Sidebar = () => {
               </div>
               <div className="hidden lg:inline">
                 <p className="text-sm font-medium">
-                  <span className="text-neutral-900">{user?.name}</span>
+                  <span className="text-neutral-500">{user?.name}</span>
                 </p>
-                <p className="text-xs text-neutral-500">
-                  <span className="text-neutral-900">@{user?.username}</span>
+                <p className="text-xs">
+                  <span className="text-primary">@{user?.username}</span>
                 </p>
               </div>
             </div>

@@ -1,11 +1,11 @@
-import { Image, Link } from "blitz"
-import { Button } from "app/core/components/Button"
+import {Button} from "app/core/components/Button"
+import {Image, Link} from "blitz"
 
-export const Intern = ({ intern }) => {
+export const Intern = ({intern}) => {
   return (
     <Link href={`/${intern.user.username}`}>
-      <a className="flex md:flex-row flex-col md:gap-6 text-white bg-neutral-800 hover:bg-neutral-700 shadow-md max-w-[600px] p-[2em]">
-        <div className="flex justify-center items-center md:items-start pb-4 ">
+      <a className="flex md:flex-row flex-col md:gap-6 text-gray-800 rounded-md hover:bg-gray-100 shadow-lg w-[500px] p-[2em] border-solid border-[1px] border-gray-300">
+        <div className="flex justify-center items-center md:items-start pb-4">
           <div className="rounded-full h-[72px] w-[72px] border-2 border-white border-solid">
             <Image
               src="/images/default_profile.png"
@@ -18,14 +18,12 @@ export const Intern = ({ intern }) => {
         </div>
         <div className="grow text-center md:text-left">
           <div className="flex flex-col pb-2">
-            <p className="font-[600] truncate md:text-lg tracking-[1px] leading-[1.1]">
-              {intern.user.name}
-            </p>
-            <p className="truncate tracking-[1px] text-sm text-gray-100">@{intern.user.username}</p>
+            <h2 className="font-[600] truncate md:text-lg leading-[1.1]">{intern.user.name}</h2>
+            <p className="truncate tracking-[1px] text-sm">@{intern.user.username}</p>
           </div>
           <hr className="w-full md:w-1/3 my-2" />
 
-          <p className="font-light opacity-[0.8] py-2 text-sm">{intern.bio.slice(0, 200)}</p>
+          <p className="py-2 text-sm">{intern.bio.slice(0, 200)}</p>
         </div>
       </a>
     </Link>

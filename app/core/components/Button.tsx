@@ -7,7 +7,7 @@ interface ButtonProps {
 }
 
 export const Button = ({
-  bg = "bg-[#5c6cff]",
+  bg = "bg-primary",
   foreground = "text-[#ffffff]",
   children,
   onClick,
