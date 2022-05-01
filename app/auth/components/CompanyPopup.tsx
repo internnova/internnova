@@ -1,15 +1,15 @@
-import Form from "../../core/components/Form"
-import { Company } from "../validations"
-import { LabeledTextField } from "../../core/components/LabeledTextField"
-import LabeledTextArea from "../../core/components/LabeledTextArea"
-import { Popup } from "../../core/components/Popup"
-import { UploadAvatar } from "app/core/components/UploadAvatar"
-import { useMutation } from "blitz"
-import companySignup from "../mutations/company-signup"
-import { SignUpValues } from "./SignupForm"
-import sendConfirmationEmail from "../mutations/sendConfirmationEmail"
+import Form from "app/core/components/Form"
+import {Company} from "app/auth/validations"
+import {LabeledTextField} from "app/core/components/LabeledTextField"
+import LabeledTextArea from "app/core/components/LabeledTextArea"
+import {Popup} from "app/core/components/Popup"
+import {UploadAvatar} from "app/core/components/UploadAvatar"
+import {useMutation} from "blitz"
+import companySignup from "app/auth/mutations/company-signup"
+import {SignUpValues} from "app/auth/components/SignupForm"
+import sendConfirmationEmail from "app/auth/mutations/sendConfirmationEmail"
 
-export const CompanyPopup = ({ general }: { general: SignUpValues }) => {
+export const CompanyPopup = ({general}: {general: SignUpValues}) => {
   const [companyMutation] = useMutation(companySignup)
   const [sendConfirmationMutation] = useMutation(sendConfirmationEmail)
   return (
@@ -17,9 +17,9 @@ export const CompanyPopup = ({ general }: { general: SignUpValues }) => {
       <Form
         schema={Company}
         submitText="Next"
-        initialValues={{ description: "", website: "", username: "" }}
+        initialValues={{description: "", website: "", username: ""}}
         onSubmit={async (values) => {
-          await companyMutation({ ...general, ...values })
+          await companyMutation({...general, ...values})
           await sendConfirmationMutation(general.role)
         }}
       >

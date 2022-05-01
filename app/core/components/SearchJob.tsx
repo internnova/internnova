@@ -1,7 +1,7 @@
-import { JobType } from "./Job"
-import { Link, Image } from "blitz"
+import {JobType} from "app/core/components/Job"
+import {Link, Image} from "blitz"
 
-export const SearchJob = ({ job }: { job: JobType }) => (
+export const SearchJob = ({job}: {job: JobType}) => (
   <Link href={`/jobs/${job.companyName}/${job.slug}`}>
     <a className="flex p-2 hover:bg-gray-200">
       <div className="hidden sm:flex sm:items-center justify-center basis-[10%]">

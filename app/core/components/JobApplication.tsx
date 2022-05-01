@@ -1,10 +1,10 @@
-import { Link, Image } from "blitz"
-import { BsPencilSquare } from "react-icons/bs"
-import { useCurrentUser } from "../hooks/useCurrentUser"
+import {Link, Image} from "blitz"
+import {BsPencilSquare} from "react-icons/bs"
+import {useCurrentUser} from "app/core/hooks/useCurrentUser"
 
 export const JobApplication = ({
   jobApplication: {
-    job: { companyName },
+    job: {companyName},
     position,
     description,
     status,

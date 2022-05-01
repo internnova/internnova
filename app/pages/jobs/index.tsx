@@ -1,13 +1,13 @@
 import Layout from "app/core/layouts/Layout"
 import getJobs from "app/jobs/queries/getJobs"
-import { usePaginatedQuery, useRouter, BlitzPage, Routes, Image } from "blitz"
-import { Suspense, useState } from "react"
-import { Job } from "../../core/components/Job"
-import { Spinner } from "../../core/components/Spinner"
-import { BsSearch, BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs"
-import { SearchJob } from "../../core/components/SearchJob"
-import { slugify } from "../[userName]"
-import { searchJob } from "./s/[jobInterest]"
+import {usePaginatedQuery, useRouter, BlitzPage, Routes, Image} from "blitz"
+import {Suspense, useState} from "react"
+import {Job} from "app/core/components/Job"
+import {Spinner} from "app/core/components/Spinner"
+import {BsSearch, BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill} from "react-icons/bs"
+import {SearchJob} from "app/core/components/SearchJob"
+import {slugify} from "app/pages/[userName]"
+import {searchJob} from "app/pages/jobs/s/[jobInterest]"
 
 export const ITEMS_PER_PAGE = 100
 
@@ -16,18 +16,18 @@ export const JobsList = () => {
   const page = Number(router.query.page) || 0
   const [search, setSearch] = useState<string>("")
   const [searching, setSearching] = useState<boolean>(search.trim().length > 0)
-  const [{ jobs, hasMore }] = usePaginatedQuery(getJobs, {
-    orderBy: { id: "asc" },
+  const [{jobs, hasMore}] = usePaginatedQuery(getJobs, {
+    orderBy: {id: "asc"},
     skip: ITEMS_PER_PAGE * page,
     take: ITEMS_PER_PAGE,
   })
 
-  const goToPreviousPage = () => router.push({ query: { page: page - 1 } })
-  const goToNextPage = () => router.push({ query: { page: page + 1 } })
+  const goToPreviousPage = () => router.push({query: {page: page - 1}})
+  const goToNextPage = () => router.push({query: {page: page + 1}})
 
   const redirectToSearch = () => {
     if (searching) {
-      router.push(Routes.SearchJobPage({ jobInterest: slugify(search).trim() }))
+      router.push(Routes.SearchJobPage({jobInterest: slugify(search).trim()}))
     }
   }
 
@@ -75,7 +75,7 @@ export const JobsList = () => {
             className={`bg-[rgba(0,0,0,0.05)] border-[transparent] md:border-neutral-200 p-3 grid place-center cursor-pointer rounded-r-md ${
               searching && "rounded-b-none"
             }`}
-            style={{ borderWidth: "1px", borderStyle: "solid" }}
+            style={{borderWidth: "1px", borderStyle: "solid"}}
             onClick={redirectToSearch}
           >
             <BsSearch className="text-[14px] md:text-[15px]" />

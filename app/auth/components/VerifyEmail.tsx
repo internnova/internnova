@@ -1,17 +1,17 @@
-import { Spinner } from "app/core/components/Spinner"
-import { useMutation } from "blitz"
-import { useState } from "react"
-import { MutationFunction } from "react-query"
-import { Button } from "../../core/components/Button"
-import { ErrorLabel } from "../../core/components/ErrorLabel"
-import { Popup } from "../../core/components/Popup"
-import { useCurrentUser } from "../../core/hooks/useCurrentUser"
-import companySignup from "../mutations/company-signup"
-import internSignup from "../mutations/intern-signup"
-import sendConfirmationEmail from "../mutations/sendConfirmationEmail"
-import { values } from "../pages/signup"
+import {Spinner} from "app/core/components/Spinner"
+import {useMutation} from "blitz"
+import {useState} from "react"
+import {MutationFunction} from "react-query"
+import {Button} from "app/core/components/Button"
+import {ErrorLabel} from "app/core/components/ErrorLabel"
+import {Popup} from "app/core/components/Popup"
+import {useCurrentUser} from "app/core/hooks/useCurrentUser"
+import companySignup from "app/auth/mutations/company-signup"
+import internSignup from "app/auth/mutations/intern-signup"
+import sendConfirmationEmail from "app/auth/mutations/sendConfirmationEmail"
+import {values} from "app/auth/pages/signup"
 
-export const VerifyEmail = ({ values, goBack }: { values: values; goBack(): void }) => {
+export const VerifyEmail = ({values, goBack}: {values: values; goBack(): void}) => {
   const isCompany = values.general.role === "Company"
   const text = "Resend Email"
 
@@ -28,13 +28,13 @@ export const VerifyEmail = ({ values, goBack }: { values: values; goBack(): void
             <Verify
               text={text}
               mutation={companySignup as MutationFunction}
-              values={{ ...values.general, ...values.company }}
+              values={{...values.general, ...values.company}}
             />
           ) : (
             <Verify
               text={text}
               mutation={internSignup as MutationFunction}
-              values={{ ...values.general, ...values.intern }}
+              values={{...values.general, ...values.intern}}
             />
           )}
 
@@ -57,7 +57,7 @@ const Verify = ({
   mutation: MutationFunction
   values: any
 }) => {
-  const [sendConfirmationEmailMutation, { isSuccess }] = useMutation(sendConfirmationEmail)
+  const [sendConfirmationEmailMutation, {isSuccess}] = useMutation(sendConfirmationEmail)
   const [loading, setLoading] = useState(false)
   const [signUpMutation] = useMutation(mutation)
   const [error, setError] = useState<string | null>(null)

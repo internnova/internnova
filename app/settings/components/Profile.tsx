@@ -1,15 +1,15 @@
-import Form from "../../../core/components/Form"
-import { useCurrentUser } from "../../../core/hooks/useCurrentUser"
-import { LabeledTextField } from "../../../core/components/LabeledTextField"
+import Form from "app/core/components/Form"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import { LabeledTextField } from "app/core/components/LabeledTextField"
 import { Image, Link, useMutation } from "blitz"
-import LabeledTextArea from "../../../core/components/LabeledTextArea"
-import updateIntern from "../../../interns/mutations/updateIntern"
-import { UpdateCompany, UpdateIntern } from "../../../auth/validations"
-import { UploadAvatar } from "../../../core/components/UploadAvatar"
+import LabeledTextArea from "app/core/components/LabeledTextArea"
+import updateIntern from "app/interns/mutations/updateIntern"
+import { UpdateCompany, UpdateIntern } from "app/auth/validations"
+import { UploadAvatar } from "app/core/components/UploadAvatar"
 import { useState } from "react"
-import { Popup } from "../../../core/components/Popup"
-import updateCompany from "../../../companies/mutations/updateCompany"
-import { Button } from "../../../core/components/Button"
+import { Popup } from "app/core/components/Popup"
+import updateCompany from "app/companies/mutations/updateCompany"
+import { Button } from "app/core/components/Button"
 
 const CommonFields = ({ changePass }: { changePass: () => void }) => {
   const [uploadAvatar, setUploadAvatar] = useState<boolean>(false)
@@ -131,3 +131,5 @@ export const Profile = ({ changePass }: { changePass: () => void }) => {
     </main>
   )
 }
+
+export default Profile

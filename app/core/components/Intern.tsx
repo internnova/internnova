@@ -1,7 +1,7 @@
-import { Image, Link } from "blitz"
-import { Button } from "./Button"
+import {Image, Link} from "blitz"
+import {Button} from "app/core/components/Button"
 
-export const Intern = ({ intern }) => {
+export const Intern = ({intern}) => {
   return (
     <Link href={`/${intern.user.username}`}>
       <a className="flex md:flex-row flex-col md:gap-6 text-white bg-neutral-800 hover:bg-neutral-700 shadow-md max-w-[600px] p-[2em]">

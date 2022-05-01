@@ -46,7 +46,7 @@
     "@trivago/prettier-plugin-sort-imports": "^3.2.0",
     "@types/preview-email": "2.0.1",
     "@types/react": "17.0.39",
-    "eslint": "^8.10.0",
+    "eslint": "^8.14.0",
     "husky": "7.0.4",
     "lint-staged": "12.3.3",
     "prettier": "2.5.1",

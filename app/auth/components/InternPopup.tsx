@@ -1,14 +1,14 @@
-import { Popup } from "app/core/components/Popup"
-import { UploadAvatar } from "app/core/components/UploadAvatar"
-import Form from "../../core/components/Form"
-import { Intern } from "../validations"
-import LabeledTextArea from "../../core/components/LabeledTextArea"
-import { LabeledTextField } from "app/core/components/LabeledTextField"
-import { InternValues } from "../pages/signup"
+import {Popup} from "app/core/components/Popup"
+import {UploadAvatar} from "app/core/components/UploadAvatar"
+import Form from "app/core/components/Form"
+import {Intern} from "app/auth/validations"
+import LabeledTextArea from "app/core/components/LabeledTextArea"
+import {LabeledTextField} from "app/core/components/LabeledTextField"
+import {InternValues} from "app/auth/pages/signup"
 
 export const InternPopup = ({
   onSuccess,
-  initials: { bio, oneliner, username },
+  initials: {bio, oneliner, username},
 }: {
   onSuccess(values): void
   initials: InternValues
@@ -18,7 +18,7 @@ export const InternPopup = ({
       <Form
         schema={Intern}
         submitText="Next"
-        initialValues={{ bio, oneliner, username }}
+        initialValues={{bio, oneliner, username}}
         onSubmit={(values) => {
           onSuccess(values)
         }}

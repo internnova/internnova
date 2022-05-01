@@ -1,13 +1,13 @@
-import { useState } from "react"
-import { Popup } from "../../core/components/Popup"
-import { BsFillCheckCircleFill } from "react-icons/bs"
-import { Button } from "../../core/components/Button"
-import { ErrorLabel } from "../../core/components/ErrorLabel"
-import { useMutation } from "blitz"
-import internSignup from "../mutations/intern-signup"
-import { SignUpValues } from "./SignupForm"
-import { InternValues } from "../pages/signup"
-import sendConfirmationEmail from "../mutations/sendConfirmationEmail"
+import {useState} from "react"
+import {Popup} from "app/core/components/Popup"
+import {BsFillCheckCircleFill} from "react-icons/bs"
+import {Button} from "app/core/components/Button"
+import {ErrorLabel} from "app/core/components/ErrorLabel"
+import {useMutation} from "blitz"
+import internSignup from "app/auth/mutations/intern-signup"
+import {SignUpValues} from "app/auth/components/SignupForm"
+import {InternValues} from "app/auth/pages/signup"
+import sendConfirmationEmail from "app/auth/mutations/sendConfirmationEmail"
 
 export const Interests = ({
   goBack,
@@ -53,7 +53,7 @@ export const Interests = ({
             return (
               <div
                 className="flex justify-between items-center p-5 w-full bg-white rounded-lg"
-                style={{ border: `1px solid ${selected ? "#5c6cff" : "#e6e6e6"}` }}
+                style={{border: `1px solid ${selected ? "#5c6cff" : "#e6e6e6"}`}}
                 key={field}
                 onClick={() => handleInterestSelect(field)}
               >
@@ -68,10 +68,10 @@ export const Interests = ({
           <Button
             options="w-1/2"
             onClick={async () => {
-              await internMutation({ ...internValues, interests })
+              await internMutation({...internValues, interests})
               await sendConfirmationMutation(internValues.role)
             }}
-            {...{ disabled: interests.length === 0 }}
+            {...{disabled: interests.length === 0}}
           >
             Next
           </Button>

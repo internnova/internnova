@@ -1,14 +1,14 @@
-import { Ctx, resolver, SecurePassword } from "blitz"
+import {Ctx, resolver, SecurePassword} from "blitz"
 import db from "db"
-import { InternSignup } from "app/auth/validations"
-import { checkUserExists } from "./checkUserExists"
+import {InternSignup} from "app/auth/validations"
+import {checkUserExists} from "app/auth/mutations/checkUserExists"
 
 export default resolver.pipe(
   resolver.zod(InternSignup),
-  async ({ email, password, name, username, logo, bio, oneliner, interests }, ctx: Ctx) => {
+  async ({email, password, name, username, logo, bio, oneliner, interests}, ctx: Ctx) => {
     const hashedPassword = await SecurePassword.hash(password.trim())
     await checkUserExists(email, username)
-    const { id, role } = await db.user.create({
+    const {id, role} = await db.user.create({
       data: {
         name,
         username,
@@ -21,10 +21,10 @@ export default resolver.pipe(
 
     // we don't need data from the user since the user and intern id are the same
     await db.intern.create({
-      data: { id, bio, interests, oneliner, userId: id },
+      data: {id, bio, interests, oneliner, userId: id},
     })
 
-    await ctx.session.$create({ userId: id, role })
+    await ctx.session.$create({userId: id, role})
     return
   }
 )

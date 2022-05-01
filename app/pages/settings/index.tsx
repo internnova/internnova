@@ -1,10 +1,10 @@
 import { BlitzPage, Link } from "blitz"
 import { Suspense, useState } from "react"
-import Layout from "../../core/layouts/Layout"
-import { Spinner } from "../../core/components/Spinner"
+import Layout from "app/core/layouts/Layout"
+import { Spinner } from "app/core/components/Spinner"
 import { BsFillPersonFill, BsFillChatDotsFill, BsKeyFill } from "react-icons/bs"
-import { Profile } from "./components/Profile"
-import { Security } from "./components/Security"
+import { Profile } from "app/settings/components/Profile"
+import { Security } from "app/settings/components/Security"
 
 const PROFILE = {
   title: "Profile",
@@ -36,7 +36,7 @@ const SettingsPage: BlitzPage = () => {
     <Suspense fallback={<Spinner />}>
       <main className="px-4 sm:px-6 md:px-8">
         <Heading {...navigation} />
-        <div className="sm:mx-auto -mb-px flex space-x-2 space-x-5">
+        <div className="sm:mx-auto -mb-px flex space-x-5">
           <div
             className={`text-neutral-500 py-4 px-1 navigation hover:text-neutral-600 ${
               isActive(PROFILE) ? "text-neutral-900 border-neutral-900" : ""

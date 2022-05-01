@@ -1,8 +1,8 @@
-import { Link, Image, useRouter, Router } from "blitz"
-import { BsBriefcase, BsSearch, BsGear, BsBookmark, BsPlusLg } from "react-icons/bs"
-import { useCurrentUser } from "../hooks/useCurrentUser"
-import { useEffect, useRef, useState } from "react"
-import { Profile } from "./Profile"
+import {useCurrentUser} from "app/core/hooks/useCurrentUser"
+import {Image, Link, Router} from "blitz"
+import {useEffect, useRef, useState} from "react"
+import {BsBookmark, BsBriefcase, BsGear, BsPlusLg, BsSearch} from "react-icons/bs"
+import {Profile} from "app/core/components/Profile"
 
 export const Sidebar = () => {
   const user = useCurrentUser()

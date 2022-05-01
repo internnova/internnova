@@ -4,7 +4,6 @@ import createJobApplication, {
   CreateJobApplication,
 } from "app/job-applications/mutations/createJobApplication"
 import getJob from "app/jobs/queries/getJob"
-import { JobApplicationsList } from "app/pages/job-applications"
 import { BlitzPage, Routes, useMutation, useParam, useQuery, useRouter, useSession } from "blitz"
 
 const NewJobApplicationPage: BlitzPage = () => {

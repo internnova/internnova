@@ -1,22 +1,22 @@
+import {Button} from "app/core/components/Button"
+import {Spinner} from "app/core/components/Spinner"
+import {useCurrentUser} from "app/core/hooks/useCurrentUser"
 import Layout from "app/core/layouts/Layout"
-import { Head, Link, useRouter, useQuery, useParam, BlitzPage, useMutation, Routes } from "blitz"
-import { Suspense } from "react"
 import updateJobApplication from "app/job-applications/mutations/updateJobApplication"
 import getJobApplication from "app/job-applications/queries/getJobApplication"
-import { Spinner } from "../../../../core/components/Spinner"
 import getUser from "app/users/queries/getUser"
-import { Button } from "app/core/components/Button"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import {BlitzPage, Head, Link, useMutation, useParam, useQuery} from "blitz"
+import {Suspense} from "react"
 
 export const JobApplication = () => {
   const companyName = useParam("companyName", "string")
   const slug = useParam("slug", "string")
   const [updateJobApplicationMutation] = useMutation(updateJobApplication)
-  const [{ status, position, description, id, internId }] = useQuery(getJobApplication, {
+  const [{status, position, description, id, internId}] = useQuery(getJobApplication, {
     slug,
     companyName,
   })
-  const [user] = useQuery(getUser, { where: { id: internId } })
+  const [user] = useQuery(getUser, {where: {id: internId}})
   const currentUser = useCurrentUser()
 
   return (

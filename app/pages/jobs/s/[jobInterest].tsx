@@ -1,9 +1,9 @@
-import { BlitzPage, usePaginatedQuery, useParam, useRouter, Head } from "blitz"
-import { Suspense } from "react"
-import getJobs from "../../../jobs/queries/getJobs"
-import Layout from "../../../core/layouts/Layout"
-import { Spinner } from "../../../core/components/Spinner"
-import { Job } from "../../../core/components/Job"
+import {BlitzPage, usePaginatedQuery, useParam, useRouter, Head} from "blitz"
+import {Suspense} from "react"
+import getJobs from "app/jobs/queries/getJobs"
+import Layout from "app/core/layouts/Layout"
+import {Spinner} from "app/core/components/Spinner"
+import {Job} from "app/core/components/Job"
 
 const ITEMS_PER_PAGE = 10
 
@@ -19,8 +19,8 @@ export const SearchJobs = () => {
   const router = useRouter()
   const page = Number(router.query.page) || 0
   const term = useParam("jobInterest", "string")
-  const [{ jobs, hasMore }] = usePaginatedQuery(getJobs, {
-    orderBy: { id: "asc" },
+  const [{jobs, hasMore}] = usePaginatedQuery(getJobs, {
+    orderBy: {id: "asc"},
     skip: ITEMS_PER_PAGE * page,
     take: ITEMS_PER_PAGE,
   })

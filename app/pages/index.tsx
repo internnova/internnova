@@ -1,8 +1,8 @@
 import Layout from "app/core/layouts/Layout"
-import { BlitzPage, useRouter } from "blitz"
-import { Suspense } from "react"
-import { Spinner } from "app/core/components/Spinner"
-import { useCurrentUser } from "../core/hooks/useCurrentUser"
+import {BlitzPage, useRouter} from "blitz"
+import {Suspense} from "react"
+import {Spinner} from "app/core/components/Spinner"
+import {useCurrentUser} from "app/core/hooks/useCurrentUser"
 
 const Home: BlitzPage = () => {
   const router = useRouter()
