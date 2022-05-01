@@ -1,10 +1,10 @@
-import { Suspense } from "react"
-import { Head, Link, useQuery, useParam, BlitzPage, Image } from "blitz"
-import Layout from "app/core/layouts/Layout"
-import { Spinner } from "app/core/components/Spinner"
-import { Job } from "app/core/components/Job"
-import getUser from "app/users/queries/getUser"
 import getCompany from "app/companies/queries/getCompany"
+import { Job } from "app/core/components/Job"
+import { Spinner } from "app/core/components/Spinner"
+import Layout from "app/core/layouts/Layout"
+import getUser from "app/users/queries/getUser"
+import { Head, Link, useQuery, useParam, BlitzPage, Image } from "blitz"
+import { Suspense } from "react"
 
 export const slugify = (str: string) => {
   return str.toLowerCase().replace(/[^a-zA-Z0-9]/g, "-")
@@ -113,16 +113,23 @@ const Intern = ({
             </div>
             <h2 className="text-[20px] font-light">{oneliner}</h2>
             <div className="flex flex-col gap-2">
-              <h3 className="font-light">Interested in:</h3>
-              <div className="flex flex-col sm:flex-row gap-2">
-                {interests.map((interest) => (
+              <h3 className="font-light">
+                Interested in:{" "}
+                {interests.map((interest, index) => (
                   <Link key={interest} href={`/jobs/s/${slugify(interest)}`}>
-                    <a className="text-sm font-light bg-[rgba(36,32,32,0.9)] text-white p-[0.7ch] rounded-md w-1/2 sm:w-auto">
-                      {interest}
+                    <a
+                      className={`font-normal text-primary ${
+                        index !== interests.length - 1 && "pr-2"
+                      }`}
+                    >
+                      <span>
+                        {interest}
+                        {index !== interests.length - 1 && ","}
+                      </span>
                     </a>
                   </Link>
                 ))}
-              </div>
+              </h3>
             </div>
           </section>
         </div>

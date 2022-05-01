@@ -22,13 +22,7 @@ export const Community = () => {
         <p>Discover other ambitious interns</p>
       </div>
 
-      <div
-        className="grid justify-items-center gap-6"
-        style={{
-          gridTemplateColumns: "repeat(auto-fill, minmax(min-content, 600px))",
-          gridTemplateRows: "repeat(auto-fill, minmax(200px, 1fr))",
-        }}
-      >
+      <div className="grid grid-cols-1 md:grid-cols-2 xsl:grid-cols-3 justify-items-center gap-6">
         {interns.map((intern) => (
           <Intern key={intern.id} intern={intern} />
         ))}

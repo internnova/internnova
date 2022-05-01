@@ -1,13 +1,13 @@
+import { Job } from "app/core/components/Job"
+import { SearchJob } from "app/core/components/SearchJob"
+import { Spinner } from "app/core/components/Spinner"
 import Layout from "app/core/layouts/Layout"
 import getJobs from "app/jobs/queries/getJobs"
-import { usePaginatedQuery, useRouter, BlitzPage, Routes, Image } from "blitz"
-import { Suspense, useState } from "react"
-import { Job } from "app/core/components/Job"
-import { Spinner } from "app/core/components/Spinner"
-import { BsSearch, BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs"
-import { SearchJob } from "app/core/components/SearchJob"
 import { slugify } from "app/pages/[userName]"
 import { searchJob } from "app/pages/jobs/s/[jobInterest]"
+import { usePaginatedQuery, useRouter, BlitzPage, Routes, Image } from "blitz"
+import { Suspense, useState } from "react"
+import { BsSearch, BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs"
 
 export const ITEMS_PER_PAGE = 100
 
@@ -91,7 +91,7 @@ export const JobsList = () => {
           </div>
         )}
       </div>
-      <div className="mb-6 flex flex-col gap-6">
+      <div className="mb-6 flex flex-col gap-6 w-full">
         {jobs.map((job) => (
           <Job key={`${job.id}`} job={job} />
         ))}

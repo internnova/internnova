@@ -43,7 +43,9 @@ const Layout: BlitzLayout<{
           <BookmarkProvider>
             <div className="container mx-auto">{children}</div>
           </BookmarkProvider>
-          <HomeBar />
+          <div className="pt-16 md:pt-0">
+            <HomeBar />
+          </div>
         </main>
       </div>
       {user && !user.verified && !noVerification && (

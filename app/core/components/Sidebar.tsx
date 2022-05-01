@@ -1,8 +1,8 @@
-import {Profile} from "app/core/components/Profile"
-import {useCurrentUser} from "app/core/hooks/useCurrentUser"
-import {Image, Link, Router} from "blitz"
-import {useEffect, useRef, useState} from "react"
-import {BsBookmark, BsBriefcase, BsGear, BsPlusLg, BsSearch} from "react-icons/bs"
+import { Profile } from "app/core/components/Profile"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import { Image, Link, Router } from "blitz"
+import { useEffect, useRef, useState } from "react"
+import { BsBookmark, BsBriefcase, BsGear, BsPlusLg, BsSearch } from "react-icons/bs"
 
 export const Sidebar = () => {
   const user = useCurrentUser()
@@ -24,7 +24,7 @@ export const Sidebar = () => {
   return (
     <div className="flex w-14 flex-col lg:w-56">
       <div className="flex h-0 flex-1 flex-col bg-white">
-        <div className="flex flex-1 flex-col overflow-y-auto pt-3 pb-4 lg:pt-5">
+        <div className="flex flex-1 flex-col pt-3 pb-4 lg:pt-5">
           <Link href="/job-applications">
             <a className="px-4">
               <div className="lg:hidden block">
