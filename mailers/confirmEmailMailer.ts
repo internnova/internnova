@@ -1,14 +1,13 @@
-import previewEmail from "preview-email"
 import mailer from "integrations/mailer"
+import previewEmail from "preview-email"
 
 type ResetPasswordMailer = {
   to: string
   token: string
 }
 
-export function confirmEmailMailer({ to, token }: ResetPasswordMailer) {
-  // In production, set APP_ORIGIN to your production server origin
-  const origin = process.env.APP_ORIGIN || process.env.BLITZ_DEV_SERVER_ORIGIN
+export function confirmEmailMailer({to, token}: ResetPasswordMailer) {
+  const origin = process.env.APP_ORIGIN || "http://localhost:3000"
   const resetUrl = `${origin}/confirm-email?token=${token}`
 
   const msg = {
@@ -16,7 +15,7 @@ export function confirmEmailMailer({ to, token }: ResetPasswordMailer) {
     to,
     subject: "Confirm your email address",
     html: `
-    <p align="center"><img src="https://www.internnova.co/logo/Logo.png" width=100/></p>
+    <p align="center"><img src="${origin}/logo.png" width=100/></p>
     <h1 align="center">Welcome to InternNova</h1>
     <p align="center"><strong></strong>Confirm your password by clicking on this link:</strong></p>
     <p align="center"><a href="${resetUrl}">${resetUrl}</a></p>
