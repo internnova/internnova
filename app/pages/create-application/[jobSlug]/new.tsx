@@ -1,10 +1,10 @@
 import Layout from "app/core/layouts/Layout"
-import { FORM_ERROR, JobApplicationForm } from "app/job-applications/components/JobApplicationForm"
+import {FORM_ERROR, JobApplicationForm} from "app/job-applications/components/JobApplicationForm"
 import createJobApplication, {
   CreateJobApplication,
 } from "app/job-applications/mutations/createJobApplication"
 import getJob from "app/jobs/queries/getJob"
-import { BlitzPage, Routes, useMutation, useParam, useQuery, useRouter, useSession } from "blitz"
+import {BlitzPage, Routes, useMutation, useParam, useQuery, useRouter, useSession} from "blitz"
 
 const NewJobApplicationPage: BlitzPage = () => {
   const router = useRouter()
@@ -12,7 +12,7 @@ const NewJobApplicationPage: BlitzPage = () => {
   const session = useSession()
   const [job] = useQuery(
     getJob,
-    { slug: jobSlug },
+    {slug: jobSlug},
     {
       // This ensures the query never refreshes and overwrites the form data while the user is editing.
       staleTime: Infinity,
@@ -34,7 +34,7 @@ const NewJobApplicationPage: BlitzPage = () => {
 
         <div className="w-1/2">
           <JobApplicationForm
-            submitText="Create Job Application"
+            submitText="Apply!"
             schema={CreateJobApplication}
             onSubmit={async (values) => {
               try {
@@ -46,7 +46,7 @@ const NewJobApplicationPage: BlitzPage = () => {
                     slug: job.slug,
                   })
                   if (jobApplication) {
-                    const { slug } = jobApplication
+                    const {slug} = jobApplication
                     router.push(
                       Routes.ShowJobApplicationPage({
                         slug: slug,
