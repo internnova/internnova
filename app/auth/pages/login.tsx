@@ -1,14 +1,14 @@
-import { LoginForm } from "app/auth/components/LoginForm"
-import Image from "next/image"
+import {LoginForm} from "app/auth/components/LoginForm"
 import Layout from "app/core/layouts/Layout"
-import { BlitzPage, useRouter } from "blitz"
+import {BlitzPage, useRouter} from "blitz"
+import Image from "next/image"
 
 const LoginPage: BlitzPage = () => {
   const router = useRouter()
 
   return (
     <div className="overflow-hidden h-screen select-none">
-      <h1 className="pt-8 h-0 text-center tracking-4">
+      <h1 className="pt-8 h-0 text-center tracking-4 px-2">
         Welcome back to <span className="animated-text">InternNova</span>!
       </h1>
       <div className="flex gap-8 justify-center items-center w-full h-screen select-none">

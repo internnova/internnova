@@ -2,7 +2,7 @@ import login from "app/auth/mutations/login"
 import {Login} from "app/auth/validations"
 import {Form, FORM_ERROR} from "app/core/components/Form"
 import {LabeledTextField} from "app/core/components/LabeledTextField"
-import {AuthenticationError, Link, useMutation, Routes, PromiseReturnType, useRouter} from "blitz"
+import {AuthenticationError, Link, PromiseReturnType, Routes, useMutation} from "blitz"
 
 type LoginFormProps = {
   onSuccess?: (user: PromiseReturnType<typeof login>) => void
@@ -10,10 +10,9 @@ type LoginFormProps = {
 
 export const LoginForm = (props: LoginFormProps) => {
   const [loginMutation] = useMutation(login)
-  const router = useRouter()
 
   return (
-    <div className="flex flex-col items-center">
+    <div className="flex flex-col items-center mt-20 md:mt-0">
       <Form
         submitText="Login"
         schema={Login}
