@@ -15,7 +15,7 @@ export const Button = ({
   ...props
 }: ButtonProps) => (
   <button
-    className={`py-2 sm:text-sm rounded-sm ${bg} ${foreground} ${options}`}
+    className={`my-2 sm:text-sm rounded-sm ${bg} ${foreground} px-4 py-2 rounded-md ${options}`}
     onClick={onClick}
     {...props}
   >

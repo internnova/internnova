@@ -1,10 +1,10 @@
-import { Link, Image } from "blitz"
-import { BsPencilSquare } from "react-icons/bs"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import {useCurrentUser} from "app/core/hooks/useCurrentUser"
+import {Link, Image} from "blitz"
+import {BsPencilSquare} from "react-icons/bs"
 
 export const JobApplication = ({
   jobApplication: {
-    job: { companyName },
+    job: {companyName},
     position,
     description,
     status,
@@ -16,7 +16,7 @@ export const JobApplication = ({
   const isCompany = user?.role === "COMPANY"
   const basePath = `/job-applications/${companyName}/${slug}`
   return (
-    <Link href={isCompany ? basePath : `${basePath}/edit`}>
+    <Link href={isCompany ? basePath : status === "APPLIED" ? `${basePath}/edit` : "#"}>
       <a className="relative flex bg-white hover:bg-gray-50 rounded-md shadow-md py-4 px-2">
         <div className="flex w-full">
           <div className="hidden md:flex justify-center items-center basis-[10%]">
@@ -47,7 +47,7 @@ export const JobApplication = ({
               </p>
             </div>
           </div>
-          {!isCompany ? (
+          {!isCompany && status === "APPLIED" ? (
             <div className="absolute top-4 right-0 mr-4 cursor-pointer">
               <BsPencilSquare className="h-[24px] w-[24px]" />
             </div>
