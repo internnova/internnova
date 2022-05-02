@@ -1,3 +1,5 @@
+import {Spinner} from "app/core/components/Spinner"
+import "app/core/styles/index.css"
 import {
   AppProps,
   ErrorBoundary,
@@ -9,11 +11,9 @@ import {
   useRouter,
   Routes,
 } from "blitz"
-import "app/core/styles/index.css"
-import { Suspense } from "react"
-import { Spinner } from "app/core/components/Spinner"
+import {Suspense} from "react"
 
-export default function App({ Component, pageProps }: AppProps) {
+export default function App({Component, pageProps}: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
 
   return (
@@ -21,12 +21,14 @@ export default function App({ Component, pageProps }: AppProps) {
       FallbackComponent={RootErrorFallback}
       onReset={useQueryErrorResetBoundary().reset}
     >
-      <Suspense fallback={<Spinner />}>{getLayout(<Component {...pageProps} />)}</Suspense>
+      <div className="overflow-scroll">
+        <Suspense fallback={<Spinner />}>{getLayout(<Component {...pageProps} />)}</Suspense>
+      </div>
     </ErrorBoundary>
   )
 }
 
-function RootErrorFallback({ error }: ErrorFallbackProps) {
+function RootErrorFallback({error}: ErrorFallbackProps) {
   const router = useRouter()
   if (error instanceof AuthenticationError) {
     if (router.pathname !== "/login") {

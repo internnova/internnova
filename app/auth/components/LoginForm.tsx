@@ -1,8 +1,8 @@
-import { AuthenticationError, Link, useMutation, Routes, PromiseReturnType, useRouter } from "blitz"
-import { Form, FORM_ERROR } from "app/core/components/Form"
-import { LabeledTextField } from "app/core/components/LabeledTextField"
 import login from "app/auth/mutations/login"
-import { Login } from "app/auth/validations"
+import {Login} from "app/auth/validations"
+import {Form, FORM_ERROR} from "app/core/components/Form"
+import {LabeledTextField} from "app/core/components/LabeledTextField"
+import {AuthenticationError, Link, useMutation, Routes, PromiseReturnType, useRouter} from "blitz"
 
 type LoginFormProps = {
   onSuccess?: (user: PromiseReturnType<typeof login>) => void
@@ -15,17 +15,16 @@ export const LoginForm = (props: LoginFormProps) => {
   return (
     <div className="flex flex-col items-center">
       <Form
-        title="Login"
         submitText="Login"
         schema={Login}
-        initialValues={{ email: "", password: "" }}
+        initialValues={{email: "", password: ""}}
         onSubmit={async (values) => {
           try {
             const user = await loginMutation(values)
             props.onSuccess?.(user)
           } catch (error: any) {
             if (error instanceof AuthenticationError) {
-              return { [FORM_ERROR]: "Sorry, those credentials are invalid" }
+              return {[FORM_ERROR]: "Sorry, those credentials are invalid"}
             } else {
               return {
                 [FORM_ERROR]:
@@ -52,7 +51,7 @@ export const LoginForm = (props: LoginFormProps) => {
       <div>
         New to Internnova?{" "}
         <Link href={Routes.SignupPage()}>
-          <a className="text-[#5c6cff] text-md">Sign Up</a>
+          <a className="text-[primary] text-md">Sign Up</a>
         </Link>
       </div>
     </div>
