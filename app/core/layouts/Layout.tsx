@@ -35,21 +35,23 @@ const Layout: BlitzLayout<{
         <Meta title={`${title} | InternNova` || "InternNova"} />
       </Head>
       <div className="flex overflow-hidden h-screen">
-        {user !== null && (
+        {user && (
           <div className="hidden md:flex lg:flex-shrink-0">
             <Sidebar />
           </div>
         )}
         <main className="grow overflow-x-hidden">
-          <Nav />
+          {user && <Nav />}
           <BookmarkProvider>
             <Suspense fallback={<Spinner />}>
               <div className="container mx-auto">{children}</div>
             </Suspense>
           </BookmarkProvider>
-          <div className="pt-16 md:pt-0">
-            <HomeBar />
-          </div>
+          {user && (
+            <div className="pt-16 md:pt-0">
+              <HomeBar />
+            </div>
+          )}
         </main>
       </div>
       {user && !user.verified && !noVerification && (
