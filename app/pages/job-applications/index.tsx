@@ -1,9 +1,9 @@
-import { Suspense } from "react"
-import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes, Image } from "blitz"
+import { JobApplication } from "app/core/components/JobApplication"
+import { Spinner } from "app/core/components/Spinner"
 import Layout from "app/core/layouts/Layout"
 import getJobApplications from "app/job-applications/queries/getJobApplications"
-import { Spinner } from "app/core/components/Spinner"
-import { JobApplication } from "app/core/components/JobApplication"
+import { Head, Link, usePaginatedQuery, useRouter, BlitzPage, Routes, Image } from "blitz"
+import { Suspense } from "react"
 import { BsFillArrowLeftCircleFill, BsFillArrowRightCircleFill } from "react-icons/bs"
 
 const ITEMS_PER_PAGE = 100
@@ -26,8 +26,16 @@ export const JobApplicationsList = () => {
         <Image
           src="/images/no-applications.svg"
           alt="No Job Applications"
+          width={150}
+          height={150}
+          className="md:hidden"
+        />
+        <Image
+          src="/images/no-applications.svg"
+          alt="No Job Applications"
           width={300}
           height={300}
+          className="hidden md:block"
         />
         <div>
           <h2 className="text-center">No applications yet</h2>
