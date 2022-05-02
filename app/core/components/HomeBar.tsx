@@ -1,5 +1,5 @@
-import {Link, Router, useRouter} from "blitz"
-import {BsBriefcase, BsSearch} from "react-icons/bs"
+import { Link, Router, useRouter } from "blitz"
+import { BsBriefcase, BsSearch } from "react-icons/bs"
 
 export const HomeBar = () => {
   const router = Router.route

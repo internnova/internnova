@@ -1,23 +1,23 @@
 import sendConfirmationEmail from "app/auth/mutations/sendConfirmationEmail"
-import {Button} from "app/core/components/Button"
-import {HomeBar} from "app/core/components/HomeBar"
-import {Nav} from "app/core/components/Nav"
-import {Popup} from "app/core/components/Popup"
-import {Sidebar} from "app/core/components/Sidebar"
-import {Spinner} from "app/core/components/Spinner"
-import {BookmarkProvider} from "app/core/contexts/BookmarkProvider"
-import {useCurrentUser} from "app/core/hooks/useCurrentUser"
-import {Meta} from "app/core/partials/Meta"
-import {BlitzLayout, Head, useMutation} from "blitz"
+import { Button } from "app/core/components/Button"
+import { HomeBar } from "app/core/components/HomeBar"
+import { Nav } from "app/core/components/Nav"
+import { Popup } from "app/core/components/Popup"
+import { Sidebar } from "app/core/components/Sidebar"
+import { Spinner } from "app/core/components/Spinner"
+import { BookmarkProvider } from "app/core/contexts/BookmarkProvider"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import { Meta } from "app/core/partials/Meta"
+import { BlitzLayout, Head, useMutation } from "blitz"
 import Error from "next/error"
-import {Suspense} from "react"
+import { Suspense } from "react"
 
 const Layout: BlitzLayout<{
   title?: string
   noVerification?: boolean
   intern?: boolean
   company?: boolean
-}> = ({title, noVerification, children, intern, company}) => {
+}> = ({ title, noVerification, children, intern, company }) => {
   const [sendConfirmationMutation] = useMutation(sendConfirmationEmail)
   const user = useCurrentUser()
 
@@ -53,7 +53,7 @@ const Layout: BlitzLayout<{
         </main>
       </div>
       {user && !user.verified && !noVerification && (
-        <Popup title="Verify Email" scroll={false} {...{style: {height: "30ch"}}}>
+        <Popup title="Verify Email" scroll={false} {...{ style: { height: "30ch" } }}>
           <div className="flex flex-col gap-6 py-10 px-8 mb-4">
             <div className="">
               You&apos;re almost there! Just verify your email to continue. Be sure to check <br />

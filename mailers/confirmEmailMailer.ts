@@ -6,7 +6,7 @@ type ResetPasswordMailer = {
   token: string
 }
 
-export function confirmEmailMailer({to, token}: ResetPasswordMailer) {
+export function confirmEmailMailer({ to, token }: ResetPasswordMailer) {
   const origin = process.env.APP_ORIGIN || "http://localhost:3000"
   const resetUrl = `${origin}/confirm-email?token=${token}`
 
