@@ -1,6 +1,6 @@
-import {LoginForm} from "app/auth/components/LoginForm"
+import { LoginForm } from "app/auth/components/LoginForm"
 import Layout from "app/core/layouts/Layout"
-import {BlitzPage, useRouter} from "blitz"
+import { BlitzPage, useRouter } from "blitz"
 import Image from "next/image"
 
 const LoginPage: BlitzPage = () => {

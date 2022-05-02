@@ -1,11 +1,11 @@
-import {CompanyPopup} from "app/auth/components/CompanyPopup"
-import {Interests} from "app/auth/components/Interests"
-import {InternPopup} from "app/auth/components/InternPopup"
-import {SignupForm, SignUpValues} from "app/auth/components/SignupForm"
+import { CompanyPopup } from "app/auth/components/CompanyPopup"
+import { Interests } from "app/auth/components/Interests"
+import { InternPopup } from "app/auth/components/InternPopup"
+import { SignupForm, SignUpValues } from "app/auth/components/SignupForm"
 import Layout from "app/core/layouts/Layout"
-import {BlitzPage} from "blitz"
+import { BlitzPage } from "blitz"
 import Image from "next/image"
-import {useState} from "react"
+import { useState } from "react"
 
 export interface InternValues {
   username: string
@@ -31,9 +31,9 @@ const SignupPage: BlitzPage = () => {
   const ABOUT = "about"
   const INTERESTS = "interests"
   const [values, setValues] = useState<values>({
-    general: {name: "", email: "", password: "", role: ""},
-    intern: {bio: "", oneliner: "", logo: "", username: ""},
-    company: {logo: "", website: "", description: "", username: ""},
+    general: { name: "", email: "", password: "", role: "" },
+    intern: { bio: "", oneliner: "", logo: "", username: "" },
+    company: { logo: "", website: "", description: "", username: "" },
   })
   const [index, setIndex] = useState<string>(ABOUT)
   const showPopup = (idx: string) => index === idx
@@ -61,7 +61,7 @@ const SignupPage: BlitzPage = () => {
               height={580}
             />
           </div>
-          <SignupForm onSuccess={(val: SignUpValues) => setValues({...values, general: val})} />
+          <SignupForm onSuccess={(val: SignUpValues) => setValues({ ...values, general: val })} />
         </div>
       </div>
       {showPopup(ABOUT) &&
@@ -70,14 +70,14 @@ const SignupPage: BlitzPage = () => {
           <CompanyPopup general={values.general} />
         ) : (
           <InternPopup
-            onSuccess={(val: InternValues) => handleSuccess({...values, intern: val}, INTERESTS)}
+            onSuccess={(val: InternValues) => handleSuccess({ ...values, intern: val }, INTERESTS)}
             initials={values.intern}
           />
         ))}
       {showPopup(INTERESTS) && values.intern.bio.length && (
         <Interests
           goBack={() => setIndex(ABOUT)}
-          internValues={{...values.general, ...values.intern}}
+          internValues={{ ...values.general, ...values.intern }}
         />
       )}
     </>

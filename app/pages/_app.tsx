@@ -1,4 +1,4 @@
-import {Spinner} from "app/core/components/Spinner"
+import { Spinner } from "app/core/components/Spinner"
 import "app/core/styles/index.css"
 import {
   AppProps,
@@ -11,9 +11,9 @@ import {
   useRouter,
   Routes,
 } from "blitz"
-import {Suspense} from "react"
+import { Suspense } from "react"
 
-export default function App({Component, pageProps}: AppProps) {
+export default function App({ Component, pageProps }: AppProps) {
   const getLayout = Component.getLayout || ((page) => page)
 
   return (
@@ -28,7 +28,7 @@ export default function App({Component, pageProps}: AppProps) {
   )
 }
 
-function RootErrorFallback({error}: ErrorFallbackProps) {
+function RootErrorFallback({ error }: ErrorFallbackProps) {
   const router = useRouter()
   if (error instanceof AuthenticationError) {
     if (router.pathname !== "/login") {
