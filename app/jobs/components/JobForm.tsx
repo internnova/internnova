@@ -2,6 +2,7 @@ import { Form, FormProps } from "app/core/components/Form"
 import { LabeledOptionField } from "app/core/components/LabeledOptionField"
 import LabeledTextArea from "app/core/components/LabeledTextArea"
 import { LabeledTextField } from "app/core/components/LabeledTextField"
+import { useSession } from "blitz"
 import { JobType, Tag } from "db"
 import { z } from "zod"
 
@@ -11,6 +12,7 @@ export const convertValues = (values: string[]) =>
   values.map((value) => value.toLowerCase().replace(/_/g, " "))
 
 export function JobForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
+  const user = useSession()
   return (
     <Form<S> {...props}>
       <LabeledTextField
@@ -18,6 +20,13 @@ export function JobForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
         label="Position"
         placeholder="Eg: Frontend dev/Fullstack dev"
       />
+      {user.userId === 3 && (
+        <LabeledTextField
+          name="companyName"
+          label="Copmany Name"
+          placeholder="Only for InternNova account"
+        />
+      )}
       <LabeledTextArea name="description" placeholder="Describe the job" />
       <LabeledOptionField
         name="industry"

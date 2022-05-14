@@ -20,9 +20,9 @@ const NewJobPage: BlitzPage = () => {
           schema={CreateJobClient}
           onSubmit={async (values) => {
             const { slug, companyName } = await createJobMutation({
+              companyName: user!.username,
               ...values,
               skillsRequired: values.skillsRequired.split(", "),
-              companyName: user!.username,
             })
             router.push(Routes.ShowJobPage({ slug, companyName }))
           }}
