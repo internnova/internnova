@@ -1,11 +1,11 @@
-import { BlitzPage, useRouterQuery, useMutation, useRouter } from "blitz"
-import { Spinner } from "app/core/components/Spinner"
-import Layout from "app/core/layouts/Layout"
 import confirmEmail from "app/auth/mutations/confirmEmail"
-import { useState } from "react"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
-import { Popup } from "app/core/components/Popup"
 import { Button } from "app/core/components/Button"
+import { Popup } from "app/core/components/Popup"
+import { Spinner } from "app/core/components/Spinner"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import Layout from "app/core/layouts/Layout"
+import { BlitzPage, useRouterQuery, useMutation, useRouter } from "blitz"
+import { useState } from "react"
 
 const ConfirmPassswordPage: BlitzPage = () => {
   const query = useRouterQuery()

@@ -1,5 +1,5 @@
-import { ReactElement, createContext, useContext, useState, useEffect } from "react"
 import { JobType } from "app/core/components/Job"
+import { ReactElement, createContext, useContext, useState, useEffect } from "react"
 
 interface SignedInProviderProps {
   children: ReactElement

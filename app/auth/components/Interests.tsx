@@ -1,13 +1,13 @@
-import { useState } from "react"
-import { Popup } from "app/core/components/Popup"
-import { BsFillCheckCircleFill } from "react-icons/bs"
+import { SignUpValues } from "app/auth/components/SignupForm"
+import internSignup from "app/auth/mutations/intern-signup"
+import sendConfirmationEmail from "app/auth/mutations/sendConfirmationEmail"
+import { InternValues } from "app/auth/pages/signup"
 import { Button } from "app/core/components/Button"
 import { ErrorLabel } from "app/core/components/ErrorLabel"
+import { Popup } from "app/core/components/Popup"
 import { useMutation } from "blitz"
-import internSignup from "app/auth/mutations/intern-signup"
-import { SignUpValues } from "app/auth/components/SignupForm"
-import { InternValues } from "app/auth/pages/signup"
-import sendConfirmationEmail from "app/auth/mutations/sendConfirmationEmail"
+import { useState } from "react"
+import { BsFillCheckCircleFill } from "react-icons/bs"
 
 export const Interests = ({
   goBack,

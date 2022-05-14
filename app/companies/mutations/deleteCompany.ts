@@ -1,7 +1,7 @@
-import db from "db"
-import { z } from "zod"
 import { resolver } from "blitz"
 import { Ctx } from "blitz"
+import db from "db"
+import { z } from "zod"
 
 const DeleteCompany = z.object({
   id: z.number(),

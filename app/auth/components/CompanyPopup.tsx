@@ -1,13 +1,13 @@
-import Form from "app/core/components/Form"
+import { SignUpValues } from "app/auth/components/SignupForm"
+import companySignup from "app/auth/mutations/company-signup"
+import sendConfirmationEmail from "app/auth/mutations/sendConfirmationEmail"
 import { Company } from "app/auth/validations"
-import { LabeledTextField } from "app/core/components/LabeledTextField"
+import Form from "app/core/components/Form"
 import LabeledTextArea from "app/core/components/LabeledTextArea"
+import { LabeledTextField } from "app/core/components/LabeledTextField"
 import { Popup } from "app/core/components/Popup"
 import { UploadAvatar } from "app/core/components/UploadAvatar"
 import { useMutation } from "blitz"
-import companySignup from "app/auth/mutations/company-signup"
-import { SignUpValues } from "app/auth/components/SignupForm"
-import sendConfirmationEmail from "app/auth/mutations/sendConfirmationEmail"
 
 export const CompanyPopup = ({ general }: { general: SignUpValues }) => {
   const [companyMutation] = useMutation(companySignup)

@@ -1,12 +1,12 @@
-import { Suspense } from "react"
 import { Spinner } from "app/core/components/Spinner"
-import { Head, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
 import Layout from "app/core/layouts/Layout"
-import getJobApplication from "app/job-applications/queries/getJobApplication"
+import { JobApplicationForm, FORM_ERROR } from "app/job-applications/components/JobApplicationForm"
 import updateJobApplication, {
   UpdateJobApplication,
 } from "app/job-applications/mutations/updateJobApplication"
-import { JobApplicationForm, FORM_ERROR } from "app/job-applications/components/JobApplicationForm"
+import getJobApplication from "app/job-applications/queries/getJobApplication"
+import { Head, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
+import { Suspense } from "react"
 
 export const EditJobApplication = () => {
   const router = useRouter()

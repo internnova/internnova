@@ -1,6 +1,6 @@
+import { LabeledFileField } from "app/core/components/LabeledFileField"
 import { ChangeEvent, useState } from "react"
 import { BsUpload } from "react-icons/bs"
-import { LabeledFileField } from "app/core/components/LabeledFileField"
 
 export const UploadAvatar = () => {
   const [src, setSrc] = useState<string>("/images/default_profile.png")

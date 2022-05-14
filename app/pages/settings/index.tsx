@@ -1,10 +1,10 @@
-import { BlitzPage, Link } from "blitz"
-import { Suspense, useState } from "react"
-import Layout from "app/core/layouts/Layout"
 import { Spinner } from "app/core/components/Spinner"
-import { BsFillPersonFill, BsFillChatDotsFill, BsKeyFill } from "react-icons/bs"
+import Layout from "app/core/layouts/Layout"
 import { Profile } from "app/settings/components/Profile"
 import { Security } from "app/settings/components/Security"
+import { BlitzPage, Link } from "blitz"
+import { Suspense, useState } from "react"
+import { BsFillPersonFill, BsFillChatDotsFill, BsKeyFill } from "react-icons/bs"
 
 const PROFILE = {
   title: "Profile",

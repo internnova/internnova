@@ -1,9 +1,9 @@
+import logout from "app/auth/mutations/logout"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { Link, useMutation } from "blitz"
 import { BsFillMoonFill, BsPersonCircle } from "react-icons/bs"
-import { RiSettingsLine } from "react-icons/ri"
 import { HiLogout } from "react-icons/hi"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
-import logout from "app/auth/mutations/logout"
+import { RiSettingsLine } from "react-icons/ri"
 
 export const Profile = ({ header }: { header: boolean }) => {
   const currentUser = useCurrentUser()

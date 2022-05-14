@@ -1,11 +1,11 @@
+import { Spinner } from "app/core/components/Spinner"
 import Layout from "app/core/layouts/Layout"
-import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
-import { Suspense } from "react"
-import { z } from "zod"
 import { JobForm, FORM_ERROR } from "app/jobs/components/JobForm"
 import updateJob, { UpdateJobClient } from "app/jobs/mutations/updateJob"
 import getJob from "app/jobs/queries/getJob"
-import { Spinner } from "app/core/components/Spinner"
+import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
+import { Suspense } from "react"
+import { z } from "zod"
 
 export const EditJob = () => {
   const router = useRouter()

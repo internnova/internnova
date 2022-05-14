@@ -1,7 +1,7 @@
+import { Login } from "app/auth/validations"
 import { resolver, SecurePassword, AuthenticationError } from "blitz"
 import db from "db"
 import { Role } from "db"
-import { Login } from "app/auth/validations"
 
 export const authenticateUser = async (rawEmail: string, rawPassword: string) => {
   const { email, password } = Login.parse({ email: rawEmail, password: rawPassword })

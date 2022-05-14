@@ -1,7 +1,7 @@
+import { checkUserExists } from "app/auth/mutations/checkUserExists"
+import { InternSignup } from "app/auth/validations"
 import { Ctx, resolver, SecurePassword } from "blitz"
 import db from "db"
-import { InternSignup } from "app/auth/validations"
-import { checkUserExists } from "app/auth/mutations/checkUserExists"
 
 export default resolver.pipe(
   resolver.zod(InternSignup),

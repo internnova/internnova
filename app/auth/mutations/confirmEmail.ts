@@ -1,7 +1,6 @@
+import { ConfirmEmail } from "app/auth/validations"
 import { resolver, hash256 } from "blitz"
 import db from "db"
-
-import { ConfirmEmail } from "app/auth/validations"
 
 export class ResetPasswordError extends Error {
   name = "ConfirmEmailError"

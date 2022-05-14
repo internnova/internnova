@@ -1,6 +1,6 @@
+import { ErrorLabel } from "app/core/components/ErrorLabel"
 import React, { PropsWithoutRef } from "react"
 import { useField } from "react-final-form"
-import { ErrorLabel } from "app/core/components/ErrorLabel"
 
 export interface LabeledTextFieldProps extends PropsWithoutRef<JSX.IntrinsicElements["input"]> {
   /** Field name. */

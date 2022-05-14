@@ -1,9 +1,9 @@
+import { Job } from "app/core/components/Job"
+import { Spinner } from "app/core/components/Spinner"
+import Layout from "app/core/layouts/Layout"
+import getJobs from "app/jobs/queries/getJobs"
 import { BlitzPage, usePaginatedQuery, useParam, useRouter, Head } from "blitz"
 import { Suspense } from "react"
-import getJobs from "app/jobs/queries/getJobs"
-import Layout from "app/core/layouts/Layout"
-import { Spinner } from "app/core/components/Spinner"
-import { Job } from "app/core/components/Job"
 
 const ITEMS_PER_PAGE = 10
 

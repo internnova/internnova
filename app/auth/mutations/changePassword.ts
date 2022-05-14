@@ -1,7 +1,7 @@
-import { NotFoundError, SecurePassword, resolver } from "blitz"
-import db from "db"
 import { authenticateUser } from "app/auth/mutations/login"
 import { ChangePassword } from "app/auth/validations"
+import { NotFoundError, SecurePassword, resolver } from "blitz"
+import db from "db"
 
 export default resolver.pipe(
   resolver.zod(ChangePassword),

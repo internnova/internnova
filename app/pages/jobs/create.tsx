@@ -1,10 +1,10 @@
-import Layout from "app/core/layouts/Layout"
-import { useRouter, useMutation, BlitzPage, Routes } from "blitz"
-import { JobForm } from "app/jobs/components/JobForm"
-import createJob from "app/jobs/mutations/createJob"
-import Image from "next/image"
 import { CreateJobClient } from "app/auth/validations"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import Layout from "app/core/layouts/Layout"
+import { JobForm } from "app/jobs/components/JobForm"
+import createJob from "app/jobs/mutations/createJob"
+import { useRouter, useMutation, BlitzPage, Routes } from "blitz"
+import Image from "next/image"
 
 const NewJobPage: BlitzPage = () => {
   const router = useRouter()

@@ -8,7 +8,7 @@ interface ButtonProps {
 
 export const Button = ({
   bg = "bg-primary",
-  foreground = "text-[#ffffff]",
+  foreground = "text-white",
   children,
   onClick,
   options,

@@ -1,10 +1,10 @@
-import { Popup } from "app/core/components/Popup"
-import { UploadAvatar } from "app/core/components/UploadAvatar"
-import Form from "app/core/components/Form"
+import { InternValues } from "app/auth/pages/signup"
 import { Intern } from "app/auth/validations"
+import Form from "app/core/components/Form"
 import LabeledTextArea from "app/core/components/LabeledTextArea"
 import { LabeledTextField } from "app/core/components/LabeledTextField"
-import { InternValues } from "app/auth/pages/signup"
+import { Popup } from "app/core/components/Popup"
+import { UploadAvatar } from "app/core/components/UploadAvatar"
 
 export const InternPopup = ({
   onSuccess,

@@ -1,8 +1,8 @@
+import changePassword from "app/auth/mutations/changePassword"
+import { ChangePassword } from "app/auth/validations"
+import { Button } from "app/core/components/Button"
 import Form from "app/core/components/Form"
 import { LabeledTextField } from "app/core/components/LabeledTextField"
-import { Button } from "app/core/components/Button"
-import { ChangePassword } from "app/auth/validations"
-import changePassword from "app/auth/mutations/changePassword"
 import { useMutation } from "blitz"
 
 export const Security = ({ onSuccess }: { onSuccess: () => void }) => {

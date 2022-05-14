@@ -1,5 +1,5 @@
-import { optional, z } from "zod"
 import { JobType, Tag } from "db"
+import { optional, z } from "zod"
 
 export const email = z
   .string()

@@ -1,6 +1,6 @@
-import { useQuery } from "blitz"
-import getIntern from "app/interns/queries/getIntern"
 import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import getIntern from "app/interns/queries/getIntern"
+import { useQuery } from "blitz"
 
 export const useIntern = () => {
   const user = useCurrentUser()
