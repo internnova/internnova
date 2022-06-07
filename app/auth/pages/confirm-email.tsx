@@ -17,9 +17,7 @@ const ConfirmPassswordPage: BlitzPage = () => {
   if (user && user.verified) {
     router.push("/")
     return <Spinner />
-  }
-
-  if (isSuccess) {
+  } else if (isSuccess) {
     router.push("/")
     return <></>
   } else {

@@ -2307,7 +2307,8 @@ __metadata:
     "@tailwindcss/forms": ^0.4.0
     "@trivago/prettier-plugin-sort-imports": ^3.2.0
     "@types/preview-email": 2.0.1
-    "@types/react": 17.0.39
+    "@types/react": 18.0.1
+    "@types/react-dom": latest
     autoprefixer: latest
     blitz: ^0.45.3
     cloudinary-react: ^1.7.1
@@ -4271,7 +4272,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react-dom@npm:*":
+"@types/react-dom@npm:*, @types/react-dom@npm:latest":
   version: 18.0.5
   resolution: "@types/react-dom@npm:18.0.5"
   dependencies:
@@ -4309,14 +4310,14 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@types/react@npm:17.0.39":
-  version: 17.0.39
-  resolution: "@types/react@npm:17.0.39"
+"@types/react@npm:18.0.1":
+  version: 18.0.1
+  resolution: "@types/react@npm:18.0.1"
   dependencies:
     "@types/prop-types": "*"
     "@types/scheduler": "*"
     csstype: ^3.0.2
-  checksum: bf04d3c2894559012710d595553e12b422d3b91cd8f4f7e122d8cb044ba9c2ba17f6e8a4e09581359cc5509ddc59cd8c8fabd6774f3505a40a45393f074d6e6e
+  checksum: ede927ed3766fef5fec513fe75e79180bb3c97d21ca7707321e969193c596bc4a531160238546a845e4131df02ec9be7803277a268bc270156362d16b29b4ffb
   languageName: node
   linkType: hard
 

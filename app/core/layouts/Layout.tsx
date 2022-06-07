@@ -10,13 +10,14 @@ import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import { Meta } from "app/core/partials/Meta"
 import { BlitzLayout, Head, useMutation } from "blitz"
 import Error from "next/error"
-import { Suspense } from "react"
+import { ReactNode, Suspense } from "react"
 
 const Layout: BlitzLayout<{
   title?: string
   noVerification?: boolean
   intern?: boolean
   company?: boolean
+  children: ReactNode
 }> = ({ title, noVerification, children, intern, company }) => {
   const [sendConfirmationMutation] = useMutation(sendConfirmationEmail)
   const user = useCurrentUser()
