@@ -1,8 +1,10 @@
+import companyInDb from "app/companies/queries/companyInDb"
 import { Job as JobCard } from "app/core/components/Job"
 import { Spinner } from "app/core/components/Spinner"
 import Layout from "app/core/layouts/Layout"
 import getJobs from "app/jobs/queries/getJobs"
-import { Head, Image, useParam, BlitzPage, usePaginatedQuery, Link } from "blitz"
+import { Head, Image, useParam, BlitzPage, usePaginatedQuery, Link, useQuery } from "blitz"
+import { useMutation } from "blitz"
 import { Suspense } from "react"
 
 export const Job = () => {
@@ -10,6 +12,9 @@ export const Job = () => {
   const [{ jobs }] = usePaginatedQuery(getJobs, {
     where: { companyName },
     orderBy: { id: "asc" },
+  })
+  const [doesCompanyExist] = useQuery(companyInDb, {
+    username: companyName || "THISCOMPANYNAMECANTECHNICALLYNEVEREXISTORITSANABNOMALLY",
   })
 
   if (jobs.length !== 0) {
@@ -22,7 +27,7 @@ export const Job = () => {
           <div className="mt-4 flex flex-col gap-4">
             <h2>
               Positions open{" "}
-              <Link href={`/companies/${companyName}`}>
+              <Link href={doesCompanyExist ? `/${companyName}` : ``}>
                 <a>@{companyName}</a>
               </Link>
             </h2>

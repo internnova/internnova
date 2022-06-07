@@ -15,6 +15,12 @@ export interface LabeledOptionFieldProps extends PropsWithoutRef<JSX.IntrinsicEl
   fieldProps?: UseFieldConfig<string>
 }
 
+const toTitleCase = (string) => {
+  return string.replace(/\w\S*/g, function (txt) {
+    return txt.charAt(0).toUpperCase() + txt.substr(1).toLowerCase()
+  })
+}
+
 export const LabeledOptionField = forwardRef<HTMLInputElement, LabeledOptionFieldProps>(
   (
     { name, label, fields, outerProps, fieldProps, onSelection, labelProps, values, ...props },
@@ -50,12 +56,12 @@ export const LabeledOptionField = forwardRef<HTMLInputElement, LabeledOptionFiel
             {fields
               ? fields.map((value: string, idx) => (
                   <option key={value} value={values[idx]}>
-                    {value}
+                    {toTitleCase(value)}
                   </option>
                 ))
               : values.map((value) => (
                   <option key={value} value={value}>
-                    {value}
+                    {toTitleCase(value)}
                   </option>
                 ))}
           </Field>

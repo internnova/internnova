@@ -5,12 +5,13 @@ import { useField } from "react-final-form"
 export interface LabeledTextAreaProps extends PropsWithoutRef<JSX.IntrinsicElements["textarea"]> {
   /** Field name. */
   name: string
+  label?: string
   /** Field type. Doesn't include radio buttons and checkboxes */
   outerProps?: PropsWithoutRef<JSX.IntrinsicElements["div"]>
 }
 
 export const LabeledTextField = React.forwardRef<HTMLTextAreaElement, LabeledTextAreaProps>(
-  ({ name, outerProps, ...props }, ref) => {
+  ({ name, outerProps, label, ...props }, ref) => {
     const {
       input,
       meta: { touched, error, submitError, submitting },
@@ -20,6 +21,7 @@ export const LabeledTextField = React.forwardRef<HTMLTextAreaElement, LabeledTex
 
     return (
       <div {...outerProps}>
+        <p className="pb-1 text-neutral-600">{label}</p>
         <textarea
           {...input}
           disabled={submitting}

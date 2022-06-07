@@ -13,6 +13,7 @@ export const convertValues = (values: string[]) =>
 
 export function JobForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
   const user = useSession()
+
   return (
     <Form<S> {...props}>
       <LabeledTextField
@@ -20,14 +21,14 @@ export function JobForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
         label="Position"
         placeholder="Eg: Frontend dev/Fullstack dev"
       />
-      {user.userId === 3 && (
+      {user?.userId === 3 && (
         <LabeledTextField
           name="companyName"
-          label="Copmany Name"
+          label="Company Name"
           placeholder="Only for InternNova account"
         />
       )}
-      <LabeledTextArea name="description" placeholder="Describe the job" />
+      <LabeledTextArea name="description" placeholder="Describe the job" label="Job Description" />
       <LabeledOptionField
         name="industry"
         placeholder="Job Industry"

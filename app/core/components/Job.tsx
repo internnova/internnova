@@ -114,7 +114,7 @@ export const Job = ({
         </div>
       ) : (
         <>
-          {user?.username === companyName && (
+          {user?.id === job.companyId && (
             <Link href={`/jobs/${companyName}/${slug}/edit`}>
               <a className="absolute top-4 right-0 mr-4 cursor-pointer">
                 <BsPencilSquare className="h-[24px] w-[24px]" />

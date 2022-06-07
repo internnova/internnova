@@ -13,24 +13,19 @@ const NewJobPage: BlitzPage = () => {
 
   return (
     <div className="h-screen select-none">
-      <h1 className="pt-8 md:h-0 text-center tracking-4">Create a new job</h1>
-      <div className="flex gap-10 justify-center items-center w-full h-auto pb-4">
-        <JobForm
-          submitText="Create Job"
-          schema={CreateJobClient}
-          onSubmit={async (values) => {
-            const { slug, companyName } = await createJobMutation({
-              companyName: user!.username,
-              ...values,
-              skillsRequired: values.skillsRequired.split(", "),
-            })
-            router.push(Routes.ShowJobPage({ slug, companyName }))
-          }}
-        />
-        <div className="hidden lg:block">
-          <Image src="/images/add-job.svg" alt="Add Job" width={580} height={580} />
-        </div>
-      </div>
+      <h1 className="pt-8 ml-8 md:h-0 tracking-4">Create a new job</h1>
+      <JobForm
+        submitText="Create Job"
+        schema={CreateJobClient}
+        onSubmit={async (values) => {
+          const { slug, companyName } = await createJobMutation({
+            companyName: user!.username,
+            ...values,
+            skillsRequired: values.skillsRequired.split(", "),
+          })
+          router.push(Routes.ShowJobPage({ slug, companyName }))
+        }}
+      />
     </div>
   )
 }

@@ -1,3 +1,4 @@
+import companyInDb from "app/companies/queries/companyInDb"
 import { Button } from "app/core/components/Button"
 import { Spinner } from "app/core/components/Spinner"
 import Layout from "app/core/layouts/Layout"
@@ -23,6 +24,9 @@ export const Job = () => {
   const [deleteJobMutation] = useMutation(deleteJob)
   const [job] = useQuery(getJob, { slug, companyName })
   const session = useSession()
+  const [doesCompanyExist] = useQuery(companyInDb, {
+    username: companyName || "THISCOMPANYNAMECANTECHNICALLYNEVEREXISTORITSANABNOMALLY",
+  })
 
   if (job) {
     const {
@@ -52,9 +56,13 @@ export const Job = () => {
                 </span>
                 <span className="font-cal block text-2xl text-gray-900 sm:text-3xl">
                   {position}{" "}
-                  <Link href={`/${companyName}`}>
+                  {doesCompanyExist ? (
+                    <Link href={`/${companyName}`}>
+                      <a className="text-indigo-500">@{companyName}</a>
+                    </Link>
+                  ) : (
                     <a className="text-indigo-500">@{companyName}</a>
-                  </Link>
+                  )}
                 </span>
               </h1>
               <div className="flex flex-col gap-4">

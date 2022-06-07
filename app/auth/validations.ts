@@ -99,7 +99,7 @@ export const CreateJobServer = z.object({
   skillsRequired: z.string().array(),
   industry: industryType,
   duration: z.string(),
-  companyName: username,
+  companyName: z.string(),
 })
 
 export const CreateJobClient = z.object({

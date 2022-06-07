@@ -32,42 +32,40 @@ export const EditJob = () => {
           <title>Edit Job {job.position}</title>
         </Head>
         <div className="pt-8">
-          <div className="text-center">
+          <div className="pl-8">
             <h1>Edit Job {job.position}</h1>
           </div>
-          <div className="flex justify-center">
-            <JobForm
-              submitText="Update Job"
-              schema={UpdateJobClient}
-              initialValues={{
-                ...job,
-                salary: job.salary || undefined,
-                skillsRequired: job.skillsRequired.join(", "),
-              }}
-              onSubmit={async (values) => {
-                try {
-                  const updated = await updateJobMutation({
-                    ...values,
-                    id: job.id,
-                    skillsRequired: values.skillsRequired?.split(", ") || undefined,
-                  })
-                  await setQueryData({
-                    ...updated,
-                    company: job.company,
-                    applications: job.applications,
-                  })
-                  router.push(
-                    Routes.ShowJobPage({ slug: updated.slug, companyName: updated.companyName })
-                  )
-                } catch (error: any) {
-                  console.error(error)
-                  return {
-                    [FORM_ERROR]: error.toString(),
-                  }
+          <JobForm
+            submitText="Update Job"
+            schema={UpdateJobClient}
+            initialValues={{
+              ...job,
+              salary: job.salary || undefined,
+              skillsRequired: job.skillsRequired.join(", "),
+            }}
+            onSubmit={async (values) => {
+              try {
+                const updated = await updateJobMutation({
+                  ...values,
+                  id: job.id,
+                  skillsRequired: values.skillsRequired?.split(", ") || undefined,
+                })
+                await setQueryData({
+                  ...updated,
+                  company: job.company,
+                  applications: job.applications,
+                })
+                router.push(
+                  Routes.ShowJobPage({ slug: updated.slug, companyName: updated.companyName })
+                )
+              } catch (error: any) {
+                console.error(error)
+                return {
+                  [FORM_ERROR]: error.toString(),
                 }
-              }}
-            />
-          </div>
+              }
+            }}
+          />
         </div>
       </>
     )
