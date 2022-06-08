@@ -1,18 +1,18 @@
-import { Form, FormProps } from "app/core/components/Form"
-import { LabeledOptionField } from "app/core/components/LabeledOptionField"
+import {Form, FormProps} from "app/core/components/Form"
+import {LabeledOptionField} from "app/core/components/LabeledOptionField"
 import LabeledTextArea from "app/core/components/LabeledTextArea"
-import { LabeledTextField } from "app/core/components/LabeledTextField"
-import { useSession } from "blitz"
-import { JobType, Tag } from "db"
-import { z } from "zod"
+import {LabeledTextField} from "app/core/components/LabeledTextField"
+import {useCurrentUser} from "app/core/hooks/useCurrentUser"
+import {JobType, Tag} from "db"
+import {z} from "zod"
 
-export { FORM_ERROR } from "app/core/components/Form"
+export {FORM_ERROR} from "app/core/components/Form"
 
 export const convertValues = (values: string[]) =>
   values.map((value) => value.toLowerCase().replace(/_/g, " "))
 
 export function JobForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
-  const user = useSession()
+  const user = useCurrentUser()
 
   return (
     <Form<S> {...props}>
@@ -21,10 +21,10 @@ export function JobForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
         label="Position"
         placeholder="Eg: Frontend dev/Fullstack dev"
       />
-      {user?.userId === 3 && (
+      {user?.username === "internnova" && (
         <LabeledTextField
-          name="companyName"
-          label="Company Name"
+          name="displayName"
+          label="Display Name for company"
           placeholder="Only for InternNova account"
         />
       )}

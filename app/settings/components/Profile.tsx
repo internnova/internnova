@@ -1,17 +1,17 @@
-import { UpdateCompany, UpdateIntern } from "app/auth/validations"
+import {UpdateCompany, UpdateIntern} from "app/auth/validations"
 import updateCompany from "app/companies/mutations/updateCompany"
-import { Button } from "app/core/components/Button"
+import {Button} from "app/core/components/Button"
 import Form from "app/core/components/Form"
 import LabeledTextArea from "app/core/components/LabeledTextArea"
-import { LabeledTextField } from "app/core/components/LabeledTextField"
-import { Popup } from "app/core/components/Popup"
-import { UploadAvatar } from "app/core/components/UploadAvatar"
-import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import {LabeledTextField} from "app/core/components/LabeledTextField"
+import {Popup} from "app/core/components/Popup"
+import {UploadAvatar} from "app/core/components/UploadAvatar"
+import {useCurrentUser} from "app/core/hooks/useCurrentUser"
 import updateIntern from "app/interns/mutations/updateIntern"
-import { Image, Link, useMutation } from "blitz"
-import { useState } from "react"
+import {Image, Link, useMutation} from "blitz"
+import {useState} from "react"
 
-const CommonFields = ({ changePass }: { changePass: () => void }) => {
+const CommonFields = ({changePass}: {changePass: () => void}) => {
   const [uploadAvatar, setUploadAvatar] = useState<boolean>(false)
 
   return (
@@ -78,8 +78,8 @@ const CommonFields = ({ changePass }: { changePass: () => void }) => {
     </>
   )
 }
-export const Profile = ({ changePass }: { changePass: () => void }) => {
-  const [internUpdateMutate, { isSuccess }] = useMutation(updateIntern)
+export const Profile = ({changePass}: {changePass: () => void}) => {
+  const [internUpdateMutate, {isSuccess}] = useMutation(updateIntern)
   const user = useCurrentUser()
   const [updateCompanyMut] = useMutation(updateCompany)
 
@@ -87,33 +87,39 @@ export const Profile = ({ changePass }: { changePass: () => void }) => {
     return <></>
   }
 
-  const { id, username, name, email, intern, company } = user
+  const {id, username, name, email, intern, company} = user
 
   return (
     <main className="max-w-4xl py-4 h-screen">
       {user.role === "COMPANY" ? (
         <Form
           schema={UpdateCompany}
-          onSubmit={(values) => updateCompanyMut({ userId: id, ...values })}
+          onSubmit={(values) => updateCompanyMut({userId: id, ...values})}
           options="w-full"
           initialValues={{
             name,
             username,
             email,
+            displayName: company?.displayName,
             description: company?.description,
             website: company?.website as string,
           }}
         >
           <CommonFields changePass={changePass} />
           <LabeledTextField name="website" label="Website" placeholder="Company's website" />
+          <LabeledTextField
+            name="displayName"
+            label="Display name"
+            placeholder="Company's visible name"
+          />
           <LabeledTextArea name="description" placeholder="Describe your company" />
           <Button options="w-12">Save</Button>
         </Form>
       ) : (
         <Form
           schema={UpdateIntern}
-          onSubmit={(values) => internUpdateMutate({ userId: id, ...values })}
-          initialValues={{ name, username, email, bio: intern?.bio, oneliner: intern?.oneliner }}
+          onSubmit={(values) => internUpdateMutate({userId: id, ...values})}
+          initialValues={{name, username, email, bio: intern?.bio, oneliner: intern?.oneliner}}
           options="w-full"
         >
           <div className="flex flex-col gap-[4ch]">

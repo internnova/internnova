@@ -1,5 +1,5 @@
-import { JobType, Tag } from "db"
-import { optional, z } from "zod"
+import {JobType, Tag} from "db"
+import {optional, z} from "zod"
 
 export const email = z
   .string()
@@ -14,10 +14,10 @@ export const password = z
 
 export const name = z
   .string()
-  .min(3, { message: "Name must be at least 3 characters" })
-  .max(20, { message: "Name must be at most 20 characters" })
+  .min(3, {message: "Name must be at least 3 characters"})
+  .max(20, {message: "Name must be at most 20 characters"})
 
-const description = z.string().min(100, { message: "Description must be at least 100 characters" })
+const description = z.string().min(100, {message: "Description must be at least 100 characters"})
 
 const logo = z.string().url()
 
@@ -25,31 +25,33 @@ export const website = z.string().url()
 
 const interests = z.array(z.string())
 
-const bio = z.string().min(20, { message: "Must be at least 20 characters" })
+const bio = z.string().min(20, {message: "Must be at least 20 characters"})
 
-export const oneliner = z.string().max(40, { message: "Must be at most 40 characters" })
+export const oneliner = z.string().max(40, {message: "Must be at most 40 characters"})
 
 const role = z.string()
+
+const displayName = name
 
 export const username = z.string().regex(/^[a-zA-Z0-9_]{3,20}$/, {
   message: "Username can only contain letters, numbers, and underscores",
 })
 
-export const Signup = z.object({ email, password, name, role })
+export const Signup = z.object({email, password, name, role})
 
-export const Company = z.object({ description, website, logo, username })
+export const Company = z.object({description, website, logo, username, displayName})
 
-export const Intern = z.object({ logo, bio, oneliner, username })
+export const Intern = z.object({logo, bio, oneliner, username})
 
 export const CompanySignup = Signup.merge(Company)
 
-export const InternSignup = Signup.merge(Intern).extend({ interests })
+export const InternSignup = Signup.merge(Intern).extend({interests})
 
-export const Login = z.object({ email, password })
+export const Login = z.object({email, password})
 
-export const ForgotPassword = z.object({ email })
+export const ForgotPassword = z.object({email})
 
-export const SendConfirmationEmail = z.object({ email })
+export const SendConfirmationEmail = z.object({email})
 
 export const ConfirmEmail = z.object({
   token: z.string(),
@@ -85,6 +87,7 @@ export const UpdateCompany = z.object({
   description,
   email,
   website,
+  displayName,
 })
 
 export const jobType = z.nativeEnum(JobType)
@@ -100,15 +103,17 @@ export const CreateJobServer = z.object({
   industry: industryType,
   duration: z.string(),
   companyName: z.string(),
+  displayName,
 })
 
 export const CreateJobClient = z.object({
   position: z.string().min(10).max(50),
-  description: z.string().min(100, { message: "Should have at least 100 characters" }).max(1000),
+  description: z.string().min(100, {message: "Should have at least 100 characters"}).max(1000),
   jobType: jobType,
   location: z.optional(z.string()),
   salary: z.optional(z.string()),
   skillsRequired: z.string(),
   industry: industryType,
   duration: z.string(),
+  displayName,
 })

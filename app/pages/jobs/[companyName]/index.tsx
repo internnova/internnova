@@ -1,34 +1,36 @@
 import companyInDb from "app/companies/queries/companyInDb"
-import { Job as JobCard } from "app/core/components/Job"
-import { Spinner } from "app/core/components/Spinner"
+import {Job as JobCard} from "app/core/components/Job"
+import {Spinner} from "app/core/components/Spinner"
 import Layout from "app/core/layouts/Layout"
 import getJobs from "app/jobs/queries/getJobs"
-import { Head, Image, useParam, BlitzPage, usePaginatedQuery, Link, useQuery } from "blitz"
-import { useMutation } from "blitz"
-import { Suspense } from "react"
+import {Head, Image, useParam, BlitzPage, usePaginatedQuery, Link, useQuery} from "blitz"
+import {useMutation} from "blitz"
+import {Suspense} from "react"
 
-export const Job = () => {
+export const Jobs = () => {
   const companyName = useParam("companyName", "string")
-  const [{ jobs }] = usePaginatedQuery(getJobs, {
-    where: { companyName },
-    orderBy: { id: "asc" },
+  const [{jobs}] = usePaginatedQuery(getJobs, {
+    where: {companyName},
+    orderBy: {id: "asc"},
   })
-  const [doesCompanyExist] = useQuery(companyInDb, {
+  const [companyUser] = useQuery(companyInDb, {
     username: companyName || "THISCOMPANYNAMECANTECHNICALLYNEVEREXISTORITSANABNOMALLY",
   })
+
+  if (!companyUser) return <></>
 
   if (jobs.length !== 0) {
     return (
       <>
         <Head>
-          <title>Jobs {companyName}</title>
+          <title>Jobs {companyUser.company?.displayName}</title>
         </Head>
         <div className="h-[90vh] overflow-x-hidden">
           <div className="mt-4 flex flex-col gap-4">
             <h2>
               Positions open{" "}
-              <Link href={doesCompanyExist ? `/${companyName}` : ``}>
-                <a>@{companyName}</a>
+              <Link href={companyUser ? `/${companyName}` : ``}>
+                <a>@{companyUser.company?.displayName}</a>
               </Link>
             </h2>
             <div>
@@ -61,7 +63,7 @@ export const Job = () => {
 const CompanyPositions: BlitzPage = () => {
   return (
     <Suspense fallback={<Spinner />}>
-      <Job />
+      <Jobs />
     </Suspense>
   )
 }
