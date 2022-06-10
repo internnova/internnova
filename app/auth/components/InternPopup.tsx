@@ -27,7 +27,7 @@ export const InternPopup = ({
           <UploadAvatar />
         </div>
         <LabeledTextField name="username" label="Username" placeholder="Enter a unique username" />
-        <LabeledTextArea name="bio" placeholder="A little about yourself/your background" />
+        <LabeledTextArea name="bio" placeholder="A little about yourself/your background" small />
         <LabeledTextField
           name="oneliner"
           label="One liner"

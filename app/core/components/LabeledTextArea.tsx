@@ -6,12 +6,13 @@ export interface LabeledTextAreaProps extends PropsWithoutRef<JSX.IntrinsicEleme
   /** Field name. */
   name: string
   label?: string
+  small?: boolean
   /** Field type. Doesn't include radio buttons and checkboxes */
   outerProps?: PropsWithoutRef<JSX.IntrinsicElements["div"]>
 }
 
 export const LabeledTextField = React.forwardRef<HTMLTextAreaElement, LabeledTextAreaProps>(
-  ({ name, outerProps, label, ...props }, ref) => {
+  ({ name, outerProps, label, small, ...props }, ref) => {
     const {
       input,
       meta: { touched, error, submitError, submitting },
@@ -26,11 +27,13 @@ export const LabeledTextField = React.forwardRef<HTMLTextAreaElement, LabeledTex
           {...input}
           disabled={submitting}
           {...props}
-          rows={props.rows || 12}
-          cols={100}
+          rows={!small ? props.rows || 12 : 12}
+          cols={!small ? 100 : undefined}
           ref={ref}
           required={true}
-          className="max-w-[90vw] md:max-w-[80vw] rounded-sm py-2 px-3 shadow-sm focus:border-indigo-600 focus:outline-none resize-y focus:ring-1 focus:ring-indigo-600 sm:text-[15px] max-h-[400px]"
+          className={`${
+            !small ? "max-w-[90vw] md:max-w-[80vw]" : "w-full"
+          } rounded-sm py-2 px-3 shadow-sm focus:border-indigo-600 focus:outline-none resize-y focus:ring-1 focus:ring-indigo-600 sm:text-[15px] max-h-[400px]`}
           style={{ border: "2px solid rgb(225, 225, 225)" }}
         />
         {touched && normalizedError && <ErrorLabel error={normalizedError} />}
