@@ -26,16 +26,8 @@ export const JobApplicationsList = () => {
         <Image
           src="/images/no-applications.svg"
           alt="No Job Applications"
-          width={150}
-          height={150}
-          className="md:hidden"
-        />
-        <Image
-          src="/images/no-applications.svg"
-          alt="No Job Applications"
-          width={300}
-          height={300}
-          className="hidden md:block"
+          width={250}
+          height={250}
         />
         <div>
           <h2 className="text-center">No applications yet</h2>

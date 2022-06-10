@@ -90,7 +90,7 @@ export const Profile = ({ changePass }: { changePass: () => void }) => {
   const { id, username, name, email, intern, company } = user
 
   return (
-    <main className="max-w-4xl py-4 h-screen">
+    <main className="max-w-4xl py-4">
       {user.role === "COMPANY" ? (
         <Form
           schema={UpdateCompany}
@@ -131,7 +131,7 @@ export const Profile = ({ changePass }: { changePass: () => void }) => {
             />
             <LabeledTextArea name="bio" placeholder="About you" />
           </div>
-          <Button options="w-12">Save</Button>
+          <Button options="w-20">Save</Button>
         </Form>
       )}
     </main>
