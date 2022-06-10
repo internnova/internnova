@@ -1,12 +1,12 @@
-import {Form, FormProps} from "app/core/components/Form"
-import {LabeledOptionField} from "app/core/components/LabeledOptionField"
+import { Form, FormProps } from "app/core/components/Form"
+import { LabeledOptionField } from "app/core/components/LabeledOptionField"
 import LabeledTextArea from "app/core/components/LabeledTextArea"
-import {LabeledTextField} from "app/core/components/LabeledTextField"
-import {useCurrentUser} from "app/core/hooks/useCurrentUser"
-import {JobType, Tag} from "db"
-import {z} from "zod"
+import { LabeledTextField } from "app/core/components/LabeledTextField"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
+import { JobType, Tag } from "db"
+import { z } from "zod"
 
-export {FORM_ERROR} from "app/core/components/Form"
+export { FORM_ERROR } from "app/core/components/Form"
 
 export const convertValues = (values: string[]) =>
   values.map((value) => value.toLowerCase().replace(/_/g, " "))

@@ -1,6 +1,6 @@
 import companyInDb from "app/companies/queries/companyInDb"
-import {Button} from "app/core/components/Button"
-import {Spinner} from "app/core/components/Spinner"
+import { Button } from "app/core/components/Button"
+import { Spinner } from "app/core/components/Spinner"
 import Layout from "app/core/layouts/Layout"
 import deleteJob from "app/jobs/mutations/deleteJob"
 import getJob from "app/jobs/queries/getJob"
@@ -15,14 +15,14 @@ import {
   useRouter,
   useSession,
 } from "blitz"
-import {Suspense} from "react"
+import { Suspense } from "react"
 
 export const Job = () => {
   const router = useRouter()
   const slug = useParam("slug", "string")
   const companyName = useParam("companyName", "string")
   const [deleteJobMutation] = useMutation(deleteJob)
-  const [job] = useQuery(getJob, {slug, companyName})
+  const [job] = useQuery(getJob, { slug, companyName })
   const session = useSession()
   const [doesCompanyExist] = useQuery(companyInDb, {
     username: companyName || "THISCOMPANYNAMECANTECHNICALLYNEVEREXISTORITSANABNOMALLY",
@@ -112,7 +112,7 @@ export const Job = () => {
                 !job.applications
                   .map((application) => application.internId)
                   .includes(session?.userId || NaN) && (
-                  <Link href={Routes.NewJobApplicationPage({jobSlug: job.slug})}>
+                  <Link href={Routes.NewJobApplicationPage({ jobSlug: job.slug })}>
                     <a className="flex gap-2 items-center">
                       <p className="text-lg">Looks good?</p>
                       <Button options="px-2">Apply Now!</Button>

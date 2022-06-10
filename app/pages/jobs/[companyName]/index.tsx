@@ -1,17 +1,17 @@
 import companyInDb from "app/companies/queries/companyInDb"
-import {Job as JobCard} from "app/core/components/Job"
-import {Spinner} from "app/core/components/Spinner"
+import { Job as JobCard } from "app/core/components/Job"
+import { Spinner } from "app/core/components/Spinner"
 import Layout from "app/core/layouts/Layout"
 import getJobs from "app/jobs/queries/getJobs"
-import {Head, Image, useParam, BlitzPage, usePaginatedQuery, Link, useQuery} from "blitz"
-import {useMutation} from "blitz"
-import {Suspense} from "react"
+import { Head, Image, useParam, BlitzPage, usePaginatedQuery, Link, useQuery } from "blitz"
+import { useMutation } from "blitz"
+import { Suspense } from "react"
 
 export const Jobs = () => {
   const companyName = useParam("companyName", "string")
-  const [{jobs}] = usePaginatedQuery(getJobs, {
-    where: {companyName},
-    orderBy: {id: "asc"},
+  const [{ jobs }] = usePaginatedQuery(getJobs, {
+    where: { companyName },
+    orderBy: { id: "asc" },
   })
   const [companyUser] = useQuery(companyInDb, {
     username: companyName || "THISCOMPANYNAMECANTECHNICALLYNEVEREXISTORITSANABNOMALLY",
