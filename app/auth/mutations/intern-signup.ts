@@ -1,3 +1,4 @@
+import sendConfEmail from "../util/sendConfEmail"
 import { checkUserExists } from "app/auth/mutations/checkUserExists"
 import { InternSignup } from "app/auth/validations"
 import { Ctx, resolver, SecurePassword } from "blitz"
@@ -8,7 +9,7 @@ export default resolver.pipe(
   async ({ email, password, name, username, logo, bio, oneliner, interests }, ctx: Ctx) => {
     const hashedPassword = await SecurePassword.hash(password.trim())
     await checkUserExists(email, username)
-    const { id, role } = await db.user.create({
+    const user = await db.user.create({
       data: {
         name,
         username,
@@ -21,10 +22,11 @@ export default resolver.pipe(
 
     // we don't need data from the user since the user and intern id are the same
     await db.intern.create({
-      data: { id, bio, interests, oneliner, userId: id },
+      data: { id: user.id, bio, interests, oneliner, userId: user.id },
     })
 
-    await ctx.session.$create({ userId: id, role })
+    await ctx.session.$create({ userId: user.id, role: user.role })
+    await sendConfEmail({ user })
     return
   }
 )
