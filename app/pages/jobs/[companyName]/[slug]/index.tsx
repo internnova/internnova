@@ -30,6 +30,7 @@ export const Job = () => {
   })
   const [popupVisible, setPopupVisible] = useState<boolean>(false)
   const [deleteJobMutation] = useMutation(deleteJob)
+  console.log(job?.description)
 
   if (job) {
     const {
@@ -109,7 +110,7 @@ export const Job = () => {
 
               <div className="flex flex-col gap-4">
                 <h2>Description:</h2>
-                <p className="text-xl">{description}</p>
+                <p className="text-xl long-text">{description}</p>
               </div>
               <div className="flex flex-col gap-4">
                 <h2>Internship details:</h2>
@@ -138,7 +139,7 @@ export const Job = () => {
               <div className="flex flex-col gap-4">
                 <h2>What the company offers:</h2>
                 <ul className="px-6">
-                  {salary && (
+                  {salary && parseInt(salary) > 100 && (
                     <li>
                       <span className="text-lg">₹{salary} (monthly basis)</span>
                     </li>

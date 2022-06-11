@@ -21,6 +21,10 @@ h6 {
   font-family: "Lato", sans-serif;
 }
 
+.long-text {
+  white-space: pre-wrap;
+}
+
 @layer components {
   .hero {
     @apply w-full text-[#333];
