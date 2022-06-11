@@ -46,7 +46,7 @@ export function JobForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
       <LabeledTextField name="salary" label="Salary" placeholder="In INR" type="number" min={0} />
       <LabeledTextField
         name="duration"
-        label="Duration"
+        label="Duration (in months)"
         placeholder="Months"
         type="number"
         min={1}

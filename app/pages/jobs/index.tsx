@@ -16,7 +16,7 @@ export const JobsList = () => {
   const page = Number(router.query.page) || 0
   const [search, setSearch] = useState<string>("")
   const [searching, setSearching] = useState<boolean>(search.trim().length > 0)
-  const [{ jobs, hasMore }] = usePaginatedQuery(getJobs, {
+  const [{ jobs, hasMore }, { refetch }] = usePaginatedQuery(getJobs, {
     orderBy: { id: "asc" },
     skip: ITEMS_PER_PAGE * page,
     take: ITEMS_PER_PAGE,
@@ -93,7 +93,7 @@ export const JobsList = () => {
       </div>
       <div className="mb-6 flex flex-col gap-6 w-full">
         {jobs.map((job) => (
-          <Job key={`${job.id}`} job={job} />
+          <Job key={`${job.id}`} job={job} refetch={refetch} />
         ))}
       </div>
       {page !== 0 || hasMore ? (

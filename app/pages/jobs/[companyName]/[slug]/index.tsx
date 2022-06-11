@@ -1,6 +1,7 @@
 import companyInDb from "app/companies/queries/companyInDb"
-import { Button } from "app/core/components/Button"
-import { Spinner } from "app/core/components/Spinner"
+import {Button} from "app/core/components/Button"
+import {Popup} from "app/core/components/Popup"
+import {Spinner} from "app/core/components/Spinner"
 import Layout from "app/core/layouts/Layout"
 import deleteJob from "app/jobs/mutations/deleteJob"
 import getJob from "app/jobs/queries/getJob"
@@ -15,18 +16,20 @@ import {
   useRouter,
   useSession,
 } from "blitz"
-import { Suspense } from "react"
+import {useState} from "react"
+import {Suspense} from "react"
 
 export const Job = () => {
   const router = useRouter()
   const slug = useParam("slug", "string")
   const companyName = useParam("companyName", "string")
-  const [deleteJobMutation] = useMutation(deleteJob)
-  const [job] = useQuery(getJob, { slug, companyName })
+  const [job] = useQuery(getJob, {slug, companyName})
   const session = useSession()
   const [doesCompanyExist] = useQuery(companyInDb, {
     username: companyName || "THISCOMPANYNAMECANTECHNICALLYNEVEREXISTORITSANABNOMALLY",
   })
+  const [popupVisible, setPopupVisible] = useState<boolean>(false)
+  const [deleteJobMutation] = useMutation(deleteJob)
 
   if (job) {
     const {
@@ -45,7 +48,7 @@ export const Job = () => {
       <>
         <Head>
           <title>
-            {position} @{displayName}
+            {position || slug} @{displayName}
           </title>
         </Head>
         <div>
@@ -66,6 +69,44 @@ export const Job = () => {
                   )}
                 </span>
               </h1>
+              {session.userId === job.companyId && (
+                <div className="flex space-x-6">
+                  <Link href={`/jobs/${companyName}/${slug}/edit`}>
+                    <a className="text-indigo-500 cursor-pointer hover:underline">Edit</a>
+                  </Link>
+                  <div>
+                    <a
+                      onClick={() => setPopupVisible(true)}
+                      className="text-indigo-500 cursor-pointer hover:underline"
+                    >
+                      Delete
+                    </a>
+                  </div>
+                </div>
+              )}
+              {popupVisible && (
+                <Popup
+                  title="Confirm deletion"
+                  scroll={false}
+                  {...{style: {height: "25ch", width: "35ch"}}}
+                >
+                  <div className="flex flex-col gap-6 py-10 px-8 mb-4">
+                    <div className="">
+                      Are you sure you want to delete this job? This action is not reverable.
+                    </div>
+                    <Button
+                      onClick={async () => {
+                        await deleteJobMutation({id: job.id})
+                        setPopupVisible(false)
+                        router.push("/jobs")
+                      }}
+                    >
+                      Delete
+                    </Button>
+                  </div>
+                </Popup>
+              )}
+
               <div className="flex flex-col gap-4">
                 <h2>Description:</h2>
                 <p className="text-xl">{description}</p>
@@ -112,7 +153,7 @@ export const Job = () => {
                 !job.applications
                   .map((application) => application.internId)
                   .includes(session?.userId || NaN) && (
-                  <Link href={Routes.NewJobApplicationPage({ jobSlug: job.slug })}>
+                  <Link href={Routes.NewJobApplicationPage({jobSlug: job.slug})}>
                     <a className="flex gap-2 items-center">
                       <p className="text-lg">Looks good?</p>
                       <Button options="px-2">Apply Now!</Button>

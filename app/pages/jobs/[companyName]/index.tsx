@@ -9,7 +9,7 @@ import { Suspense } from "react"
 
 export const Jobs = () => {
   const companyName = useParam("companyName", "string")
-  const [{ jobs }] = usePaginatedQuery(getJobs, {
+  const [{ jobs }, { refetch }] = usePaginatedQuery(getJobs, {
     where: { companyName },
     orderBy: { id: "asc" },
   })
@@ -34,8 +34,8 @@ export const Jobs = () => {
               </Link>
             </h2>
             <div>
-              {jobs.map((job) => (
-                <JobCard key={`${job.id}`} job={job} />
+              {jobs.map((job: typeof jobs[0]) => (
+                <JobCard key={`${job.id}`} job={job} refetch={refetch} />
               ))}
             </div>
           </div>

@@ -4,7 +4,7 @@ import { Spinner } from "app/core/components/Spinner"
 import Layout from "app/core/layouts/Layout"
 import getUser from "app/users/queries/getUser"
 import { Head, Link, useQuery, useParam, BlitzPage, Image } from "blitz"
-import { Suspense } from "react"
+import { Suspense, useState } from "react"
 
 export const slugify = (str: string) => {
   return str.toLowerCase().replace(/[^a-zA-Z0-9]/g, "-")
@@ -20,7 +20,7 @@ interface CompProps {
 const avatar = "/images/default_profile.png"
 
 const Company = ({ user: { name, username } }: CompProps) => {
-  const [{ website, jobs, description }] = useQuery(
+  const [{ website, jobs, description }, { refetch }] = useQuery(
     getCompany,
     { where: { user: { username } } },
     {
@@ -73,7 +73,7 @@ const Company = ({ user: { name, username } }: CompProps) => {
           <h3>Positions open:</h3>
           <div>
             {jobs.map((job) => (
-              <Job key={`${job.id}`} job={job} />
+              <Job key={`${job.id}`} job={job} refetch={refetch} />
             ))}
           </div>
         </div>
