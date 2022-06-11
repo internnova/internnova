@@ -32,7 +32,7 @@ export const LabeledTextField = React.forwardRef<HTMLTextAreaElement, LabeledTex
           ref={ref}
           required={true}
           className={`${
-            !small ? "max-w-[94vw] md:max-w-[80vw]" : "w-full"
+            !small ? "max-w-[80vw]" : "w-full"
           } rounded-sm py-2 px-3 shadow-sm focus:border-indigo-600 focus:outline-none resize-y focus:ring-1 focus:ring-indigo-600 sm:text-[15px] max-h-[400px]`}
           style={{ border: "2px solid rgb(225, 225, 225)" }}
         />

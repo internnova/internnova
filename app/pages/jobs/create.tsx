@@ -4,7 +4,6 @@ import Layout from "app/core/layouts/Layout"
 import { JobForm } from "app/jobs/components/JobForm"
 import createJob from "app/jobs/mutations/createJob"
 import { useRouter, useMutation, BlitzPage, Routes } from "blitz"
-import Image from "next/image"
 
 const NewJobPage: BlitzPage = () => {
   const router = useRouter()
@@ -18,6 +17,7 @@ const NewJobPage: BlitzPage = () => {
         submitText="Create Job"
         schema={CreateJobClient}
         onSubmit={async (values) => {
+          console.log(values)
           const { slug, companyName } = await createJobMutation({
             companyName: user!.username,
             ...values,

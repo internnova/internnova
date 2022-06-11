@@ -15,7 +15,14 @@ export function JobForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
   const user = useCurrentUser()
 
   return (
-    <Form<S> {...props}>
+    <Form<S>
+      {...props}
+      initialValues={{
+        industry: Tag.Marketing,
+        jobType: JobType.PART_TIME,
+        ...props.initialValues,
+      }}
+    >
       <LabeledTextField
         name="position"
         label="Position"
