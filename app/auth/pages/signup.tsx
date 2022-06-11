@@ -90,5 +90,6 @@ SignupPage.getLayout = (page) => (
     {page}
   </Layout>
 )
+SignupPage.authenticate = false
 
 export default SignupPage

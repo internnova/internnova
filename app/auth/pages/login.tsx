@@ -38,4 +38,6 @@ LoginPage.getLayout = (page) => (
   </Layout>
 )
 
+LoginPage.authenticate = false
+
 export default LoginPage

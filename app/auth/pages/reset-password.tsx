@@ -3,11 +3,15 @@ import { ResetPassword } from "app/auth/validations"
 import { Form, FORM_ERROR } from "app/core/components/Form"
 import { LabeledTextField } from "app/core/components/LabeledTextField"
 import Layout from "app/core/layouts/Layout"
-import { BlitzPage, useRouterQuery, Link, useMutation, Routes } from "blitz"
+import { BlitzPage, useRouterQuery, Link, useMutation, Routes, useRouter } from "blitz"
 
 const ResetPasswordPage: BlitzPage = () => {
   const query = useRouterQuery()
   const [resetPasswordMutation, { isSuccess }] = useMutation(resetPassword)
+  const router = useRouter()
+  if (!query.token) {
+    router.push(Routes.LoginPage())
+  }
   return (
     <div className="flex flex-col justify-center items-center w-full h-screen select-none">
       <h1 className="px-8">Set a New Password</h1>
@@ -64,5 +68,7 @@ ResetPasswordPage.getLayout = (page) => (
     {page}
   </Layout>
 )
+
+ResetPasswordPage.authenticate = false
 
 export default ResetPasswordPage
