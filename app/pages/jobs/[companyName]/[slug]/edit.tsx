@@ -1,19 +1,19 @@
-import {Spinner} from "app/core/components/Spinner"
+import { Spinner } from "app/core/components/Spinner"
 import Layout from "app/core/layouts/Layout"
-import {JobForm, FORM_ERROR} from "app/jobs/components/JobForm"
-import updateJob, {UpdateJobClient} from "app/jobs/mutations/updateJob"
+import { JobForm, FORM_ERROR } from "app/jobs/components/JobForm"
+import updateJob, { UpdateJobClient } from "app/jobs/mutations/updateJob"
 import getJob from "app/jobs/queries/getJob"
-import {Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes} from "blitz"
-import {Suspense} from "react"
-import {z} from "zod"
+import { Head, Link, useRouter, useQuery, useMutation, useParam, BlitzPage, Routes } from "blitz"
+import { Suspense } from "react"
+import { z } from "zod"
 
 export const EditJob = () => {
   const router = useRouter()
   const slug = useParam("slug", "string")
   const companyName = useParam("companyName", "string")
-  const [job, {setQueryData}] = useQuery(
+  const [job, { setQueryData }] = useQuery(
     getJob,
-    {slug, companyName},
+    { slug, companyName },
     {
       // This ensures the query never refreshes and overwrites the form data while the user is editing.
       staleTime: Infinity,
@@ -56,7 +56,7 @@ export const EditJob = () => {
                   applications: job.applications,
                 })
                 router.push(
-                  Routes.ShowJobPage({slug: updated.slug, companyName: updated.companyName})
+                  Routes.ShowJobPage({ slug: updated.slug, companyName: updated.companyName })
                 )
               } catch (error: any) {
                 console.error(error)

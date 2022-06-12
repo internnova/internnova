@@ -53,7 +53,7 @@ export function JobForm<S extends z.ZodType<any, any>>(props: FormProps<S>) {
       />
       <LabeledTextField
         name="skillsRequired"
-        label="Skills Required"
+        label="Skills Required(separated by a comma)"
         placeholder="Separated by a comma"
       />
       <LabeledOptionField

@@ -1,11 +1,11 @@
-import {Job as JobTypePrisma} from "@prisma/client"
-import {Button} from "app/core/components/Button"
-import {Popup} from "app/core/components/Popup"
-import {useBookmark} from "app/core/contexts/BookmarkProvider"
-import {useCurrentUser} from "app/core/hooks/useCurrentUser"
+import { Job as JobTypePrisma } from "@prisma/client"
+import { Button } from "app/core/components/Button"
+import { Popup } from "app/core/components/Popup"
+import { useBookmark } from "app/core/contexts/BookmarkProvider"
+import { useCurrentUser } from "app/core/hooks/useCurrentUser"
 import deleteJob from "app/jobs/mutations/deleteJob"
-import {Link, useMutation} from "blitz"
-import {useState} from "react"
+import { Link, useMutation } from "blitz"
+import { useState } from "react"
 import {
   BsCodeSlash,
   BsGeoAlt,
@@ -15,7 +15,7 @@ import {
   BsBookmarksFill,
   BsPencilSquare,
 } from "react-icons/bs"
-import {QueryObserverBaseResult} from "react-query"
+import { QueryObserverBaseResult } from "react-query"
 
 export interface JobType extends JobTypePrisma {}
 
@@ -30,12 +30,12 @@ interface JobProps {
 export const Job = ({
   at,
   refetch,
-  job: {position, description, industry, location, jobType, salary, companyName, slug, ...job},
+  job: { position, description, industry, location, jobType, salary, companyName, slug, ...job },
 }: JobProps) => {
   const [popupVisible, setPopupVisible] = useState<boolean>(false)
   const [deleteJobMutation] = useMutation(deleteJob)
   const user = useCurrentUser()
-  const {bookmarks, setBookmarks} = useBookmark()
+  const { bookmarks, setBookmarks } = useBookmark()
   const hasBookmarked = bookmarks.find((bookmark) => bookmark.slug === slug)
   const [isBookmarked, setIsBookmarked] = useState<boolean>(!!hasBookmarked)
 
@@ -45,7 +45,7 @@ export const Job = ({
         <Popup
           title="Confirm deletion"
           scroll={false}
-          {...{style: {height: "25ch", width: "35ch"}}}
+          {...{ style: { height: "25ch", width: "35ch" } }}
         >
           <div className="flex flex-col gap-6 py-10 px-8 mb-4">
             <div className="">
@@ -53,7 +53,7 @@ export const Job = ({
             </div>
             <Button
               onClick={async () => {
-                await deleteJobMutation({id: job.id})
+                await deleteJobMutation({ id: job.id })
                 refetch && (await refetch())
                 setPopupVisible && setPopupVisible(false)
               }}

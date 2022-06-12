@@ -7,7 +7,10 @@ import { Head, Link, useQuery, useParam, BlitzPage, Image } from "blitz"
 import { Suspense, useState } from "react"
 
 export const slugify = (str: string) => {
-  return str.toLowerCase().replace(/[^a-zA-Z0-9]/g, "-")
+  return str
+    .toLowerCase()
+    .trim()
+    .replace(/[^a-zA-Z0-9]/g, "-")
 }
 
 interface CompProps {

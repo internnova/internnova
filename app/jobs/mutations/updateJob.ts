@@ -1,6 +1,6 @@
-import {resolver} from "blitz"
-import db, {JobType, Tag} from "db"
-import {z} from "zod"
+import { resolver } from "blitz"
+import db, { JobType, Tag } from "db"
+import { z } from "zod"
 
 const jobType = z.nativeEnum(JobType)
 const industryType = z.nativeEnum(Tag)
@@ -34,9 +34,9 @@ export const UpdateJobClient = z.object({
 export default resolver.pipe(
   resolver.zod(UpdateJobServer),
   resolver.authorize("COMPANY"),
-  async ({id, ...data}) => {
+  async ({ id, ...data }) => {
     console.log(data)
-    const job = await db.job.update({where: {id}, data})
+    const job = await db.job.update({ where: { id }, data })
 
     return job
   }

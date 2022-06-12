@@ -1,16 +1,16 @@
-import {resolver, Ctx, AuthenticationError} from "blitz"
+import { resolver, Ctx, AuthenticationError } from "blitz"
 import db from "db"
-import {z} from "zod"
+import { z } from "zod"
 
 const DeleteJob = z.object({
   id: z.number(),
 })
 
-export default resolver.pipe(resolver.zod(DeleteJob), async ({id}, ctx: Ctx) => {
+export default resolver.pipe(resolver.zod(DeleteJob), async ({ id }, ctx: Ctx) => {
   ctx.session.$authorize("COMPANY")
-  const job = await db.job.findFirst({where: {id}})
+  const job = await db.job.findFirst({ where: { id } })
   if (ctx.session.userId === job?.companyId) {
-    const deletedJob = await db.job.deleteMany({where: {id}})
+    const deletedJob = await db.job.deleteMany({ where: { id } })
 
     return deletedJob
   } else {
