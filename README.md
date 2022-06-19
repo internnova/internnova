@@ -41,15 +41,10 @@ yarn run dev
 
 <br>
 
-## :clap: Supporters
-
-[![Stargazers repo roster for https://github.com/internnova/company-dashboard](https://reporoster.com/stars/internnova/internnova)](https://github.com/internnova/internnova/stargazers)
-
-<br>
-
 ## Authors
 
 [Samrath Chadha](https://github.com/0xsamrath) - Lead dev/maintainer
+<br>
 [Suryansh Makharia](https://github.com/suryanshmak) - Dev/maintainer
 
 See also the list of [contributors](https://github.com/internnova/contributors) who contributed to this.
